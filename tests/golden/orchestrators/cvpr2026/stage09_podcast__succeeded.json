@@ -1,0 +1,358 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "9e6e9ebed2da3b3b7627b24ff4b7ced1dca4f15c1433cfc1fa1c7534cf5a77fe",
+  "normalized_output_digest": "d312ea9986a4bd136f96bcbd7790fc5b1c12cd53b4b6e191790731396ff124d8",
+  "output_digest_consistent": true,
+  "output_files": {
+    "analysis/podcast_source.md": "text:21ca1483992162ea288ad14254a9fb0afca012613f89e33af6b14f72ee1ae226",
+    "audio/cvpr2026_overview/focused_podcast/audio_manifest.json": "json:6dd4090f144ddaf595fae3056d3ee917700c3814497a4386c68e02acbee14a11",
+    "audio/cvpr2026_overview/focused_podcast/audio_ready_package.json": "json:84db1b0a8e0f89420134b7bdde202387db8142760c2e7ff57d0a17224c9ca25b",
+    "audio/cvpr2026_overview/focused_podcast/podcast.mp3": "text:601694c0ae22f6da181ec3ce47d34b79cc4d283c62320b5c07dd62155b327028",
+    "audio/cvpr2026_overview/focused_podcast/script.json": "json:4b994c1c22fd299cdf80e5e1418ea721aa66eb58fac86004084a7f1b444b49ad",
+    "audio/cvpr2026_overview/focused_podcast/script.md": "text:4d9405a84e5772686ace2edfa0f67d2d6b7a52dc58d7b6335bd0f6427e983044",
+    "audio/cvpr2026_overview/focused_podcast/show_notes.md": "text:4b85d9a428cf47610474bd8e9a795593557198f10ce29e48980544d2b8bb6243",
+    "audio/cvpr2026_overview/ranks.json": "json:41f7485c60e55092afa97fbc5dbeab7007005a76db9f5d4bb9ad80c8043a78dd"
+  },
+  "receipt": {
+    "blockers": [],
+    "checks": {
+      "analysis_manifest_content_sha256": "<content_sha256:analysis/analysis_manifest.json>",
+      "analysis_manifest_path": "analysis/analysis_manifest.json",
+      "analysis_manifest_sha256": "<sha256:analysis/analysis_manifest.json>",
+      "audio_command": [
+        "<REPO>/.venv/bin/python",
+        "scripts/render_podcast_audio.py",
+        "--script-json",
+        "<WORKSPACE>/audio/cvpr2026_overview/focused_podcast/script.json",
+        "--output-dir",
+        "<WORKSPACE>/audio/cvpr2026_overview/focused_podcast",
+        "--model",
+        "gpt-4o-mini-tts",
+        "--host-a",
+        "Maya",
+        "--host-b",
+        "Leo",
+        "--workspace",
+        "<WORKSPACE>",
+        "--run-id",
+        "w1-cvpr-fixture-run",
+        "--stage-id",
+        "podcast",
+        "--summary"
+      ],
+      "audio_manifest_path": "audio/cvpr2026_overview/focused_podcast/audio_manifest.json",
+      "audio_manifest_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/audio_manifest.json>",
+      "audio_package": {
+        "audio_manifest_path": "audio/cvpr2026_overview/focused_podcast/audio_manifest.json",
+        "audio_manifest_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/audio_manifest.json>",
+        "audio_stats": {
+          "audio_file_count": 2,
+          "podcast_byte_count": 14,
+          "segment_count": 2
+        },
+        "podcast_mp3_path": "audio/cvpr2026_overview/focused_podcast/podcast.mp3",
+        "podcast_mp3_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/podcast.mp3>",
+        "provider_summary": {
+          "canonical_receipt_files_scanned": 2,
+          "canonical_total_estimated_cost_usd": 0.02,
+          "canonical_totals_by_model": {
+            "openai:fixture-tts": 0.02
+          },
+          "canonical_totals_by_operation": {
+            "tts": 0.02
+          },
+          "canonical_totals_by_provider": {
+            "openai": 0.02
+          },
+          "failed_receipts": 0,
+          "receipt_paths": [
+            "provider-call-1.json",
+            "provider-call-2.json"
+          ],
+          "unknown_cost_receipts": 0
+        },
+        "receipt_type": "conference_pipeline.cvpr2026_podcast_audio_ready_package",
+        "run_id": "w1-cvpr-fixture-run",
+        "schema_version": 1,
+        "script_json_path": "audio/cvpr2026_overview/focused_podcast/script.json",
+        "script_json_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/script.json>",
+        "script_markdown_path": "audio/cvpr2026_overview/focused_podcast/script.md",
+        "script_markdown_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/script.md>",
+        "script_stats": {
+          "segment_count": 2,
+          "title": "Test podcast",
+          "word_count": 360
+        },
+        "secrets_copied": false,
+        "show_notes_path": "audio/cvpr2026_overview/focused_podcast/show_notes.md",
+        "show_notes_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/show_notes.md>",
+        "source_binding": {
+          "fact_count": 9,
+          "fact_ranks_path": "audio/cvpr2026_overview/ranks.json",
+          "fact_ranks_sha256": "<sha256:audio/cvpr2026_overview/ranks.json>",
+          "source_path": "analysis/podcast_source.md",
+          "source_sha256": "<sha256:analysis/podcast_source.md>"
+        }
+      },
+      "audio_ready_package_path": "audio/cvpr2026_overview/focused_podcast/audio_ready_package.json",
+      "audio_ready_package_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/audio_ready_package.json>",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "estimated_cost_usd": 0.02,
+      "executive_summary_path": "analysis/executive_summary.md",
+      "executive_summary_sha256": "<sha256:analysis/executive_summary.md>",
+      "fact_count": 9,
+      "fact_ranks_path": "audio/cvpr2026_overview/ranks.json",
+      "fact_ranks_sha256": "<sha256:audio/cvpr2026_overview/ranks.json>",
+      "live_provider_calls_made": true,
+      "model_governance_task_ids": [
+        "podcast.focused_script_generation",
+        "podcast.tts"
+      ],
+      "owner_execution_evidence": {
+        "podcast.focused_script": "audio/cvpr2026_overview/focused_podcast/script.json:<sha256:audio/cvpr2026_overview/focused_podcast/script.json>",
+        "podcast.render_audio": "audio/cvpr2026_overview/focused_podcast/podcast.mp3:<sha256:audio/cvpr2026_overview/focused_podcast/podcast.mp3>"
+      },
+      "paid_provider_calls_made": true,
+      "podcast_audio_byte_count": 14,
+      "podcast_audio_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/podcast.mp3>",
+      "podcast_audio_status": "pass",
+      "podcast_mp3_path": "audio/cvpr2026_overview/focused_podcast/podcast.mp3",
+      "podcast_output_dir": "audio/cvpr2026_overview/focused_podcast",
+      "podcast_script_status": "pass",
+      "provider_calls_made": true,
+      "provider_cost_approval": {
+        "approval_sources": [
+          "--provider-cost-approved"
+        ],
+        "approved": true,
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "provider_summary": {
+        "canonical_receipt_files_scanned": 2,
+        "canonical_total_estimated_cost_usd": 0.02,
+        "canonical_totals_by_model": {
+          "openai:fixture-tts": 0.02
+        },
+        "canonical_totals_by_operation": {
+          "tts": 0.02
+        },
+        "canonical_totals_by_provider": {
+          "openai": 0.02
+        },
+        "failed_receipts": 0,
+        "receipt_paths": [
+          "provider-call-1.json",
+          "provider-call-2.json"
+        ],
+        "unknown_cost_receipts": 0
+      },
+      "script_command": [
+        "<REPO>/.venv/bin/python",
+        "scripts/generate_focused_podcast.py",
+        "<WORKSPACE>/analysis/podcast_source.md",
+        "--fact-ranks",
+        "<WORKSPACE>/audio/cvpr2026_overview/ranks.json",
+        "--output-dir",
+        "<WORKSPACE>/audio/cvpr2026_overview/focused_podcast",
+        "--target-minutes",
+        "12",
+        "--top-n-facts",
+        "50",
+        "--max-tier",
+        "3",
+        "--model",
+        "claude-opus-5-5",
+        "--two-hosts",
+        "--host-a",
+        "Maya",
+        "--host-b",
+        "Leo",
+        "--title",
+        "CVPR 2026: What Changed in AI Research"
+      ],
+      "script_generation_model": "claude-opus-5-5",
+      "script_json_path": "audio/cvpr2026_overview/focused_podcast/script.json",
+      "script_json_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/script.json>",
+      "script_markdown_path": "audio/cvpr2026_overview/focused_podcast/script.md",
+      "script_markdown_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/script.md>",
+      "script_stats": {
+        "segment_count": 2,
+        "title": "Test podcast",
+        "word_count": 360
+      },
+      "secrets_copied": false,
+      "show_notes_path": "audio/cvpr2026_overview/focused_podcast/show_notes.md",
+      "show_notes_sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/show_notes.md>",
+      "source_path": "analysis/podcast_source.md",
+      "source_sha256": "<sha256:analysis/podcast_source.md>",
+      "stage8_receipt_path": "storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json",
+      "stage8_receipt_sha256": "<sha256:storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+      "trend_report_path": "analysis/trend_report.md",
+      "trend_report_sha256": "<sha256:analysis/trend_report.md>",
+      "tts_model": "gpt-4o-mini-tts"
+    },
+    "downloads_made": 0,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "podcast"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "analysis_manifest": {
+          "declared_sha256": "<content_sha256:analysis/analysis_manifest.json>",
+          "missing": false,
+          "optional": false,
+          "path": "analysis/analysis_manifest.json",
+          "sha256": "<sha256:analysis/analysis_manifest.json>",
+          "source": "stage"
+        },
+        "executive_summary": {
+          "declared_sha256": "<sha256:analysis/executive_summary.md>",
+          "missing": false,
+          "optional": false,
+          "path": "analysis/executive_summary.md",
+          "sha256": "<sha256:analysis/executive_summary.md>",
+          "source": "stage"
+        },
+        "trend_report": {
+          "declared_sha256": "<sha256:analysis/trend_report.md>",
+          "missing": false,
+          "optional": false,
+          "path": "analysis/trend_report.md",
+          "sha256": "<sha256:analysis/trend_report.md>",
+          "source": "stage"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-09-podcast.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-08-qa-gap-fill-synthesis.json",
+          "stage_id": "qa-gap-fill-synthesis",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "name": "podcast_source",
+        "path": "analysis/podcast_source.md",
+        "sha256": "<sha256:analysis/podcast_source.md>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "fact_ranks",
+        "path": "audio/cvpr2026_overview/ranks.json",
+        "sha256": "<sha256:audio/cvpr2026_overview/ranks.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "script_json",
+        "path": "audio/cvpr2026_overview/focused_podcast/script.json",
+        "sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/script.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "script_markdown",
+        "path": "audio/cvpr2026_overview/focused_podcast/script.md",
+        "sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/script.md>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "show_notes",
+        "path": "audio/cvpr2026_overview/focused_podcast/show_notes.md",
+        "sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/show_notes.md>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "audio_manifest",
+        "path": "audio/cvpr2026_overview/focused_podcast/audio_manifest.json",
+        "sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/audio_manifest.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "audio_ready_package",
+        "path": "audio/cvpr2026_overview/focused_podcast/audio_ready_package.json",
+        "sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/audio_ready_package.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "podcast_mp3",
+        "path": "audio/cvpr2026_overview/focused_podcast/podcast.mp3",
+        "sha256": "<sha256:audio/cvpr2026_overview/focused_podcast/podcast.mp3>",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-09-podcast.json>",
+    "owner_execution_evidence": {
+      "podcast.focused_script": "audio/cvpr2026_overview/focused_podcast/script.json:<sha256:audio/cvpr2026_overview/focused_podcast/script.json>",
+      "podcast.render_audio": "audio/cvpr2026_overview/focused_podcast/podcast.mp3:<sha256:audio/cvpr2026_overview/focused_podcast/podcast.mp3>"
+    },
+    "provider_calls_made": true,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "podcast.focused_script",
+      "podcast.render_audio"
+    ],
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "podcast: receipt mode live",
+        "podcast: registry digest matched",
+        "podcast: required owner ids recorded",
+        "podcast: owner execution evidence present",
+        "podcast: lineage bound to storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json (output_digest <output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json>)",
+        "podcast: receipt check checks.executive_summary_status",
+        "podcast: receipt check checks.trend_report_status",
+        "podcast: required receipt <WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json",
+        "podcast: output glob audio/*/focused_podcast/script.json count=1",
+        "podcast: output glob audio/*/focused_podcast/script.md count=1",
+        "podcast: output glob audio/*/focused_podcast/audio_manifest.json count=1",
+        "podcast: output glob audio/*/focused_podcast/audio_ready_package.json count=1",
+        "podcast: output glob audio/*/focused_podcast/podcast.mp3 count=1",
+        "podcast: receipt check checks.podcast_script_status",
+        "podcast: receipt check checks.podcast_audio_status",
+        "podcast: receipt check checks.podcast_audio_sha256",
+        "podcast: receipt check checks.provider_calls_made",
+        "podcast: 3 input artifact digests current"
+      ],
+      "blockers": [],
+      "registry_stage_id": "podcast",
+      "required_script_ids": [
+        "podcast.focused_script",
+        "podcast.render_audio"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "podcast",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "podcast",
+    "stage_order": 9,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

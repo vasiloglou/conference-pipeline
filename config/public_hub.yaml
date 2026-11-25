@@ -1,0 +1,5 @@
+# The cross-conference hub (v6.0 Phase 7.1, spec D5). Read by
+# conference-pipeline release hub build|check|publish.
+title: Conference intelligence releases
+pages_project: conference-intelligence-hub
+code_repo_url: https://github.com/vasiloglou/conference-pipeline

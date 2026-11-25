@@ -1,0 +1,6 @@
+version: 1
+summary: Run the repo's provider cost estimator and summarize approval-grade cost scenarios.
+instructions: |
+  Use the repository command rather than recomputing prices by hand. Cite
+  pricing_catalog.json and task_specs.yaml when explaining assumptions. Treat
+  provider invoices and receipts as authoritative for actual costs.

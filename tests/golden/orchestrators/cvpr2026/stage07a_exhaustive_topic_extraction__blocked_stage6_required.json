@@ -1,0 +1,84 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "21de249be6d3cd8bf3aa757709b9fdc9d6cba7fdee98078e466f37a1e6b67c99",
+  "normalized_output_digest": "c9fad18ca3e9e0d0663e078c384cbffc1d3b9b507425266f89cd5afe4d371e29",
+  "output_digest_consistent": true,
+  "output_files": {},
+  "receipt": {
+    "blockers": [
+      {
+        "affected_stage": "exhaustive-topic-extraction",
+        "code": "exhaustive_extraction_stage6_required",
+        "path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json"
+      }
+    ],
+    "checks": {
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "live_provider_calls_made": false,
+      "provider_calls_made": false,
+      "secrets_copied": false,
+      "stage6_receipt_path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json",
+      "stage6_status": null
+    },
+    "downloads_made": 0,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "exhaustive-topic-extraction"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/14A-exhaustive-topic-extraction-receipt.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": false,
+          "source": "required_upstream_stages",
+          "spec_path": null,
+          "stage_id": "corpus-inventory-index",
+          "status": null
+        }
+      }
+    },
+    "mode": "live",
+    "output_artifacts": [],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/14A-exhaustive-topic-extraction-receipt.json>",
+    "owner_execution_evidence": {
+      "analysis.exhaustive_topic_extraction": {
+        "downloads_made": 0,
+        "owner_function": "run_exhaustive_topic_extraction_stage",
+        "owner_module": "conference_pipeline.iclr2025_live.run_exhaustive_topic_extraction",
+        "provider_calls_made": 0
+      }
+    },
+    "provider_calls_made": 0,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "analysis.exhaustive_topic_extraction"
+    ],
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": null,
+    "stage_id": "exhaustive-topic-extraction",
+    "stage_order": 7,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

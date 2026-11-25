@@ -1,0 +1,78 @@
+# What this project takes from dev-tools (https://github.com/vasiloglou/dev-tools).
+# Update with:  python3 <dev-tools>/devtools/sync.py apply --project .
+# Confirm with: python3 <dev-tools>/devtools/sync.py check --project .
+#
+# The milestone workflow. A conference usually takes two milestones (analysis, then live
+# production); each milestone's records go under .planning/milestones/<milestone-dir>/.
+# The synced files are never edited here: the project's own rules are in
+# .claude/skills/process-phase/references/project.md, which the sync never touches.
+#
+# .codex/skills is a link to .claude/skills, so each skill has one entry: Codex reads
+# .codex/skills (checked with codex-cli 0.163.0, 2026-11-13). A local, untracked
+# .agents/skills copy is also read by Codex; it is not synced.
+#
+# Left out for now: the phase workflow (skills/phase/*, agents, the pytest plugin) and the
+# optional GND rules check. The phase agents were reviewed for v6.0 Phase 1 and not taken:
+# they belong to that other workflow.
+
+# Regenerate the component index (components/) whenever an apply changed a file, so a
+# sync that updates the components script never leaves the generated pages stale.
+after_apply = ["python3 scripts/components_index.py write"]
+
+[[sync]]
+source = "skills/milestone/start-milestone"
+dest = ".claude/skills/start-milestone"
+values = { planning_dir = ".planning" }
+
+[[sync]]
+source = "skills/milestone/process-milestone"
+dest = ".claude/skills/process-milestone"
+values = { planning_dir = ".planning" }
+
+[[sync]]
+source = "skills/milestone/process-phase"
+dest = ".claude/skills/process-phase"
+values = { planning_dir = ".planning" }
+
+# The review helper, process-phase's scripts/review_tool.py: the reviewer for the plan, every
+# phase diff, the close and any PR, in the other harness from the one driving the work
+# (references/project.md, "Review instrument and plan-review bar").
+[sync.settings."scripts/review_tool.settings.json"]
+reviewer = "auto"
+codex_model = "gpt-6-astra"
+codex_effort = "high"
+claude_model = "opus"
+timeout_minutes = 60
+
+# review-pr: an independent review of a pull request, through process-phase's review helper,
+# so it sits beside process-phase. No values or settings of its own. It stays below
+# process-phase's settings table: a [sync.settings] table belongs to the [[sync]] entry
+# above it, so each later entry carries its own table directly beneath it.
+[[sync]]
+source = "skills/milestone/review-pr"
+dest = ".claude/skills/review-pr"
+
+# The component index (v6.0-Public-Release Phase 1): the skill under .claude/skills, its script
+# at scripts/ (where the skill's commands name it), the index under components/: outside
+# docs/, which the stage-script docs verifier scans (Phase 1 spec IF3, D2).
+# handle-issue triages, reproduces and routes a GitHub issue. No values or settings.
+[[sync]]
+source = "skills/handle-issue"
+dest = ".claude/skills/handle-issue"
+
+[[sync]]
+source = "skills/components"
+dest = ".claude/skills/components"
+exclude = ["scripts/components_index.py"]
+
+[[sync]]
+source = "skills/components/scripts/components_index.py"
+dest = "scripts/components_index.py"
+
+[sync.settings."components_index.settings.json"]
+package_dir = "src/conference_pipeline"
+import_prefix = "conference_pipeline"
+extra_source_dirs = ["scripts"]
+docs_dir = "components"
+script_path = "scripts/components_index.py"
+verb_list = "shared"

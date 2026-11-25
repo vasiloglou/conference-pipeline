@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "conference": "neurips2025",
+  "release": {
+    "source_sha": ""
+  },
+  "families": [
+    {
+      "id": "no_status_family",
+      "private_path": "analysis/data",
+      "public_path": "exports/public-release/{bundle}/data/",
+      "storage_manifest_id": "no_status_family",
+      "license": "CC-BY-4.0",
+      "provenance": "paper-metadata"
+    }
+  ]
+}

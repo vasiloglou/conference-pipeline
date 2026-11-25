@@ -1,0 +1,102 @@
+{
+  "audience_promise": "Operators will understand why blueprint-first deck generation protects source fidelity.",
+  "blueprint_id": "bp-demo-001",
+  "conclusion_synthesis": "A governed blueprint makes every downstream slide choice auditable before rendering begins.",
+  "deck_thesis": "Presentation generation must decide the story and evidence plan before filling slide slots.",
+  "provenance": {
+    "generator": "fixture",
+    "model": "none",
+    "source_metadata": [
+      {
+        "label": "SRC-001",
+        "path": "analysis/01_demo_topic.md",
+        "title": "Demo analysis"
+      },
+      {
+        "label": "SRC-002",
+        "path": "decks/01_demo_topic/source_attributions.json",
+        "title": "Demo source attribution"
+      }
+    ]
+  },
+  "repair_of": null,
+  "revision": 1,
+  "slides": [
+    {
+      "estimated_minutes": 3.5,
+      "intent": "Establish the weak direct-expansion failure mode.",
+      "narration_beat": "The audience sees why old draft generation could make plausible slides without a coherent story.",
+      "slide_id": "slide-001",
+      "slide_type": "content",
+      "source_plan": [
+        {
+          "label": "SRC-001",
+          "rationale": "The analysis brief names the failure mode this slide introduces."
+        }
+      ],
+      "visual_role": "Failure chain showing analysis brief, fixed slide slots, late references, and weak evidence fit"
+    },
+    {
+      "estimated_minutes": 4.0,
+      "intent": "Show how the blueprint binds clusters, sources, visuals, and narration before draft generation.",
+      "narration_beat": "The audience sees the new control point before any deck markdown is written.",
+      "slide_id": "slide-002",
+      "slide_type": "content",
+      "source_plan": [
+        {
+          "label": "SRC-001",
+          "rationale": "The analysis document provides the section structure."
+        },
+        {
+          "label": "SRC-002",
+          "rationale": "The source attribution file provides evidence labels."
+        }
+      ],
+      "visual_role": "Blueprint dependency map linking thesis, cluster evidence, visual role, and narration beat"
+    }
+  ],
+  "source_plan_repair_of": null,
+  "subtopic_clusters": [
+    {
+      "cluster_id": "cluster-001",
+      "rationale": "This cluster covers the existing direct expansion failure.",
+      "slide_bindings": [
+        "slide-001"
+      ],
+      "sources": [
+        "SRC-001"
+      ],
+      "title": "Current failure mode"
+    },
+    {
+      "cluster_id": "cluster-002",
+      "rationale": "This cluster covers the redesigned contract.",
+      "slide_bindings": [
+        "slide-002"
+      ],
+      "sources": [
+        "SRC-001",
+        "SRC-002"
+      ],
+      "title": "Blueprint contract"
+    }
+  ],
+  "target_runtime_minutes": 37.5,
+  "target_slide_count": 2,
+  "telescopic_section_map": [
+    {
+      "cluster_ids": [
+        "cluster-001"
+      ],
+      "section_id": "section-001",
+      "title": "Why direct expansion fails"
+    },
+    {
+      "cluster_ids": [
+        "cluster-002"
+      ],
+      "section_id": "section-002",
+      "title": "How blueprint gating fixes it"
+    }
+  ]
+}

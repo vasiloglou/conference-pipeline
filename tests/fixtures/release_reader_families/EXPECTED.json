@@ -1,0 +1,84 @@
+{
+  "schema": "release-reader-families-corpus/1",
+  "conventions": {
+    "official_url": {
+      "openreview": "https://openreview.net/forum?id=<id>",
+      "arxiv": "https://arxiv.org/abs/<id>",
+      "otherwise": "the record's own https official_url field, else null"
+    },
+    "row_order": "by paper_id",
+    "topic_mapping": "a valid_reference_id is <prefix>:<bare_id>; it maps to the catalog row whose paper_id ends with ':<bare_id>'; references that are not papers or not in the catalog are counted as unresolved",
+    "statistics_label_without_file": "<slug>-inventory-<first 12 hex of the inventory file's sha256>",
+    "talk_display_names": {"oral": "Oral", "expo_talk_panel": "Expo talk / panel", "poster": "Poster", "town-hall": "Town hall", "unknown": "<the kind as spelled>"},
+    "redaction_tokens": {"private_target": "<redacted:private_target>", "name": "<redacted:name>", "email": "<redacted:email>", "outside_path": "<redacted:path>"}
+  },
+  "cases": {
+    "R1": {
+      "rows": [
+        {"paper_id": "arxiv:2501.00001", "title": "Neural Operators for Ocean Forecasting", "authors": ["Cy Three"], "track": "workshop", "official_url": "https://arxiv.org/abs/2501.00001", "topics": []},
+        {"paper_id": "openreview:AAAAAAAAA1", "title": "Sparse Mixtures for Long Context Reasoning", "authors": ["Ada One", "Ben Two"], "track": "main", "official_url": "https://openreview.net/forum?id=AAAAAAAAA1", "topics": ["01_alpha"]},
+        {"paper_id": "site:conf-77", "title": "A Site-Only Paper", "authors": [], "track": "main", "official_url": null, "topics": []}
+      ],
+      "topic_papers": {"01_alpha": ["openreview:AAAAAAAAA1"]},
+      "unresolved_topic_references": 2,
+      "every_row_valid_against": "docs/public_catalog_row.schema.json",
+      "effects": ["the duplicate copy P1b and the talk record are not rows", "speech:talk-xyz and paper_abstract:ZZZZZZZZZ9 are the two unresolved references"]
+    },
+    "R2": {"site:conf-77": "https://example.org/papers/77", "in_R1": null},
+    "R3": {"rows": [{"paper_id": "openreview:BBBBBBBBB1", "title": "Calibrated Uncertainty in Diffusion Planners", "authors": ["Ed Five"], "track": "main", "venue": "Conf 2026 Poster", "official_url": "https://openreview.net/forum?id=BBBBBBBBB1", "topics": []}]},
+    "R4": {"row_present": false, "excluded_ids": {"excluded": ["openreview:RRRRRRRRR1"]}},
+    "R5": {"raises": "ReaderFamiliesError", "cli_exit": 2, "reader_files_written": 0, "names": "arxiv:2501.00001"},
+    "S1": {
+      "papers": {"total": 3, "by_track": {"main": 2, "workshop": 1}},
+      "corpus_version": {"label": "conf-corpus-0123456789ab"},
+      "talks": {
+        "listed": 5, "admitted": 4, "excluded": {"asr_hallucination": 1},
+        "by_kind": {
+          "expo_talk_panel": {"display": "Expo talk / panel", "listed": 2, "admitted": 1, "excluded": 1},
+          "mystery_kind": {"display": "mystery_kind", "listed": 1, "admitted": 1, "excluded": 0},
+          "oral": {"display": "Oral", "listed": 2, "admitted": 2, "excluded": 0}
+        }
+      },
+      "every_kind_balances": true
+    },
+    "S2": {
+      "papers": {"total": 3, "by_track": {"main": 2, "workshop": 1}},
+      "talks": {
+        "listed": 3, "admitted": 2, "excluded": {"speechless_recording": 1},
+        "by_kind": {
+          "oral": {"display": "Oral", "listed": 1, "admitted": 1, "excluded": 0},
+          "poster": {"display": "Poster", "listed": 2, "admitted": 1, "excluded": 1}
+        }
+      },
+      "corpus_version_label_pattern": "^conf-inventory-[0-9a-f]{12}$"
+    },
+    "S3": {"field": "d11_note", "equals_declared_text": true, "absent_when_undeclared": true},
+    "L1": {
+      "items": [
+        {"id": "lim-1", "kind": "accepted_finding"},
+        {"id": "lim-2", "kind": "refused_support_label"}
+      ],
+      "record_fields": ["bundle_id", "close_record", "close_record_sha256", "items", "source_sha256"],
+      "markdown_contains_every_summary": true
+    },
+    "L2": {"raises": "ReaderFamiliesError", "names": "lim-2", "reason": "quote_not_at_lines", "reader_files_written": 0},
+    "L3": {"approver": "<redacted:name>", "email": "<redacted:email>", "source_file_unchanged": true},
+    "L4": {"a": {"exit_code": 0}, "b": {"exit_code": 1, "names_uncovered_range": true}},
+    "X1": {"value": "<redacted:private_target>"},
+    "X2": {"inside_workspace": "relative to the workspace, e.g. decks/01_alpha/assets/a.png", "outside_home_path": "<redacted:path>"},
+    "X3": {"mapped": "href becomes https://openreview.net/forum?id=AAAAAAAAA1", "unmapped": "the <a> element is removed; its link text stays"},
+    "X4": {"pdf_bytes_unchanged": true, "reported_under": "binary_markers"},
+    "X5": {"redacted_files": "one entry per rewritten file, with its rule kinds and replacement count; the PDF is not among them", "checksums_match_redacted_bytes": true},
+    "X6": {"workspace_files_unchanged": 4},
+    "M1": {"conference_name_valid": true, "unknown_release_key_valid": false},
+    "M2": {"F3_listed": true, "F3_reason": "default: not reviewed for publication", "F1_unchanged": true, "families_count_unchanged": true},
+    "C1": {"exit_code": 1, "finding_names": "drive.google.com"},
+    "H1": {"index_shows": ["Expo talk / panel", "conf-corpus-0123456789ab", "the S3 note text"], "limitations_page": "limitations.html", "limitations_page_shows": "every item summary"},
+    "H2": {"in_hub_catalog": false},
+    "E1": {
+      "bundle_contains": ["catalog/papers.jsonl", "catalog/topic_papers.json", "catalog/excluded_ids.json", "catalog/statistics.json", "narratives/01_alpha.md", "limitations/limitations.json", "limitations/limitations.md"],
+      "release_conference_name": "Conf 2026",
+      "exit_codes": {"plan": 0, "build": 0}
+    }
+  }
+}

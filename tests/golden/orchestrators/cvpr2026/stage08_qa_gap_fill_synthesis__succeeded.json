@@ -1,0 +1,268 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "d25fcfc9d30c8ccae40af6c8888ea2768c6146a51844bf6ad0ede09ba288bc0b",
+  "normalized_output_digest": "30c09ff0946966155d81eea6f83b66426e31e8469ee32dc2d68baefc4ce84b60",
+  "output_digest_consistent": true,
+  "output_files": {
+    "analysis/executive_summary.md": "text:045127ff7368ddfee6049993648eba476e7eac87d776f0d087b47b3dede4ae1c",
+    "analysis/qa/coverage_gap_report.json": "json:e110254a85930c0ef0c654d3d32ae1ecbc9e6dcd284c87a1e747a137fe00ef38",
+    "analysis/qa/traceability_report.json": "json:fc7a63fb23160dfffe984dcde51de95edf66b6702e69e9ca8cdd3a056210c2a0",
+    "analysis/trend_report.md": "text:a4d9848b463d832b56b63fa005bfbb12b97fe350576296a0011f8376ad69e01a"
+  },
+  "receipt": {
+    "blockers": [],
+    "checks": {
+      "analysis_manifest_content_sha256": "<content_sha256:analysis/analysis_manifest.json>",
+      "analysis_manifest_path": "analysis/analysis_manifest.json",
+      "analysis_manifest_sha256": "<sha256:analysis/analysis_manifest.json>",
+      "analysis_manifest_topic_count": 3,
+      "citation_manifest_path": "analysis/analysis_citation_manifest.json",
+      "citation_manifest_sha256": "<sha256:analysis/analysis_citation_manifest.json>",
+      "cost_cap_usd": 35.0,
+      "coverage_classes": {
+        "gap": 0,
+        "missing_evidence": 0,
+        "under_covered": 0,
+        "well_covered": 3
+      },
+      "coverage_gap_report_path": "analysis/qa/coverage_gap_report.json",
+      "coverage_gap_report_sha256": "<sha256:analysis/qa/coverage_gap_report.json>",
+      "coverage_gap_report_status": "pass",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "estimated_cost_usd": 0.0048,
+      "executive_summary_citation_counts": {
+        "extraction_record_ids": 10,
+        "research_ids": 3,
+        "topic_report_paths": 3
+      },
+      "executive_summary_path": "analysis/executive_summary.md",
+      "executive_summary_sha256": "<sha256:analysis/executive_summary.md>",
+      "executive_summary_status": "pass",
+      "live_provider_calls_made": true,
+      "model_governance_task_id": "synthesis.executive_summary",
+      "owner_execution_evidence": {
+        "analysis.coverage_gap_fill": "analysis/qa/coverage_gap_report.json:<sha256:analysis/qa/coverage_gap_report.json>",
+        "analysis.synthesis_trend_report": "analysis/trend_report.md:<sha256:analysis/trend_report.md>"
+      },
+      "paid_provider_calls_made": true,
+      "provider_calls_made": true,
+      "provider_cost_approval": {
+        "approval_sources": [
+          "--provider-cost-approved"
+        ],
+        "approved": true,
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "secrets_copied": false,
+      "stage7_receipt_path": "storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json",
+      "stage7_receipt_sha256": "<sha256:storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json>",
+      "synthesis_model": "claude-opus-5-5",
+      "synthesis_provider": "anthropic",
+      "token_usage": {
+        "input_tokens": 200,
+        "output_tokens": 200,
+        "request_count": 2
+      },
+      "topic_reconciliation_receipt_path": "storage/workflow-runs/w1-cvpr-fixture-run/07D-topic-reconciliation.json",
+      "topic_reconciliation_receipt_sha256": "<sha256:storage/workflow-runs/w1-cvpr-fixture-run/07D-topic-reconciliation.json>",
+      "topic_reconciliation_reference_workflow_receipt_path": "storage/workflow-runs/w1-cvpr-fixture-run/07H-topic-reconciliation-reference-workflow.json",
+      "topic_reconciliation_workflow_sha256": "<sha256:storage/workflow-runs/w1-cvpr-fixture-run/07H-topic-reconciliation-reference-workflow.json>",
+      "topic_reference_validation_receipt_path": "storage/workflow-runs/w1-cvpr-fixture-run/07E-topic-reference-validation.json",
+      "topic_reference_validation_receipt_sha256": "<sha256:storage/workflow-runs/w1-cvpr-fixture-run/07E-topic-reference-validation.json>",
+      "traceability_report_path": "analysis/qa/traceability_report.json",
+      "traceability_report_sha256": "<sha256:analysis/qa/traceability_report.json>",
+      "traceability_report_status": "pass",
+      "trend_report_citation_counts": {
+        "extraction_record_ids": 10,
+        "research_ids": 3,
+        "topic_report_paths": 3
+      },
+      "trend_report_path": "analysis/trend_report.md",
+      "trend_report_sha256": "<sha256:analysis/trend_report.md>",
+      "trend_report_status": "pass"
+    },
+    "downloads_made": 0,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "qa-gap-fill-synthesis"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "analysis_manifest": {
+          "missing": false,
+          "optional": false,
+          "path": "analysis/analysis_manifest.json",
+          "sha256": "<sha256:analysis/analysis_manifest.json>",
+          "source": "registry"
+        },
+        "citation_manifest": {
+          "declared_sha256": "<sha256:analysis/analysis_citation_manifest.json>",
+          "missing": false,
+          "optional": false,
+          "path": "analysis/analysis_citation_manifest.json",
+          "sha256": "<sha256:analysis/analysis_citation_manifest.json>",
+          "source": "stage"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-cvpr-fixture-run/07D-topic-reconciliation.json": {
+          "digest": "61adf448ef2dd51f50311a9c5731a64902c1cbb63dd9ea6ea07b24f1fecab7f1",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07D-topic-reconciliation.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-cvpr-fixture-run/07E-topic-reference-validation.json": {
+          "digest": "af4b04d81267600875124831b0042f86dbd69ad1cd2ea44c542ea0ef2506c438",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07E-topic-reference-validation.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-cvpr-fixture-run/07H-topic-reconciliation-reference-workflow.json": {
+          "digest": "148237937804866ffce10141c9cec808714e705b90834103020cb516367c6219",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07H-topic-reconciliation-reference-workflow.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-07-analysis.json",
+          "stage_id": null,
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "name": "executive_summary",
+        "path": "analysis/executive_summary.md",
+        "sha256": "<sha256:analysis/executive_summary.md>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "trend_report",
+        "path": "analysis/trend_report.md",
+        "sha256": "<sha256:analysis/trend_report.md>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "traceability_report",
+        "path": "analysis/qa/traceability_report.json",
+        "sha256": "<sha256:analysis/qa/traceability_report.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "coverage_gap_report",
+        "path": "analysis/qa/coverage_gap_report.json",
+        "sha256": "<sha256:analysis/qa/coverage_gap_report.json>",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+    "owner_execution_evidence": {
+      "analysis.coverage_gap_fill": "analysis/qa/coverage_gap_report.json:<sha256:analysis/qa/coverage_gap_report.json>",
+      "analysis.synthesis_trend_report": "analysis/trend_report.md:<sha256:analysis/trend_report.md>"
+    },
+    "provider_calls_made": true,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "analysis.coverage_gap_fill",
+      "analysis.synthesis_trend_report"
+    ],
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "qa-gap-fill-synthesis: receipt mode live",
+        "qa-gap-fill-synthesis: registry digest matched",
+        "qa-gap-fill-synthesis: required owner ids recorded",
+        "qa-gap-fill-synthesis: owner execution evidence present",
+        "qa-gap-fill-synthesis: lineage bound to storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json (output_digest <output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json>)",
+        "qa-gap-fill-synthesis: receipt check stage_contract.status",
+        "qa-gap-fill-synthesis: receipt check checks.analysis_manifest_content_sha256",
+        "qa-gap-fill-synthesis: required receipt <WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json",
+        "qa-gap-fill-synthesis: lineage bound to storage/workflow-runs/w1-cvpr-fixture-run/07D-topic-reconciliation.json (output_digest 61adf448ef2d)",
+        "qa-gap-fill-synthesis: receipt check topic_count",
+        "qa-gap-fill-synthesis: required receipt <WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/07D-topic-reconciliation.json",
+        "qa-gap-fill-synthesis: lineage bound to storage/workflow-runs/w1-cvpr-fixture-run/07E-topic-reference-validation.json (output_digest af4b04d81267)",
+        "qa-gap-fill-synthesis: receipt check checks.invalid_reference_count",
+        "qa-gap-fill-synthesis: receipt check checks.unknown_reference_count",
+        "qa-gap-fill-synthesis: receipt check checks.title_mismatch_count",
+        "qa-gap-fill-synthesis: receipt check checks.bare_reference_warning_count",
+        "qa-gap-fill-synthesis: required receipt <WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/07E-topic-reference-validation.json",
+        "qa-gap-fill-synthesis: lineage bound to storage/workflow-runs/w1-cvpr-fixture-run/07H-topic-reconciliation-reference-workflow.json (output_digest 148237937804)",
+        "qa-gap-fill-synthesis: receipt check checks.final_validation_status",
+        "qa-gap-fill-synthesis: receipt check checks.final_invalid_reference_count",
+        "qa-gap-fill-synthesis: receipt check checks.final_unknown_reference_count",
+        "qa-gap-fill-synthesis: receipt check checks.final_title_mismatch_count",
+        "qa-gap-fill-synthesis: receipt check checks.final_bare_reference_warning_count",
+        "qa-gap-fill-synthesis: required receipt <WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/07H-topic-reconciliation-reference-workflow.json",
+        "qa-gap-fill-synthesis: required output <WORKSPACE>/analysis/qa/traceability_report.json",
+        "qa-gap-fill-synthesis: required output <WORKSPACE>/analysis/qa/coverage_gap_report.json",
+        "qa-gap-fill-synthesis: required output <WORKSPACE>/analysis/executive_summary.md",
+        "qa-gap-fill-synthesis: required output <WORKSPACE>/analysis/trend_report.md",
+        "qa-gap-fill-synthesis: receipt check checks.analysis_manifest_content_sha256",
+        "qa-gap-fill-synthesis: receipt check checks.analysis_manifest_topic_count",
+        "qa-gap-fill-synthesis: receipt check checks.traceability_report_status",
+        "qa-gap-fill-synthesis: receipt check checks.coverage_gap_report_status",
+        "qa-gap-fill-synthesis: receipt check checks.executive_summary_status",
+        "qa-gap-fill-synthesis: receipt check checks.trend_report_status",
+        "qa-gap-fill-synthesis: receipt check checks.executive_summary_sha256",
+        "qa-gap-fill-synthesis: receipt check checks.trend_report_sha256",
+        "qa-gap-fill-synthesis: 2 input artifact digests current"
+      ],
+      "blockers": [],
+      "registry_stage_id": "qa-gap-fill-synthesis",
+      "required_script_ids": [
+        "analysis.coverage_gap_fill",
+        "analysis.synthesis_trend_report"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "qa-gap-fill-synthesis",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "qa-gap-fill-synthesis",
+    "stage_order": 8,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  },
+  "synthesis_calls": [
+    "executive_summary",
+    "trend_report"
+  ]
+}

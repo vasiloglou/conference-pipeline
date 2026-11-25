@@ -1,0 +1,90 @@
+# Local runtime profiles for conference-pipeline local LLM execution.
+#
+# These are example profiles. No profile here contains a production model default;
+# model selection requires Phase 8 current-source research, Phase 7 hardware-fit
+# preflight, Phase 9 benchmark receipt, and Phase 10 operator approval before
+# any profile may be used in production.
+#
+# Fields documented in docs/reference/local-runtime.md and defined in
+# src/conference_pipeline/model_governance/local_runtime.py (LocalRuntimeProfile).
+
+schema_version: 1
+
+profiles:
+  mlx_light:
+    # Small model tier (4-8B parameter range). Managed server, light lock scope.
+    # Suitable for categorization, summarization, or extraction tasks on Apple Silicon
+    # once hardware-fit preflight and benchmark receipts are complete.
+    runtime_kind: mlx
+    base_url: "http://127.0.0.1:8080/v1"
+    manage_server: true
+    optional_deps:
+      - mlx
+      - mlx_lm
+    startup_timeout_s: 60.0
+    request_timeout_s: 120.0
+    max_concurrency: 4
+    max_batch_size: 8
+    lock_scope: light
+    hardware_fit_status: unknown
+    approval_status: deferred
+    # model_id is intentionally absent; set by Phase 8 source research.
+    # Placeholder reminder: model_id: "<set-by-Phase-8-research>"
+
+  mlx_heavy:
+    # Large model tier (70B+ parameter range). Operator-started server (no managed
+    # lifecycle), heavy global lock, single concurrency to avoid memory overrun.
+    # Must not be used in production until hardware-fit and benchmark receipts exist.
+    runtime_kind: mlx
+    base_url: "http://127.0.0.1:8080/v1"
+    manage_server: false
+    optional_deps:
+      - mlx
+      - mlx_lm
+    startup_timeout_s: 180.0
+    request_timeout_s: 600.0
+    max_concurrency: 1
+    max_batch_size: 1
+    lock_scope: heavy
+    hardware_fit_status: unknown
+    approval_status: deferred
+    # model_id is intentionally absent; set by Phase 8 source research.
+    # Placeholder reminder: model_id: "<set-by-Phase-8-research>"
+
+  mlx_vision_light:
+    # v1.61 vision lane (sweet-spot models like Qwen3-VL-8B-4bit, FastVLM-7B,
+    # Pixtral-12B-4bit). Managed server on a vision-specific port. Light lock.
+    # Must not be used in production until benchmark receipts exist
+    # (per VLM-BENCH-03 promotion gate).
+    runtime_kind: mlx
+    base_url: "http://127.0.0.1:8090/v1"
+    manage_server: true
+    optional_deps:
+      - mlx
+      - mlx_vlm
+    startup_timeout_s: 120.0
+    request_timeout_s: 180.0
+    max_concurrency: 2
+    max_batch_size: 1
+    lock_scope: light
+    hardware_fit_status: unknown
+    approval_status: benchmark_pending
+    # model_id is set by --local-vision-model; common picks listed in registry.yaml.
+
+  mlx_vision_heavy:
+    # v1.61 vision lane (memory-rich models like Qwen3-VL-32B/72B-4bit,
+    # Qwen2.5-VL-72B-4bit). Operator-started server, heavy lock, single
+    # concurrency. Requires >=48 GB unified memory.
+    runtime_kind: mlx
+    base_url: "http://127.0.0.1:8090/v1"
+    manage_server: false
+    optional_deps:
+      - mlx
+      - mlx_vlm
+    startup_timeout_s: 240.0
+    request_timeout_s: 600.0
+    max_concurrency: 1
+    max_batch_size: 1
+    lock_scope: heavy
+    hardware_fit_status: unknown
+    approval_status: benchmark_pending

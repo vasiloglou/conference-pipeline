@@ -1,0 +1,22 @@
+{
+  "content_sha256": "76c504895947be9a8cc1cc2af0ba78982ffdf26cfe2a3a5dd9d9a8a0d883b754",
+  "generated_at": "2026-04-22T00:00:00Z",
+  "generator": "test.fixture@dev",
+  "schema_version": 1,
+  "topics": [
+    {
+      "audio_dir": "audio/01_tools_and_open_source",
+      "decks_dir": null,
+      "fact_ranks_path": "audio/01_tools_and_open_source/ranks.json",
+      "fact_ranks_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "figures_dir": null,
+      "id": "01_tools_and_open_source",
+      "markdown_path": "analysis/01_tools_and_open_source.md",
+      "markdown_sha256": "23c1e9e2948a89e4390a8270ae5aff771e2fece4f8d0d01b99a6267f5ad9f06c",
+      "number": 1,
+      "slug": "tools_and_open_source",
+      "title": "Tools and Open Source"
+    }
+  ],
+  "workspace": "/private/var/folders/nb/7y9vtgkn05gblnsxg87f6s9h0000gn/T/tmp2b5ndep0/conferences/demo2026"
+}

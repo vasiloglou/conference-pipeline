@@ -1,0 +1,3 @@
+display_name: Plan Conference Analysis
+short_description: Plan conference-specific GSD milestones from repo pipeline contracts.
+default_prompt: Use this conference brief to draft a complete dry-run/mock-first GSD milestone plan.

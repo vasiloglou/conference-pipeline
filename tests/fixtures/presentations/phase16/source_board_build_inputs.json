@@ -1,0 +1,35 @@
+{
+  "valid_payload": {
+    "clusters": [
+      {
+        "cluster_id": "agent-system-safety",
+        "contributions": [
+          {
+            "visible_label": "Safety in Agentic Systems",
+            "paper_name": "Risks of Agentic AI",
+            "authors": ["Alice Smith"],
+            "system": "GPT-4",
+            "source_url": "https://arxiv.org/abs/2401.00001",
+            "status": "resolved"
+          }
+        ]
+      }
+    ]
+  },
+  "blocked_payload": {
+    "clusters": [
+      {
+        "cluster_id": "agent-system-safety",
+        "contributions": [
+          {
+            "visible_label": "Missing System Dataset",
+            "paper_name": "Some Research Paper",
+            "authors": ["Bob Jones"],
+            "source_url": "https://arxiv.org/abs/2401.00002",
+            "status": "resolved"
+          }
+        ]
+      }
+    ]
+  }
+}

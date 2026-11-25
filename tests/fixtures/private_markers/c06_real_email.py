@@ -1,0 +1,1 @@
+AUTHOR = "person@university.edu"

@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "conference": "neurips2025",
+  "release": {
+    "source_sha": ""
+  },
+  "families": [
+    {
+      "id": "restricted_audio",
+      "private_path": "audio/restricted",
+      "public_path": "exports/public-release/{bundle}/restricted/",
+      "storage_manifest_id": "restricted_audio",
+      "redistribution_status": "prohibited",
+      "license": "CC-BY-NC-ND-4.0",
+      "provenance": "talk-derived"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "archetype": "nested_architecture",
+  "claim": "Sage tokenizes raw point clouds via vector quantization and feeds them straight into a multimodal LLM with text, skipping any pre-trained 3D encoder.",
+  "content": {
+    "edges": [
+      {
+        "from": "points",
+        "to": "vq"
+      },
+      {
+        "from": "vq",
+        "to": "tokens"
+      },
+      {
+        "from": "tokens",
+        "to": "llm"
+      },
+      {
+        "from": "text",
+        "to": "llm"
+      },
+      {
+        "from": "llm",
+        "to": "output"
+      }
+    ],
+    "groups": [
+      {
+        "id": "sage",
+        "label": "Sage: 3D multimodal LLM",
+        "members": [
+          "vq",
+          "tokens",
+          "text",
+          "llm"
+        ]
+      }
+    ],
+    "nodes": [
+      {
+        "id": "points",
+        "kind": "input",
+        "label": "Raw point cloud"
+      },
+      {
+        "id": "vq",
+        "kind": "process",
+        "label": "Vector quantization (VQ)"
+      },
+      {
+        "id": "tokens",
+        "kind": "data",
+        "label": "Discrete 3D tokens"
+      },
+      {
+        "id": "text",
+        "kind": "data",
+        "label": "Text / language tokens"
+      },
+      {
+        "id": "llm",
+        "kind": "model",
+        "label": "Multimodal LLM"
+      },
+      {
+        "id": "output",
+        "kind": "output",
+        "label": "3D reasoning output"
+      }
+    ]
+  },
+  "emphasis": {
+    "highlight": [
+      "sage",
+      "vq"
+    ]
+  },
+  "figure_id": "sl_04_what-representation-should-hold-the-recove-figure",
+  "grounding": {
+    "kind": "schematic"
+  },
+  "section": "S1_foundations",
+  "slide_id": "sl_04_what-representation-should-hold-the-recove",
+  "spec_version": "figure-spec/1",
+  "takeaway": "No 3D encoder: points quantized straight into the LLM",
+  "title": "Point clouds as native input to a multimodal LLM"
+}

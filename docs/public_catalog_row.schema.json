@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Public catalog row",
+  "description": "One line of a release bundle's catalog/papers.jsonl: a public paper of the conference, linked to its official copy. Read by the public site (papers page, topic pages) and the cross-conference hub. Defined in v6.0-Public-Release Phase 4 (spec section 6.1); produced by the export in Phase 6.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["paper_id", "title", "authors", "track", "official_url", "topics"],
+  "properties": {
+    "paper_id": {"type": "string", "pattern": "^(openreview|arxiv|proceedings|site):.+", "description": "The stable paper key (Phase 5's paper_key)."},
+    "title": {"type": "string", "minLength": 1},
+    "authors": {"type": "array", "items": {"type": "string"}},
+    "track": {"type": "string", "minLength": 1, "description": "main, workshop, datasets_benchmarks, position, ..."},
+    "venue": {"type": ["string", "null"]},
+    "workshop": {"type": ["string", "null"]},
+    "official_url": {"type": ["string", "null"], "pattern": "^https://", "description": "The paper's official copy; null when none is known (the site then says so, never guesses)."},
+    "topics": {"type": "array", "items": {"type": "string"}, "description": "Topic ids that cite the paper."}
+  }
+}

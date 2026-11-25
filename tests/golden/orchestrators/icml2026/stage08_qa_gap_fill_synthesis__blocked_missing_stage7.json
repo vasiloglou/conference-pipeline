@@ -1,0 +1,180 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "edeef685c0167f350d1fd46ec36fea77e8113246909d6e637ed3c93f3f7cae30",
+  "normalized_output_digest": "c9fad18ca3e9e0d0663e078c384cbffc1d3b9b507425266f89cd5afe4d371e29",
+  "output_digest_consistent": true,
+  "output_files": {},
+  "receipt": {
+    "blocker_receipt_path": "<WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/blocker-receipts/qa-gap-fill-synthesis/20310102T030405Z-stage_blocked.json",
+    "checks": {
+      "blocker_code": "stage8_required_inputs_blocked",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "input_blockers": [
+        {
+          "code": "stage8_input_missing",
+          "evidence": "storage/workflow-runs/w1-icml-fixture-run/stage-07-analysis.json",
+          "input": "stage_07_analysis_receipt",
+          "retryable": true
+        },
+        {
+          "code": "stage8_input_missing",
+          "evidence": "storage/workflow-runs/w1-icml-fixture-run/07D-topic-reconciliation.json",
+          "input": "topic_reconciliation_receipt",
+          "retryable": true
+        },
+        {
+          "code": "stage8_input_missing",
+          "evidence": "storage/workflow-runs/w1-icml-fixture-run/07E-topic-reference-validation.json",
+          "input": "topic_reference_validation_receipt",
+          "retryable": true
+        },
+        {
+          "code": "stage8_input_missing",
+          "evidence": "storage/workflow-runs/w1-icml-fixture-run/07H-topic-reconciliation-reference-workflow.json",
+          "input": "topic_reconciliation_reference_workflow_receipt",
+          "retryable": true
+        },
+        {
+          "code": "stage8_input_missing",
+          "evidence": "analysis/analysis_manifest.json",
+          "input": "analysis_manifest",
+          "retryable": true
+        },
+        {
+          "code": "stage8_input_missing",
+          "evidence": "analysis/analysis_citation_manifest.json",
+          "input": "analysis_citation_manifest",
+          "retryable": true
+        }
+      ],
+      "live_provider_calls_made": false,
+      "provider_calls_made": false,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [
+          "--provider-cost-approved"
+        ],
+        "approved": true,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "secrets_copied": false,
+      "stage7_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/stage-07-analysis.json",
+      "topic_reconciliation_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/07D-topic-reconciliation.json",
+      "topic_reconciliation_reference_workflow_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/07H-topic-reconciliation-reference-workflow.json",
+      "topic_reference_validation_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/07E-topic-reference-validation.json"
+    },
+    "error": "Phase 8 required inputs are missing, stale, or failed",
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "qa-gap-fill-synthesis"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "analysis_manifest": {
+          "missing": true,
+          "optional": false,
+          "path": "analysis/analysis_manifest.json",
+          "sha256": null,
+          "source": "registry"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-icml-fixture-run/07D-topic-reconciliation.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07D-topic-reconciliation.json",
+          "stage_id": null,
+          "status": null
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07E-topic-reference-validation.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07E-topic-reference-validation.json",
+          "stage_id": null,
+          "status": null
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07H-topic-reconciliation-reference-workflow.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07H-topic-reconciliation-reference-workflow.json",
+          "stage_id": null,
+          "status": null
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/stage-07-analysis.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-07-analysis.json",
+          "stage_id": null,
+          "status": null
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue to podcast only after Phase 8 QA/gap-fill/synthesis and BK-08 backup pass.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "analysis.coverage_gap_fill",
+      "analysis.synthesis_trend_report"
+    ],
+    "resumable": false,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {},
+    "stage_id": "qa-gap-fill-synthesis",
+    "stage_order": 8,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

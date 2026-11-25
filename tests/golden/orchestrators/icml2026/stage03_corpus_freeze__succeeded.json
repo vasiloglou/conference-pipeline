@@ -1,0 +1,145 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "946cbbcc664e26ad4d945cef2b61071875aba8c8e8182a5ee26517e3960f1ede",
+  "normalized_output_digest": "eb45c231a45a5eafe6b613a217bc5a085b883b6c8f16842cff368719712693ff",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/corpus-freeze/corpus_freeze.json": "json:5555f4f4aaa0a605690aee13168fba0371390b16e040f755433055b12704e479",
+    "storage/corpus-freeze/corpus_freeze_report.md": "text:5cb76fed5822b61248f51a1dc43041cc45097c99f51f3849055120222c257d12"
+  },
+  "receipt": {
+    "blocker_receipt_path": null,
+    "checks": {
+      "all_in_scope_items_have_planned_acquisition_or_unreachable_path": true,
+      "corpus_freeze_path": "<WORKSPACE>/storage/corpus-freeze/corpus_freeze.json",
+      "corpus_freeze_report_path": "<WORKSPACE>/storage/corpus-freeze/corpus_freeze_report.md",
+      "download_heavy_acquisition_made": false,
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "excluded_count": 0,
+      "included_count": 2,
+      "live_provider_calls_made": false,
+      "operator_exclusions_path": "<WORKSPACE>/storage/corpus-freeze/operator_exclusions.json",
+      "operator_exclusions_present": false,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [],
+        "approved": false,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "secrets_copied": false,
+      "silent_item_cap_hits": {},
+      "silent_item_caps_present": false,
+      "source_discovery_inventory_path": "<WORKSPACE>/storage/source-discovery/source_discovery_inventory.json",
+      "source_discovery_inventory_sha256": "<sha256:storage/source-discovery/source_discovery_inventory.json>"
+    },
+    "error": null,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "corpus-freeze.icml2026"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-icml-fixture-run/stage-02-source-discovery.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-02-source-discovery.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-02-source-discovery.json",
+          "stage_id": "source-discovery",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue to download-corpus after Phase 3 verification passes.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [
+      {
+        "kind": "file",
+        "name": "corpus_freeze",
+        "path": "storage/corpus-freeze/corpus_freeze.json",
+        "sha256": "<sha256:storage/corpus-freeze/corpus_freeze.json>"
+      },
+      {
+        "kind": "file",
+        "name": "corpus_freeze_report",
+        "path": "storage/corpus-freeze/corpus_freeze_report.md",
+        "sha256": "<sha256:storage/corpus-freeze/corpus_freeze_report.md>"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "acquisition.corpus_freeze"
+    ],
+    "resumable": true,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {
+      "accepted_evidence": [
+        "corpus-freeze: receipt mode live",
+        "corpus-freeze: registry digest matched",
+        "corpus-freeze: required owner ids recorded",
+        "corpus-freeze: lineage bound to storage/workflow-runs/w1-icml-fixture-run/stage-02-source-discovery.json (output_digest <output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-02-source-discovery.json>)",
+        "corpus-freeze: receipt check stage_id",
+        "corpus-freeze: receipt check mode",
+        "corpus-freeze: receipt check stage_contract.status",
+        "corpus-freeze: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/stage-02-source-discovery.json",
+        "corpus-freeze: required output <WORKSPACE>/storage/corpus-freeze/corpus_freeze.json",
+        "corpus-freeze: required output <WORKSPACE>/storage/corpus-freeze/corpus_freeze_report.md"
+      ],
+      "blockers": [],
+      "registry_stage_id": "corpus-freeze.icml2026",
+      "required_script_ids": [
+        "acquisition.corpus_freeze"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "corpus-freeze",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "corpus-freeze",
+    "stage_order": 3,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

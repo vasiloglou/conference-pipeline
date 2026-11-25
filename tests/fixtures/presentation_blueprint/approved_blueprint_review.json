@@ -1,0 +1,15 @@
+{
+  "approval": {
+    "status": "approved_for_draft_generation"
+  },
+  "approved_at": "2026-06-04T00:00:00Z",
+  "approved_by": "fixture-reviewer",
+  "blueprint_sha256": "e523e4d62f5eb09dd973e442a783d2e523ed0de99b0808de7374f84a3f08c3f2",
+  "gate_types": {
+    "LLM-judge": "pass",
+    "deterministic": "pass",
+    "human": "pass"
+  },
+  "review_artifact": "decks/01_demo_topic/blueprint_review.md",
+  "status": "pass"
+}

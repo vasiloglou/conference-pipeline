@@ -1,0 +1,246 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "635a19df8d0922ddfd867479057b687ba0820875f04a100457131d125da7c1d0",
+  "normalized_output_digest": "16cca563820ba25a0d158e419bbaf1b347139ff1dce62949dde9e8b8644f9dd7",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/source-discovery/source_discovery_inventory.json": "json:6913d8ca96aa0435f3232f84d112a26eb33b6a602fc21667f78755e99a3c4595"
+  },
+  "receipt": {
+    "actual_cost_usd": 0.0,
+    "blockers": [],
+    "boundary_method": "governed_llm_frontier",
+    "canonical_inventory": {
+      "candidate_frontier_sha256": "0774426eba756b1db0f2986442fb673ac8550eb08623ac73efeeb27661bad975",
+      "inventory_sha256": "0d5a670f8fb89ba7471e28f68b4f0cd496ee1f208a2607f67fa9a325a72326fa",
+      "path": "<WORKSPACE>/storage/source-discovery/source_discovery_inventory.json",
+      "taxonomy_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    "collection": {
+      "candidate_evidence": {
+        "cvpr2026:program-item:4e4a62509ac9472bd4a0|cvpr2026:source:program:dd627ea09b380846b338": [
+          {
+            "field": "title",
+            "source_record_id": "cvpr2026:program-item:4e4a62509ac9472bd4a0",
+            "value": "Fixture program title"
+          },
+          {
+            "field": "title",
+            "source_record_id": "cvpr2026:source:program:dd627ea09b380846b338",
+            "value": "Fixture paper title"
+          }
+        ]
+      },
+      "expected_family_ids": [
+        "program-schedule"
+      ],
+      "field_values": {},
+      "status": "succeeded"
+    },
+    "frontier_authority_lineage": {
+      "authority_digest": "<authority_digest:storage/workflow-runs/w1-cvpr-fixture-run/source-discovery-frontier-authority.json>",
+      "base_full_estimate_digest": "<estimate_digest:storage/workflow-runs/w1-cvpr-fixture-run/preflight-full-run-estimate.json>",
+      "candidate_frontier_sha256": "0774426eba756b1db0f2986442fb673ac8550eb08623ac73efeeb27661bad975",
+      "frontier_estimate_digest": "<estimate_digest:storage/workflow-runs/w1-cvpr-fixture-run/source-discovery-frontier-authority.json>",
+      "model": "gpt-6-luna",
+      "model_registry_sha256": "f9ea456a3c59070c8b4ca45d8bd04bf6d704a64ae5d468ff41e90598ea48f48e",
+      "provider": "openai",
+      "provider_stage_allocations": [
+        {
+          "ceiling_usd": 0.1628,
+          "provider": "anthropic",
+          "stage": "analysis"
+        },
+        {
+          "ceiling_usd": 0.374,
+          "provider": "anthropic",
+          "stage": "podcast"
+        },
+        {
+          "ceiling_usd": 2.607,
+          "provider": "anthropic",
+          "stage": "presentation"
+        },
+        {
+          "ceiling_usd": 1.0186,
+          "provider": "gemini",
+          "stage": "presentation"
+        },
+        {
+          "ceiling_usd": 0.45,
+          "provider": "gemini",
+          "stage": "presentation-video"
+        },
+        {
+          "ceiling_usd": 0.62975,
+          "provider": "gemini",
+          "stage": "ranking"
+        },
+        {
+          "ceiling_usd": 0.143,
+          "provider": "gemini",
+          "stage": "transcription-ocr"
+        },
+        {
+          "ceiling_usd": 0.0,
+          "provider": "google_notebooklm",
+          "stage": "notebooklm-podcast"
+        },
+        {
+          "ceiling_usd": 0.18997,
+          "provider": "openai",
+          "stage": "analysis"
+        },
+        {
+          "ceiling_usd": 1.1,
+          "provider": "openai",
+          "stage": "paper-matching"
+        },
+        {
+          "ceiling_usd": 0.3,
+          "provider": "openai",
+          "stage": "podcast"
+        },
+        {
+          "ceiling_usd": 0.01375,
+          "provider": "openai",
+          "stage": "presentation"
+        },
+        {
+          "ceiling_usd": 0.000484,
+          "provider": "openai",
+          "stage": "source-discovery"
+        },
+        {
+          "ceiling_usd": 0.066,
+          "provider": "openai",
+          "stage": "transcription-ocr"
+        },
+        {
+          "ceiling_usd": 25.6036,
+          "provider": "openrouter",
+          "stage": "analysis"
+        },
+        {
+          "ceiling_usd": 11.22,
+          "provider": "openrouter",
+          "stage": "exhaustive-topic-extraction"
+        },
+        {
+          "ceiling_usd": 0.12,
+          "provider": "tavily",
+          "stage": "query-planning-gpt-researcher"
+        }
+      ],
+      "retained_join_quantity": 1,
+      "stage": "source-discovery"
+    },
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "source-discovery.cvpr2026"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-02-source-discovery.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "name": "source_discovery_inventory",
+        "path": "storage/source-discovery/source_discovery_inventory.json",
+        "sha256": "0d5a670f8fb89ba7471e28f68b4f0cd496ee1f208a2607f67fa9a325a72326fa",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-02-source-discovery.json>",
+    "owner_execution_evidence": {
+      "acquisition.source_discovery.cvpr2026": {
+        "inventory_path": "<WORKSPACE>/storage/source-discovery/source_discovery_inventory.json",
+        "owner_function": "run_source_discovery_stage",
+        "provider_calls_made": 1
+      }
+    },
+    "pre_spend": {
+      "accepted_evidence": [
+        "source-discovery: live_mode",
+        "source-discovery: frontier_authority_kind",
+        "source-discovery: run_id",
+        "source-discovery: workspace_identity",
+        "source-discovery: base_estimate_lineage",
+        "source-discovery: model_registry_digest",
+        "source-discovery: candidate_frontier_digest",
+        "source-discovery: retained_join_quantity",
+        "source-discovery: authority_digest",
+        "source-discovery: provider_stage_scope",
+        "source-discovery: priced_provider_stage_allocations",
+        "source-discovery: provider_stage_allocation",
+        "source-discovery: spend_authority_allocation",
+        "source-discovery: fresh_preflight_required",
+        "source-discovery: fresh_volatile_preflight_identity"
+      ],
+      "actual_cost_usd": 0.0,
+      "blockers": [],
+      "contract_mode": "pre-spend",
+      "provider_calls_made": 0,
+      "provider_dispatch_permitted": false,
+      "registry_stage_id": "source-discovery.cvpr2026",
+      "required_script_ids": [
+        "acquisition.source_discovery.cvpr2026"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "source-discovery",
+      "status": "precondition_passed"
+    },
+    "provider_calls_made": 1,
+    "provider_receipt_paths": [
+      "storage/provider-calls/source-discovery/fixture.json"
+    ],
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "acquisition.source_discovery.cvpr2026"
+    ],
+    "resume": {
+      "decision_ledger_path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/source-discovery-decision-ledger.json",
+      "new_provider_call_count": 0,
+      "requested": true,
+      "reused_decision_count": 1
+    },
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "source-discovery: receipt mode live",
+        "source-discovery: registry digest matched",
+        "source-discovery: required owner ids recorded",
+        "source-discovery: owner execution evidence present",
+        "source-discovery: required output <WORKSPACE>/storage/source-discovery/source_discovery_inventory.json"
+      ],
+      "blockers": [],
+      "registry_stage_id": "source-discovery.cvpr2026",
+      "required_script_ids": [
+        "acquisition.source_discovery.cvpr2026"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "source-discovery",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "source-discovery",
+    "stage_order": 2,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

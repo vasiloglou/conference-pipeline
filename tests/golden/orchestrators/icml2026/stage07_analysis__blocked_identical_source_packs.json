@@ -1,0 +1,264 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "fffeab530132f1541e743cb8dbbb1c2a255a02919e9d8cee900a6b592a4b82fb",
+  "normalized_output_digest": "c9fad18ca3e9e0d0663e078c384cbffc1d3b9b507425266f89cd5afe4d371e29",
+  "output_digest_consistent": true,
+  "output_files": {},
+  "receipt": {
+    "blocker_receipt_path": "<WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/blocker-receipts/analysis/20310102T030405Z-stage_blocked.json",
+    "checks": {
+      "blocker_code": "analysis_source_packs_identical",
+      "exhaustive_extraction_by_artifact_count": 6,
+      "exhaustive_extraction_by_topic_count": 2,
+      "exhaustive_extraction_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json",
+      "exhaustive_extraction_receipt_present": true,
+      "exhaustive_extraction_receipt_status": "succeeded",
+      "identical_source_pack_groups": [
+        [
+          "01_synthetic_topic_one",
+          "02_synthetic_topic_two"
+        ]
+      ],
+      "index_digest_path": "storage/vector-store/w1-icml-fixture-run/index_digest.json",
+      "index_digest_present": true,
+      "live_provider_calls_made": false,
+      "llm_full_read_completion_state": "complete",
+      "llm_full_read_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/14A-llm-full-read-extraction-receipt.json",
+      "llm_full_read_receipt_present": true,
+      "llm_full_read_receipt_status": "succeeded",
+      "provider_calls_made": false,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [
+          "--provider-cost-approved"
+        ],
+        "approved": true,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "secrets_copied": false,
+      "stage6_chunk_counts": {
+        "artifacts": 0,
+        "papers": 23
+      },
+      "stage6_embedded_chunk_counts": {
+        "artifacts": 0,
+        "papers": 23
+      },
+      "stage6_index_digest_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/index_digest.json>",
+      "stage6_output_inventory": {
+        "path": "storage/corpus/corpus_inventory.json",
+        "sha256": "<sha256:storage/corpus/corpus_inventory.json>",
+        "status": "succeeded"
+      },
+      "stage6_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json",
+      "stage6_receipt_present": true,
+      "stage6_status": "succeeded",
+      "stage6_vector_embeddings_written": true,
+      "topic_strategy_path": "analysis/topic_strategy.json",
+      "topic_strategy_present": true,
+      "topic_strategy_receipt_path": "storage/analysis/topic-strategy/w1-icml-fixture-run/topic_strategy_receipt.json",
+      "topic_strategy_receipt_present": true,
+      "topic_strategy_topic_count": 12,
+      "topic_strategy_topic_ids": [
+        "01_synthetic_topic_one",
+        "02_synthetic_topic_two",
+        "03_kappa_lattice",
+        "04_lambda_quarry",
+        "05_mu_orchard",
+        "06_nu_harbor",
+        "07_xi_meadow",
+        "08_omicron_canyon",
+        "09_pi_glacier",
+        "10_rho_tundra",
+        "11_sigma_lagoon",
+        "12_tau_prairie"
+      ]
+    },
+    "error": "analysis source-pack selection gave different topics the same chunks",
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "analysis"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "index_digest": {
+          "declared_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/index_digest.json>",
+          "missing": false,
+          "optional": false,
+          "path": "storage/vector-store/w1-icml-fixture-run/index_digest.json",
+          "sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/index_digest.json>",
+          "source": "stage"
+        },
+        "topic_strategy": {
+          "missing": false,
+          "optional": false,
+          "path": "analysis/topic_strategy.json",
+          "sha256": "<sha256:analysis/topic_strategy.json>",
+          "source": "stage"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-07-analysis.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/analysis/topic-strategy/w1-icml-fixture-run/topic_strategy_receipt.json": {
+          "digest": "<content_digest:analysis/topic_strategy.json>",
+          "digest_kind": "content_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/analysis/topic-strategy/<run-id>/topic_strategy_receipt.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07A-exhaustive-topic-summaries.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": true,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07A-exhaustive-topic-summaries.json",
+          "stage_id": null,
+          "status": null
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07B-deep-dive-question-selection.json": {
+          "digest": "3b041d95cb8428820554a9fabeaab39e94aabb22f65050a10bd7ff302bfa2f3e",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07B-deep-dive-question-selection.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07C-dual-deep-dive-research-lanes.json": {
+          "digest": "3b041d95cb8428820554a9fabeaab39e94aabb22f65050a10bd7ff302bfa2f3e",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07C-dual-deep-dive-research-lanes.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07D-topic-reconciliation.json": {
+          "digest": "7fffb7942cde1e9edbc18fc8b7c2940bc840a7e470388e8115ba7fdafc54b22e",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07D-topic-reconciliation.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07E-topic-reference-validation.json": {
+          "digest": "5a24e95f43d50185d8af2efb176213a3b9a637e747c172e0e9b4095a859e60d8",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07E-topic-reference-validation.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07H-topic-reconciliation-reference-workflow.json": {
+          "digest": "ecf18c392399202ae4e5d8d8a89460700b53cd12b2bad58865528bc4ff1c6f20",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07H-topic-reconciliation-reference-workflow.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/14A-exhaustive-topic-extraction-receipt.json",
+          "stage_id": "exhaustive-topic-extraction",
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/14A-llm-full-read-extraction-receipt.json": {
+          "digest": "2390bfed578b447438475a689d9e5d1598d7207dd6fefee4f0abee3d52c6f8b2",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/14A-llm-full-read-extraction-receipt.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-06-corpus-inventory-index.json",
+          "stage_id": "corpus-inventory-index",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue only after source-backed analysis reports, slide briefs, provenance, citation manifest, and analysis_manifest.json are written from final corpus evidence.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-07-analysis.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "analysis.topic_strategy",
+      "analysis.exhaustive_topic_extraction",
+      "analysis.llm_full_read_extraction",
+      "analysis.gpt_researcher_stage",
+      "analysis.gpt_researcher_heuristic_prefilter",
+      "analysis.deep_narrative_module",
+      "analysis.topic_reconciliation",
+      "analysis.topic_reconciliation_reference_workflow",
+      "analysis.topic_reference_validation",
+      "analysis.deep_dive_question_selection",
+      "analysis.dual_deep_dive_research_lanes"
+    ],
+    "resumable": false,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {},
+    "stage_id": "analysis",
+    "stage_order": 7,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "90e3dbac0df4d21f01d6dd73ef2991b5c41d4f652601c111b9c0a19b88c1829a",
+  "normalized_output_digest": "853fe33552825361c63677431adc5b0ea1eab323e686a5863eac4a58bf3831bf",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/download-corpus/download_corpus.json": "json:a1c434d771ef626959635fee2bd65dd64b2688cf2c189bdfe2d9b1c2a1223528",
+    "storage/download-corpus/download_corpus_report.md": "text:ad1e1b50233f0131594093b1e64a9bb9a05b3f1ec62fc4db9fdd10571290bfcb",
+    "storage/download-corpus/openreview_accepted_papers.json": "json:f4007398a26cdccb6cc2c973cf2cf58b14a440e4f2043ce56cd3c2e677605be2"
+  },
+  "receipt": {
+    "blocker_receipt_path": null,
+    "checks": {
+      "attempted_source_count": 21,
+      "auth_posture": {
+        "any_auth_required": false,
+        "auth_required_blockers": [],
+        "secret_values_recorded": false
+      },
+      "blockers": [],
+      "corpus_freeze_path": "<WORKSPACE>/storage/corpus-freeze/corpus_freeze.json",
+      "corpus_freeze_sha256": "<sha256:storage/corpus-freeze/corpus_freeze.json>",
+      "direct_download_artifact_count": 12,
+      "discovered_target_count": 18,
+      "download_corpus_inventory_path": "<WORKSPACE>/storage/download-corpus/download_corpus.json",
+      "download_corpus_report_path": "<WORKSPACE>/storage/download-corpus/download_corpus_report.md",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "icml_cookie_file": {
+        "attempted": false,
+        "cookie_names": [],
+        "exists": false,
+        "loaded": false,
+        "secret_values_recorded": false
+      },
+      "item_page_expansion": {
+        "auth_required_count": 0,
+        "complete": true,
+        "failed_count": 0,
+        "probed_count": 6,
+        "status": "completed",
+        "target_count": 6,
+        "waiver_path": null,
+        "worker_count": 1
+      },
+      "live_provider_calls_made": false,
+      "local_artifact_count": 21,
+      "media_artifact_count": 6,
+      "media_family_coverage": {
+        "excluded_families": [],
+        "families": {
+          "expo": {
+            "item_page_count": 1,
+            "slugs": [
+              "expo",
+              "expo-talk",
+              "expo-demonstration",
+              "expo-workshop"
+            ]
+          },
+          "invited_talks": {
+            "item_page_count": 1,
+            "slugs": [
+              "invited-talk",
+              "keynote",
+              "invited-speaker"
+            ]
+          },
+          "orals": {
+            "item_page_count": 1,
+            "slugs": [
+              "oral"
+            ]
+          },
+          "tutorials": {
+            "item_page_count": 1,
+            "slugs": [
+              "tutorial"
+            ]
+          },
+          "workshops": {
+            "item_page_count": 1,
+            "slugs": [
+              "workshop"
+            ]
+          }
+        },
+        "unattributed_bare_id_count": 0,
+        "year": 2026,
+        "zero_item_families": []
+      },
+      "media_scope": {
+        "item_page_media_mode": "full_item_page_expansion",
+        "rationale": null,
+        "waiver_path": null
+      },
+      "paper_artifact_count": 6,
+      "paper_metadata_artifact_count": 1,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [],
+        "approved": false,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "secrets_copied": false,
+      "source_family_count": 2,
+      "target_counts": {
+        "media_asset": 6,
+        "paper_page": 6,
+        "paper_pdf": 6,
+        "session_page": 0,
+        "source_archive": 0
+      },
+      "unreachable_source_count": 0,
+      "workshop_acquisition": {
+        "discovery": {
+          "workshop_count": 1
+        },
+        "download": {
+          "output_dir": "storage/workshops/paper-downloads",
+          "totals": {
+            "available": 1,
+            "failed": 0,
+            "resume_skipped": 0,
+            "succeeded": 1
+          }
+        },
+        "parent_venue": "ICML.cc/2026/Workshop",
+        "rate_limit_rps": 1.4,
+        "status": "succeeded"
+      },
+      "workshop_paper_pdf_count": 1
+    },
+    "error": null,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "download-corpus.icml2026"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-03-corpus-freeze.json",
+          "stage_id": "corpus-freeze",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue to transcription-ocr after Phase 4 verification passes.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [
+      {
+        "kind": "file",
+        "name": "download_corpus_inventory",
+        "path": "storage/download-corpus/download_corpus.json",
+        "sha256": "<sha256:storage/download-corpus/download_corpus.json>"
+      },
+      {
+        "kind": "file",
+        "name": "download_corpus_report",
+        "path": "storage/download-corpus/download_corpus_report.md",
+        "sha256": "<sha256:storage/download-corpus/download_corpus_report.md>"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "acquisition.download_corpus"
+    ],
+    "resumable": true,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {
+      "accepted_evidence": [
+        "download-corpus: receipt mode live",
+        "download-corpus: registry digest matched",
+        "download-corpus: required owner ids recorded",
+        "download-corpus: lineage bound to storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json (output_digest <output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json>)",
+        "download-corpus: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json",
+        "download-corpus: required output <WORKSPACE>/storage/download-corpus/download_corpus.json"
+      ],
+      "blockers": [],
+      "registry_stage_id": "download-corpus.icml2026",
+      "required_script_ids": [
+        "acquisition.download_corpus"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "download-corpus",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "download-corpus",
+    "stage_order": 4,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

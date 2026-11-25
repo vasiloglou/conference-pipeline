@@ -1,0 +1,1 @@
+{"store_format": "npz-shards-v1", "shards": [{"path": "index/shard-000.npz", "rows": 3}], "note": "stub only; no vectors"}

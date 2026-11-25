@@ -1,0 +1,1278 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "fffeab530132f1541e743cb8dbbb1c2a255a02919e9d8cee900a6b592a4b82fb",
+  "normalized_output_digest": "16af47d60feb30144fd591abd5d4abb1413858d36a747ebef942fa7a6b9e00d7",
+  "output_digest_consistent": true,
+  "output_files": {
+    "analysis/analysis_citation_manifest.json": "json:5436c5d9fa67587d9d07eff67133ad1cc9008b779fc5fad4361a7399d07ad37c",
+    "analysis/analysis_manifest.json": "json:748258a6470ed17e2899e2aad9a3de1cea4b34a50ec7263d47bf4f71e529d6ef",
+    "analysis/narrative_source_packs": {
+      "01_synthetic_topic_one.json": "json:3770dcef884c79515590d02333fc434867439ac062317c0aaa8e1555c0cfeaae",
+      "02_synthetic_topic_two.json": "json:4425c24d1d9d52f80876d43d1dd44f84e0ba7ae45c32eec7ea4bdfcdd53f744f",
+      "03_kappa_lattice.json": "json:405794a99837b3191c773484dc2e6f08787a043c8e7586bbb7a133952d69ff56",
+      "04_lambda_quarry.json": "json:5e38aa4e6277306445df345a65c8f596b88de69fc8010a947ff2bfcddc0684dd",
+      "05_mu_orchard.json": "json:430f9deb5ef84e2275fd5d79e5c05b0aaec26a2d2937538b8aa1d5dbb2e09d3c",
+      "06_nu_harbor.json": "json:7f4b72d4f1384ff9e756698dd76a145d2007b01518bf0cccfbe0daaead718444",
+      "07_xi_meadow.json": "json:92c430a14e3a59c94c086b811500f9da0af78d947caac4d9e3f6cd8de9481d97",
+      "08_omicron_canyon.json": "json:53ae667001eb24d86a8cdfa4c35ce215e2eebbb610bc986accb125886a129828",
+      "09_pi_glacier.json": "json:304e1c9fa66fec537edbbe42062283a91c973ff12189d3939678446da8b6b337",
+      "10_rho_tundra.json": "json:1ab7c8611e67124b057320cf393cc00c005f112167a19df547aeb863839fd9c6",
+      "11_sigma_lagoon.json": "json:bd5a3d7c4ce4541de42c4a6298f31bf7ca9b4e60542040a74ef8e32383d51115",
+      "12_tau_prairie.json": "json:2f96d7a5e72c79e54d53dccc0c7b3711e61ebf95282c7d36a14921b4d4714974"
+    },
+    "analysis/provenance": {
+      "01_synthetic_topic_one.json": "json:7b8eadf079b48f690d9a17ea8b4edbd8ac4687c2d01d47eba9ad93725de4b709",
+      "01_synthetic_topic_one.md": "text:29626c3019b68843533ecddbec0e5c0064976eccdf50d6d1ef90bb8117584330",
+      "02_synthetic_topic_two.json": "json:27fd4f342aad2bf197d43e80dbf442d5cdf4efa2f838fc577bd871941a1e357d",
+      "02_synthetic_topic_two.md": "text:02a0d6f3d13daa695a13a6a619a0909cb61ba819498311a286a221431d02d610",
+      "03_kappa_lattice.json": "json:495de91decd9e78e38469a439d2c89b096b4cdfb8cfe6e8667d55c804bd74c68",
+      "03_kappa_lattice.md": "text:495b61513c5970df59aadba2944e4c1c3fd3dbc0580608193a629caa6456895e",
+      "04_lambda_quarry.json": "json:37dad46d0a0ad9d33f95e3fc5b974345c58077832317a45cc1381f3b5cf28ff9",
+      "04_lambda_quarry.md": "text:61c0bc99fa360ade176aefe09298fa27e6bd5c66d81c20935cd2ba7b45842a1d",
+      "05_mu_orchard.json": "json:1302a79e502cce5fdc4d1fe70bcca8222f46a3eeb35754d9c6a059381a4605b4",
+      "05_mu_orchard.md": "text:43070a03e21acc017e954e3511bccf17c1e17886c533724b70cefc59748f69d4",
+      "06_nu_harbor.json": "json:cb7495eb1c2dfac748c1a1b06dc091ff802130109c62e1b1f45e2c4babb12e14",
+      "06_nu_harbor.md": "text:c97fdad0db31fda902b71efda31df5eb9da565dae172fd1b7cfe15496d111551",
+      "07_xi_meadow.json": "json:37108aa503376b4635b66813ad1c8e1a95931799fc324998b70bc1902d03f924",
+      "07_xi_meadow.md": "text:00b81ab5906ee5357fad888228189b35b477307d8ba9e4b6a16275fad0e9f373",
+      "08_omicron_canyon.json": "json:ba9dc69fec6388e5c99b195102d467e19ca3e5dc27f685cee46f65af83d2fbfe",
+      "08_omicron_canyon.md": "text:73764978ed3fef38e12e683f9137d36ad3ce5ed49ef374463f64b3aece5a81b0",
+      "09_pi_glacier.json": "json:2a7010c8ca07fd5ec6d42cff3604e5e61f8248143d5add3c2dadfc59aea339d2",
+      "09_pi_glacier.md": "text:c06c1d11e20a9768050d6211e6e9a3087e351c7555db5c00065e1ed522ef56c0",
+      "10_rho_tundra.json": "json:4d0348c4e2b5fd7cf428355661c20dce56541d14b552f53af40edf45fad8e9fb",
+      "10_rho_tundra.md": "text:544d91ae96cf5d3b67efeb7eae369af1e8f6bd892ad37313a85d0c49ea4dfe63",
+      "11_sigma_lagoon.json": "json:c9f5ab418efe5b647e2a654f52291545d882e98b500b36964215cd54e75038e7",
+      "11_sigma_lagoon.md": "text:b7e9763ae35fe04f79fd988c38428206e50dcc35dab02e0c1657b31a416a61c4",
+      "12_tau_prairie.json": "json:4b0281e38bb80bbb0368ce6e285a7444dbe71f8ff5343d0d8f8db397b02ab56e",
+      "12_tau_prairie.md": "text:9a1087e870d3ed38545d15229299a1e0bab7550d2ea506466ca6330d2abeb9d0",
+      "query_plans/01_synthetic_topic_one.json": "json:34283a60fa71d75909d00158146bcbcb25f76aea3c2669516a38c0c4c7b50cc2",
+      "query_plans/02_synthetic_topic_two.json": "json:4280415feddfba23024b8788b3915a8a9b498ca8a79bc13450e9ee2fc4633947",
+      "query_plans/03_kappa_lattice.json": "json:c1f37ad6cdd0fa086f1aa720df8cc063e16f6cec3329ed4fe616ccca810b2c9d",
+      "query_plans/04_lambda_quarry.json": "json:1133ccaa08bc470554860a45f575c85c132304101f16250f1b2ec5ed81ac5f91",
+      "query_plans/05_mu_orchard.json": "json:0ac06dd0dcfdcf89266c553dc652fc90299d4565f36d85bb08769b24354a0735",
+      "query_plans/06_nu_harbor.json": "json:38ad390656a93ec5c6f5d9d53dcf7d1f688ad6500301b9ecb04ed9f9c566d74e",
+      "query_plans/07_xi_meadow.json": "json:78bbf857d3b2be07a6886b9f54087b7e7089253c8b39eca7a5f4275525cc9586",
+      "query_plans/08_omicron_canyon.json": "json:2c88fd075aa18fd116f4e3fa31468358ec771e622bc4e4f4487fa757ddd467cd",
+      "query_plans/09_pi_glacier.json": "json:a6175bb2ebd1ec773edfd11fe22311ef8d97e204ec2ad786384e8b8256d9035d",
+      "query_plans/10_rho_tundra.json": "json:11580e49f6369d7142476f4db97e4b36471dbb8099140041a0bd882087ce3716",
+      "query_plans/11_sigma_lagoon.json": "json:cf4ddc54d4df278ac7e9b2f5f6ac67d75d947481ec3ea27f1fbe6aed9c1652d4",
+      "query_plans/12_tau_prairie.json": "json:13d4983516523fa47c19e1adb20e67edc9dbd3083ebe31e2e7cd87b52a03c0ba"
+    },
+    "analysis/slide_briefs": {
+      "01_synthetic_topic_one.md": "text:c4e9c41605d119f910c11cc162cdb60736ed35334bd55b07d902b3cdcf96c66f",
+      "02_synthetic_topic_two.md": "text:72e3a86cb20bc1fc809ed122e84230ab39d23356653bcd8de362844a22460708",
+      "03_kappa_lattice.md": "text:20a182bdd4eca2a3a8431b687a372358c5b157b12bd2c010dfde1f2dd23bf8de",
+      "04_lambda_quarry.md": "text:2c79d89d9a71e32d6ce877252c194ef530232e47b19ef3f1ad880804983f8291",
+      "05_mu_orchard.md": "text:b44cc112f2d2890a4ae9db47a8eacd386381546327227cc594e81ea2ea4c1bdb",
+      "06_nu_harbor.md": "text:424525d5c0edc78e1ab686c77236bb78f5827fdb7953f9b9839dd77374caf124",
+      "07_xi_meadow.md": "text:7f61660501a5697a3b9199a440e87319c81a9cdedd7da331c8bad75247d97916",
+      "08_omicron_canyon.md": "text:6a283163519792cea06bca4c9f440e084709504c3c78a201124577c88666edfd",
+      "09_pi_glacier.md": "text:cfd867c11bc1a0887097ef926bd1525ab2becbe9e06c9c2a1de9b4ea30eaa8f5",
+      "10_rho_tundra.md": "text:b9b2447abb39a5a6e5a5d83fd216571e9f745a424162761fb2f8587f58f8f520",
+      "11_sigma_lagoon.md": "text:ea04d2779912df72ed5e3a4f19a4109e993b9701ae90f53f26a82c2129f4fc11",
+      "12_tau_prairie.md": "text:a313c8f124442168baa1332be4618dcf0fbb989e8b9f079cac4586b477f3df5b"
+    }
+  },
+  "receipt": {
+    "blocker_receipt_path": null,
+    "checks": {
+      "analysis_manifest_content_sha256": "<content_sha256:analysis/analysis_manifest.json>",
+      "analysis_manifest_path": "analysis/analysis_manifest.json",
+      "analysis_manifest_sha256": "<sha256:analysis/analysis_manifest.json>",
+      "analysis_manifest_status": "succeeded",
+      "analysis_manifest_topic_count": 12,
+      "analysis_profile": "deep-narrative-v1",
+      "citation_manifest_path": "analysis/analysis_citation_manifest.json",
+      "citation_summaries": [
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/01_synthetic_topic_one.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1096
+          },
+          "extraction_record_ids": [
+            "fr-01_synthetic_topic_one-1",
+            "fr-01_synthetic_topic_one-2",
+            "fr-01_synthetic_topic_one-3",
+            "fr-01_synthetic_topic_one-4",
+            "fr-01_synthetic_topic_one-5",
+            "paper_text:45ffa0d63453fcad9654c654",
+            "paper_text:81238dcf6c7f0e493919a968",
+            "paper_text:d1977e8d617d97cd5c7509f5"
+          ],
+          "markdown_path": "analysis/01_synthetic_topic_one.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/01_synthetic_topic_one.json",
+          "provenance_path": "analysis/provenance/01_synthetic_topic_one.md",
+          "research_ids": [
+            "w1-icml-fixture-run:01_synthetic_topic_one:bc6641aa4112"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/01_synthetic_topic_one.md",
+          "topic_id": "01_synthetic_topic_one",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:45ffa0d63453fcad9654c654:0",
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:d1977e8d617d97cd5c7509f5:0"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/02_synthetic_topic_two.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1061
+          },
+          "extraction_record_ids": [
+            "fr-02_synthetic_topic_two-1",
+            "fr-02_synthetic_topic_two-2",
+            "fr-02_synthetic_topic_two-3",
+            "fr-02_synthetic_topic_two-4",
+            "fr-02_synthetic_topic_two-5",
+            "paper_text:1ac2fe947c315d2622cd0b83",
+            "paper_text:f09ba867f7573340b9e6a783",
+            "paper_text:f1b877dd32c77ff501d3b64f"
+          ],
+          "markdown_path": "analysis/02_synthetic_topic_two.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/02_synthetic_topic_two.json",
+          "provenance_path": "analysis/provenance/02_synthetic_topic_two.md",
+          "research_ids": [
+            "w1-icml-fixture-run:02_synthetic_topic_two:1e80edd2c88d"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/02_synthetic_topic_two.md",
+          "topic_id": "02_synthetic_topic_two",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:1ac2fe947c315d2622cd0b83:0",
+            "paper_text:f09ba867f7573340b9e6a783:0",
+            "paper_text:f1b877dd32c77ff501d3b64f:0"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/03_kappa_lattice.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-03_kappa_lattice-1",
+            "fr-03_kappa_lattice-2",
+            "fr-03_kappa_lattice-3",
+            "fr-03_kappa_lattice-4",
+            "fr-03_kappa_lattice-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/03_kappa_lattice.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/03_kappa_lattice.json",
+          "provenance_path": "analysis/provenance/03_kappa_lattice.md",
+          "research_ids": [
+            "w1-icml-fixture-run:03_kappa_lattice:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/03_kappa_lattice.md",
+          "topic_id": "03_kappa_lattice",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/04_lambda_quarry.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-04_lambda_quarry-1",
+            "fr-04_lambda_quarry-2",
+            "fr-04_lambda_quarry-3",
+            "fr-04_lambda_quarry-4",
+            "fr-04_lambda_quarry-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/04_lambda_quarry.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/04_lambda_quarry.json",
+          "provenance_path": "analysis/provenance/04_lambda_quarry.md",
+          "research_ids": [
+            "w1-icml-fixture-run:04_lambda_quarry:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/04_lambda_quarry.md",
+          "topic_id": "04_lambda_quarry",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/05_mu_orchard.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-05_mu_orchard-1",
+            "fr-05_mu_orchard-2",
+            "fr-05_mu_orchard-3",
+            "fr-05_mu_orchard-4",
+            "fr-05_mu_orchard-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/05_mu_orchard.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/05_mu_orchard.json",
+          "provenance_path": "analysis/provenance/05_mu_orchard.md",
+          "research_ids": [
+            "w1-icml-fixture-run:05_mu_orchard:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/05_mu_orchard.md",
+          "topic_id": "05_mu_orchard",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/06_nu_harbor.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-06_nu_harbor-1",
+            "fr-06_nu_harbor-2",
+            "fr-06_nu_harbor-3",
+            "fr-06_nu_harbor-4",
+            "fr-06_nu_harbor-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/06_nu_harbor.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/06_nu_harbor.json",
+          "provenance_path": "analysis/provenance/06_nu_harbor.md",
+          "research_ids": [
+            "w1-icml-fixture-run:06_nu_harbor:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/06_nu_harbor.md",
+          "topic_id": "06_nu_harbor",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/07_xi_meadow.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-07_xi_meadow-1",
+            "fr-07_xi_meadow-2",
+            "fr-07_xi_meadow-3",
+            "fr-07_xi_meadow-4",
+            "fr-07_xi_meadow-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/07_xi_meadow.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/07_xi_meadow.json",
+          "provenance_path": "analysis/provenance/07_xi_meadow.md",
+          "research_ids": [
+            "w1-icml-fixture-run:07_xi_meadow:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/07_xi_meadow.md",
+          "topic_id": "07_xi_meadow",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/08_omicron_canyon.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-08_omicron_canyon-1",
+            "fr-08_omicron_canyon-2",
+            "fr-08_omicron_canyon-3",
+            "fr-08_omicron_canyon-4",
+            "fr-08_omicron_canyon-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/08_omicron_canyon.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/08_omicron_canyon.json",
+          "provenance_path": "analysis/provenance/08_omicron_canyon.md",
+          "research_ids": [
+            "w1-icml-fixture-run:08_omicron_canyon:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/08_omicron_canyon.md",
+          "topic_id": "08_omicron_canyon",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/09_pi_glacier.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-09_pi_glacier-1",
+            "fr-09_pi_glacier-2",
+            "fr-09_pi_glacier-3",
+            "fr-09_pi_glacier-4",
+            "fr-09_pi_glacier-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/09_pi_glacier.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/09_pi_glacier.json",
+          "provenance_path": "analysis/provenance/09_pi_glacier.md",
+          "research_ids": [
+            "w1-icml-fixture-run:09_pi_glacier:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/09_pi_glacier.md",
+          "topic_id": "09_pi_glacier",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/10_rho_tundra.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-10_rho_tundra-1",
+            "fr-10_rho_tundra-2",
+            "fr-10_rho_tundra-3",
+            "fr-10_rho_tundra-4",
+            "fr-10_rho_tundra-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/10_rho_tundra.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/10_rho_tundra.json",
+          "provenance_path": "analysis/provenance/10_rho_tundra.md",
+          "research_ids": [
+            "w1-icml-fixture-run:10_rho_tundra:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/10_rho_tundra.md",
+          "topic_id": "10_rho_tundra",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/11_sigma_lagoon.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-11_sigma_lagoon-1",
+            "fr-11_sigma_lagoon-2",
+            "fr-11_sigma_lagoon-3",
+            "fr-11_sigma_lagoon-4",
+            "fr-11_sigma_lagoon-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/11_sigma_lagoon.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/11_sigma_lagoon.json",
+          "provenance_path": "analysis/provenance/11_sigma_lagoon.md",
+          "research_ids": [
+            "w1-icml-fixture-run:11_sigma_lagoon:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/11_sigma_lagoon.md",
+          "topic_id": "11_sigma_lagoon",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        },
+        {
+          "analysis_profile": "deep-narrative-v1",
+          "deep_analysis_path": "analysis/12_tau_prairie.md",
+          "deep_validation": {
+            "detailed_subsection_count": 4,
+            "forbidden_headings": [],
+            "has_concise_references": false,
+            "has_cross_references": true,
+            "has_detailed_analysis": true,
+            "has_executive_summary": true,
+            "has_key_findings": true,
+            "has_questions": true,
+            "has_recommendations": true,
+            "has_references_and_sources": true,
+            "has_repeated_boilerplate": false,
+            "has_slide_brief": true,
+            "has_slide_seeds": false,
+            "has_why_this_matters": false,
+            "major_theme_count": 0,
+            "reference_item_count": 5,
+            "starts_with_source_basis": false,
+            "status": "pass",
+            "word_count": 1062
+          },
+          "extraction_record_ids": [
+            "fr-12_tau_prairie-1",
+            "fr-12_tau_prairie-2",
+            "fr-12_tau_prairie-3",
+            "fr-12_tau_prairie-4",
+            "fr-12_tau_prairie-5",
+            "paper_text:81238dcf6c7f0e493919a968"
+          ],
+          "markdown_path": "analysis/12_tau_prairie.md",
+          "matched_paper_ids": [],
+          "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+          "provenance_json_path": "analysis/provenance/12_tau_prairie.json",
+          "provenance_path": "analysis/provenance/12_tau_prairie.md",
+          "research_ids": [
+            "w1-icml-fixture-run:12_tau_prairie:f951e2154c9e"
+          ],
+          "slide_brief_path": "analysis/slide_briefs/12_tau_prairie.md",
+          "topic_id": "12_tau_prairie",
+          "topic_reconciliation": {
+            "model": "w1-fixture-reconciliation",
+            "reference_validation_counts": {
+              "bare_reference_warning_count": 0,
+              "citation_count": 3,
+              "invalid_reference_count": 0,
+              "ledger_entry_count": 3,
+              "title_mismatch_count": 0,
+              "unknown_reference_count": 0
+            },
+            "reference_validation_status": "succeeded",
+            "status": "succeeded"
+          },
+          "vector_store_chunk_ids": [
+            "paper_text:81238dcf6c7f0e493919a968:0",
+            "paper_text:81238dcf6c7f0e493919a968:1",
+            "paper_text:81238dcf6c7f0e493919a968:2"
+          ]
+        }
+      ],
+      "deep_dive_question_selection_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/07B-deep-dive-question-selection.json",
+      "deep_dive_question_selection_receipt_present": true,
+      "deep_dive_question_selection_receipt_status": "succeeded",
+      "dual_deep_dive_research_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/07C-dual-deep-dive-research-lanes.json",
+      "dual_deep_dive_research_receipt_present": true,
+      "dual_deep_dive_research_receipt_status": "succeeded",
+      "exhaustive_extraction_by_artifact_count": 6,
+      "exhaustive_extraction_by_topic_count": 2,
+      "exhaustive_extraction_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json",
+      "exhaustive_extraction_receipt_present": true,
+      "exhaustive_extraction_receipt_status": "succeeded",
+      "index_digest_path": "storage/vector-store/w1-icml-fixture-run/index_digest.json",
+      "index_digest_present": true,
+      "live_provider_calls_made": true,
+      "llm_full_read_completion_state": "complete",
+      "llm_full_read_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/14A-llm-full-read-extraction-receipt.json",
+      "llm_full_read_receipt_present": true,
+      "llm_full_read_receipt_status": "succeeded",
+      "narrative_blockers": [],
+      "narrative_model": "<MODEL:analysis.deep_narrative_synthesis>",
+      "narrative_status": "succeeded",
+      "provenance_json_paths": [
+        "analysis/provenance/01_synthetic_topic_one.json",
+        "analysis/provenance/02_synthetic_topic_two.json",
+        "analysis/provenance/03_kappa_lattice.json",
+        "analysis/provenance/04_lambda_quarry.json",
+        "analysis/provenance/05_mu_orchard.json",
+        "analysis/provenance/06_nu_harbor.json",
+        "analysis/provenance/07_xi_meadow.json",
+        "analysis/provenance/08_omicron_canyon.json",
+        "analysis/provenance/09_pi_glacier.json",
+        "analysis/provenance/10_rho_tundra.json",
+        "analysis/provenance/11_sigma_lagoon.json",
+        "analysis/provenance/12_tau_prairie.json"
+      ],
+      "provenance_paths": [
+        "analysis/provenance/01_synthetic_topic_one.md",
+        "analysis/provenance/02_synthetic_topic_two.md",
+        "analysis/provenance/03_kappa_lattice.md",
+        "analysis/provenance/04_lambda_quarry.md",
+        "analysis/provenance/05_mu_orchard.md",
+        "analysis/provenance/06_nu_harbor.md",
+        "analysis/provenance/07_xi_meadow.md",
+        "analysis/provenance/08_omicron_canyon.md",
+        "analysis/provenance/09_pi_glacier.md",
+        "analysis/provenance/10_rho_tundra.md",
+        "analysis/provenance/11_sigma_lagoon.md",
+        "analysis/provenance/12_tau_prairie.md"
+      ],
+      "provider_calls_made": true,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [
+          "--provider-cost-approved"
+        ],
+        "approved": true,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "reconciliation_reference_final_validation_status": "succeeded",
+      "reconciliation_reference_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/07H-topic-reconciliation-reference-workflow.json",
+      "reconciliation_reference_receipt_present": true,
+      "reconciliation_reference_receipt_status": "succeeded",
+      "report_paths": [
+        "analysis/01_synthetic_topic_one.md",
+        "analysis/02_synthetic_topic_two.md",
+        "analysis/03_kappa_lattice.md",
+        "analysis/04_lambda_quarry.md",
+        "analysis/05_mu_orchard.md",
+        "analysis/06_nu_harbor.md",
+        "analysis/07_xi_meadow.md",
+        "analysis/08_omicron_canyon.md",
+        "analysis/09_pi_glacier.md",
+        "analysis/10_rho_tundra.md",
+        "analysis/11_sigma_lagoon.md",
+        "analysis/12_tau_prairie.md"
+      ],
+      "secrets_copied": false,
+      "slide_brief_paths": [
+        "analysis/slide_briefs/01_synthetic_topic_one.md",
+        "analysis/slide_briefs/02_synthetic_topic_two.md",
+        "analysis/slide_briefs/03_kappa_lattice.md",
+        "analysis/slide_briefs/04_lambda_quarry.md",
+        "analysis/slide_briefs/05_mu_orchard.md",
+        "analysis/slide_briefs/06_nu_harbor.md",
+        "analysis/slide_briefs/07_xi_meadow.md",
+        "analysis/slide_briefs/08_omicron_canyon.md",
+        "analysis/slide_briefs/09_pi_glacier.md",
+        "analysis/slide_briefs/10_rho_tundra.md",
+        "analysis/slide_briefs/11_sigma_lagoon.md",
+        "analysis/slide_briefs/12_tau_prairie.md"
+      ],
+      "source_packs": {
+        "insufficient_topics": [],
+        "query_plan_paths": [
+          "analysis/provenance/query_plans/01_synthetic_topic_one.json",
+          "analysis/provenance/query_plans/02_synthetic_topic_two.json",
+          "analysis/provenance/query_plans/03_kappa_lattice.json",
+          "analysis/provenance/query_plans/04_lambda_quarry.json",
+          "analysis/provenance/query_plans/05_mu_orchard.json",
+          "analysis/provenance/query_plans/06_nu_harbor.json",
+          "analysis/provenance/query_plans/07_xi_meadow.json",
+          "analysis/provenance/query_plans/08_omicron_canyon.json",
+          "analysis/provenance/query_plans/09_pi_glacier.json",
+          "analysis/provenance/query_plans/10_rho_tundra.json",
+          "analysis/provenance/query_plans/11_sigma_lagoon.json",
+          "analysis/provenance/query_plans/12_tau_prairie.json"
+        ],
+        "source_pack_count": 12,
+        "source_pack_paths": [
+          "analysis/narrative_source_packs/01_synthetic_topic_one.json",
+          "analysis/narrative_source_packs/02_synthetic_topic_two.json",
+          "analysis/narrative_source_packs/03_kappa_lattice.json",
+          "analysis/narrative_source_packs/04_lambda_quarry.json",
+          "analysis/narrative_source_packs/05_mu_orchard.json",
+          "analysis/narrative_source_packs/06_nu_harbor.json",
+          "analysis/narrative_source_packs/07_xi_meadow.json",
+          "analysis/narrative_source_packs/08_omicron_canyon.json",
+          "analysis/narrative_source_packs/09_pi_glacier.json",
+          "analysis/narrative_source_packs/10_rho_tundra.json",
+          "analysis/narrative_source_packs/11_sigma_lagoon.json",
+          "analysis/narrative_source_packs/12_tau_prairie.json"
+        ]
+      },
+      "stage6_chunk_counts": {
+        "artifacts": 0,
+        "papers": 23
+      },
+      "stage6_embedded_chunk_counts": {
+        "artifacts": 0,
+        "papers": 23
+      },
+      "stage6_index_digest_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/index_digest.json>",
+      "stage6_output_inventory": {
+        "path": "storage/corpus/corpus_inventory.json",
+        "sha256": "<sha256:storage/corpus/corpus_inventory.json>",
+        "status": "succeeded"
+      },
+      "stage6_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json",
+      "stage6_receipt_present": true,
+      "stage6_status": "succeeded",
+      "stage6_vector_embeddings_written": true,
+      "topic_strategy_path": "analysis/topic_strategy.json",
+      "topic_strategy_present": true,
+      "topic_strategy_receipt_path": "storage/analysis/topic-strategy/w1-icml-fixture-run/topic_strategy_receipt.json",
+      "topic_strategy_receipt_present": true,
+      "topic_strategy_topic_count": 12,
+      "topic_strategy_topic_ids": [
+        "01_synthetic_topic_one",
+        "02_synthetic_topic_two",
+        "03_kappa_lattice",
+        "04_lambda_quarry",
+        "05_mu_orchard",
+        "06_nu_harbor",
+        "07_xi_meadow",
+        "08_omicron_canyon",
+        "09_pi_glacier",
+        "10_rho_tundra",
+        "11_sigma_lagoon",
+        "12_tau_prairie"
+      ]
+    },
+    "error": null,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "analysis"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "index_digest": {
+          "declared_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/index_digest.json>",
+          "missing": false,
+          "optional": false,
+          "path": "storage/vector-store/w1-icml-fixture-run/index_digest.json",
+          "sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/index_digest.json>",
+          "source": "stage"
+        },
+        "topic_strategy": {
+          "missing": false,
+          "optional": false,
+          "path": "analysis/topic_strategy.json",
+          "sha256": "<sha256:analysis/topic_strategy.json>",
+          "source": "stage"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-07-analysis.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/analysis/topic-strategy/w1-icml-fixture-run/topic_strategy_receipt.json": {
+          "digest": "<content_digest:analysis/topic_strategy.json>",
+          "digest_kind": "content_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/analysis/topic-strategy/<run-id>/topic_strategy_receipt.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07A-exhaustive-topic-summaries.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": true,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07A-exhaustive-topic-summaries.json",
+          "stage_id": null,
+          "status": null
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07B-deep-dive-question-selection.json": {
+          "digest": "3b041d95cb8428820554a9fabeaab39e94aabb22f65050a10bd7ff302bfa2f3e",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07B-deep-dive-question-selection.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07C-dual-deep-dive-research-lanes.json": {
+          "digest": "3b041d95cb8428820554a9fabeaab39e94aabb22f65050a10bd7ff302bfa2f3e",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07C-dual-deep-dive-research-lanes.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07D-topic-reconciliation.json": {
+          "digest": "7fffb7942cde1e9edbc18fc8b7c2940bc840a7e470388e8115ba7fdafc54b22e",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07D-topic-reconciliation.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07E-topic-reference-validation.json": {
+          "digest": "5a24e95f43d50185d8af2efb176213a3b9a637e747c172e0e9b4095a859e60d8",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07E-topic-reference-validation.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/07H-topic-reconciliation-reference-workflow.json": {
+          "digest": "ecf18c392399202ae4e5d8d8a89460700b53cd12b2bad58865528bc4ff1c6f20",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07H-topic-reconciliation-reference-workflow.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/14A-exhaustive-topic-extraction-receipt.json",
+          "stage_id": "exhaustive-topic-extraction",
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/14A-llm-full-read-extraction-receipt.json": {
+          "digest": "2390bfed578b447438475a689d9e5d1598d7207dd6fefee4f0abee3d52c6f8b2",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/14A-llm-full-read-extraction-receipt.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-06-corpus-inventory-index.json",
+          "stage_id": "corpus-inventory-index",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue only after source-backed analysis reports, slide briefs, provenance, citation manifest, and analysis_manifest.json are written from final corpus evidence.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [
+      {
+        "name": "analysis_manifest",
+        "path": "analysis/analysis_manifest.json",
+        "sha256": "<content_sha256:analysis/analysis_manifest.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "kind": "file",
+        "name": "citation_manifest",
+        "path": "analysis/analysis_citation_manifest.json",
+        "sha256": "<sha256:analysis/analysis_citation_manifest.json>"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-07-analysis.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "analysis.topic_strategy",
+      "analysis.exhaustive_topic_extraction",
+      "analysis.llm_full_read_extraction",
+      "analysis.gpt_researcher_stage",
+      "analysis.gpt_researcher_heuristic_prefilter",
+      "analysis.deep_narrative_module",
+      "analysis.topic_reconciliation",
+      "analysis.topic_reconciliation_reference_workflow",
+      "analysis.topic_reference_validation",
+      "analysis.deep_dive_question_selection",
+      "analysis.dual_deep_dive_research_lanes"
+    ],
+    "resumable": true,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {
+      "accepted_evidence": [
+        "analysis: receipt mode live",
+        "analysis: registry digest matched",
+        "analysis: required owner ids recorded",
+        "analysis: lineage bound to storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json (output_digest <output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json>)",
+        "analysis: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json",
+        "analysis: lineage bound to storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json (output_digest <output_digest:storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json>)",
+        "analysis: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json",
+        "analysis: lineage bound to storage/workflow-runs/w1-icml-fixture-run/14A-llm-full-read-extraction-receipt.json (output_digest 2390bfed578b)",
+        "analysis: receipt check scope",
+        "analysis: receipt check limit",
+        "analysis: receipt check checks.completion_state",
+        "analysis: receipt check checks.completed_unit_count",
+        "analysis: receipt check checks.failed_count",
+        "analysis: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/14A-llm-full-read-extraction-receipt.json",
+        "analysis: lineage bound to storage/analysis/topic-strategy/w1-icml-fixture-run/topic_strategy_receipt.json (output_digest <content_digest:analysis/topic_strategy.json>)",
+        "analysis: required receipt <WORKSPACE>/storage/analysis/topic-strategy/w1-icml-fixture-run/topic_strategy_receipt.json",
+        "analysis: lineage bound to storage/workflow-runs/w1-icml-fixture-run/07D-topic-reconciliation.json (output_digest 7fffb7942cde)",
+        "analysis: receipt check status",
+        "analysis: receipt check source_packs_enriched",
+        "analysis: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/07D-topic-reconciliation.json",
+        "analysis: lineage bound to storage/workflow-runs/w1-icml-fixture-run/07E-topic-reference-validation.json (output_digest 5a24e95f43d5)",
+        "analysis: receipt check status",
+        "analysis: receipt check checks.completed_topic_count",
+        "analysis: receipt check checks.ledger_entry_count",
+        "analysis: receipt check checks.citation_count",
+        "analysis: receipt check checks.invalid_reference_count",
+        "analysis: receipt check checks.unknown_reference_count",
+        "analysis: receipt check checks.title_mismatch_count",
+        "analysis: receipt check checks.bare_reference_warning_count",
+        "analysis: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/07E-topic-reference-validation.json",
+        "analysis: lineage bound to storage/workflow-runs/w1-icml-fixture-run/07H-topic-reconciliation-reference-workflow.json (output_digest ecf18c392399)",
+        "analysis: receipt check status",
+        "analysis: receipt check checks.final_validation_status",
+        "analysis: receipt check checks.final_completed_topic_count",
+        "analysis: receipt check checks.final_ledger_entry_count",
+        "analysis: receipt check checks.final_citation_count",
+        "analysis: receipt check checks.final_invalid_reference_count",
+        "analysis: receipt check checks.final_unknown_reference_count",
+        "analysis: receipt check checks.final_title_mismatch_count",
+        "analysis: receipt check checks.final_bare_reference_warning_count",
+        "analysis: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/07H-topic-reconciliation-reference-workflow.json",
+        "analysis: lineage bound to storage/workflow-runs/w1-icml-fixture-run/07B-deep-dive-question-selection.json (output_digest 3b041d95cb84)",
+        "analysis: receipt check status",
+        "analysis: receipt check provider_calls_made",
+        "analysis: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/07B-deep-dive-question-selection.json",
+        "analysis: lineage bound to storage/workflow-runs/w1-icml-fixture-run/07C-dual-deep-dive-research-lanes.json (output_digest 3b041d95cb84)",
+        "analysis: receipt check status",
+        "analysis: receipt check provider_calls_made",
+        "analysis: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/07C-dual-deep-dive-research-lanes.json",
+        "analysis: optional receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/07A-exhaustive-topic-summaries.json absent (accepted)",
+        "analysis: required output <WORKSPACE>/analysis/analysis_manifest.json",
+        "analysis: required output <WORKSPACE>/analysis/analysis_citation_manifest.json",
+        "analysis: output glob analysis/[0-9][0-9]_*.md count=12",
+        "analysis: output glob analysis/slide_briefs/*.md count=12",
+        "analysis: output glob analysis/provenance/*.json count=12",
+        "analysis: output glob analysis/provenance/*.md count=12",
+        "analysis: output glob analysis/provenance/query_plans/*.json count=12",
+        "analysis: output glob analysis/narrative_source_packs/*.json count=12",
+        "analysis: output glob storage/extractions/w1-icml-fixture-run/by-topic/*.json count=2",
+        "analysis: output glob storage/extractions/w1-icml-fixture-run/by-artifact/*.json count=6",
+        "analysis: output glob storage/extractions/w1-icml-fixture-run/llm-full-read/by-unit/*.json count=1",
+        "analysis: output glob storage/extractions/w1-icml-fixture-run/llm-full-read/by-topic/*.json count=12",
+        "analysis: output glob analysis/topic_reconciliations/*.md count=12",
+        "analysis: output glob analysis/topic_reference_ledgers/*.json count=12",
+        "analysis: output glob analysis/topic_reference_validation/*.json count=12",
+        "analysis: receipt check checks.stage6_vector_embeddings_written",
+        "analysis: receipt check checks.analysis_manifest_status",
+        "analysis: receipt check checks.narrative_status",
+        "analysis: receipt check checks.topic_strategy_topic_count",
+        "analysis: receipt check checks.analysis_manifest_topic_count",
+        "analysis: 2 input artifact digests current"
+      ],
+      "blockers": [],
+      "registry_stage_id": "analysis",
+      "required_script_ids": [
+        "analysis.topic_strategy",
+        "analysis.exhaustive_topic_extraction",
+        "analysis.llm_full_read_extraction",
+        "analysis.gpt_researcher_stage",
+        "analysis.gpt_researcher_heuristic_prefilter",
+        "analysis.deep_narrative_module",
+        "analysis.topic_reconciliation",
+        "analysis.topic_reconciliation_reference_workflow",
+        "analysis.topic_reference_validation",
+        "analysis.deep_dive_question_selection",
+        "analysis.dual_deep_dive_research_lanes"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "analysis",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "analysis",
+    "stage_order": 7,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

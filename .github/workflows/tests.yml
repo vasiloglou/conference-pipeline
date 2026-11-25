@@ -1,0 +1,43 @@
+name: Tests
+
+# The offline suite and the public-safety checks (v6.0 Phase 7, D12). Tests that need a
+# live model endpoint skip unless RUN_LIVE_LLM or RUN_LOCAL_E2E is set; tests that read
+# files this repository does not carry skip with the path named (repo_data marker).
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    # Only in the public code repository: the private one carries the same file but keeps
+    # its own docs-link workflow.
+    if: github.repository == 'vasiloglou/conference-pipeline'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        env:
+          GITLEAKS_VERSION: "8.30.1"
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg tesseract-ocr
+          python -m pip install uv
+          uv sync --all-extras --frozen
+          .venv/bin/python -m playwright install --with-deps chromium
+          curl -sSLO "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_checksums.txt" | grep "linux_x64.tar.gz" | sha256sum -c -
+          sudo tar -xzf "gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" -C /usr/local/bin gitleaks
+      - name: Offline suite
+        run: .venv/bin/python -m pytest -q -n auto -p no:cacheprovider -rfs tests
+      - name: Docs links
+        run: .venv/bin/python scripts/check_docs_links.py
+      - name: Private markers
+        run: PYTHONPATH=src .venv/bin/python scripts/audit_private_markers.py --paths . --no-env

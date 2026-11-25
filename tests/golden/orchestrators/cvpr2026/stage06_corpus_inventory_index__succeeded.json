@@ -1,0 +1,600 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "df1734594174703d860e9e9e9ccc52ef12156ae5b4900f47c1b2d8d3ac70485f",
+  "normalized_output_digest": "873fc90a8d74e0d07282c632e0f468916c1ab1f0e83fc9d7f98ab1482f5964f5",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/corpus/corpus_inventory.json": "json:3212cf60342133170c912fa8bd67db17e5fc4561e61afe1eb91d99cd1952d254",
+    "storage/vector-store/w1-cvpr-fixture-run/index_digest.json": "json:f2157ae0483defc50dd385cb8a52a4c476cca6c9bf11a6d03f2ee0c52d617c8e"
+  },
+  "receipt": {
+    "blockers": [],
+    "checks": {
+      "artifact_counts": {
+        "audit_only": 0,
+        "by_source_family": {
+          "paper_text": 1,
+          "speech_transcript": 1,
+          "workshop_paper_text": 1
+        },
+        "caption_coverage_available": 1,
+        "caption_coverage_unavailable": 3,
+        "evidence_lane_coverage_gaps": 0,
+        "evidence_lane_transcripts": 0,
+        "indexable_text": 3,
+        "paper_curation_excluded": {},
+        "total": 3
+      },
+      "chunk_cache_verified_by_content_hash": true,
+      "chunk_counts": {
+        "artifacts": 1,
+        "papers": 2
+      },
+      "chunk_length_stats": {
+        "above_7500_embedding_tokens": 0,
+        "below_300_chars": 0,
+        "max_chars": 1539,
+        "mean_chars": 1247.333,
+        "min_chars": 774,
+        "snippet_only_rejected": true,
+        "speech_receipt_json_chunks_rejected": true,
+        "total_chunks": 3
+      },
+      "corpus_freeze_ledger_path": "storage/corpus-freeze/corpus_freeze.json",
+      "corpus_freeze_ledger_status": "succeeded",
+      "corpus_records_sha256": "68c9600e5b4624558bc81b929f39a37404583dd8b13b99278f854b4d1dca86c5",
+      "download_corpus_ledger_path": "storage/download-corpus/download_corpus.json",
+      "download_corpus_ledger_sha256": null,
+      "download_corpus_stage_receipt_path": "stage-04-download-corpus.json",
+      "download_corpus_stage_receipt_resolved_run_id": null,
+      "download_corpus_stage_status": "succeeded",
+      "embedded_chunk_counts": {
+        "artifacts": 1,
+        "papers": 2
+      },
+      "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+      "embedding_readiness": {
+        "attempted": true,
+        "client_start_or_load_attempted": true,
+        "embedding_dim": 1536,
+        "embedding_max_length": null,
+        "embedding_policy": {
+          "embedding_dim": 1536,
+          "embedding_max_length": null,
+          "model": "text-embedding-3-small",
+          "provider": "fake"
+        },
+        "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+        "embedding_status": "chunk_sidecars_written_local_embedding_client_ready",
+        "live_provider_calls_made": false,
+        "materialization_batch_size": 8,
+        "model": "text-embedding-3-small",
+        "paid_provider_calls_made": false,
+        "probe_embedding_dim": 1536,
+        "probe_vector_count": 1,
+        "provider": "fake",
+        "provider_values_recorded": false,
+        "secret_values_recorded": false,
+        "secrets_copied": false,
+        "status": "available"
+      },
+      "embedding_status": "vector_embeddings_written_local_embedding_client_ready",
+      "embedding_update": {
+        "artifacts": {
+          "buckets_embedded": 1,
+          "buckets_reused": 0,
+          "buckets_rewritten": 0,
+          "buckets_total": 1,
+          "chunks_copied_from_donors": 0,
+          "chunks_embedded_now": 1,
+          "chunks_reused_in_place": 0,
+          "donor_file_count": 0,
+          "donor_rows_by_file": {},
+          "full_rebuild": false,
+          "garbage_collected_files": [],
+          "planned_embed_count": 1
+        },
+        "papers": {
+          "buckets_embedded": 2,
+          "buckets_reused": 0,
+          "buckets_rewritten": 0,
+          "buckets_total": 2,
+          "chunks_copied_from_donors": 0,
+          "chunks_embedded_now": 2,
+          "chunks_reused_in_place": 0,
+          "donor_file_count": 0,
+          "donor_rows_by_file": {},
+          "full_rebuild": false,
+          "garbage_collected_files": [],
+          "planned_embed_count": 2
+        }
+      },
+      "event_media_inventory_path": "storage/download-corpus/event-media/event_media_inventory.json",
+      "event_media_inventory_sha256": "<sha256:storage/download-corpus/event-media/event_media_inventory.json>",
+      "full_rebuild_requested": false,
+      "index_digest_path": "storage/vector-store/w1-cvpr-fixture-run/index_digest.json",
+      "index_digest_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/index_digest.json>",
+      "index_update": {
+        "full_rebuild_requested": false,
+        "mode": "full_rechunk",
+        "stores": {
+          "artifacts": {
+            "artifacts_added": 1,
+            "artifacts_changed": 0,
+            "artifacts_rechunked": 1,
+            "artifacts_removed": 0,
+            "artifacts_skipped_unreadable": 0,
+            "artifacts_total": 1,
+            "artifacts_unchanged": 0,
+            "chunks_deleted": 0,
+            "chunks_jsonl_rewritten": true,
+            "chunks_rechunked": 1,
+            "chunks_reused": 0,
+            "chunks_total": 1,
+            "mode": "full_rechunk",
+            "previous_chunk_manifest_sha256": null,
+            "reason": "chunk_manifest_reuse_disabled",
+            "skipped_unreadable_sample": []
+          },
+          "papers": {
+            "artifacts_added": 2,
+            "artifacts_changed": 0,
+            "artifacts_rechunked": 2,
+            "artifacts_removed": 0,
+            "artifacts_skipped_unreadable": 0,
+            "artifacts_total": 2,
+            "artifacts_unchanged": 0,
+            "chunks_deleted": 0,
+            "chunks_jsonl_rewritten": true,
+            "chunks_rechunked": 2,
+            "chunks_reused": 0,
+            "chunks_total": 2,
+            "mode": "full_rechunk",
+            "previous_chunk_manifest_sha256": null,
+            "reason": "chunk_manifest_reuse_disabled",
+            "skipped_unreadable_sample": []
+          }
+        }
+      },
+      "live_provider_calls_made": false,
+      "output_inventory": {
+        "path": "storage/corpus/corpus_inventory.json",
+        "sha256": "<sha256:storage/corpus/corpus_inventory.json>",
+        "status": "succeeded"
+      },
+      "paper_author_recovery": {
+        "path": "storage/workshops/paper_author_recovery.json",
+        "present": false
+      },
+      "proceedings_paper_sources": [],
+      "provider_calls_made": false,
+      "secrets_copied": false,
+      "source_discovery_inventory_path": "storage/source-discovery/source_discovery_inventory.json",
+      "source_discovery_inventory_sha256": "d0efd5948f5ea6dae902be6848b22370d5c1a94cdbaf8bcb0f91f82b14f9bf1c",
+      "source_discovery_inventory_status": "ok",
+      "source_metadata_coverage": {
+        "artifacts": {
+          "authors_resolved": 0,
+          "provenance": {
+            "authors": {},
+            "title": {}
+          },
+          "title_resolved": 0,
+          "total": 1
+        },
+        "papers_main": {
+          "authors_resolved": 0,
+          "provenance": {
+            "authors": {
+              "unresolved": 1
+            },
+            "title": {
+              "unresolved": 1
+            }
+          },
+          "title_resolved": 0,
+          "total": 1
+        },
+        "papers_workshop": {
+          "authors_resolved": 0,
+          "provenance": {
+            "authors": {
+              "unresolved": 1
+            },
+            "title": {
+              "workshop_receipt": 1
+            }
+          },
+          "title_resolved": 1,
+          "total": 1
+        }
+      },
+      "store_paths": {
+        "artifacts": "storage/vector-store/w1-cvpr-fixture-run/stores/artifacts",
+        "papers": "storage/vector-store/w1-cvpr-fixture-run/stores/papers"
+      },
+      "talk_maps": {
+        "attached_count": 0,
+        "bindings": []
+      },
+      "token_budget_policy_digest": "fa166b59e300291ba7ca036e95a3652e9160afcfbb96e132ab5b686a7f9aac78",
+      "transcript_evidence_lanes": [],
+      "transcription_ocr_stage_receipt_resolved_filename": "stage-05-transcription-ocr.json",
+      "transcription_ocr_stage_receipt_resolved_run_id": "w1-cvpr-fixture-run",
+      "transcription_ocr_stage_status": "succeeded",
+      "vector_embeddings_written": true,
+      "vector_materialization": {
+        "aggregate_vector_store_digest": "0e9ea1e745b554e2e16f7ab8a71317201927545477949d990d60e490aa647258",
+        "chunk_counts": {
+          "artifacts": 1,
+          "papers": 2
+        },
+        "embedded_chunk_counts": {
+          "artifacts": 1,
+          "papers": 2
+        },
+        "embedding_dim": 1536,
+        "embedding_max_length": null,
+        "embedding_model": "text-embedding-3-small",
+        "embedding_policy": {
+          "embedding_dim": 1536,
+          "embedding_max_length": null,
+          "model": "text-embedding-3-small",
+          "provider": "fake"
+        },
+        "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+        "embedding_provider": "fake",
+        "embedding_status": "vector_embeddings_written_local_embedding_client_ready",
+        "embedding_update": {
+          "artifacts": {
+            "buckets_embedded": 1,
+            "buckets_reused": 0,
+            "buckets_rewritten": 0,
+            "buckets_total": 1,
+            "chunks_copied_from_donors": 0,
+            "chunks_embedded_now": 1,
+            "chunks_reused_in_place": 0,
+            "donor_file_count": 0,
+            "donor_rows_by_file": {},
+            "full_rebuild": false,
+            "garbage_collected_files": [],
+            "planned_embed_count": 1
+          },
+          "papers": {
+            "buckets_embedded": 2,
+            "buckets_reused": 0,
+            "buckets_rewritten": 0,
+            "buckets_total": 2,
+            "chunks_copied_from_donors": 0,
+            "chunks_embedded_now": 2,
+            "chunks_reused_in_place": 0,
+            "donor_file_count": 0,
+            "donor_rows_by_file": {},
+            "full_rebuild": false,
+            "garbage_collected_files": [],
+            "planned_embed_count": 2
+          }
+        },
+        "live_provider_calls_made": false,
+        "materialization_batch_size": 8,
+        "provider_calls_made": false,
+        "secrets_copied": false,
+        "status": "succeeded",
+        "stores": {
+          "artifacts": {
+            "chroma_insert_batch_size": 4096,
+            "chroma_metadata_refresh_count": 0,
+            "chroma_path": "storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/chroma",
+            "chunk_count": 1,
+            "chunk_manifest_path": "storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/chunk_manifest.json",
+            "chunk_manifest_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/chunk_manifest.json>",
+            "chunks_path": "storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/chunks.jsonl",
+            "chunks_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/chunks.jsonl>",
+            "collection_name": "conference_corpus_artifacts__fake_text-embedding-3-small_1536",
+            "embedded_chunk_count": 1,
+            "embedded_now_count": 1,
+            "embedding_dim": 1536,
+            "embedding_max_length": null,
+            "embedding_model": "text-embedding-3-small",
+            "embedding_policy": {
+              "embedding_dim": 1536,
+              "embedding_max_length": null,
+              "model": "text-embedding-3-small",
+              "provider": "fake"
+            },
+            "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+            "embedding_provider": "fake",
+            "embedding_resume_count": 0,
+            "embedding_sidecar_bucket_count": 256,
+            "embedding_sidecar_embedded_now_count": 1,
+            "embedding_sidecar_format": "npz-buckets-v2",
+            "embedding_sidecar_manifest_path": "storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json",
+            "embedding_sidecar_manifest_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json>",
+            "embedding_sidecar_path": "storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+            "embedding_sidecar_resume_count": 0,
+            "embedding_sidecar_shard_count": 1,
+            "embedding_sidecar_shard_size": null,
+            "embedding_stale_deleted_count": 0,
+            "embedding_update": {
+              "buckets_embedded": 1,
+              "buckets_reused": 0,
+              "buckets_rewritten": 0,
+              "buckets_total": 1,
+              "chunks_copied_from_donors": 0,
+              "chunks_embedded_now": 1,
+              "chunks_reused_in_place": 0,
+              "donor_file_count": 0,
+              "donor_rows_by_file": {},
+              "full_rebuild": false,
+              "garbage_collected_files": [],
+              "planned_embed_count": 1
+            },
+            "embedding_upsert_count": 1,
+            "materialization_batch_size": 8,
+            "metadata_path": "storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/metadata.json",
+            "metadata_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/metadata.json>",
+            "path": "storage/vector-store/w1-cvpr-fixture-run/stores/artifacts",
+            "store": "artifacts",
+            "token_budget_policy_digest": "fa166b59e300291ba7ca036e95a3652e9160afcfbb96e132ab5b686a7f9aac78",
+            "v15_index_digest_path": "storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/v15_index_digest.json",
+            "v15_index_digest_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/artifacts/v15_index_digest.json>",
+            "vector_embeddings_written": true,
+            "vector_store_digest": "80bf1a17b801b88ee8579ef8c6bb13e9bb239c6f2d7a05fc5ee03dd8f2637ad8"
+          },
+          "papers": {
+            "chroma_insert_batch_size": 4096,
+            "chroma_metadata_refresh_count": 0,
+            "chroma_path": "storage/vector-store/w1-cvpr-fixture-run/stores/papers/chroma",
+            "chunk_count": 2,
+            "chunk_manifest_path": "storage/vector-store/w1-cvpr-fixture-run/stores/papers/chunk_manifest.json",
+            "chunk_manifest_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/papers/chunk_manifest.json>",
+            "chunks_path": "storage/vector-store/w1-cvpr-fixture-run/stores/papers/chunks.jsonl",
+            "chunks_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/papers/chunks.jsonl>",
+            "collection_name": "conference_corpus_papers__fake_text-embedding-3-small_1536",
+            "embedded_chunk_count": 2,
+            "embedded_now_count": 2,
+            "embedding_dim": 1536,
+            "embedding_max_length": null,
+            "embedding_model": "text-embedding-3-small",
+            "embedding_policy": {
+              "embedding_dim": 1536,
+              "embedding_max_length": null,
+              "model": "text-embedding-3-small",
+              "provider": "fake"
+            },
+            "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+            "embedding_provider": "fake",
+            "embedding_resume_count": 0,
+            "embedding_sidecar_bucket_count": 256,
+            "embedding_sidecar_embedded_now_count": 2,
+            "embedding_sidecar_format": "npz-buckets-v2",
+            "embedding_sidecar_manifest_path": "storage/vector-store/w1-cvpr-fixture-run/stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json",
+            "embedding_sidecar_manifest_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json>",
+            "embedding_sidecar_path": "storage/vector-store/w1-cvpr-fixture-run/stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+            "embedding_sidecar_resume_count": 0,
+            "embedding_sidecar_shard_count": 2,
+            "embedding_sidecar_shard_size": null,
+            "embedding_stale_deleted_count": 0,
+            "embedding_update": {
+              "buckets_embedded": 2,
+              "buckets_reused": 0,
+              "buckets_rewritten": 0,
+              "buckets_total": 2,
+              "chunks_copied_from_donors": 0,
+              "chunks_embedded_now": 2,
+              "chunks_reused_in_place": 0,
+              "donor_file_count": 0,
+              "donor_rows_by_file": {},
+              "full_rebuild": false,
+              "garbage_collected_files": [],
+              "planned_embed_count": 2
+            },
+            "embedding_upsert_count": 2,
+            "materialization_batch_size": 8,
+            "metadata_path": "storage/vector-store/w1-cvpr-fixture-run/stores/papers/metadata.json",
+            "metadata_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/papers/metadata.json>",
+            "path": "storage/vector-store/w1-cvpr-fixture-run/stores/papers",
+            "store": "papers",
+            "token_budget_policy_digest": "fa166b59e300291ba7ca036e95a3652e9160afcfbb96e132ab5b686a7f9aac78",
+            "v15_index_digest_path": "storage/vector-store/w1-cvpr-fixture-run/stores/papers/v15_index_digest.json",
+            "v15_index_digest_sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/stores/papers/v15_index_digest.json>",
+            "vector_embeddings_written": true,
+            "vector_store_digest": "61ddf11cb5f3c295b862762947645c27ae489cea12f86bb2bfa12365aeb25525"
+          }
+        },
+        "token_budget_policy_digest": "fa166b59e300291ba7ca036e95a3652e9160afcfbb96e132ab5b686a7f9aac78",
+        "usage": {
+          "estimated_cost_usd": 0.0,
+          "input_tokens": 421,
+          "model": "text-embedding-3-small",
+          "provider": "fake",
+          "request_count": 2
+        },
+        "vector_embeddings_written": true
+      },
+      "workshop_download_receipt_path": "storage/workshops/download_receipt.json",
+      "workshop_download_receipt_status": "succeeded",
+      "workshop_paper_sources": []
+    },
+    "corpus_inventory": {
+      "artifact_counts": {
+        "audit_only": 0,
+        "by_source_family": {
+          "paper_text": 1,
+          "speech_transcript": 1,
+          "workshop_paper_text": 1
+        },
+        "caption_coverage_available": 1,
+        "caption_coverage_unavailable": 3,
+        "evidence_lane_coverage_gaps": 0,
+        "evidence_lane_transcripts": 0,
+        "indexable_text": 3,
+        "paper_curation_excluded": {},
+        "total": 3
+      },
+      "path": "storage/corpus/corpus_inventory.json"
+    },
+    "downloads_made": 0,
+    "index_digest": {
+      "path": "storage/vector-store/w1-cvpr-fixture-run/index_digest.json",
+      "sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/index_digest.json>"
+    },
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "corpus-inventory-index"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "corpus_freeze_ledger": {
+          "missing": false,
+          "optional": false,
+          "path": "storage/corpus-freeze/corpus_freeze.json",
+          "sha256": "<sha256:storage/corpus-freeze/corpus_freeze.json>",
+          "source": "stage"
+        },
+        "download_corpus_ledger": {
+          "missing": false,
+          "optional": false,
+          "path": "storage/download-corpus/download_corpus.json",
+          "sha256": "<sha256:storage/download-corpus/download_corpus.json>",
+          "source": "stage"
+        },
+        "event_media_inventory": {
+          "declared_sha256": "<sha256:storage/download-corpus/event-media/event_media_inventory.json>",
+          "missing": false,
+          "optional": false,
+          "path": "storage/download-corpus/event-media/event_media_inventory.json",
+          "sha256": "<sha256:storage/download-corpus/event-media/event_media_inventory.json>",
+          "source": "stage"
+        },
+        "event_page_assets": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/download-corpus/slideslive_media_recovery.json",
+          "sha256": null,
+          "source": "registry"
+        },
+        "source_discovery_inventory": {
+          "declared_sha256": "d0efd5948f5ea6dae902be6848b22370d5c1a94cdbaf8bcb0f91f82b14f9bf1c",
+          "missing": false,
+          "optional": false,
+          "path": "storage/source-discovery/source_discovery_inventory.json",
+          "sha256": "<sha256:storage/source-discovery/source_discovery_inventory.json>",
+          "source": "stage"
+        },
+        "submission_system_papers": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/download-corpus/openreview_accepted_papers.json",
+          "sha256": null,
+          "source": "registry"
+        },
+        "talk_maps_base": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/transcription-ocr/talk-maps/base",
+          "sha256": null,
+          "source": "registry"
+        },
+        "transcript_exclusions": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/transcription-ocr/evidence-lanes/transcript_exclusions.json",
+          "sha256": null,
+          "source": "registry"
+        },
+        "workshop_download_receipt": {
+          "missing": false,
+          "optional": false,
+          "path": "storage/workshops/download_receipt.json",
+          "sha256": "<sha256:storage/workshops/download_receipt.json>",
+          "source": "stage"
+        },
+        "workshop_talk_annotation_bindings": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/transcription-ocr/workshop-talks/annotation_bindings.json",
+          "sha256": null,
+          "source": "registry"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "name": "corpus_inventory",
+        "path": "storage/corpus/corpus_inventory.json",
+        "sha256": "<sha256:storage/corpus/corpus_inventory.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "index_digest",
+        "path": "storage/vector-store/w1-cvpr-fixture-run/index_digest.json",
+        "sha256": "<sha256:storage/vector-store/w1-cvpr-fixture-run/index_digest.json>",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json>",
+    "owner_execution_evidence": {
+      "acquisition.corpus_inventory_index.cvpr2026": {
+        "corpus_inventory_path": "storage/corpus/corpus_inventory.json",
+        "downloads_made": 0,
+        "owner_function": "run_corpus_inventory_index_stage",
+        "provider_calls_made": 0
+      }
+    },
+    "provider_calls_made": 0,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "acquisition.corpus_inventory_index.cvpr2026"
+    ],
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "corpus-inventory-index: receipt mode live",
+        "corpus-inventory-index: registry digest matched",
+        "corpus-inventory-index: required owner ids recorded",
+        "corpus-inventory-index: owner execution evidence present",
+        "corpus-inventory-index: required output <WORKSPACE>/storage/corpus/corpus_inventory.json",
+        "corpus-inventory-index: required output <WORKSPACE>/storage/vector-store/w1-cvpr-fixture-run/index_digest.json",
+        "corpus-inventory-index: receipt check checks.vector_embeddings_written",
+        "corpus-inventory-index: receipt check checks.embedded_chunk_counts",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.papers.embedding_sidecar_manifest_path",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.papers.embedding_sidecar_manifest_sha256",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.papers.chroma_insert_batch_size",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.artifacts.embedding_sidecar_manifest_path",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.artifacts.embedding_sidecar_manifest_sha256",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.artifacts.chroma_insert_batch_size",
+        "corpus-inventory-index: 10 input artifact digests current"
+      ],
+      "blockers": [],
+      "registry_stage_id": "corpus-inventory-index",
+      "required_script_ids": [
+        "acquisition.corpus_inventory_index.cvpr2026"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "corpus-inventory-index",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "corpus-inventory-index",
+    "stage_order": 6,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

@@ -1,0 +1,42 @@
+# What the public code repository holds (v6.0 Phase 7, D1). Read by
+# scripts/export_code_repo.py at the source commit, never from the working tree.
+# A pattern ending in "/" is a directory prefix; any other pattern is a path or a glob,
+# matched against the files git tracks at that commit. Every include must match a file.
+#
+# Left out on purpose: produced conference data (conferences/<slug>/), planning history
+# (.planning/), the cross-conference talks, root storage/ and evaluations/, the brand
+# assets (assets/brand/, D3), the agent instruction files AGENTS.md and CLAUDE.md (D4),
+# .devtools-migration.md and .env.template.
+schema_version = 1
+
+[export]
+include = [
+  "src/",
+  "scripts/",
+  "tests/",
+  "docs/",
+  "components/",
+  ".claude/skills/",
+  "conferences/TEMPLATE/",
+  "conferences/README.md",
+  "vendor/",
+  ".github/workflows/",
+  "README.md",
+  "LICENSE",
+  "CONTRIBUTING.md",
+  "SECURITY.md",
+  "CITATION.cff",
+  "pyproject.toml",
+  "requirements.txt",
+  "uv.lock",
+  ".python-version",
+  ".gitignore",
+  ".env.example",
+  ".gitleaks.toml",
+  ".private-markers-allowlist.toml",
+  ".devtools.toml",
+  ".devtools-receipt.json",
+  "code_export.toml",
+  "config/public_hub.yaml",
+]
+exclude = []

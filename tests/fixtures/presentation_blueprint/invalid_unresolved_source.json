@@ -1,0 +1,54 @@
+{
+  "audience_promise": "Operators will understand unresolved source failures.",
+  "blueprint_id": "bp-demo-unresolved-source",
+  "conclusion_synthesis": "Unresolved source labels cannot reach draft generation.",
+  "deck_thesis": "Every slide source plan must resolve against source metadata.",
+  "provenance": {
+    "source_metadata": [
+      {
+        "label": "SRC-001",
+        "path": "analysis/01_demo_topic.md"
+      }
+    ]
+  },
+  "revision": 1,
+  "slides": [
+    {
+      "estimated_minutes": 3,
+      "intent": "Demonstrate an unresolved source.",
+      "narration_beat": "This should fail before production.",
+      "slide_id": "slide-001",
+      "slide_type": "content",
+      "source_plan": [
+        {
+          "label": "SRC-MISSING",
+          "rationale": "This label is not in source metadata."
+        }
+      ],
+      "visual_role": "Source resolution table showing the missing evidence label"
+    }
+  ],
+  "subtopic_clusters": [
+    {
+      "cluster_id": "cluster-001",
+      "slide_bindings": [
+        "slide-001"
+      ],
+      "sources": [
+        "SRC-001"
+      ],
+      "title": "Resolution"
+    }
+  ],
+  "target_runtime_minutes": 8,
+  "target_slide_count": 1,
+  "telescopic_section_map": [
+    {
+      "cluster_ids": [
+        "cluster-001"
+      ],
+      "section_id": "section-001",
+      "title": "Resolution"
+    }
+  ]
+}

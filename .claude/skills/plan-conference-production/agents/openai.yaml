@@ -1,0 +1,3 @@
+display_name: Plan Conference Production
+short_description: Generate executable pipeline production phases.
+default_prompt: Use $plan-conference-production to turn this conference spec into a runnable production phase or milestone.

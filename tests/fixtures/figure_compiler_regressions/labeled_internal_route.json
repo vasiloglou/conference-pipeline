@@ -1,0 +1,86 @@
+{
+  "archetype": "nested_architecture",
+  "claim": "Reasoning before acting gates fast control, while AutoMoMa's scaled trajectories train that same dual-system agent to generalize whole-body manipulation.",
+  "content": {
+    "edges": [
+      {
+        "from": "latent_cot",
+        "to": "slow_path"
+      },
+      {
+        "from": "slow_path",
+        "label": "reason before act",
+        "to": "fast_path"
+      },
+      {
+        "from": "automoma",
+        "label": "trains control",
+        "to": "fast_path"
+      },
+      {
+        "from": "fast_path",
+        "label": "high-frequency actuation",
+        "to": "whole_body"
+      }
+    ],
+    "groups": [
+      {
+        "id": "dual_system",
+        "label": "Dual-system agent",
+        "members": [
+          "slow_path",
+          "fast_path"
+        ]
+      },
+      {
+        "id": "data_engine",
+        "label": "Scaled data engine",
+        "members": [
+          "automoma"
+        ]
+      }
+    ],
+    "nodes": [
+      {
+        "id": "latent_cot",
+        "kind": "frozen",
+        "label": "Latent spatial-temporal Chain-of-Thought"
+      },
+      {
+        "id": "slow_path",
+        "kind": "frozen",
+        "label": "Slow reasoning path"
+      },
+      {
+        "id": "fast_path",
+        "kind": "adapted",
+        "label": "Fast control path"
+      },
+      {
+        "id": "automoma",
+        "kind": "adapted",
+        "label": "AutoMoMa: 100,000 trajectories"
+      },
+      {
+        "id": "whole_body",
+        "kind": "adapted",
+        "label": "Whole-body mobile manipulation"
+      }
+    ]
+  },
+  "emphasis": {
+    "highlight": [
+      "latent_cot",
+      "whole_body"
+    ]
+  },
+  "figure_id": "sl_17_closing-the-gap-reasoning-data-and-whole-b-figure",
+  "grounding": {
+    "kind": "schematic"
+  },
+  "section": "S4_world_models",
+  "slide_id": "sl_17_closing-the-gap-reasoning-data-and-whole-b",
+  "spec_version": "figure-spec/1",
+  "takeaway": "Reasoning plus scaled data yield whole-body control",
+  "title": "Reasoning and scaled data jointly drive whole-body control"
+}

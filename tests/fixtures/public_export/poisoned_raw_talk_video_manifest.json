@@ -1,0 +1,18 @@
+{
+  "conference": "neurips2025",
+  "families": [
+    {
+      "id": "raw_talk_video",
+      "license": "unknown",
+      "private_path": "raw/video",
+      "provenance": "talk-derived",
+      "public_path": "exports/public-release/{bundle}/raw-video/",
+      "redistribution_status": "prohibited",
+      "storage_manifest_id": "raw_talk_video"
+    }
+  ],
+  "release": {
+    "source_sha": "abcdef1234567890"
+  },
+  "schema_version": "1.0.0"
+}

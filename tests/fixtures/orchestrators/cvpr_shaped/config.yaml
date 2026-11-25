@@ -1,0 +1,11 @@
+# Synthetic CVPR-shaped workspace (no real conference data).
+conference:
+  slug: "wombat2031"
+  name: "Wombat Conference"
+  year: 2031
+  status: "fixture"
+urls:
+  proceedings: "https://proceedings.example.test/wombat2031"
+  workshops: "https://proceedings.example.test/wombat2031/workshops"
+auth:
+  required: false

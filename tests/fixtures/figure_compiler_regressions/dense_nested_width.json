@@ -1,0 +1,93 @@
+{
+  "archetype": "nested_architecture",
+  "claim": "Surgical video pipelines must audit spatial detection, temporal tracking, and rationale generation, each gated by benchmark and annotation checks before reaching a clinical answer.",
+  "content": {
+    "edges": [
+      {
+        "from": "frames",
+        "to": "detect"
+      },
+      {
+        "from": "detect",
+        "to": "track"
+      },
+      {
+        "from": "track",
+        "to": "cot"
+      },
+      {
+        "from": "policy",
+        "to": "benchcheck"
+      },
+      {
+        "from": "cot",
+        "to": "benchcheck"
+      }
+    ],
+    "groups": [
+      {
+        "id": "perception",
+        "label": "Perception over time",
+        "members": [
+          "detect",
+          "track"
+        ]
+      },
+      {
+        "id": "validity",
+        "label": "Benchmark validity checks",
+        "members": [
+          "policy",
+          "benchcheck"
+        ]
+      }
+    ],
+    "nodes": [
+      {
+        "id": "frames",
+        "kind": "frozen",
+        "label": "Surgical video frames"
+      },
+      {
+        "id": "detect",
+        "kind": "adapted",
+        "label": "Instrument/anatomy detection"
+      },
+      {
+        "id": "track",
+        "kind": "adapted",
+        "label": "Phase & event tracking"
+      },
+      {
+        "id": "cot",
+        "kind": "adapted",
+        "label": "Chain-of-thought rationale"
+      },
+      {
+        "id": "policy",
+        "kind": "frozen",
+        "label": "Retained-object annotation policy"
+      },
+      {
+        "id": "benchcheck",
+        "kind": "adapted",
+        "label": "SurgCoT benchmark check"
+      }
+    ]
+  },
+  "emphasis": {
+    "highlight": [
+      "cot",
+      "benchcheck"
+    ]
+  },
+  "figure_id": "sl_18_from-static-frames-to-time-the-surgical-vi-figure",
+  "grounding": {
+    "kind": "schematic"
+  },
+  "section": "S5_time_scale",
+  "slide_id": "sl_18_from-static-frames-to-time-the-surgical-vi",
+  "spec_version": "figure-spec/1",
+  "takeaway": "Every step from frames to answer is auditable",
+  "title": "From static frames to time: the surgical-video error surface"
+}

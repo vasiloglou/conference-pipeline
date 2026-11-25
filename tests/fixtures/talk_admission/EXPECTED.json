@@ -1,0 +1,168 @@
+{
+  "schema": "talk-admission-corpus/1",
+  "conventions": {
+    "deep_dive_file": "exports/deep-dive/openai_claude/presentations/talk-<event_id>.txt",
+    "v15_receipt": "storage/transcription-ocr/v15_transcription_ocr_receipts.json",
+    "v15_transcript": "storage/transcription-ocr/media/<item_id>/transcript.txt",
+    "lane_transcript": "storage/transcription-ocr/evidence-lanes/<lane_id>/transcripts/<video_id>.txt",
+    "recording_id": "the SlidesLive id when the source has one, else event:<event_id>",
+    "gap_video_id": "event:<event_id>",
+    "kept_event": "the smallest event id compared as a string, after exclusions are removed",
+    "provenance_order": ["source:<kept source path>", "event:<every covered event, kept first>", "slideslive:<id> or asr_model:<provider_model>"],
+    "guard_report_keys": ["workspace", "exit_code", "on_disk", "admitted", "excluded", "unaccounted", "by_format", "errors"]
+  },
+  "cases": {
+    "C1": {
+      "lanes": {"talks-a": {
+        "records": [{
+          "video_id": "5001",
+          "item_kind": "oral",
+          "title": "Scaling Laws for Sparse Experts",
+          "transcript_path": "storage/transcription-ocr/evidence-lanes/talks-a/transcripts/5001.txt",
+          "transcript_equals": "the presentation's Audio Transcript section, stripped",
+          "source_event_urls": ["https://example.org/virtual/2025/oral/1001"],
+          "provenance": ["source:exports/deep-dive/openai_claude/presentations/talk-1001.txt", "event:1001", "slideslive:5001"]
+        }],
+        "coverage_gaps": []
+      }},
+      "registry_lanes": ["talks-a"]
+    },
+    "C2": {
+      "lanes": {"talks-b": {
+        "records": [{
+          "video_id": "event:oral-2001",
+          "item_kind": "oral",
+          "title": null,
+          "transcript_path": "storage/transcription-ocr/media/oral-2001/transcript.txt",
+          "source_event_urls": ["https://example.org/virtual/2025/oral/2001"],
+          "provenance": ["source:storage/transcription-ocr/v15_transcription_ocr_receipts.json", "event:oral-2001", "asr_model:asr-model-x"]
+        }],
+        "coverage_gaps": []
+      }},
+      "files_written_under": {"storage/transcription-ocr/evidence-lanes/talks-b/transcripts": 0},
+      "effects": ["the poster_asset entry is not a talk and is not read as one"]
+    },
+    "C3": {
+      "lanes": {"talks-a": {
+        "records": [{
+          "video_id": "5003",
+          "item_kind": "oral",
+          "source_event_urls": ["https://example.org/virtual/2025/oral/3002"],
+          "provenance": ["source:exports/deep-dive/openai_claude/presentations/talk-3002.txt", "event:3002", "slideslive:5003"]
+        }],
+        "coverage_gaps": [{"video_id": "event:3001", "reason": "asr_hallucination"}],
+        "gap_sources": {"event:3001": "exports/deep-dive/openai_claude/presentations/talk-3001.txt"}
+      }},
+      "effects": ["an excluded event never keeps a recording; the next event of the recording keeps it"]
+    },
+    "C4": {
+      "lanes": {
+        "talks-a": {"records": [], "coverage_gaps": [{"video_id": "event:4001", "reason": "empty_transcript"}]},
+        "talks-b": {"records": [], "coverage_gaps": [{"video_id": "event:poster-4002", "reason": "empty_transcript"}]}
+      },
+      "registry_lanes": ["talks-a", "talks-b"]
+    },
+    "C5": {
+      "dry_run": {"records": 1, "coverage_gaps": 2, "files_written": 0},
+      "lanes": {"talks-a": {
+        "records": [{
+          "video_id": "5100",
+          "item_kind": "oral",
+          "source_event_urls": [
+            "https://example.org/virtual/2025/oral/5101",
+            "https://example.org/virtual/2025/oral/5102",
+            "https://example.org/virtual/2025/oral/5103"
+          ],
+          "provenance": [
+            "source:exports/deep-dive/openai_claude/presentations/talk-5101.txt",
+            "event:5101", "event:5102", "event:5103", "slideslive:5100"
+          ]
+        }],
+        "coverage_gaps": [
+          {"video_id": "event:5102", "reason": "duplicate_recording"},
+          {"video_id": "event:5103", "reason": "duplicate_recording"}
+        ]
+      }}
+    },
+    "C6": {
+      "unchanged_after_second_bind": [
+        "storage/transcription-ocr/evidence-lanes/talks-a/lane_receipt.json",
+        "storage/transcription-ocr/evidence_lanes.json",
+        "storage/transcription-ocr/evidence-lanes/talks-a/transcripts/5100.txt"
+      ]
+    },
+    "C7": {
+      "talks": {
+        "listed": 8,
+        "admitted": 4,
+        "excluded": {"asr_hallucination": 1, "duplicate_recording": 1, "empty_transcript": 2},
+        "by_kind": {
+          "expo_talk_panel": {"listed": 1, "admitted": 0, "excluded": 1},
+          "keynote": {"listed": 1, "admitted": 1, "excluded": 0},
+          "oral": {"listed": 2, "admitted": 2, "excluded": 0},
+          "poster": {"listed": 2, "admitted": 1, "excluded": 1},
+          "test_of_time": {"listed": 1, "admitted": 0, "excluded": 1},
+          "workshop": {"listed": 1, "admitted": 0, "excluded": 1}
+        },
+        "lanes": ["talks-a", "talks-b"]
+      },
+      "inventory": {"talk_records": 4, "gap_records": 4, "artifact_counts": {"talks": 4, "talk_events": 8}},
+      "papers_equal_to_no_lane_admission": ["papers", "artifacts", "text_coverage"],
+      "corpus_records_sha256_differs_from_no_lane_admission": true
+    },
+    "C8": {
+      "byte_identical_to_p5": ["corpus_inventory.json", "paper_identity_report.json", "corpus_statistics.json"],
+      "talks_key_present": false
+    },
+    "C9": {
+      "byte_identical_after_second_admission": ["corpus_inventory.json", "paper_identity_report.json", "corpus_statistics.json"],
+      "legacy_record": {"video_id": "yt-abc", "has_item_kind": false, "evidence_lane_id": "legacy-captions"},
+      "talks": {
+        "listed": 2,
+        "admitted": 2,
+        "excluded": {},
+        "by_kind": {
+          "oral": {"listed": 1, "admitted": 1, "excluded": 0},
+          "unspecified": {"listed": 1, "admitted": 1, "excluded": 0}
+        }
+      }
+    },
+    "C10": {"exit_code": 0, "on_disk": 1, "admitted": 1, "excluded": {}, "unaccounted": []},
+    "C11": {
+      "exit_code": 1, "on_disk": 2, "admitted": 1, "excluded": {},
+      "unaccounted": [{"format": "transcription_receipt_v15", "identity": "storage/transcription-ocr/media/poster-2/transcript.txt", "item_kind": "poster"}],
+      "effects": ["poster-3's missing file is not on disk and is not counted"]
+    },
+    "C12": {
+      "exit_code": 1, "on_disk": 2, "admitted": 1, "excluded": {},
+      "unaccounted": [{"format": "stage_transcription_inventory", "identity": "<the second listed path>", "item_kind": null}]
+    },
+    "C12b": {
+      "exit_code": 1, "on_disk": 3, "admitted": 2, "excluded": {},
+      "unaccounted": [{"format": "stage_transcription_inventory", "identity": "<v2's caption_path>", "item_kind": null}],
+      "effects": ["v3 is accounted through its output_path"]
+    },
+    "C13": {
+      "exit_code": 1, "on_disk": 3, "admitted": 1, "excluded": {"silent_audio": 1},
+      "unaccounted": [{"format": "evidence_lane", "identity": "<r2's transcript_path>", "item_kind": null}]
+    },
+    "C14": {
+      "exit_code": 1, "on_disk": 2, "admitted": 1, "excluded": {},
+      "unaccounted": [{"format": "deep_dive_presentations", "identity": "deep_dive:exports/deep-dive/openai_claude/presentations/talk-f2.txt", "item_kind": null}],
+      "effects": ["f3's missing file is not on disk and is not counted"]
+    },
+    "C15": {
+      "exit_code": 0, "on_disk": 2, "admitted": 0,
+      "excluded": {"duplicate_recording": 1, "empty_transcript": 1},
+      "unaccounted": []
+    },
+    "C16": {
+      "a": {"exit_code": 1, "on_disk": 1, "admitted": 0, "errors": [], "unaccounted_count": 1, "reason": "no_corpus_inventory"},
+      "b": {"exit_code": 0, "on_disk": 0, "admitted": 0, "unaccounted": []}
+    },
+    "C17": {
+      "a": {"exit_code": 2, "errors": [{"path": "storage/transcription-ocr/v15_transcription_ocr_receipts.json", "reason": "invalid_json"}], "counted_as_accounted": 0},
+      "b": {"exit_code": 2, "errors": [{"path": "<the workspace>", "reason": "workspace_missing"}]}
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "conference": "neurips2025",
+  "families": [
+    {
+      "id": "slide_ocr",
+      "license": "unknown",
+      "private_path": "slides/ocr",
+      "provenance": "talk-derived",
+      "public_path": "exports/public-release/{bundle}/slide-ocr/",
+      "redistribution_status": "prohibited",
+      "storage_manifest_id": "slide_ocr"
+    }
+  ],
+  "release": {
+    "source_sha": "abcdef1234567890"
+  },
+  "schema_version": "1.0.0"
+}

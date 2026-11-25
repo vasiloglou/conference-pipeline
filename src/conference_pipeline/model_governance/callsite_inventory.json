@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "generated_for_workstream": "skill-improvements-iclr2025",
+  "inventory_status": "active_python_registry_migration_complete",
+  "entries": [
+    {
+      "path": "src/conference_pipeline/config.py",
+      "surface": "active_runtime",
+      "callsite": "PipelineSettings OCR, transcription, anthropic, and video detection defaults",
+      "task_ids": [
+        "ocr.slide_image_parse",
+        "transcription.session_speech",
+        "analysis.source_reading",
+        "video.session_detection"
+      ],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "src/conference_pipeline/slide_ocr.py",
+      "surface": "active_runtime",
+      "callsite": "OpenAI/Anthropic/Gemini slide OCR provider services and fallback factory",
+      "task_ids": ["ocr.slide_image_parse"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": "src/conference_pipeline/ocr_engine.py",
+      "surface": "active_runtime",
+      "callsite": "Legacy LLM OCR engine",
+      "task_ids": ["ocr.slide_image_parse"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "src/conference_pipeline/transcription.py",
+      "surface": "active_runtime",
+      "callsite": "OpenAI transcription service",
+      "task_ids": ["transcription.session_speech"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": "src/conference_pipeline/figure_extractor.py",
+      "surface": "active_runtime",
+      "callsite": "Vision caption model argument and CLI default",
+      "task_ids": ["vision.figure_caption"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "src/conference_pipeline/reference_extractor.py",
+      "surface": "active_runtime",
+      "callsite": "LLM reference normalization through Anthropic or OpenAI",
+      "task_ids": ["analysis.source_reading"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": ".claude/skills/plan-conference-analysis/scripts/scaffold_plan.py",
+      "surface": "planning_generator",
+      "callsite": "Analysis planning handoff scaffold",
+      "task_ids": [
+        "interest_group.research",
+        "source_reading.categorization",
+        "analysis.topic_strategy_generation",
+        "analysis.topic_reconciliation",
+        "analysis.deep_narrative_synthesis",
+        "presentation.visual_qc"
+      ],
+      "integration_status": "registry_task_ids_emitted"
+    },
+    {
+      "path": ".claude/skills/plan-conference-production/scripts/scaffold_production_plan.py",
+      "surface": "planning_generator",
+      "callsite": "Production planning stage-local benchmark scaffold",
+    "task_ids": [
+      "transcription.session_speech",
+      "ocr.slide_image_parse",
+      "interest_group.research",
+      "video.session_detection",
+      "analysis.source_reading",
+      "analysis.llm_full_read_extraction",
+      "analysis.exhaustive_topic_summarization",
+      "analysis.deep_dive_question_selection",
+      "analysis.topic_reconciliation",
+      "analysis.topic_reconciliation_reference_workflow",
+      "analysis.deep_narrative_synthesis",
+      "analysis.topic_strategy_generation",
+        "source_reading.categorization",
+        "podcast.script_generation",
+        "podcast.tts",
+        "presentation.deck_generation",
+        "presentation.svg_figure_generation",
+        "presentation.visual_qc",
+        "presentation.repair",
+        "research.paper_matching_keypoints",
+        "vision.figure_caption",
+        "qa.repair",
+        "synthesis.executive_summary"
+      ],
+      "integration_status": "registry_task_ids_emitted"
+    },
+    {
+      "path": "src/conference_pipeline/podcast.py",
+      "surface": "active_runtime",
+      "callsite": "OpenAI podcast script and speech defaults",
+      "task_ids": ["podcast.script_generation", "podcast.tts"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": "src/conference_pipeline/topic_video.py",
+      "surface": "active_runtime",
+      "callsite": "OpenAI scene generation and speech defaults",
+      "task_ids": ["topic_video.scene_generation", "podcast.tts"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": "src/conference_pipeline/ocr_benchmark.py",
+      "surface": "active_runtime",
+      "callsite": "OCR benchmark authority and candidate model list",
+      "task_ids": ["ocr.slide_image_parse"],
+      "integration_status": "registry_derived_candidates"
+    },
+    {
+      "path": "src/conference_pipeline/workflow.py",
+      "surface": "active_runtime",
+      "callsite": "Workflow podcast operator model default",
+      "task_ids": ["podcast.focused_script_generation"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/rank_papers.py",
+      "surface": "operator_script",
+      "callsite": "Paper reference frequency ranking model default",
+      "task_ids": ["ranking.paper_reference_frequency"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/rank_facts.py",
+      "surface": "operator_script",
+      "callsite": "Fact importance ranking model default",
+      "task_ids": ["ranking.fact_importance"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/generate_focused_podcast.py",
+      "surface": "operator_script",
+      "callsite": "Focused podcast Gemini script generation",
+      "task_ids": ["podcast.focused_script_generation"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": "scripts/generate_paper_podcast.py",
+      "surface": "operator_script",
+      "callsite": "Paper podcast Gemini script generation",
+      "task_ids": ["podcast.script_generation"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/generate_podcast_gemini.py",
+      "surface": "operator_script",
+      "callsite": "Longform Gemini podcast script and speech generation",
+      "task_ids": ["podcast.longform_script_generation", "podcast.tts"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/synthesize_audio_from_script.py",
+      "surface": "operator_script",
+      "callsite": "Gemini speech synthesis from existing script JSON",
+      "task_ids": ["podcast.tts"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/aggregate_exhaustive_to_topics.py",
+      "surface": "operator_script",
+      "callsite": "Exhaustive extraction topic synthesis",
+      "task_ids": ["synthesis.exhaustive_topic_summary"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/query_vector_store.py",
+      "surface": "operator_script",
+      "callsite": "Vector-store answer generation",
+      "task_ids": ["vector_store.query_answer"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/openai_deep_research.py",
+      "surface": "operator_script",
+      "callsite": "OpenAI deep research model default",
+      "task_ids": ["research.deep_research"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/gemini_deep_research.py",
+      "surface": "operator_script",
+      "callsite": "GPT-Researcher Gemini model environment defaults",
+      "task_ids": ["research.gemini_deep_research_fast", "research.gemini_deep_research_strategic"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/claude_deep_research.py",
+      "surface": "operator_script",
+      "callsite": "Claude research and synthesis model defaults",
+      "task_ids": ["research.claude_deep_research", "research.claude_deep_synthesis"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/find_paper_sources.py",
+      "surface": "operator_script",
+      "callsite": "LLM paper-source candidate ranking",
+      "task_ids": ["source_discovery.paper_source_ranking"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": "scripts/verify_paper_content.py",
+      "surface": "operator_script",
+      "callsite": "PDF/title verification with Gemini",
+      "task_ids": ["qa.paper_content_verification"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": "scripts/sync_slides_audio.py",
+      "surface": "operator_script",
+      "callsite": "Slide/audio synchronization model default",
+      "task_ids": ["presentation.audio_sync"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": "scripts/setup_gpt_researcher.py",
+      "surface": "operator_script",
+      "callsite": "GPT-Researcher generated config defaults",
+      "task_ids": ["research.gpt_researcher_fast", "research.gpt_researcher_smart"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/setup_gpt_researcher_with_vectorstore.py",
+      "surface": "operator_script",
+      "callsite": "GPT-Researcher vector-store config defaults",
+      "task_ids": ["research.gpt_researcher_fast", "research.gpt_researcher_smart"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "src/conference_pipeline/research/deep_dive_lanes.py",
+      "surface": "active_runtime",
+      "callsite": "Bounded deep-dive question selection and dual GPT-Researcher lanes",
+      "task_ids": [
+        "analysis.deep_dive_question_selection",
+        "research.gpt_researcher_fast",
+        "research.gpt_researcher_smart"
+      ],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/select_deep_dive_questions.py",
+      "surface": "operator_script",
+      "callsite": "Claude Opus 4.8 bounded deep-dive question selection",
+      "task_ids": ["analysis.deep_dive_question_selection"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/run_dual_deep_dive_research.py",
+      "surface": "operator_script",
+      "callsite": "Dual global and heuristic-prefiltered GPT-Researcher deep-dive lanes",
+      "task_ids": ["research.gpt_researcher_fast", "research.gpt_researcher_smart"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "src/conference_pipeline/analysis/topic_reconciliation.py",
+      "surface": "active_runtime",
+      "callsite": "Qwen3.6 topic evidence reconciliation before final narrative synthesis",
+      "task_ids": ["analysis.topic_reconciliation"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/reconcile_topic_analysis.py",
+      "surface": "operator_script",
+      "callsite": "Topic reconciliation CLI for exhaustive summaries, source packs, and dual deep dives",
+      "task_ids": ["analysis.topic_reconciliation"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/generate_slides_agentic.py",
+      "surface": "operator_script",
+      "callsite": "Agentic deck generation and vision crop defaults",
+      "task_ids": ["presentation.agentic_deck_generation", "presentation.agentic_vision_crop"],
+      "integration_status": "registry_validated"
+    },
+    {
+      "path": "scripts/exhaustive_extraction/models.py",
+      "surface": "operator_script",
+      "callsite": "LiteLLM extraction model constants",
+      "task_ids": [
+        "exhaustive_extraction.gpt5_mini",
+        "exhaustive_extraction.gpt52_quote_fallback",
+        "exhaustive_extraction.claude_sonnet",
+        "exhaustive_extraction.claude_haiku",
+        "exhaustive_extraction.gemini_pro",
+        "exhaustive_extraction.openrouter_sonnet",
+        "exhaustive_extraction.openrouter_gemini",
+        "exhaustive_extraction.openrouter_gpt5_mini",
+        "exhaustive_extraction.openrouter_haiku"
+      ],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/exhaustive_extraction/processor.py",
+      "surface": "operator_script",
+      "callsite": "Extraction cost-estimation model default",
+      "task_ids": ["exhaustive_extraction.cost_estimation"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/exhaustive_extraction/workshop_analyzer.py",
+      "surface": "operator_script",
+      "callsite": "Workshop segmentation model default",
+      "task_ids": ["analysis.workshop_segmentation"],
+      "integration_status": "registry_backed"
+    },
+    {
+      "path": "scripts/presentations/*.py",
+      "surface": "operator_script",
+      "callsite": "Presentation generation, repair, enrichment, figures, presenter scripts, and video/audio",
+      "task_ids": [
+        "presentation.deck_generation",
+        "presentation.paper_enrichment",
+        "presentation.repair",
+        "presentation.hyperlink_enrichment",
+        "presentation.sanity_check",
+        "presentation.svg_figure_generation",
+        "presentation.deck_consolidation",
+        "presentation.visual_qc",
+        "presentation.presenter_script_generation",
+        "presentation.presenter_dialogue_generation",
+        "presentation.presenter_tts",
+        "vision.figure_caption"
+      ],
+      "integration_status": "registry_validated"
+    }
+  ]
+}

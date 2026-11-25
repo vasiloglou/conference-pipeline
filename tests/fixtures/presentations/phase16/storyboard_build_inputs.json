@@ -1,0 +1,49 @@
+{
+  "valid_clusters": [
+    {
+      "cluster_id": "agent-system-safety",
+      "contributions": [
+        {
+          "visible_label": "Safety in Agentic Systems",
+          "paper_name": "Risks of Agentic AI",
+          "authors": ["Alice Smith"],
+          "system": "GPT-4",
+          "source_url": "https://arxiv.org/abs/2401.00001"
+        }
+      ]
+    }
+  ],
+  "valid_rows": [
+    {
+      "slide_id": "S01",
+      "viewer_facing_claim": "Agentic systems require layered safety mechanisms.",
+      "proof_object": "Ablation table from Smith et al. 2024",
+      "visual_concept": "Diagram showing safety layers stacked around an agent loop",
+      "named_source_contribution": "Smith et al. (2024) [https://arxiv.org/abs/2401.00001]",
+      "narration_beat": "We begin with the core safety finding from the paper.",
+      "reason_to_exist": "Establishes the central claim of the section."
+    }
+  ],
+  "scaffold_prose_rows": [
+    {
+      "slide_id": "S01",
+      "viewer_facing_claim": "Agentic systems require layered safety mechanisms.",
+      "proof_object": "Ablation table from Smith et al. 2024",
+      "visual_concept": "Use the visual role to show agent loops and metadata card",
+      "named_source_contribution": "Smith et al. (2024) [https://arxiv.org/abs/2401.00001]",
+      "narration_beat": "We begin with the core safety finding from the paper.",
+      "reason_to_exist": "Establishes the central claim of the section."
+    }
+  ],
+  "bad_source_rows": [
+    {
+      "slide_id": "S01",
+      "viewer_facing_claim": "Agentic systems require layered safety mechanisms.",
+      "proof_object": "Ablation table from Smith et al. 2024",
+      "visual_concept": "Diagram showing safety layers stacked around an agent loop",
+      "named_source_contribution": "short",
+      "narration_beat": "We begin with the core safety finding from the paper.",
+      "reason_to_exist": "Establishes the central claim of the section."
+    }
+  ]
+}

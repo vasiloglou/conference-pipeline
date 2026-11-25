@@ -1,0 +1,54 @@
+{
+  "audience_promise": "Operators will understand visual role failures.",
+  "blueprint_id": "bp-demo-generic-visual",
+  "conclusion_synthesis": "Generic visual roles cannot produce story-serving figures.",
+  "deck_thesis": "Visual roles must describe a specific story function.",
+  "provenance": {
+    "source_metadata": [
+      {
+        "label": "SRC-001",
+        "path": "analysis/01_demo_topic.md"
+      }
+    ]
+  },
+  "revision": 1,
+  "slides": [
+    {
+      "estimated_minutes": 3,
+      "intent": "Reject a generic visual role.",
+      "narration_beat": "This should fail because the role is generic.",
+      "slide_id": "slide-001",
+      "slide_type": "content",
+      "source_plan": [
+        {
+          "label": "SRC-001",
+          "rationale": "The source exists."
+        }
+      ],
+      "visual_role": "generic diagram"
+    }
+  ],
+  "subtopic_clusters": [
+    {
+      "cluster_id": "cluster-001",
+      "slide_bindings": [
+        "slide-001"
+      ],
+      "sources": [
+        "SRC-001"
+      ],
+      "title": "Generic visual"
+    }
+  ],
+  "target_runtime_minutes": 8,
+  "target_slide_count": 1,
+  "telescopic_section_map": [
+    {
+      "cluster_ids": [
+        "cluster-001"
+      ],
+      "section_id": "section-001",
+      "title": "Generic visual"
+    }
+  ]
+}

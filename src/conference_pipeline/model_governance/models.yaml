@@ -1,0 +1,388 @@
+schema_version: 1
+
+# Single-source-of-truth catalog of governed provider/model pairs.
+#
+# Every (provider, model) pair used anywhere in registry.yaml is defined
+# exactly ONCE here, under a stable alias key. Task entries in registry.yaml
+# reference an alias (model_ref / fallback_model_ref) instead of repeating the
+# literal provider+model strings. When a model generation is upgraded (e.g.
+# the GPT-5.6 tier moving to GPT-5.7), edit the one catalog entry below — no
+# task block in registry.yaml needs to change.
+#
+# Why this file exists: on 2026-07-15 a "Merge branch 'cvpr2026' into main"
+# merge (1cdaa5a2e) silently reverted 27 tasks' provider/model/fallback fields
+# from the corrected GPT-5.6 Sol/Terra/Luna tier assignments back to a stale
+# pre-fix generation (gpt-5.4-mini, gpt-5-mini, gpt-4o, older Gemini/Luna
+# mixups). Nothing flagged it: registry.yaml had ~130+ independent sites
+# repeating the same literal model strings, so the merge's whole-file "ours"
+# resolution silently discarded ~27 of cvpr2026's per-task fixes without a
+# single conflict marker. Aliasing collapses that to one edit site per model,
+# and `status: retired` below makes a reintroduced stale model fail closed at
+# `load_registry()` time instead of silently passing every audit.
+#
+# status values:
+#   active  - approved for new and existing task assignments
+#   retired - must not appear as a task's model_ref/fallback_model_ref/
+#             allowed_selections entry; load_registry() raises if it does
+#
+# See also: docs/reference/model-governance.md,
+# CLAUDE.md's "Model Governance" section.
+
+models:
+  # ---- GPT-5.6 tier (GA 2026-07-09) ----
+  sol:
+    provider: openai
+    model: gpt-6-sol
+    status: active
+    notes: >-
+      Flagship tier. Only tier that supports max reasoning effort/ultra mode.
+      $5/$30 per 1M tokens.
+  terra:
+    provider: openai
+    model: gpt-5.6-terra
+    status: active
+    notes: "Mid tier. $2.50/$15 per 1M tokens."
+  terra61:
+    provider: openai
+    model: gpt-6.1-terra
+    status: active
+    notes: >-
+      GPT-6.1 Terra, mid tier. $1/$5 per 1M tokens (standard, up to 272K input),
+      provider pricing page 2026-11-11. Added for the v5.2 Phase 03
+      content-ontology model comparison (operator, 2026-11-11).
+  luna:
+    provider: openai
+    model: gpt-6-luna
+    status: active
+    notes: "Budget/fast tier. $0.10/$0.50 per 1M tokens (standard, up to 272K input); verified on the provider pricing page 2026-11-11. The earlier $1/$6 note was wrong."
+  astra:
+    provider: openai
+    model: gpt-6-astra
+    status: active
+    notes: >-
+      Top GPT-6 tier, above sol. $10/$50 per 1M tokens (standard, <=272K input;
+      developers.openai.com/api/docs/pricing, read 2026-11-10). Added for the
+      v5.2 Phase 02 wave 2 reference labels (operator, 2026-11-10).
+
+  # ---- Anthropic ----
+  haiku:
+    provider: anthropic
+    model: claude-haiku-5-5
+    status: active
+    notes: >-
+      Claude Haiku 5.5, current Haiku tier. $0.10/$0.50 per 1M tokens for prompts
+      up to 100K. Added for the v5.2 Phase 02 second pass on wave 1 rejects
+      (operator, 2026-11-10).
+  fable:
+    provider: anthropic
+    model: claude-fable-5-2
+    status: active
+    notes: >-
+      Claude Fable 5.2, Anthropic's most capable widely released model; thinking
+      always on (effort controls depth). $8/$40 per 1M tokens. Added for the
+      v5.2 Phase 02 wave 2 reference labels (operator, 2026-11-10).
+  opus:
+    provider: anthropic
+    model: claude-opus-5-5
+    status: active
+    notes: "Current flagship Claude tier; used for editorial/synthesis tasks."
+  sonnet55:
+    provider: anthropic
+    model: claude-sonnet-5-5
+    status: active
+    notes: >-
+      Claude Sonnet 5.5. $2/$10 per 1M tokens, provider pricing page 2026-11-11.
+      Added for the v5.2 Phase 03 content-ontology model comparison (operator,
+      2026-11-11).
+  sonnet:
+    provider: anthropic
+    model: claude-sonnet-5
+    status: active
+    notes: "Current mid/default Claude tier."
+  sonnet_openrouter:
+    provider: openrouter
+    model: openrouter/anthropic/claude-sonnet-5
+    status: active
+    notes: "Claude Sonnet 5 routed via OpenRouter for tasks pinned to that provider path."
+
+  kimi_openrouter:
+    provider: openrouter
+    model: openrouter/moonshotai/kimi-k3
+    status: active
+    notes: "Moonshot Kimi K3 via OpenRouter. Added 2026-10-01 at operator request for the blueprint model comparison."
+  glm_openrouter:
+    provider: openrouter
+    model: openrouter/z-ai/glm-5.3
+    status: active
+    notes: "Zhipu GLM 5.3 via OpenRouter. Added 2026-10-01 at operator request for the blueprint model comparison."
+
+  # ---- Gemini ----
+  gemini_pro:
+    provider: gemini
+    model: gemini-3.1-pro-preview
+    status: active
+    notes: "Current flagship Gemini tier."
+  gemini_pro_openrouter:
+    provider: openrouter
+    model: openrouter/google/gemini-3.1-pro-preview
+    status: active
+    notes: "Gemini 3.1 Pro routed via OpenRouter for tasks pinned to that provider path."
+  gemini_pro_judge:
+    provider: gemini
+    model: gemini-3-pro-preview
+    status: retired
+    notes: >-
+      Judge-role Gemini variant used by presentation.figure_selection /
+      presentation.slide_reflow. Distinct literal string from gemini_pro
+      (gemini-3.1-pro-preview) — verify at next review whether this should
+      converge to gemini_pro or is intentionally a different snapshot.
+  gemini_flash_lite:
+    provider: gemini
+    model: gemini-3.5-flash-lite
+    status: active
+    notes: "Current flash-lite Gemini tier; common fallback/cheap-lane choice."
+  gemini_flash_legacy:
+    provider: gemini
+    model: gemini-2.0-flash
+    status: active
+    notes: "Older Gemini flash generation, still the assigned primary for ranking.* tasks."
+  gemini_2_5_pro_legacy:
+    provider: gemini
+    model: gemini-2.5-pro
+    status: active
+    notes: >-
+      Superseded by gemini_pro for LLM/analysis/presentation tasks per the
+      July 2026 model policy (quick-260715-rz1). Still the correct pick for
+      workshop talk-boundary/segmentation tasks and
+      research.gemini_deep_research_strategic — do not treat as retired.
+  gemini_tts:
+    provider: gemini
+    model: gemini-3.8-flash-tts
+    status: active
+    notes: "Current TTS-generation Gemini tier."
+  gemini_tts_legacy:
+    provider: gemini
+    model: gemini-2.5-pro-preview-tts
+    status: active
+    notes: "Older TTS Gemini variant; transcription/TTS uses explicitly preserved by quick-260715-rz1."
+  gemini_flash_2_5:
+    provider: gemini
+    model: gemini-3.8-flash
+    status: active
+  gemini_flash_2_5_preview:
+    provider: gemini
+    model: gemini-2.5-flash-preview-05-20
+    status: retired
+    notes: "Aliased to gemini-2.5-flash in costs/pricing_catalog.json."
+
+  # ---- OpenAI (non-5.6-tier) ----
+  gpt5_mini_legacy:
+    provider: openai
+    model: gpt-5-mini
+    status: active
+    notes: "Widely used as a budget fallback/cheap lane independent of the 5.6 tier migration."
+  gpt5_mini_openrouter:
+    provider: openrouter
+    model: openrouter/openai/gpt-5-mini
+    status: retired
+  gpt54_mini_legacy:
+    provider: openai
+    model: gpt-5.4-mini
+    status: active
+    notes: "Not part of the 2026-07-15 retirement (only bare gpt-5.4 was retired); still a valid fallback tier."
+  gpt54_nano_legacy:
+    provider: openai
+    model: gpt-5.4-nano
+    status: active
+  gpt4o_legacy:
+    provider: openai
+    model: gpt-4o
+    status: active
+    notes: "Not part of the 2026-07-15 retirement; still assigned where it predates/is outside the 5.6 migration scope."
+  gpt4o_mini_tts:
+    provider: openai
+    model: gpt-4o-mini-tts
+    status: active
+  gpt4o_transcribe_diarize:
+    provider: openai
+    model: gpt-4o-transcribe-diarize
+    status: active
+  gpt4o_transcribe:
+    provider: openai
+    model: gpt-4o-transcribe
+    status: active
+  gpt4o_mini_transcribe:
+    provider: openai
+    model: gpt-4o-mini-transcribe
+    status: active
+  gpt5_2:
+    provider: openai
+    model: gpt-5.2
+    status: retired
+    notes: "Governed source_discovery.cross_source_join deterministic-title-join pick."
+  o3_deep_research:
+    provider: openai
+    model: o3-deep-research-2025-06-26
+    status: active
+    notes: "Pricing unresolved/user-confirmed-pending per quick-260715-rz1."
+
+  # ---- Local (MLX) ----
+  qwen36_local:
+    provider: local
+    model: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+    status: active
+  qwen38_local:
+    provider: local
+    model: mlx-community/Qwen3.8-27B-4bit
+    revision: 10c35caafbb80f7dc6a7a432cdd11af10a6d4818
+    status: active
+    notes: "Experimental Stage 07A benchmark candidate only; not production-promoted."
+  qwen35_local:
+    provider: local
+    model: mlx-community/Qwen3.5-35B-A3B-4bit
+    status: active
+  qwen35_optiq_local:
+    provider: local
+    model: mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit
+    status: active
+  qwen3_vl_32b_local:
+    provider: local
+    model: mlx-community/Qwen3-VL-32B-Instruct-4bit
+    status: active
+  whisper_local:
+    provider: local
+    model: whisper-1
+    status: active
+
+  # ---- Public search embeddings (v6.0 Phase 4, spec 6.6) ----
+  # Dimensions are not catalog fields: public_index.py keeps them per task (1024, 768).
+  bge_m3_mlx:
+    provider: mlx
+    model: mlx-community/bge-m3-mlx-8bit
+    status: active
+    notes: "Canonical public-search embedding, built on the maintainer's machine at $0 (dim 1024)."
+  embeddinggemma_onnx_q8:
+    provider: browser
+    model: onnx-community/embeddinggemma-300m-ONNX
+    status: active
+    notes: >-
+      Browser-side semantic search: the site loads it from a public CDN at query time
+      (Transformers.js, q8 ONNX, dim 768); the index embeds documents with the same model.
+
+  # ---- Self-hosted open weights on Modal (vLLM, OpenAI-compatible) ----
+  # Billed by GPU time, not tokens. Official Modal rates checked 2026-11-10 at
+  # https://modal.com/pricing: H100 $0.001097/s (~$3.95/h), L40S $0.000542/s
+  # (~$1.95/h). Serving app: cross-conference-talks/ai4science2026/scripts/modal_qwen38_vllm.py.
+  qwen38_27b_modal:
+    provider: modal
+    model: Qwen/Qwen3.8-27B
+    status: active
+    notes: >-
+      Dense 27.8B, Apache-2.0, bf16 on one H100 80 GB (~$3.95/h on Modal).
+      Approved by the operator for the AI4Science census candidate confirmation
+      (v5.2 Phase 02) with a $100 ceiling, 2026-11-10.
+  qwen38_27b_fp8_modal:
+    provider: modal
+    model: Qwen/Qwen3.8-27B-FP8
+    status: active
+    notes: >-
+      FP8 checkpoint of the same model; fits a 48 GB L40S (~$1.95/h on Modal).
+      Wave 0 benchmarks it against bf16 before wave 1 picks one.
+
+  gemma4_12b_modal:
+    provider: modal
+    model: google/gemma-4-12B-it
+    status: active
+    notes: >-
+      Dense 12B, Apache-2.0, bf16 on one L40S 48 GB (~$1.95/h on Modal). Serving app:
+      scripts/ontology/modal_reader_vllm.py (variant gemma4-12b). v6.1 Phase 5 smaller
+      broad reader (P5-D5), owner-approved for the pilot 2026-11-22.
+  qwen36_35b_a3b_modal:
+    provider: modal
+    model: Qwen/Qwen3.6-35B-A3B
+    status: active
+    notes: >-
+      MoE 35B total / ~3B active, Apache-2.0, bf16 on one H100 80 GB (~$3.95/h on Modal).
+      Serving app: scripts/ontology/modal_reader_vllm.py (variant qwen36-a3b). v6.1 Phase 5
+      smaller broad reader (P5-D5), owner-approved for the pilot 2026-11-22.
+
+  # ---- Retired (2026-07-15, quick-260715-rz1) ----
+  # Referencing any of these from registry.yaml raises ModelGovernanceError.
+  whisper_large_v3_turbo_mlx:
+    provider: local
+    model: mlx-community/whisper-large-v3-turbo
+    status: active
+    notes: >-
+      Local MLX Whisper used to transcribe generated NotebookLM podcasts for the
+      listening review gate ($0, on-device, darwin-arm64).
+
+  # ---- Google NotebookLM (subscription-metered, no per-call billing) ----
+  notebooklm_audio_overview:
+    provider: google_notebooklm
+    model: notebooklm-audio-overview
+    status: active
+    notes: >-
+      Google NotebookLM Audio Overview driven through notebooklm-py
+      (conference_pipeline.podcast_notebooklm). Quota-metered per Google
+      account tier (~20 audio overviews/day on Pro), $0 API billing; the
+      stage halts resumably on RateLimitError.
+
+  haiku_retired:
+    provider: anthropic
+    model: claude-haiku-4-5-20251001
+    status: retired
+    notes: "Retired in favor of sonnet (claude-sonnet-5)."
+  haiku_retired_openrouter_v1:
+    provider: openrouter
+    model: openrouter/anthropic/claude-haiku-4.5
+    status: retired
+    notes: "OpenRouter Haiku form; retired in favor of sonnet_openrouter."
+  haiku_retired_openrouter_v2:
+    provider: openrouter
+    model: openrouter/anthropic/claude-haiku-4-5-20251001
+    status: retired
+    notes: "OpenRouter Haiku form; retired in favor of sonnet_openrouter."
+  qwen35_122b_local_retired:
+    provider: local
+    model: baa-ai/Qwen3.5-122B-A10B-RAM-48GB-MLX
+    status: retired
+    notes: >-
+      Retired 2026-09-24 by operator decision: never downloaded, swapped
+      heavily on its only probe; analysis.exhaustive_topic_summarization's
+      local lane is qwen36_local.
+  gpt54_bare_retired:
+    provider: openai
+    model: gpt-5.4
+    status: retired
+    notes: "Bare gpt-5.4 fallback retired 2026-07-15; superseded by the sol/terra/luna tier."
+  opus_claude_opus_4_8_retired:
+    provider: anthropic
+    model: claude-opus-4-8
+    status: retired
+    notes: "Superseded by claude-opus-5-5 when alias `opus` was upgraded on 2026-09-24 (model-catalog-upgrade, operator-approved)."
+  sol_gpt_5_6_sol_retired:
+    provider: openai
+    model: gpt-5.6-sol
+    status: retired
+    notes: "Superseded by gpt-6-sol when alias `sol` was upgraded on 2026-09-24 (model-catalog-upgrade, operator-approved)."
+  luna_gpt_5_6_luna_retired:
+    provider: openai
+    model: gpt-5.6-luna
+    status: retired
+    notes: "Superseded by gpt-6-luna when alias `luna` was upgraded on 2026-09-24 (model-catalog-upgrade, operator-approved)."
+  gemini_flash_lite_gemini_3_1_flash_lite_preview_retired:
+    provider: gemini
+    model: gemini-3.1-flash-lite-preview
+    status: retired
+    notes: "Superseded by gemini-3.5-flash-lite when alias `gemini_flash_lite` was upgraded on 2026-09-24 (model-catalog-upgrade, operator-approved)."
+  gemini_tts_gemini_3_1_flash_tts_preview_retired:
+    provider: gemini
+    model: gemini-3.1-flash-tts-preview
+    status: retired
+    notes: "Superseded by gemini-3.8-flash-tts when alias `gemini_tts` was upgraded on 2026-09-24 (model-catalog-upgrade, operator-approved)."
+  gemini_flash_2_5_gemini_2_5_flash_retired:
+    provider: gemini
+    model: gemini-2.5-flash
+    status: retired
+    notes: "Superseded by gemini-3.8-flash when alias `gemini_flash_2_5` was upgraded on 2026-09-24 (model-catalog-upgrade, operator-approved)."
+

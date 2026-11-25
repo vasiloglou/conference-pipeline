@@ -1,0 +1,368 @@
+{
+  "aggregate_sha256": "05194546b4936f5f359f4c1194e39d1603a24b25d1c6c6e9ef5cbbf3d7c362f7",
+  "count": 90,
+  "entries": [
+    {
+      "assertion_fingerprint": "ed999b37af9209d0883811e002d4a986df91eb9797a3e4067d38109da10fdce8",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_actual_audio_receipt_binds_the_fixed_public_audio_policy"
+    },
+    {
+      "assertion_fingerprint": "0ab44c18c5812ddad735ef07ef38a693174bff2675573edb9126e1a7de171345",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_all_importable_continuation_legacy_routes_have_no_capability_inputs"
+    },
+    {
+      "assertion_fingerprint": "17b59a2aab12a2d642f8e34b05fd3e000ab2a9351098a6f2cc2872389ab7d0b0",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_audio_receipt_rejects_a_legacy_or_dual_acquired_path_before_checkpointing"
+    },
+    {
+      "assertion_fingerprint": "86e2c8737791824b32539c6c8f9efc57292d67bce59b431798b3b8bc97ea6b2c",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_cli_sanitizes_only_current_admission_errors"
+    },
+    {
+      "assertion_fingerprint": "9c443c8f781a77c50384365906765d49d7dcee198de2d7003713c43cc4cb7dd4",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_every_owner_entry_rejects_forged_successor_authority_before_dispatch"
+    },
+    {
+      "assertion_fingerprint": "cd0408ef668bc3badd980ad59ae4cb76e98c7647e6ce2b795833db9c736474ee",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_exact_2002_owner_stops_after_lease_redirect_before_downloader_or_checkpoint"
+    },
+    {
+      "assertion_fingerprint": "ea27b61424eaee482731879097c1e8beb18bb67ecbd6ca62a0e952afbc04938c",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_exact_2002_row_oracle_manifest_is_complete_and_bounded"
+    },
+    {
+      "assertion_fingerprint": "bbc3cbae17f5cd8f10112cc0f5b0eea2f7d48241f3838f467d3f9e6659726760",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_fixed_audio_batch_uses_eight_workers_and_persists_queue_order"
+    },
+    {
+      "assertion_fingerprint": "34d0a96cb1849db38f178322cf7dfec3b16f3411218499f90278f5763cc785a4",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_fixed_owner_leaves_memory_error_unpublished_and_identical"
+    },
+    {
+      "assertion_fingerprint": "039c8b43c80d2e058b828e3d6083c06b1b17932c90696734d0c711eb34709fb8",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_fixed_owner_leaves_unapproved_base_exceptions_unpublished"
+    },
+    {
+      "assertion_fingerprint": "bb201a2339ce247a4db53c9e9ce4b8d990d8788e955cb2323d1e64de3b83000b",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_fixed_owner_publishes_one_closed_interruption_then_reraises"
+    },
+    {
+      "assertion_fingerprint": "2d4e1b3f320c2c11e32d3a82a6d8fa79a6b06de6e8a02a79218d29768185a95b",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_fixed_owner_publishes_unexpected_exception_then_reraises"
+    },
+    {
+      "assertion_fingerprint": "b1ac085a4c6fd38f2521e5147964c08e213b0c94e11b3fe80f62f24ff8e376de",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_fixed_owner_rejects_authority_drift_before_every_r6_side_effect"
+    },
+    {
+      "assertion_fingerprint": "76dcb4cb5f9cabb50dfaac3064beac730f9b4e7e0ef7c80087e1f48f65bca836",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_fresh_runner_import_exposes_no_operational_alias_or_receipt_builder"
+    },
+    {
+      "assertion_fingerprint": "29826b7c63648d163a1f6f566932889019d4c0c0bfa0ac4bb0e16d8d3f4aac36",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_full_recomputed_classification_drift_stops_owner_before_all_effects"
+    },
+    {
+      "assertion_fingerprint": "61590eab33149051abddf5f6f818ad1b87260614c5c655ad5f35f9227e92d344",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_imported_continuation_helpers_reject_forged_key_before_every_effect"
+    },
+    {
+      "assertion_fingerprint": "c1dbd03abf20981c21088234fdb5382ab7c81bbe1c853e77b83d6adaada1556e",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_inprocess_options_reject_any_auth_or_subprocess_surface"
+    },
+    {
+      "assertion_fingerprint": "99bbdea221bff10845cd67bb0bf351bed2c8abb841063d48fbad92b2d304a113",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_live_owner_rejects_a_redirected_production_workspace_before_admission"
+    },
+    {
+      "assertion_fingerprint": "18a119012ce67c05ca6f340d6b789566b1c9ee86fa5dafc878d996e2c5ce91fd",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_one_real_live_invocation_supervises_durable_235_to_529_to_full_once"
+    },
+    {
+      "assertion_fingerprint": "0a13e7165799c8edc2714826604dad1b09b6a66f4341b9b631ea1beac0391e5f",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_owner_all_terminal_exact_authority_reaches_material_once"
+    },
+    {
+      "assertion_fingerprint": "770440d978623198bca092726294ac6816a54a99843fbfc987cdb129ba7ba36e",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_owner_malformed_admission_stops_before_dotenv_network_or_subprocess"
+    },
+    {
+      "assertion_fingerprint": "9f37167b086e3ea6c96be506e97c8b80cc3900be202711993b431955da3781cf",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_owner_rejects_a_running_or_prefix_audio_result_before_every_later_seam"
+    },
+    {
+      "assertion_fingerprint": "a00a06b49e4f1eb206af4301d5046f23e9c9d507be6a9a63a0af358ef1210d2d",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_owner_stops_before_workers_when_inprocess_preflight_fails"
+    },
+    {
+      "assertion_fingerprint": "7dd16fc29903dd8972ad4dd16e6a27b7ba97806ffd8ae1b9954af1dc2e09bf74",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_owner_validates_all_2002_authority_rows_before_preflight_or_checkpoint"
+    },
+    {
+      "assertion_fingerprint": "99b83369d269c10eb17ce2746b3bc46f5e3bab74d5485a0181f12fe6217b2fb4",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_pre_authority_binding_is_reachable_only_for_trusted_inventory_scope"
+    },
+    {
+      "assertion_fingerprint": "c891dbb83301caa61895eb7e8693624173c0fe713b463670350eb6e701ca85cd",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_pre_authority_binding_rejects_checkpoint_facts_from_another_inventory"
+    },
+    {
+      "assertion_fingerprint": "b95c9e77f7008fb217d05ba3db586920b9018c10e298bb06b9fb8c253cd202a3",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_r6_source_scope_rejects_dropped_route_observation_before_live_owner"
+    },
+    {
+      "assertion_fingerprint": "21919771f861c7855491ba8d5fa89325d8749e9565df368c60a6f41e3f54b7e3",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_real_529_successor_no_progress_is_diagnostic_and_nonzero"
+    },
+    {
+      "assertion_fingerprint": "58165988b94831e5d9232929c49a33affae60912a3f731e82f01627f61218b2c",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_real_archive_successor_continuation_reaches_235_without_retries_or_downstream_effects"
+    },
+    {
+      "assertion_fingerprint": "a177961b502c386b4204f140917e3f5d524a83e0167722fce418dc4bb775f19d",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_real_archive_successor_full_reassembly_is_exact_before_material"
+    },
+    {
+      "assertion_fingerprint": "7130e4c0cae72b2b0076d045130f44f17cb2629446c2a0e147e2aaa95cf2eac3",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_real_current_checkpoint_admission_is_sanitized_at_the_cli"
+    },
+    {
+      "assertion_fingerprint": "5d054a3f738e47398dc03ec371ac75ad8d6703d17aa1c4bea37184b6b9dd7030",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_real_full_terminal_checkpoint_reaches_material_once_and_cli_zero"
+    },
+    {
+      "assertion_fingerprint": "6c893caa493061a32aa258ec80c52469de2138f09aebd93ef633973b6fd5c7a1",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_real_public_audio_producer_reaches_running_resume_and_complete_classifier"
+    },
+    {
+      "assertion_fingerprint": "d8aa3215e679766a5e12138adba83bbbd51f71b0c1b649e5aa9da9fb81001fdb",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_resume_rejects_nonprefix_effective_rows_before_every_effect"
+    },
+    {
+      "assertion_fingerprint": "d51d0eaae9037f7c8c5c3717d7d9ad66488b53c76e4f099f1554255257fbdad4",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_row_authority_rejects_reordered_or_identity_drift_before_partition"
+    },
+    {
+      "assertion_fingerprint": "efa73561c737a3cd467f2cbb02260f0ef7a9fa58b2fac8e416fbab0f16c826e3",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_same_count_checkpoint_replacement_at_final_diagnostic_revalidation_is_rejected"
+    },
+    {
+      "assertion_fingerprint": "8129e261d75faac16edcba14e0d0f925a3970c5e3f95c60340e4d8bef2191d87",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_successor_authority_has_no_importable_arbitrary_input_issuer"
+    },
+    {
+      "assertion_fingerprint": "e8ad0f5d9810105e5c93e774eda17b6b7f2e92984bbde17aa7609fbcc83e6205",
+      "node_id": "tests/test_cvpr2026_r6_live_owner.py::test_successor_authority_has_no_reentrant_consumer_surface"
+    },
+    {
+      "assertion_fingerprint": "15cf36e9145dc47ffe16128748a3760f2c27499fae9644c41120eb00cec0ce87",
+      "node_id": "tests/test_cvpr2026_r6_media_recovery.py::test_r6_queue_is_exact_immutable_overlay_for_all_r5_unavailable_captions"
+    },
+    {
+      "assertion_fingerprint": "84d73f3d4967ef309397140b8bc62cfcb28fc09ea7d9f750317e6b83d1e9557c",
+      "node_id": "tests/test_cvpr2026_r6_media_recovery.py::test_r6_rejects_mutated_or_out_of_scope_r5_lineage"
+    },
+    {
+      "assertion_fingerprint": "f382d1fce26e2424fbd100b07b5eee7cd8ae438ce854ca5f35e3f1969f3cf583",
+      "node_id": "tests/test_cvpr2026_r6_media_recovery.py::test_r6_rejects_output_path_escape_or_any_r5_target"
+    },
+    {
+      "assertion_fingerprint": "3917423508d9c1b8e8978fa0ea44b15d1988953d2582f4b50a039d90d790e179",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_direct_owner_calls_are_internal_test_seams_not_provenance_boundaries"
+    },
+    {
+      "assertion_fingerprint": "c24c7b84c730d1cabc2446a05f7ce82ec2606d4a56c7ba69ab9359e6b1e12842",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_final_audio_admission_requires_the_full_ordered_terminal_population"
+    },
+    {
+      "assertion_fingerprint": "163034147bdf99818d3b49d5bf5f743b876349619b4d9f2d69b1505b75bb7ad4",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_fixed_bootstrap_admission_uses_real_audio_and_material_receipts"
+    },
+    {
+      "assertion_fingerprint": "6d0bc4fcfcf29f5ff1f9e30b43eab772f084b914ac0600addae7fcad92682a65",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_fixed_r6_pre_provider_admission_has_explicit_modes"
+    },
+    {
+      "assertion_fingerprint": "8c0a66e16cfe4c8fb33f70c8dae63ef7ba50f4f810a8500bc90347e6a61e9da6",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_fresh_runner_surface_is_a_non_composable_cli_shell"
+    },
+    {
+      "assertion_fingerprint": "f81eb052c462dc4225f6757103fd17da17c2ba3e908268827bdedab10a3bb60c",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_private_media_main_has_the_same_exact_noarg_or_live_boundary"
+    },
+    {
+      "assertion_fingerprint": "49bd8da93c3da3ea347a1be24c937fc1cfe4594e3ca4a80d48b6d0f75fba57db",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_media_runner_rejects_every_non_exact_argv_before_owner_import"
+    },
+    {
+      "assertion_fingerprint": "8e2ecbe2319e462631f41bf090da1c6f69214041c517ee5ee8f7ecae463cd628",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_media_runner_rejects_non_exact_argv_before_owner_import"
+    },
+    {
+      "assertion_fingerprint": "dda475aac6f19768cc7bc14953fbfe2e249f3061fb59b41fe9fd261a7e1cccf7",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_admits_the_complete_fixed_namespace_before_owner_import"
+    },
+    {
+      "assertion_fingerprint": "1706e7c8a6fc9ff2943b6896115fe27b61a72136dc42bc06ad75c33d7f7fbc40",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_claims_one_immutable_successor_before_the_only_owner_import"
+    },
+    {
+      "assertion_fingerprint": "b17459daeab9d8f709a96bd9e21fe12f185b48597459bb74212636dc8313ac2d",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_classifies_the_exact_production_shape_legacy_as_one_successor"
+    },
+    {
+      "assertion_fingerprint": "861defb68f70828ab4f3bc55372d0c7d8ce6bccfa9d77f0b40841c9c81e1291a",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_does_not_catch_an_unapproved_base_exception"
+    },
+    {
+      "assertion_fingerprint": "c3485368a1674f75b09a664dc144a9dd6d1680b1c9c6c19c3abae043d05c5837",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_does_not_overclassify_similar_legacy_terminal_leaves"
+    },
+    {
+      "assertion_fingerprint": "8ca11754e5e7d450d0aea302f2d717807577db1d9f16d2f67df19774ba95b362",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_durably_classifies_fixed_owner_import_failures_without_contract_import"
+    },
+    {
+      "assertion_fingerprint": "57fd5e70df3de0a2283b0de6f1b1dd71678fc88085db408519ca4224788ff4ff",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_invokes_owner_without_successor_authority_after_namespace_swap"
+    },
+    {
+      "assertion_fingerprint": "d7cf4b6184fd279bc8de8f70c90aac93bdf2bb20a10216ae412ee865bec8f92d",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_keeps_durable_unavailable_leaf_after_finalization_fault"
+    },
+    {
+      "assertion_fingerprint": "2baebe5cb5a6e318dd5c13f9dacb84cb8b8ba0f34235032b10435eb545c1a4bd",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_normalizes_only_explicit_owner_interruptions"
+    },
+    {
+      "assertion_fingerprint": "a0efd106146977a4a849c6d55b6e747ad851a4b1da46c6b009ea4f667eec6580",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_pre_owner_output_close_fault_is_retired_and_finite"
+    },
+    {
+      "assertion_fingerprint": "75c90b6664d350e35b9369a08abbf0899bdb82255964489380a378ff37dfb5ca",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_pre_owner_writer_does_not_mask_control_or_memory_errors"
+    },
+    {
+      "assertion_fingerprint": "37217c9f6154c5fd7df6b915ab4e3919c6351684a51da6e3ea3209f950d3b67b",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_pre_owner_writer_failure_has_only_finite_sanitized_disposition"
+    },
+    {
+      "assertion_fingerprint": "c253ca7feec3ccf923c6f7d3f7c83e3e767b7d7e879e978d71e1d56e1677fabe",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_promotes_an_exact_fixed_quarantine_on_a_later_attempt"
+    },
+    {
+      "assertion_fingerprint": "ca85819fdb135555fb6f98a6d332d8c529780d6b03f0f5389b9d25f3997e86d5",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_rejects_any_preexisting_successor_control_before_owner_import"
+    },
+    {
+      "assertion_fingerprint": "8c83436def7fe3bc1fe86eaaff01a3e2c7b1830665f2dbe05f4f9ca8c158243c",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_rejects_same_byte_identity_replacement_before_archive_publication"
+    },
+    {
+      "assertion_fingerprint": "69b9fcf9f33da518ba38939c569e4d69049ce0359cad59037e9e96a6390ce1c9",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_rejects_self_hashed_boolean_and_float_numeric_aliases_before_owner_import"
+    },
+    {
+      "assertion_fingerprint": "7d025fc19338a7828f8413e0a8f6caad31f6a52035815ecbbc313b9f30803c34",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_replace_failure_keeps_only_fixed_quarantine_not_a_temporary_leaf"
+    },
+    {
+      "assertion_fingerprint": "336c51bcc633e20af08d0f26962e56c326719a4e9fad2de126daf2fa8f7edc71",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_requires_exact_primitive_types_for_every_fixed_envelope_field_category"
+    },
+    {
+      "assertion_fingerprint": "27cbb8c26e908e5baa0ca1f18fa93f7dc61b8e2d765cfc1058c85d37b00df277",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_public_runner_uses_only_typed_owner_disposition"
+    },
+    {
+      "assertion_fingerprint": "790a5e60fb348b0b5737e53bf6fd4526e25d254dc4e340d5b979cfc6a3682d75",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_admission_and_strict_final_reject_missing_terminal_rows_before_success"
+    },
+    {
+      "assertion_fingerprint": "6a5a2dd5f07fd0039236f4f22b3ff29370a456f99653b26de1b986265eecdc2e",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_checkpoint_remediation_archives_only_the_exact_historical_prefix"
+    },
+    {
+      "assertion_fingerprint": "fc4cc877a6ab54c7fd87bc4dfd3c75d1a4c32e5fcf06181203940729fc16df85",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_checkpoint_remediation_preserves_a_one_row_terminal_prefix"
+    },
+    {
+      "assertion_fingerprint": "667b4df39a6c401d83284c1ac2e76143cb6e3288739d1e3dcea2209090a458cd",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_checkpoint_remediation_rejects_invalid_prefix_before_archive"
+    },
+    {
+      "assertion_fingerprint": "13037a005778476b372e0836f67d386a03863ce6c7d6e3c44c73448f93cc3219",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_contract_accepts_complete_declared_local_lineage"
+    },
+    {
+      "assertion_fingerprint": "b0656f7a72a081dd4007c3b6be0b0856aa3a56b571bbaa6712e2542b274a59e3",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_contract_rejects_stale_declared_receipt_or_ledger_bytes"
+    },
+    {
+      "assertion_fingerprint": "b7835013a7fc4273542649f965f7e8af7d848cae4675ebf242936d54e25ca4f2",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_contract_rejects_success_after_failed_sublane_and_accounting_drift"
+    },
+    {
+      "assertion_fingerprint": "57a2f77bfbb59df96c174e14b02bd1870fb077ca69e9375b3b35c85da2313d82",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_exact_audio_seed_validator_blocks_nonexact_terminal_classification"
+    },
+    {
+      "assertion_fingerprint": "157a8576ad3ed3fc42cca86b1f6ea0c3f988a441a5b1a04b435c22589596c85b",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_exact_audio_seed_validator_rejects_malformed_acquired_or_terminal_evidence"
+    },
+    {
+      "assertion_fingerprint": "37e83c07a592709d8d38ce9d9c3b3d566b399046aa4f2677d6e2c963d00a2a34",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_failed_contract_never_publishes_success_or_touches_r5"
+    },
+    {
+      "assertion_fingerprint": "5fd0827d01e6255afbbd79571b9a8b8b411f38a33510bb1d3b871a411945da27",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_owner_publishes_only_after_real_strict_candidate_validation"
+    },
+    {
+      "assertion_fingerprint": "41c883388694eed17ec67939b34e4fef300f5330d3eec25b5ef8ede69bcd624c",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_resume_effective_order_is_authority_bound_across_receipt_containers"
+    },
+    {
+      "assertion_fingerprint": "647b6b527ca7e4902019fa57f13d4b01ce3f781206fa210b5092a592467c9fa6",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_runner_admits_only_explicit_declared_receipt_inputs"
+    },
+    {
+      "assertion_fingerprint": "78d4d79cdcb7fa450a60d3ad139efc46eed4698a37b8ab31b5520c9c5157e463",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_runner_rejects_material_discovery_outside_the_workspace_policy"
+    },
+    {
+      "assertion_fingerprint": "36185285a7c70c7b50040c8cdf58f1149f143ba859702682999f2e032933a9b8",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_runner_rejects_mismatched_policy_and_undeclared_payload_root"
+    },
+    {
+      "assertion_fingerprint": "e925366f19ba807374a510fdf44fe0c4bc15998086622008e3149bd90ba35a34",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_runner_rejects_missing_declared_provider_receipt"
+    },
+    {
+      "assertion_fingerprint": "f8ed12d56d904b6f886768cce68fd8cdf4d9309764fe2b3e8a235748326c625a",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_runner_rejects_source_or_discovery_fields_in_processor_inputs"
+    },
+    {
+      "assertion_fingerprint": "205f39041981ef241b7b3ff1ced061e57b1679ae485d1231880eca01f8a77895",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_runner_rejects_unbounded_or_invalid_processor_inputs"
+    },
+    {
+      "assertion_fingerprint": "b404fac8f1978c351c2b43dd76290ae22b3046d2a0092ac83d1864636781a2b7",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_schedule_places_every_paid_benchmark_before_any_item"
+    },
+    {
+      "assertion_fingerprint": "fbaa60d3ca31ea52a3e69fd328e0e69c110e0c18eb312d339b97e7782dd639f0",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_strict_contract_accepts_terminal_no_paid_envelopes"
+    },
+    {
+      "assertion_fingerprint": "3077a9df2f28a9a29dfead691f910ba89d611e55386859dc2887d4e1e6615b5a",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_strict_final_recomputes_exact_audio_classification_not_count_arithmetic"
+    },
+    {
+      "assertion_fingerprint": "6e8eb708d534213c725daa4cda65641dfcfe528f619fd0cd3e5652236594069c",
+      "node_id": "tests/test_cvpr2026_r6_runner.py::test_r6_successor_revalidates_archived_bytes_before_effective_consumption"
+    }
+  ],
+  "inventory_name": "cvpr_r6_legacy_direct_tests",
+  "schema_version": 1
+}

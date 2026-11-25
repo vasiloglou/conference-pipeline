@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Grounding accuracy by domain</title>
+<desc id="fc-desc">Grounding accuracy varies more across domains than across models.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Grounding accuracy by domain</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Grounding accuracy varies more across domains than across models.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Domain matters more than model</tspan></text>
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="357.82" y="147.6">GUI</tspan></text>
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="709.09" y="147.6">Documents</tspan></text>
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="1060.36" y="147.6">Natural scenes</tspan></text>
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="170.18" y="287.38">Qwen 3VL</tspan></text>
+<rect x="184.18" y="170.4" width="347.27" height="227.16" fill="#a8d8ea" opacity="0.15" />
+<text x="357.82" y="290.98" font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold">71.4%</text>
+<rect x="535.46" y="170.4" width="347.27" height="227.16" fill="#a8d8ea" opacity="0.73" />
+<text x="709.09" y="290.98" font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold">88.1%</text>
+<rect x="886.73" y="170.4" width="347.27" height="227.16" fill="#a8d8ea" opacity="0.88" />
+<text x="1060.36" y="290.98" font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold">92.6%</text>
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="170.18" y="518.54">Gemini class</tspan></text>
+<rect x="184.18" y="401.56" width="347.27" height="227.16" fill="#a8d8ea" opacity="0.27" />
+<text x="357.82" y="522.14" font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold">74.9%</text>
+<rect x="535.46" y="401.56" width="347.27" height="227.16" fill="#a8d8ea" opacity="0.8" />
+<text x="709.09" y="522.14" font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold">90.2%</text>
+<rect x="886.73" y="401.56" width="347.27" height="227.16" fill="#a8d8ea" opacity="0.9" />
+<text x="1060.36" y="522.14" font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold">93.1%</text>
+</svg>

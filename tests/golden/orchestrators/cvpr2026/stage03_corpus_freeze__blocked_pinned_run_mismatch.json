@@ -1,0 +1,93 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "5a5814f97a0e02358fe9f7c8ce8e27a6d65442b004b55082da2edd3a8a57125b",
+  "normalized_output_digest": "ee2f2eb8d0b9426801afbfe8314e8bd6d7e7e3db995610fbb644487e2a9cf93a",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/corpus-freeze/corpus_freeze.json": null
+  },
+  "receipt": {
+    "blockers": [
+      {
+        "affected_stage": "corpus-freeze",
+        "code": "pinned_source_run_mismatch"
+      }
+    ],
+    "checks": {
+      "complete_canonical_accounting": false,
+      "downloads_made": 0,
+      "included_items_planned_or_unreachable": false,
+      "no_cap_hits": true,
+      "provider_calls_made": 0,
+      "source_inventory_digest_pinned": false,
+      "source_lineage_integrity": false
+    },
+    "corpus_manifest": {
+      "path": "storage/corpus-freeze/corpus_freeze.json",
+      "selection_sha256": null
+    },
+    "downloads_made": 0,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "corpus-freeze.cvpr2026"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-wrong-run/stage-03-corpus-freeze.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-cvpr-wrong-run/stage-02-source-discovery.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-02-source-discovery.json",
+          "stage_id": null,
+          "status": null
+        }
+      }
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "missing": true,
+        "name": "corpus_manifest",
+        "path": "storage/corpus-freeze/corpus_freeze.json",
+        "sha256": null
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-wrong-run/stage-03-corpus-freeze.json>",
+    "owner_execution_evidence": {
+      "acquisition.corpus_freeze.cvpr2026": {
+        "downloads_made": 0,
+        "manifest_path": "storage/corpus-freeze/corpus_freeze.json",
+        "owner_function": "run_corpus_freeze_stage",
+        "provider_calls_made": 0
+      }
+    },
+    "provider_calls_made": 0,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "acquisition.corpus_freeze.cvpr2026"
+    ],
+    "run_id": "w1-cvpr-wrong-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": null,
+    "stage_id": "corpus-freeze",
+    "stage_order": 3,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

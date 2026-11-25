@@ -1,0 +1,276 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "635a19df8d0922ddfd867479057b687ba0820875f04a100457131d125da7c1d0",
+  "normalized_output_digest": "bfa6132db2bfbb4938d8179dca549788f5f10d391ebd3d4f10c1deba1151e227",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/workflow-runs/w1-icml-fixture-run/runner-preflight-remediation.json": "json:165c4af24ce70d2ec8124a110958524a4636df709d990d0671ba7d70cdaf22c6"
+  },
+  "receipt": {
+    "blocker_receipt_path": null,
+    "checks": {
+      "approval": {
+        "path": "<WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/provider-approval.json",
+        "status": "not_required"
+      },
+      "credential_inventory": [
+        {
+          "name": "OPENAI_API_KEY",
+          "present": true,
+          "value_recorded": false
+        },
+        {
+          "name": "ANTHROPIC_API_KEY",
+          "present": true,
+          "value_recorded": false
+        },
+        {
+          "name": "GOOGLE_API_KEY",
+          "present": true,
+          "value_recorded": false
+        },
+        {
+          "name": "TAVILY_API_KEY",
+          "present": true,
+          "value_recorded": false
+        },
+        {
+          "name": "OPENROUTER_API_KEY",
+          "present": true,
+          "value_recorded": false
+        },
+        {
+          "name": "OPENREVIEW_USERNAME",
+          "present": true,
+          "value_recorded": false
+        },
+        {
+          "name": "OPENREVIEW_PASSWORD",
+          "present": true,
+          "value_recorded": false
+        }
+      ],
+      "credential_value_marker_persisted": false,
+      "owner_binding": {
+        "owner_id": "icml2026.production_runner",
+        "registration": {
+          "existence": "required",
+          "path": "scripts/run_icml2026_production.py",
+          "scope": "production",
+          "status": "required"
+        },
+        "registry_sha256": "<REGISTRY_SHA>",
+        "status": "valid"
+      },
+      "prepared_estimate": {
+        "estimate_digest": "<DERIVED_DIGEST>",
+        "path": "<WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/preflight-full-run-estimate.json",
+        "provider_stage_projection": {
+          "anthropic:analysis": 0.1628,
+          "anthropic:podcast": 0.374,
+          "anthropic:presentation": 2.607,
+          "gemini:presentation": 1.0186,
+          "gemini:presentation-video": 0.45,
+          "gemini:ranking": 0.62975,
+          "gemini:transcription-ocr": 0.143,
+          "google_notebooklm:notebooklm-podcast": 0.0,
+          "openai:analysis": 0.18997,
+          "openai:paper-matching": 1.1,
+          "openai:podcast": 0.3,
+          "openai:presentation": 0.01375,
+          "openai:transcription-ocr": 0.066001,
+          "openrouter:analysis": 25.6036,
+          "openrouter:exhaustive-topic-extraction": 11.22,
+          "tavily:query-planning-gpt-researcher": 0.12
+        },
+        "status": "valid"
+      },
+      "provider_probe_scope": "all_declared_providers",
+      "provider_probes": [
+        {
+          "attempt_count": 1,
+          "classification": "metadata",
+          "error_type": null,
+          "operation": "GET /v1/models",
+          "provider": "openai",
+          "rate_guidance": "honor_provider_retry_guidance",
+          "stage": "analysis-and-presentation",
+          "status": "succeeded"
+        },
+        {
+          "attempt_count": 1,
+          "classification": "metadata",
+          "error_type": null,
+          "operation": "GET /v1/models",
+          "provider": "anthropic",
+          "rate_guidance": "honor_provider_retry_guidance",
+          "stage": "presentation-reflow",
+          "status": "succeeded"
+        },
+        {
+          "attempt_count": 1,
+          "classification": "metadata",
+          "error_type": null,
+          "operation": "GET /v1beta/models",
+          "provider": "google",
+          "rate_guidance": "honor_provider_retry_guidance",
+          "stage": "transcription-and-podcast",
+          "status": "succeeded"
+        },
+        {
+          "attempt_count": 1,
+          "classification": "metadata",
+          "error_type": null,
+          "operation": "GET /credits",
+          "provider": "tavily",
+          "rate_guidance": "honor_provider_retry_guidance",
+          "stage": "source-discovery",
+          "status": "succeeded"
+        },
+        {
+          "attempt_count": 1,
+          "classification": "metadata",
+          "error_type": null,
+          "operation": "GET /api/v1/models",
+          "provider": "openrouter",
+          "rate_guidance": "honor_provider_retry_guidance",
+          "stage": "remote-extraction-failover",
+          "status": "succeeded"
+        },
+        {
+          "attempt_count": 1,
+          "classification": "metadata",
+          "error_type": null,
+          "operation": "GET /notes?limit=1",
+          "provider": "openreview",
+          "rate_guidance": "honor_provider_retry_guidance",
+          "stage": "source-discovery",
+          "status": "succeeded"
+        }
+      ],
+      "secrets_copied": false,
+      "spend_authority": {
+        "estimate_digest": "<DERIVED_DIGEST>",
+        "mode": "automatic_under_usd_800",
+        "provider_stage_allocations": {
+          "anthropic:analysis": 0.1628,
+          "anthropic:podcast": 0.374,
+          "anthropic:presentation": 2.607,
+          "gemini:presentation": 1.0186,
+          "gemini:presentation-video": 0.45,
+          "gemini:ranking": 0.62975,
+          "gemini:transcription-ocr": 0.143,
+          "google_notebooklm:notebooklm-podcast": 0.0,
+          "openai:analysis": 0.18997,
+          "openai:paper-matching": 1.1,
+          "openai:podcast": 0.3,
+          "openai:presentation": 0.01375,
+          "openai:transcription-ocr": 0.066001,
+          "openrouter:analysis": 25.6036,
+          "openrouter:exhaustive-topic-extraction": 11.22,
+          "tavily:query-planning-gpt-researcher": 0.12
+        },
+        "threshold_usd": 400.0,
+        "total_ceiling_usd": 43.998471
+      },
+      "stage_contract": {
+        "accepted_evidence": [
+          "runner-preflight: receipt mode live",
+          "runner-preflight: registry digest matched",
+          "runner-preflight: required owner ids recorded",
+          "runner-preflight: owner execution evidence present"
+        ],
+        "blockers": [],
+        "registry_stage_id": "runner-preflight",
+        "required_script_ids": [
+          "icml2026.production_runner"
+        ],
+        "script_registry_sha256": "<REGISTRY_SHA>",
+        "stage_id": "runner-preflight",
+        "status": "pass",
+        "warnings": []
+      },
+      "storage_capacity": {
+        "blockers": [],
+        "ready": true,
+        "required_bytes": 1100
+      }
+    },
+    "credential_value_marker_persisted": false,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "runner-preflight"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-01-runner-preflight.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "kind": "file",
+        "name": "remediation_report",
+        "path": "storage/workflow-runs/w1-icml-fixture-run/runner-preflight-remediation.json",
+        "sha256": "<sha256:storage/workflow-runs/w1-icml-fixture-run/runner-preflight-remediation.json>"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-01-runner-preflight.json>",
+    "owner_execution_evidence": {
+      "icml2026.production_runner": {
+        "runner_function": "run_runner_preflight",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "stage_receipt_path": "<WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/stage-01-runner-preflight.json"
+      }
+    },
+    "owner_registration": {
+      "existence": "required",
+      "path": "scripts/run_icml2026_production.py",
+      "scope": "production",
+      "status": "required"
+    },
+    "preflight_resume_policy": "rerun_required",
+    "provider_probe_scope": null,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "remediation_report_path": "<WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/runner-preflight-remediation.json",
+    "required_script_ids": [
+      "icml2026.production_runner"
+    ],
+    "resumable": true,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "runner-preflight: receipt mode live",
+        "runner-preflight: registry digest matched",
+        "runner-preflight: required owner ids recorded",
+        "runner-preflight: owner execution evidence present"
+      ],
+      "blockers": [],
+      "registry_stage_id": "runner-preflight",
+      "required_script_ids": [
+        "icml2026.production_runner"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "runner-preflight",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "runner-preflight",
+    "stage_order": 1,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

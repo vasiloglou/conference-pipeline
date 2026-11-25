@@ -1,0 +1,209 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "40a34bd05a221dbb227ab93c262edb624b0d81efb51684442249b2ce992eb0c2",
+  "normalized_output_digest": "64af053d677d3abf4fec6c0d51e683bd1a3b16b237fe2a9a4cb777fa0a6979f8",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/transcription-ocr/cvpr2026/inventory.json": "json:007859da11c205c856504ae96e47815edca8fbfe2a9f02b4ceccb6cd4f77a555"
+  },
+  "receipt": {
+    "actual_provider_cost_usd": 0.0,
+    "blockers": [],
+    "checks": {
+      "asr_eligible_input_count": 0,
+      "asr_queue_count": 0,
+      "caption_candidate_count": 1,
+      "caption_used_no_asr_count": 1,
+      "disk_capacity": {
+        "manifest_sha256": "<sha256:storage/storage_manifest.json>",
+        "output_reservation_bytes": 2,
+        "positive_available_bytes": true
+      },
+      "event_media_inventory_canonical_sha256": "23ad2f1713133d627d322aeecbcf13b9efcb66d1caa0e1b509d0c34fae17fdec",
+      "event_media_inventory_path": "storage/download-corpus/event-media/event_media_inventory.json",
+      "event_media_inventory_sha256": "<sha256:storage/download-corpus/event-media/event_media_inventory.json>",
+      "event_route_count": 5258,
+      "ocr_eligible_input_count": 0,
+      "ocr_queue_count": 0,
+      "provider_call_count": 0,
+      "provider_calls_made": 0,
+      "r4_registration_media_overlay_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "retry_control_digests": {
+        "archive": {
+          "path": "storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.pre-repair-blocked.json",
+          "sha256": "<sha256:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.pre-repair-blocked.json>"
+        },
+        "attempt": {
+          "path": "storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.retry-attempt.json",
+          "sha256": "<sha256:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.retry-attempt.json>"
+        },
+        "consumed_authorization": {
+          "path": "storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.retry-authorization.json",
+          "sha256": "<sha256:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.retry-authorization.json>"
+        }
+      },
+      "secrets_copied": false,
+      "stage_04_receipt_path": "storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json",
+      "stage_04_receipt_sha256": "<sha256:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json>",
+      "stage_04_run_id": "cvpr2026-live-production-r5-event-media",
+      "stage_05_receipt_path": "storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.json",
+      "transcription_ocr_cvpr2026_execution_status": "pass",
+      "transcription_ocr_inventory_canonical_sha256": "e3ecc08a6c62ba2cf0dd5815ab42052c48cc75f43f6a5e147f3d3cab953a605e",
+      "transcription_ocr_inventory_path": "storage/transcription-ocr/cvpr2026/inventory.json",
+      "transcription_ocr_inventory_sha256": "<sha256:storage/transcription-ocr/cvpr2026/inventory.json>",
+      "workshop_pdf_provenance_accepted_count": 0,
+      "workshop_pdf_provenance_blocker_count": 0,
+      "workshop_pdf_provenance_table_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "youtube_caption_unavailable_count": 0
+    },
+    "downloads_made": 0,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "transcription-ocr.cvpr2026"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "event_media_inventory": {
+          "declared_sha256": "<sha256:storage/download-corpus/event-media/event_media_inventory.json>",
+          "missing": false,
+          "optional": false,
+          "path": "storage/download-corpus/event-media/event_media_inventory.json",
+          "sha256": "<sha256:storage/download-corpus/event-media/event_media_inventory.json>",
+          "source": "stage"
+        },
+        "stage4_receipt": {
+          "declared_sha256": "<sha256:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json>",
+          "missing": false,
+          "optional": false,
+          "path": "storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json",
+          "sha256": "<sha256:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json>",
+          "source": "stage"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json": {
+          "digest": "<content_digest:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json>",
+          "digest_kind": "content_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json",
+          "stage_id": "download-corpus",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "name": "transcription_ocr_inventory",
+        "path": "storage/transcription-ocr/cvpr2026/inventory.json",
+        "sha256": "<sha256:storage/transcription-ocr/cvpr2026/inventory.json>",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.json>",
+    "owner_execution_evidence": {
+      "transcription_ocr.cvpr2026": {
+        "inventory_path": "storage/transcription-ocr/cvpr2026/inventory.json",
+        "local_only": true,
+        "owner_function": "run_cvpr_transcription_ocr_stage",
+        "processor_identity": "cvpr2026.caption_materializer",
+        "processor_version": "1",
+        "report_path": "storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.json"
+      }
+    },
+    "provider_calls_made": 0,
+    "receipt_type": "conference_pipeline.cvpr2026_transcription_ocr_stage_receipt",
+    "required_script_ids": [
+      "transcription_ocr.cvpr2026"
+    ],
+    "resume": {
+      "requested": false
+    },
+    "run_id": "cvpr2026-live-production-r5-event-media",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "transcription-ocr: receipt mode live",
+        "transcription-ocr: registry digest matched",
+        "transcription-ocr: required owner ids recorded",
+        "transcription-ocr: owner execution evidence present",
+        "transcription-ocr: lineage bound to storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json (content <content_digest:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json>)",
+        "transcription-ocr: receipt check stage_id",
+        "transcription-ocr: receipt check mode",
+        "transcription-ocr: receipt check run_id",
+        "transcription-ocr: receipt check stage_contract.stage_id",
+        "transcription-ocr: receipt check stage_contract.status",
+        "transcription-ocr: required receipt <WORKSPACE>/storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json",
+        "transcription-ocr: required output <WORKSPACE>/storage/transcription-ocr/cvpr2026/inventory.json",
+        "transcription-ocr: receipt check stage_id",
+        "transcription-ocr: receipt check status",
+        "transcription-ocr: receipt check run_id",
+        "transcription-ocr: receipt check checks.transcription_ocr_cvpr2026_execution_status",
+        "transcription-ocr: receipt check checks.stage_04_run_id",
+        "transcription-ocr: receipt check checks.stage_04_receipt_path",
+        "transcription-ocr: receipt check checks.stage_04_receipt_sha256",
+        "transcription-ocr: receipt check checks.event_media_inventory_path",
+        "transcription-ocr: receipt check checks.event_media_inventory_sha256",
+        "transcription-ocr: receipt check checks.event_media_inventory_canonical_sha256",
+        "transcription-ocr: receipt check checks.r4_registration_media_overlay_sha256",
+        "transcription-ocr: receipt check checks.stage_05_receipt_path",
+        "transcription-ocr: receipt check checks.retry_control_digests.archive.path",
+        "transcription-ocr: receipt check checks.retry_control_digests.archive.sha256",
+        "transcription-ocr: receipt check checks.retry_control_digests.consumed_authorization.path",
+        "transcription-ocr: receipt check checks.retry_control_digests.consumed_authorization.sha256",
+        "transcription-ocr: receipt check checks.retry_control_digests.attempt.path",
+        "transcription-ocr: receipt check checks.retry_control_digests.attempt.sha256",
+        "transcription-ocr: receipt check checks.transcription_ocr_inventory_path",
+        "transcription-ocr: receipt check checks.transcription_ocr_inventory_sha256",
+        "transcription-ocr: receipt check checks.transcription_ocr_inventory_canonical_sha256",
+        "transcription-ocr: receipt check checks.event_route_count",
+        "transcription-ocr: receipt check checks.caption_candidate_count",
+        "transcription-ocr: receipt check checks.asr_eligible_input_count",
+        "transcription-ocr: receipt check checks.ocr_eligible_input_count",
+        "transcription-ocr: receipt check checks.asr_queue_count",
+        "transcription-ocr: receipt check checks.ocr_queue_count",
+        "transcription-ocr: receipt check checks.provider_call_count",
+        "transcription-ocr: receipt check checks.workshop_pdf_provenance_table_sha256",
+        "transcription-ocr: receipt check checks.disk_capacity.positive_available_bytes",
+        "transcription-ocr: receipt check checks.disk_capacity.manifest_sha256",
+        "transcription-ocr: receipt check checks.disk_capacity.output_reservation_bytes",
+        "transcription-ocr: receipt check checks.secrets_copied",
+        "transcription-ocr: exact non-circular retry control digests",
+        "transcription-ocr: exact r5 class-separated caption accounting",
+        "transcription-ocr: positive r5 caption capacity and reservation binding",
+        "transcription-ocr: bounded class-correct workshop PDF provenance",
+        "transcription-ocr: zero ASR, OCR, media-recovery, and provider activity",
+        "transcription-ocr: workshop talk-aware coverage truthfully not claimed",
+        "transcription-ocr: 2 input artifact digests current"
+      ],
+      "blockers": [],
+      "registry_stage_id": "transcription-ocr.cvpr2026",
+      "required_script_ids": [
+        "transcription_ocr.cvpr2026"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "transcription-ocr",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "transcription-ocr",
+    "stage_order": 5,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

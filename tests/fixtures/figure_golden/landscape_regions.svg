@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Where evidence sensitivity matters</title>
+<desc id="fc-desc">Evidence sensitivity matters most where stakes are high and the domain is unfamiliar.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Where evidence sensitivity matters</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Evidence sensitivity matters most where stakes are high and the domain is unfamiliar.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">High stakes plus novelty needs evidence</tspan></text>
+<text x="1236" y="671.82" font-size="19" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">schematic - illustrates the claim, not measured data</text>
+<rect x="68.45" y="184" width="1.5" height="400.52" fill="#cccccc" />
+<polygon points="69.2,184 63.8,193 74.6,193" fill="#cccccc" />
+<rect x="69.2" y="583.77" width="1156.8" height="1.5" fill="#cccccc" />
+<polygon points="1226,584.52 1217,579.12 1217,589.92" fill="#cccccc" />
+<text x="44" y="150.9" font-size="21" fill="#cccccc" font-family="Helvetica, Arial, sans-serif">Stakes</text>
+<text x="652.6" y="624.42" font-size="21" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Domain familiarity</text>
+<ellipse cx="360.9" cy="256.1" rx="233.36" ry="73.89" fill="#a8d8ea" stroke="#a8d8ea" stroke-width="2.5" opacity="0.22" />
+<ellipse cx="710.94" cy="358.73" rx="210.02" ry="66.5" fill="#4ecdc4" stroke="#4ecdc4" stroke-width="2.5" opacity="0.22" />
+<ellipse cx="1025.98" cy="502.42" rx="186.69" ry="59.11" fill="#9775fa" stroke="#9775fa" stroke-width="2.5" opacity="0.22" />
+<text font-size="21" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="360.9" y="246.86">Clinical imaging</tspan></text>
+<text font-size="21" fill="#4ecdc4" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="710.94" y="349.49">GUI agents</tspan></text>
+<text font-size="21" fill="#9775fa" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="1025.98" y="493.18">Consumer photo editing</tspan></text>
+</svg>

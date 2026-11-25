@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Where per-frame editing flickers</title>
+<desc id="fc-desc">Independent per-frame edits disagree between neighbouring frames.</desc>
+<defs><marker id="fc-arrow-emphasis" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#ffd43b" /></marker></defs>
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Where per-frame editing flickers</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Independent per-frame edits disagree between neighbouring frames.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Neighbouring frames disagree</tspan></text>
+<rect x="44" y="232.75" width="282.25" height="203.22" fill="#16213e" rx="6" stroke="#a8d8ea" stroke-width="2.5" />
+<polygon points="79.43,393.63 142.85,319.54 190.41,393.63" fill="#a8d8ea" opacity="0.8" />
+<polygon points="169.27,393.63 232.69,297.32 296.11,393.63" fill="#a8d8ea" opacity="0.6" />
+<circle cx="259.12" cy="289.91" r="16.67" fill="#ffd43b" opacity="0.8" />
+<rect x="49" y="242.75" width="5" height="6" fill="#cccccc" />
+<rect x="316.25" y="242.75" width="5" height="6" fill="#cccccc" />
+<rect x="49" y="254.75" width="5" height="6" fill="#cccccc" />
+<rect x="316.25" y="254.75" width="5" height="6" fill="#cccccc" />
+<rect x="49" y="266.75" width="5" height="6" fill="#cccccc" />
+<rect x="316.25" y="266.75" width="5" height="6" fill="#cccccc" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="185.12" y="461.57">frame 1</tspan></text>
+<rect x="347.25" y="232.75" width="282.25" height="203.22" fill="#16213e" rx="6" stroke="#ffd43b" stroke-width="2.5" />
+<polygon points="361.54,386.22 424.95,297.32 472.52,386.22" fill="#ffd43b" opacity="0.8" />
+<polygon points="451.38,386.22 514.8,323.25 578.22,386.22" fill="#ffd43b" opacity="0.6" />
+<circle cx="578.22" cy="278.79" r="16.67" fill="#ffd43b" opacity="0.8" />
+<rect x="352.25" y="242.75" width="5" height="6" fill="#cccccc" />
+<rect x="619.5" y="242.75" width="5" height="6" fill="#cccccc" />
+<rect x="352.25" y="254.75" width="5" height="6" fill="#cccccc" />
+<rect x="619.5" y="254.75" width="5" height="6" fill="#cccccc" />
+<rect x="352.25" y="266.75" width="5" height="6" fill="#cccccc" />
+<rect x="619.5" y="266.75" width="5" height="6" fill="#cccccc" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="488.38" y="461.57">frame 2</tspan></text>
+<rect x="650.5" y="232.75" width="282.25" height="203.22" fill="#16213e" rx="6" stroke="#ffd43b" stroke-width="2.5" />
+<polygon points="707.07,397.33 770.49,308.43 818.05,397.33" fill="#ffd43b" opacity="0.8" />
+<polygon points="791.62,397.33 855.04,286.2 918.46,397.33" fill="#ffd43b" opacity="0.6" />
+<circle cx="717.63" cy="282.5" r="16.67" fill="#ffd43b" opacity="0.8" />
+<rect x="655.5" y="242.75" width="5" height="6" fill="#cccccc" />
+<rect x="922.75" y="242.75" width="5" height="6" fill="#cccccc" />
+<rect x="655.5" y="254.75" width="5" height="6" fill="#cccccc" />
+<rect x="922.75" y="254.75" width="5" height="6" fill="#cccccc" />
+<rect x="655.5" y="266.75" width="5" height="6" fill="#cccccc" />
+<rect x="922.75" y="266.75" width="5" height="6" fill="#cccccc" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="791.62" y="461.57">frame 3</tspan></text>
+<rect x="953.75" y="232.75" width="282.25" height="203.22" fill="#16213e" rx="6" stroke="#a8d8ea" stroke-width="2.5" />
+<polygon points="978.61,378.81 1042.03,330.66 1089.59,378.81" fill="#a8d8ea" opacity="0.8" />
+<polygon points="1073.74,378.81 1137.15,308.43 1200.58,378.81" fill="#a8d8ea" opacity="0.6" />
+<circle cx="1147.72" cy="301.02" r="16.67" fill="#ffd43b" opacity="0.8" />
+<rect x="958.75" y="242.75" width="5" height="6" fill="#cccccc" />
+<rect x="1226" y="242.75" width="5" height="6" fill="#cccccc" />
+<rect x="958.75" y="254.75" width="5" height="6" fill="#cccccc" />
+<rect x="1226" y="254.75" width="5" height="6" fill="#cccccc" />
+<rect x="958.75" y="266.75" width="5" height="6" fill="#cccccc" />
+<rect x="1226" y="266.75" width="5" height="6" fill="#cccccc" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="1094.88" y="461.57">frame 4</tspan></text>
+<rect x="44" y="513.22" width="1182" height="1.5" fill="#cccccc" />
+<polygon points="1226,513.97 1217,508.57 1217,519.37" fill="#cccccc" />
+<text x="44" y="535.82" font-size="19" fill="#cccccc" font-family="Helvetica, Arial, sans-serif">frame order</text>
+<polyline points="488.38,226.75 488.38,214.75 791.62,214.75 791.62,226.75" fill="none" stroke="#ffd43b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7 5" marker-end="url(#fc-arrow-emphasis)" />
+<text font-size="19" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="640" y="200.39">identity shifts</tspan></text>
+</svg>

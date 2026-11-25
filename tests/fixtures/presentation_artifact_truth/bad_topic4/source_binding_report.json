@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slides": [
+    {
+      "slide_id": "sl_01_title",
+      "unresolved_sources": [
+        {
+          "label": "SRC-001",
+          "status": "title_mismatch"
+        }
+      ],
+      "visible_references": [
+        {
+          "label": "SRC-001",
+          "relevance_rationale": "Fallback source binding generated from structured deck contract.",
+          "source_type": "report",
+          "title": "Structured presentation source",
+          "url": "https://openreview.net/"
+        }
+      ]
+    }
+  ]
+}

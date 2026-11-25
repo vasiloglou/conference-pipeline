@@ -1,0 +1,190 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "82e67b67e0ab10b7bb2db32f82350bfa4845b60d75f23171f81e6c6120a36519",
+  "normalized_output_digest": "c9fad18ca3e9e0d0663e078c384cbffc1d3b9b507425266f89cd5afe4d371e29",
+  "output_digest_consistent": true,
+  "output_files": {},
+  "receipt": {
+    "blockers": [
+      {
+        "affected_stage": "corpus-freeze",
+        "code": "download_corpus_ledger_missing",
+        "path": "<WORKSPACE>/storage/download-corpus/download_corpus.json"
+      },
+      {
+        "affected_stage": "corpus-freeze",
+        "code": "download_corpus_stage_not_succeeded",
+        "path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/stage-04-download-corpus.json"
+      },
+      {
+        "affected_stage": "corpus-inventory-index",
+        "code": "source_discovery_inventory_stale",
+        "expected_inventory_sha256": null,
+        "observed_inventory_sha256": "d0efd5948f5ea6dae902be6848b22370d5c1a94cdbaf8bcb0f91f82b14f9bf1c"
+      }
+    ],
+    "checks": {
+      "blockers": [
+        {
+          "affected_stage": "corpus-freeze",
+          "code": "download_corpus_ledger_missing",
+          "path": "<WORKSPACE>/storage/download-corpus/download_corpus.json"
+        },
+        {
+          "affected_stage": "corpus-freeze",
+          "code": "download_corpus_stage_not_succeeded",
+          "path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/stage-04-download-corpus.json"
+        },
+        {
+          "affected_stage": "corpus-inventory-index",
+          "code": "source_discovery_inventory_stale",
+          "expected_inventory_sha256": null,
+          "observed_inventory_sha256": "d0efd5948f5ea6dae902be6848b22370d5c1a94cdbaf8bcb0f91f82b14f9bf1c"
+        }
+      ],
+      "corpus_freeze_ledger_path": "storage/corpus-freeze/corpus_freeze.json",
+      "corpus_freeze_ledger_status": "succeeded",
+      "download_corpus_ledger_path": "storage/download-corpus/download_corpus.json",
+      "download_corpus_ledger_sha256": null,
+      "download_corpus_stage_receipt_path": "stage-04-download-corpus.json",
+      "download_corpus_stage_receipt_resolved_run_id": null,
+      "download_corpus_stage_status": null,
+      "event_media_inventory_path": "storage/download-corpus/event-media/event_media_inventory.json",
+      "event_media_inventory_sha256": "<sha256:storage/download-corpus/event-media/event_media_inventory.json>",
+      "source_discovery_inventory_path": "storage/source-discovery/source_discovery_inventory.json",
+      "source_discovery_inventory_sha256": null,
+      "source_discovery_inventory_status": "source_discovery_inventory_stale",
+      "transcription_ocr_stage_receipt_resolved_filename": "stage-05-transcription-ocr.json",
+      "transcription_ocr_stage_receipt_resolved_run_id": "w1-cvpr-fixture-run",
+      "transcription_ocr_stage_status": "succeeded",
+      "workshop_download_receipt_path": "storage/workshops/download_receipt.json",
+      "workshop_download_receipt_status": "succeeded",
+      "workshop_paper_sources": []
+    },
+    "corpus_inventory": {
+      "artifact_counts": null,
+      "path": "storage/corpus/corpus_inventory.json"
+    },
+    "downloads_made": 0,
+    "index_digest": {
+      "path": null,
+      "sha256": null
+    },
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "corpus-inventory-index"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "corpus_freeze_ledger": {
+          "missing": false,
+          "optional": false,
+          "path": "storage/corpus-freeze/corpus_freeze.json",
+          "sha256": "<sha256:storage/corpus-freeze/corpus_freeze.json>",
+          "source": "stage"
+        },
+        "download_corpus_ledger": {
+          "missing": true,
+          "optional": false,
+          "path": "storage/download-corpus/download_corpus.json",
+          "sha256": null,
+          "source": "stage"
+        },
+        "event_media_inventory": {
+          "declared_sha256": "<sha256:storage/download-corpus/event-media/event_media_inventory.json>",
+          "missing": false,
+          "optional": false,
+          "path": "storage/download-corpus/event-media/event_media_inventory.json",
+          "sha256": "<sha256:storage/download-corpus/event-media/event_media_inventory.json>",
+          "source": "stage"
+        },
+        "event_page_assets": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/download-corpus/slideslive_media_recovery.json",
+          "sha256": null,
+          "source": "registry"
+        },
+        "source_discovery_inventory": {
+          "missing": false,
+          "optional": false,
+          "path": "storage/source-discovery/source_discovery_inventory.json",
+          "sha256": "<sha256:storage/source-discovery/source_discovery_inventory.json>",
+          "source": "stage"
+        },
+        "submission_system_papers": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/download-corpus/openreview_accepted_papers.json",
+          "sha256": null,
+          "source": "registry"
+        },
+        "talk_maps_base": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/transcription-ocr/talk-maps/base",
+          "sha256": null,
+          "source": "registry"
+        },
+        "transcript_exclusions": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/transcription-ocr/evidence-lanes/transcript_exclusions.json",
+          "sha256": null,
+          "source": "registry"
+        },
+        "workshop_download_receipt": {
+          "missing": false,
+          "optional": false,
+          "path": "storage/workshops/download_receipt.json",
+          "sha256": "<sha256:storage/workshops/download_receipt.json>",
+          "source": "stage"
+        },
+        "workshop_talk_annotation_bindings": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/transcription-ocr/workshop-talks/annotation_bindings.json",
+          "sha256": null,
+          "source": "registry"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "output_artifacts": [],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json>",
+    "owner_execution_evidence": {
+      "acquisition.corpus_inventory_index.cvpr2026": {
+        "corpus_inventory_path": "storage/corpus/corpus_inventory.json",
+        "downloads_made": 0,
+        "owner_function": "run_corpus_inventory_index_stage",
+        "provider_calls_made": 0
+      }
+    },
+    "provider_calls_made": 0,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "acquisition.corpus_inventory_index.cvpr2026"
+    ],
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": null,
+    "stage_id": "corpus-inventory-index",
+    "stage_order": 6,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "proceedings": [{"id": "w-p-001", "title": "Video Diffusion at Scale", "authors": ["C. Author"], "pdf_url": "https://proceedings.example.test/w-p-001.pdf"}],
+  "workshops": [{"id": "w-w-001", "workshop": "Embodied Vision", "title": "Robot Scene Graphs", "authors": ["D. Author"], "pdf_url": "https://proceedings.example.test/w-w-001.pdf"}]
+}

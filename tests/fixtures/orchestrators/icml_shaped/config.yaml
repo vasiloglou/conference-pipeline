@@ -1,0 +1,14 @@
+# Synthetic ICML-shaped workspace (no real conference data).
+conference:
+  slug: "quokka2031"
+  name: "Quokka Conference"
+  year: 2031
+  status: "fixture"
+urls:
+  openreview_conference: "https://openreview.example.test/group?id=Quokka/2031/Conference"
+  openreview_workshops: "https://openreview.example.test/group?id=Quokka/2031/Workshop"
+auth:
+  required: true
+  public_first_authenticated_retry: true
+  cookie_env: "QUOKKA_COOKIES_FILE"
+  openreview_env_names: ["OPENREVIEW_USERNAME", "OPENREVIEW_PASSWORD"]

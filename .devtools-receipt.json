@@ -1,0 +1,162 @@
+{
+  "files": {
+    ".claude/skills/components/SKILL.md": {
+      "mode": "0o644",
+      "origin": "skills/components/SKILL.md",
+      "sha256": "a973c10a32f2a83ff88096a1d2bdd5882db39bf17a034d58784ba044fe25dbcc"
+    },
+    ".claude/skills/components/references/build.md": {
+      "mode": "0o644",
+      "origin": "skills/components/references/build.md",
+      "sha256": "7709021f8ce3c350a9451885656055b2ac457117b902625fcaebb4d0f8682c61"
+    },
+    ".claude/skills/components/references/reader-brief.md": {
+      "mode": "0o644",
+      "origin": "skills/components/references/reader-brief.md",
+      "sha256": "178981bfbcb93d394e17f5efb8e628f38180113bc9c947ff68cb06a3cf90adea"
+    },
+    ".claude/skills/components/references/review.md": {
+      "mode": "0o644",
+      "origin": "skills/components/references/review.md",
+      "sha256": "7fdc105d616b8c4c51cfd0ac38615efaf61eb7155eeca3db3ca1cf525226e12d"
+    },
+    ".claude/skills/components/references/rules.md": {
+      "mode": "0o644",
+      "origin": "skills/components/references/rules.md",
+      "sha256": "ef9f5fbc1a5334f27ac06c9c65cb151b70e2cf9c2b9c9e404c691777deaade3d"
+    },
+    ".claude/skills/components/scripts/rules_check.py": {
+      "mode": "0o755",
+      "origin": "skills/components/scripts/rules_check.py",
+      "sha256": "406421faffc39d0bc2461011c19e21e8d9fd366002aa679490bd60203d2f1203"
+    },
+    ".claude/skills/handle-issue/SKILL.md": {
+      "mode": "0o644",
+      "origin": "skills/handle-issue/SKILL.md",
+      "sha256": "36c9ec002dd64a3f094bc6a9f18b97f30a7ef0d432aac42817c0f293f8cdce70"
+    },
+    ".claude/skills/handle-issue/agents/openai.yaml": {
+      "mode": "0o644",
+      "origin": "skills/handle-issue/agents/openai.yaml",
+      "sha256": "a22950ac0ff89a82ba8069578ad06669697874f4352fb50fb6df8fe5832c0106"
+    },
+    ".claude/skills/process-milestone/SKILL.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-milestone/SKILL.md",
+      "sha256": "7012327762620a35ae46bae2c206d685756a30c98de33c20b598b56ca9e68ad5"
+    },
+    ".claude/skills/process-milestone/agents/openai.yaml": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-milestone/agents/openai.yaml",
+      "sha256": "a80adc0291dee82fa5bdf1389a1db6cf7dd4e98c16f0e5b72f2327c1e043744d"
+    },
+    ".claude/skills/process-phase/SKILL.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/SKILL.md",
+      "sha256": "42fe30d8e5c1976ceb7b5c8edada380cdd8a3987427de75a6575eebe727173d2"
+    },
+    ".claude/skills/process-phase/references/agent-delegation.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/references/agent-delegation.md",
+      "sha256": "999c72a5c68689eff0ad2ef371c3e1b337a08f06c3b752ebb30b4b577e5fbf0d"
+    },
+    ".claude/skills/process-phase/references/architect-overrides.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/references/architect-overrides.md",
+      "sha256": "a8ace3b912e23e268162a85930af1e201bdb24813fecdb4eedcf1aa74c8d3bf0"
+    },
+    ".claude/skills/process-phase/references/milestone-record-format.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/references/milestone-record-format.md",
+      "sha256": "cc160ad17923b876f9748e6197d5ff75da2741f06f6a4b9be29791b6927b721d"
+    },
+    ".claude/skills/process-phase/references/review-and-record.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/references/review-and-record.md",
+      "sha256": "e88babdc4ec74686c43204f5af27075ae277a62c7b97bb60c116635003c4c795"
+    },
+    ".claude/skills/process-phase/references/review-convergence.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/references/review-convergence.md",
+      "sha256": "6a7bbf58729302332db99aba16fc4cb20ac5777ca08410fc993e482a01db387e"
+    },
+    ".claude/skills/process-phase/references/review-tool.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/references/review-tool.md",
+      "sha256": "1c422ec0119ee8fa744d90d5022853465b8dad464ef8a23ab6f104a280ba744e"
+    },
+    ".claude/skills/process-phase/references/spec-note-contract.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/references/spec-note-contract.md",
+      "sha256": "6ad61bfc1120656bd980769580f3615519488244d6af15b45fa39bdef02bb989"
+    },
+    ".claude/skills/process-phase/references/standing-rules.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/references/standing-rules.md",
+      "sha256": "1cd5438b2764641dc3dfb56c190ce96ea24a1f2ab0868f0f441926148241d8fd"
+    },
+    ".claude/skills/process-phase/references/verification-selection.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/process-phase/references/verification-selection.md",
+      "sha256": "0f8547f879aa0b21577037e70c57ea1debcd5e353ef3e33a35c2601b307ff5f1"
+    },
+    ".claude/skills/process-phase/scripts/review_tool.py": {
+      "mode": "0o755",
+      "origin": "skills/milestone/process-phase/scripts/review_tool.py",
+      "sha256": "c95e475d6f4cdaccb10a1a6c7c0681f2079c09c8ed66f90eb23c1486d8ed8422"
+    },
+    ".claude/skills/process-phase/scripts/review_tool.settings.json": {
+      "mode": "0o644",
+      "origin": "settings",
+      "sha256": "78f90ed14bcd82f0b947a16ff4d0e83096d3171ce9a1889b926a962459e87f7d"
+    },
+    ".claude/skills/review-pr/SKILL.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/review-pr/SKILL.md",
+      "sha256": "dc1223579734912e3fa8e2acbcd354452be7d086af65564fd777fe098540029b"
+    },
+    ".claude/skills/review-pr/agents/openai.yaml": {
+      "mode": "0o644",
+      "origin": "skills/milestone/review-pr/agents/openai.yaml",
+      "sha256": "247a7ede120d5c303ab30158dead7ec8387495b032eeb946c05f30f2f3405880"
+    },
+    ".claude/skills/start-milestone/SKILL.md": {
+      "mode": "0o644",
+      "origin": "skills/milestone/start-milestone/SKILL.md",
+      "sha256": "425077dd25e064767ceef00e4db5a22ada8a00e082cb7532f8df25d56e518718"
+    },
+    ".claude/skills/start-milestone/agents/openai.yaml": {
+      "mode": "0o644",
+      "origin": "skills/milestone/start-milestone/agents/openai.yaml",
+      "sha256": "7f96fa3d1e4c5c590b9d7f14331ad7d71dc7dbf160ce5ff85ab0136bfdc0e3b1"
+    },
+    "scripts/components_index.py": {
+      "mode": "0o644",
+      "origin": "skills/components/scripts/components_index.py",
+      "sha256": "5db4c390c7f9b2bf83ffa51c3dcd2c405676d7a03fdee944bcc34e3c4a8e9c36"
+    },
+    "scripts/components_index.settings.json": {
+      "mode": "0o644",
+      "origin": "settings",
+      "sha256": "84023cfab12dbe073bc52c44c4e21169243d72b73ce7833c4d93b71609ead36e"
+    }
+  },
+  "shipped": [
+    "agents",
+    "skills/components",
+    "skills/dev-handoff",
+    "skills/dev-takeover",
+    "skills/handle-issue",
+    "skills/milestone/process-milestone",
+    "skills/milestone/process-phase",
+    "skills/milestone/review-pr",
+    "skills/milestone/start-milestone",
+    "skills/phase/phase-tests",
+    "skills/phase/process-phase",
+    "skills/phase/pytest/phase_selection.py"
+  ],
+  "source": {
+    "commit": "31249da46556d06e611f8590d1d0cd05f6f29660",
+    "dirty": false
+  }
+}

@@ -1,0 +1,600 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "eb0c76a4411aa4bec057ef4fe780f27c57d7057f63a396d74ceba7f72ea27fb7",
+  "normalized_output_digest": "868a03f760843dddb93b709bd77584c9244c0e755d03e43cd6c89847c3b21779",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/corpus/corpus_inventory.json": "json:c04147c2e5895752c25e1d823771967ed172770027386d7148ce0a0100970231",
+    "storage/vector-store/w1-icml-fixture-run": {
+      "index_digest.json": "json:2815da404fccde666ee3199810b6641f6aa52ac1845b8bcca26ffe618b75c5ca",
+      "stores/artifacts/chunk_manifest.json": "json:a67cb76e8b8a367b0feb4347cf1ad1d4b4f437d6106325d42283f335076cccc8",
+      "stores/artifacts/chunks.jsonl": "json:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "stores/artifacts/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json": "json:435a1eb1b8daf35ea67bdd3325d7cfbd916019427943d44b7dba75fcff5ab08b",
+      "stores/artifacts/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/progress.json": "json:b290afc50490ada5c4f616ddf8d3aafc4bb8c351a99d009a6e1f3d989cac9408",
+      "stores/artifacts/keyword-index/chunk_ids.txt": "text:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stores/artifacts/keyword-index/doc_len.npy": "bytes:040ce28f7590a34af85fbdb8115c90c9a0529a73b047533889c859c2f2c6e627",
+      "stores/artifacts/keyword-index/postings_doc.npy": "bytes:040ce28f7590a34af85fbdb8115c90c9a0529a73b047533889c859c2f2c6e627",
+      "stores/artifacts/keyword-index/postings_tf.npy": "bytes:0698e782887bb0dfadc446c2ecae6a9e9055d5c0f59c7e327f5a826675bb86cc",
+      "stores/artifacts/keyword-index/term_offsets.npy": "bytes:f6df0000bed676f0a4b777e2a1d915b6608dab452e11737f82c685cebf0e8ba7",
+      "stores/artifacts/keyword-index/vocab.txt": "text:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stores/artifacts/keyword_index.json": "json:e8d751ab3c72488d126cf4d91f01bc274669718e4d78a38a3c94ffaff3de1f60",
+      "stores/artifacts/metadata.json": "json:4d936dc02f8317fe12fb4b9d7685beb29a04bc30a7cbe903eb7bbd8c231975a8",
+      "stores/artifacts/v15_index_digest.json": "json:411e08b7f6dc389cbd2bf89b007489f496695865d5fe041b74db2bc9de0a2ccf",
+      "stores/papers/chunk_manifest.json": "json:657fb9807f2ee9156ce2901a5142c38d541a44fb52949477b75e85ce72761d8a",
+      "stores/papers/chunks.jsonl": "json:45672bae6c67586f619753a66c805147d7ed858eb01270d0391fe42fc0f4c15e",
+      "stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json": "json:b90f3859401f8963e868edbe4d153a15012eb4639d5e1dd331dd1b2b6acc884f",
+      "stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/papers-bucket-0000.npz": "bytes:e5dbd010e961bfa14a50ac97c00d5a5be2f03ab28615a81ddc177b0898e7df76",
+      "stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/papers-bucket-0010.npz": "bytes:b67bd629589131fb4160dfc91e5ec083d63de1da2b9eae82a8271ab6909528b9",
+      "stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/papers-bucket-0034.npz": "bytes:0bf7363b04c16cec0fc23375016d7253632f742416c3811671570aa1d4203638",
+      "stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/papers-bucket-0046.npz": "bytes:c85c1018583f37917ba24e01066f51caa30b2d6adae5a13eeec83e04138d8865",
+      "stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/papers-bucket-0056.npz": "bytes:bac9512b99c3bd98f0491cf11bd5532f7377a60382e811f08b76228a76700bbc",
+      "stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/papers-bucket-0239.npz": "bytes:85f6ff352cd3def00d71bdce1d169208d28d288ee18df469887855f96df0b27f",
+      "stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/progress.json": "json:25a09dbf3ed38ff73196d8c521442e08761c071524262e9639df2f9325e1c1a0",
+      "stores/papers/keyword-index/chunk_ids.txt": "text:576278973db913c2297226e12330cb263089edab691fb9c093255b81eba27022",
+      "stores/papers/keyword-index/doc_len.npy": "bytes:d57c0d63f4626f7cc9600ffe80d70fe617ce6c700d3bb53585a1d85ef0337eb9",
+      "stores/papers/keyword-index/postings_doc.npy": "bytes:5d1fea45f43d202ceed3231de2ef800aaf3b64efa29af9fb88220e9ecb1db63c",
+      "stores/papers/keyword-index/postings_tf.npy": "bytes:ced1e10bdbbef0d216fba76f45046783824bf9638429f60889c8237c12f4194a",
+      "stores/papers/keyword-index/term_offsets.npy": "bytes:124061ac6996551b83186d10d99ba85c81dd2fc6e8ddfecb1d09e54a7c06ed52",
+      "stores/papers/keyword-index/vocab.txt": "text:497b0ca8ab27d49bd2ac2d5b1dc92f1b7a91b7912747ec08b5b1eea9c66104a8",
+      "stores/papers/keyword_index.json": "json:babc063f0a4260c53ae1cac974ac4b8018822fa4f989fdab21b536da566f2943",
+      "stores/papers/metadata.json": "json:73d2f689fd8713dfe3e64001292ae38559b6ff76e1fd74ed28c744ce1f625abb",
+      "stores/papers/v15_index_digest.json": "json:f489ecbebc6f57fb5332a9713a8c5869c183e4d89a853d8a418954f073db0756"
+    },
+    "storage/vector-store/w1-icml-fixture-run/index_digest.json": "json:2815da404fccde666ee3199810b6641f6aa52ac1845b8bcca26ffe618b75c5ca"
+  },
+  "receipt": {
+    "blocker_receipt_path": null,
+    "checks": {
+      "artifact_counts": {
+        "audit_only": 7,
+        "by_retention_class": {
+          "derived_text": 7,
+          "derived_transcript": 6
+        },
+        "by_source_family": {
+          "paper_text": 6,
+          "speech_transcript": 6,
+          "workshop_paper_text": 1
+        },
+        "indexable_text": 6,
+        "paper_curation": {
+          "candidates": 7,
+          "duplicate_groups": 1,
+          "excluded": [
+            {
+              "artifact_id": "workshop_paper_text:6190736b16cc6999ebdd4195",
+              "kept_artifact_id": "paper_text:f1b877dd32c77ff501d3b64f",
+              "policy": "paper_corpus_curation.v2",
+              "reason": "duplicate_pdf",
+              "source_family_id": "workshop_paper_text",
+              "title": "Tool-Using Agents Section 1 Paragraph 1.1 studies tool-using agents with controlled evidence, ablations over setting 1, and a reproducible evaluation protocol. Paragraph 1.2 studies tool-using agents with controlled evidence, ablations over setting 2, and a reproducible evaluation protocol. Paragraph 1.3 studies tool-using agents with controlled evidence, ablations over setting 3, and a reproducible evaluation protocol. Paragraph 1.4 studies tool-using agents with controlled evidence, ablations over setting 4, and a reproducible evaluation protocol. Paragraph 1.5 studies tool-using agents with controlled evidence, ablations over setting 5, and a reproducible evaluation protocol. Paragraph 1.6 studies tool-using agents with controlled evidence, ablations over setting 6, and a reproducible evaluation protocol. Paragraph 1.7 studies tool-using agents with controlled evidence, ablations over setting 7, and a reproducible evaluation protocol. Paragraph 1.8 studies tool-using agents with controlled evidence, ablations over setting 8, and a reproducible evaluation protocol. Paragraph 1.9 studies tool-using agents with controlled evidence, ablations over setting 9, and a reproducible evaluation protocol. Paragraph 1.10 studies tool-using agents with controlled evidence, ablations over setting 10, and a reproducible evaluation protocol. Paragraph 1.11 studies tool-using agents with controlled evidence, ablations over setting 11, and a reproducible evaluation protocol. Paragraph 1.12 studies tool-using agents with controlled evidence, ablations over setting 12, and a reproducible evaluation protocol. Tool-Using Agents"
+            }
+          ],
+          "excluded_counts": {
+            "duplicate_pdf": 1
+          },
+          "kept": 6,
+          "min_text_bytes": 5000,
+          "policy": "paper_corpus_curation.v2"
+        },
+        "record_titles": {
+          "input_paths": [
+            "<WORKSPACE>/storage/download-corpus/openreview_accepted_papers.json"
+          ],
+          "paper_text": {
+            "by_provenance": {
+              "submission_system_metadata": 6
+            },
+            "titled": 6,
+            "untitled": 0,
+            "untitled_sample": []
+          },
+          "speech_transcript": {
+            "by_provenance": {
+              "unresolved": 6
+            },
+            "titled": 0,
+            "untitled": 6,
+            "untitled_sample": [
+              "speech_transcript:62b1bc24c6bbf87f6758f85c",
+              "speech_transcript:0de2ed77a25392b5ce82d63f",
+              "speech_transcript:2fab2b0e0d2af1a51b1f25f2",
+              "speech_transcript:2b6545b055b47d9d0b07c4b2",
+              "speech_transcript:8d05bb2e1ca9d830aac9e203",
+              "speech_transcript:17d096e0a7b0efc07d416bae"
+            ]
+          },
+          "workshop_count": 0,
+          "workshop_names_resolved": 0,
+          "workshop_paper_text": {
+            "by_provenance": {
+              "pdf_header": 1
+            },
+            "titled": 1,
+            "untitled": 0,
+            "untitled_sample": []
+          }
+        },
+        "talk_maps": {
+          "attached_count": 0,
+          "talk_count": 0
+        },
+        "total": 13,
+        "transcript_exclusions": []
+      },
+      "blockers": [],
+      "chunk_counts": {
+        "artifacts": 0,
+        "papers": 23
+      },
+      "chunk_length_stats": {
+        "above_7500_embedding_tokens": 0,
+        "below_300_chars": 0,
+        "max_chars": 5081,
+        "mean_chars": 4209.348,
+        "min_chars": 700,
+        "snippet_only_rejected": true,
+        "speech_receipt_json_chunks_rejected": true,
+        "total_chunks": 23
+      },
+      "download_corpus_counts": {
+        "direct_download_artifact_count": 12,
+        "local_artifact_count": 21,
+        "media_artifact_count": 6,
+        "paper_artifact_count": 6,
+        "workshop_paper_pdf_count": 1
+      },
+      "download_corpus_inventory_path": "storage/download-corpus/download_corpus.json",
+      "download_corpus_inventory_present": true,
+      "download_corpus_inventory_sha256": "<sha256:storage/download-corpus/download_corpus.json>",
+      "download_corpus_inventory_status": "succeeded",
+      "download_corpus_stage_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json",
+      "download_corpus_stage_receipt_present": true,
+      "download_corpus_stage_receipt_sha256": "<sha256:storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json>",
+      "download_corpus_stage_status": "succeeded",
+      "embedded_chunk_counts": {
+        "artifacts": 0,
+        "papers": 23
+      },
+      "embedding_max_length": null,
+      "embedding_policy": {
+        "embedding_dim": 1536,
+        "embedding_max_length": null,
+        "model": "text-embedding-3-small",
+        "provider": "fake"
+      },
+      "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+      "embedding_readiness": {
+        "attempted": true,
+        "client_start_or_load_attempted": true,
+        "embedding_dim": 1536,
+        "embedding_max_length": null,
+        "embedding_policy": {
+          "embedding_dim": 1536,
+          "embedding_max_length": null,
+          "model": "text-embedding-3-small",
+          "provider": "fake"
+        },
+        "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+        "embedding_status": "chunk_sidecars_written_local_embedding_client_ready",
+        "live_provider_calls_made": false,
+        "materialization_batch_size": 8,
+        "model": "text-embedding-3-small",
+        "paid_provider_calls_made": false,
+        "probe_embedding_dim": 1536,
+        "probe_vector_count": 1,
+        "provider": "fake",
+        "provider_values_recorded": false,
+        "secret_values_recorded": false,
+        "secrets_copied": false,
+        "status": "available"
+      },
+      "embedding_status": "vector_embeddings_written_local_embedding_client_ready",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "index_digest": {
+        "path": "storage/vector-store/w1-icml-fixture-run/index_digest.json",
+        "sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/index_digest.json>",
+        "status": "succeeded"
+      },
+      "index_digest_path": "storage/vector-store/w1-icml-fixture-run/index_digest.json",
+      "index_digest_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/index_digest.json>",
+      "lane_counts": {
+        "paper_text_extraction": 6,
+        "session_speech_transcription": 6,
+        "workshop_paper_text_extraction": 1
+      },
+      "live_provider_calls_made": false,
+      "materialization_batch_size": 8,
+      "output_inventory": {
+        "path": "storage/corpus/corpus_inventory.json",
+        "sha256": "<sha256:storage/corpus/corpus_inventory.json>",
+        "status": "succeeded"
+      },
+      "provider_calls_made": false,
+      "provider_cost_posture": {
+        "api_cost_usd": 0.0,
+        "embedding_provider": "fake",
+        "embedding_readiness_status": "available",
+        "embedding_start_or_load_attempted": true,
+        "fallback_to_openai": false,
+        "live_provider_calls_made": false,
+        "paid_provider_calls_made": false,
+        "provider_calls_made": false,
+        "provider_values_recorded": false,
+        "secret_values_recorded": false,
+        "secrets_copied": false
+      },
+      "secrets_copied": false,
+      "sidecar_resume_reuse_reason": null,
+      "sidecar_resume_reused": false,
+      "store_paths": {
+        "artifacts": "storage/vector-store/w1-icml-fixture-run/stores/artifacts",
+        "papers": "storage/vector-store/w1-icml-fixture-run/stores/papers"
+      },
+      "token_budget_policy": {
+        "chunk_overlap_tokens": 100,
+        "chunk_tokens": 1000,
+        "hard_embedding_tokens": 2048,
+        "policy_digest": "fa166b59e300291ba7ca036e95a3652e9160afcfbb96e132ab5b686a7f9aac78",
+        "tokenizer_id": "tiktoken:text-embedding-3-small",
+        "tokenizer_version": "0.13.0"
+      },
+      "token_budget_policy_digest": "fa166b59e300291ba7ca036e95a3652e9160afcfbb96e132ab5b686a7f9aac78",
+      "transcription_ocr_inventory_path": "storage/transcription-ocr/transcription_ocr_inventory.json",
+      "transcription_ocr_inventory_present": true,
+      "transcription_ocr_inventory_sha256": "<sha256:storage/transcription-ocr/transcription_ocr_inventory.json>",
+      "transcription_ocr_inventory_status": "succeeded",
+      "transcription_ocr_output_inventory_path": "storage/transcription-ocr/transcription_ocr_inventory.json",
+      "transcription_ocr_output_inventory_sha256": "<sha256:storage/transcription-ocr/transcription_ocr_inventory.json>",
+      "transcription_ocr_output_inventory_status": "succeeded",
+      "transcription_ocr_stage_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/stage-05-transcription-ocr.json",
+      "transcription_ocr_stage_receipt_present": true,
+      "transcription_ocr_stage_receipt_sha256": "<sha256:storage/workflow-runs/w1-icml-fixture-run/stage-05-transcription-ocr.json>",
+      "transcription_ocr_stage_status": "succeeded",
+      "vector_embeddings_written": true,
+      "vector_materialization": {
+        "aggregate_vector_store_digest": "6f2ad8f9e10c9afc31cd2ebbf7383d9bf98878800d3b2f30c4987d604e7a21bc",
+        "chunk_counts": {
+          "artifacts": 0,
+          "papers": 23
+        },
+        "embedded_chunk_counts": {
+          "artifacts": 0,
+          "papers": 23
+        },
+        "embedding_dim": 1536,
+        "embedding_max_length": null,
+        "embedding_model": "text-embedding-3-small",
+        "embedding_policy": {
+          "embedding_dim": 1536,
+          "embedding_max_length": null,
+          "model": "text-embedding-3-small",
+          "provider": "fake"
+        },
+        "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+        "embedding_provider": "fake",
+        "embedding_status": "vector_embeddings_written_local_embedding_client_ready",
+        "embedding_update": {
+          "artifacts": {
+            "buckets_embedded": 0,
+            "buckets_reused": 0,
+            "buckets_rewritten": 0,
+            "buckets_total": 0,
+            "chunks_copied_from_donors": 0,
+            "chunks_embedded_now": 0,
+            "chunks_reused_in_place": 0,
+            "donor_file_count": 0,
+            "donor_rows_by_file": {},
+            "full_rebuild": false,
+            "garbage_collected_files": [],
+            "planned_embed_count": 0
+          },
+          "papers": {
+            "buckets_embedded": 6,
+            "buckets_reused": 0,
+            "buckets_rewritten": 0,
+            "buckets_total": 6,
+            "chunks_copied_from_donors": 0,
+            "chunks_embedded_now": 23,
+            "chunks_reused_in_place": 0,
+            "donor_file_count": 0,
+            "donor_rows_by_file": {},
+            "full_rebuild": false,
+            "garbage_collected_files": [],
+            "planned_embed_count": 23
+          }
+        },
+        "live_provider_calls_made": false,
+        "materialization_batch_size": 8,
+        "provider_calls_made": false,
+        "secrets_copied": false,
+        "status": "succeeded",
+        "stores": {
+          "artifacts": {
+            "chroma_insert_batch_size": 4096,
+            "chroma_metadata_refresh_count": 0,
+            "chroma_path": "storage/vector-store/w1-icml-fixture-run/stores/artifacts/chroma",
+            "chunk_count": 0,
+            "chunk_manifest_path": "storage/vector-store/w1-icml-fixture-run/stores/artifacts/chunk_manifest.json",
+            "chunk_manifest_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/artifacts/chunk_manifest.json>",
+            "chunks_path": "storage/vector-store/w1-icml-fixture-run/stores/artifacts/chunks.jsonl",
+            "chunks_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/artifacts/chunks.jsonl>",
+            "collection_name": "icml2026_corpus_artifacts__fake_text-embedding-3-small_1536",
+            "embedded_chunk_count": 0,
+            "embedded_now_count": 0,
+            "embedding_dim": 1536,
+            "embedding_max_length": null,
+            "embedding_model": "text-embedding-3-small",
+            "embedding_policy": {
+              "embedding_dim": 1536,
+              "embedding_max_length": null,
+              "model": "text-embedding-3-small",
+              "provider": "fake"
+            },
+            "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+            "embedding_provider": "fake",
+            "embedding_resume_count": 0,
+            "embedding_sidecar_bucket_count": 256,
+            "embedding_sidecar_embedded_now_count": 0,
+            "embedding_sidecar_format": "npz-buckets-v2",
+            "embedding_sidecar_manifest_path": "storage/vector-store/w1-icml-fixture-run/stores/artifacts/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json",
+            "embedding_sidecar_manifest_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/artifacts/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json>",
+            "embedding_sidecar_path": "storage/vector-store/w1-icml-fixture-run/stores/artifacts/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+            "embedding_sidecar_resume_count": 0,
+            "embedding_sidecar_shard_count": 0,
+            "embedding_sidecar_shard_size": null,
+            "embedding_stale_deleted_count": 0,
+            "embedding_update": {
+              "buckets_embedded": 0,
+              "buckets_reused": 0,
+              "buckets_rewritten": 0,
+              "buckets_total": 0,
+              "chunks_copied_from_donors": 0,
+              "chunks_embedded_now": 0,
+              "chunks_reused_in_place": 0,
+              "donor_file_count": 0,
+              "donor_rows_by_file": {},
+              "full_rebuild": false,
+              "garbage_collected_files": [],
+              "planned_embed_count": 0
+            },
+            "embedding_upsert_count": 0,
+            "materialization_batch_size": 8,
+            "metadata_path": "storage/vector-store/w1-icml-fixture-run/stores/artifacts/metadata.json",
+            "metadata_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/artifacts/metadata.json>",
+            "path": "storage/vector-store/w1-icml-fixture-run/stores/artifacts",
+            "store": "artifacts",
+            "token_budget_policy_digest": "fa166b59e300291ba7ca036e95a3652e9160afcfbb96e132ab5b686a7f9aac78",
+            "v15_index_digest_path": "storage/vector-store/w1-icml-fixture-run/stores/artifacts/v15_index_digest.json",
+            "v15_index_digest_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/artifacts/v15_index_digest.json>",
+            "vector_embeddings_written": true,
+            "vector_store_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "papers": {
+            "chroma_insert_batch_size": 4096,
+            "chroma_metadata_refresh_count": 0,
+            "chroma_path": "storage/vector-store/w1-icml-fixture-run/stores/papers/chroma",
+            "chunk_count": 23,
+            "chunk_manifest_path": "storage/vector-store/w1-icml-fixture-run/stores/papers/chunk_manifest.json",
+            "chunk_manifest_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/papers/chunk_manifest.json>",
+            "chunks_path": "storage/vector-store/w1-icml-fixture-run/stores/papers/chunks.jsonl",
+            "chunks_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/papers/chunks.jsonl>",
+            "collection_name": "icml2026_corpus_papers__fake_text-embedding-3-small_1536",
+            "embedded_chunk_count": 23,
+            "embedded_now_count": 23,
+            "embedding_dim": 1536,
+            "embedding_max_length": null,
+            "embedding_model": "text-embedding-3-small",
+            "embedding_policy": {
+              "embedding_dim": 1536,
+              "embedding_max_length": null,
+              "model": "text-embedding-3-small",
+              "provider": "fake"
+            },
+            "embedding_policy_digest": "bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+            "embedding_provider": "fake",
+            "embedding_resume_count": 0,
+            "embedding_sidecar_bucket_count": 256,
+            "embedding_sidecar_embedded_now_count": 23,
+            "embedding_sidecar_format": "npz-buckets-v2",
+            "embedding_sidecar_manifest_path": "storage/vector-store/w1-icml-fixture-run/stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json",
+            "embedding_sidecar_manifest_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d/manifest.json>",
+            "embedding_sidecar_path": "storage/vector-store/w1-icml-fixture-run/stores/papers/embedding-sidecars/bbf0251c9ea5258cfeef24d9c814819708a33dddb696e4d8a3f22b9622ec441d",
+            "embedding_sidecar_resume_count": 0,
+            "embedding_sidecar_shard_count": 6,
+            "embedding_sidecar_shard_size": null,
+            "embedding_stale_deleted_count": 0,
+            "embedding_update": {
+              "buckets_embedded": 6,
+              "buckets_reused": 0,
+              "buckets_rewritten": 0,
+              "buckets_total": 6,
+              "chunks_copied_from_donors": 0,
+              "chunks_embedded_now": 23,
+              "chunks_reused_in_place": 0,
+              "donor_file_count": 0,
+              "donor_rows_by_file": {},
+              "full_rebuild": false,
+              "garbage_collected_files": [],
+              "planned_embed_count": 23
+            },
+            "embedding_upsert_count": 23,
+            "materialization_batch_size": 8,
+            "metadata_path": "storage/vector-store/w1-icml-fixture-run/stores/papers/metadata.json",
+            "metadata_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/papers/metadata.json>",
+            "path": "storage/vector-store/w1-icml-fixture-run/stores/papers",
+            "store": "papers",
+            "token_budget_policy_digest": "fa166b59e300291ba7ca036e95a3652e9160afcfbb96e132ab5b686a7f9aac78",
+            "v15_index_digest_path": "storage/vector-store/w1-icml-fixture-run/stores/papers/v15_index_digest.json",
+            "v15_index_digest_sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/stores/papers/v15_index_digest.json>",
+            "vector_embeddings_written": true,
+            "vector_store_digest": "6282a8239175b1dbba93b5fe008254a4e97da5a74cba00747126fb6b48378194"
+          }
+        },
+        "token_budget_policy_digest": "fa166b59e300291ba7ca036e95a3652e9160afcfbb96e132ab5b686a7f9aac78",
+        "usage": {
+          "estimated_cost_usd": 0.0,
+          "input_tokens": 12792,
+          "model": "text-embedding-3-small",
+          "provider": "fake",
+          "request_count": 3
+        },
+        "vector_embeddings_written": true
+      }
+    },
+    "error": null,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "corpus-inventory-index"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "download_corpus_inventory": {
+          "declared_sha256": "<sha256:storage/download-corpus/download_corpus.json>",
+          "missing": false,
+          "optional": false,
+          "path": "storage/download-corpus/download_corpus.json",
+          "sha256": "<sha256:storage/download-corpus/download_corpus.json>",
+          "source": "stage"
+        },
+        "event_page_assets": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/download-corpus/slideslive_media_recovery.json",
+          "sha256": null,
+          "source": "registry"
+        },
+        "submission_system_papers": {
+          "missing": false,
+          "optional": true,
+          "path": "storage/download-corpus/openreview_accepted_papers.json",
+          "sha256": "<sha256:storage/download-corpus/openreview_accepted_papers.json>",
+          "source": "registry"
+        },
+        "talk_maps_base": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/transcription-ocr/talk-maps/base",
+          "sha256": null,
+          "source": "registry"
+        },
+        "transcript_exclusions": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/transcription-ocr/evidence-lanes/transcript_exclusions.json",
+          "sha256": null,
+          "source": "registry"
+        },
+        "transcription_ocr_inventory": {
+          "declared_sha256": "<sha256:storage/transcription-ocr/transcription_ocr_inventory.json>",
+          "missing": false,
+          "optional": false,
+          "path": "storage/transcription-ocr/transcription_ocr_inventory.json",
+          "sha256": "<sha256:storage/transcription-ocr/transcription_ocr_inventory.json>",
+          "source": "stage"
+        },
+        "workshop_talk_annotation_bindings": {
+          "missing": true,
+          "optional": true,
+          "path": "storage/transcription-ocr/workshop-talks/annotation_bindings.json",
+          "sha256": null,
+          "source": "registry"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "next_action": "Continue to analysis only after Phase 6 verification and BK-06 backup pass.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [
+      {
+        "name": "corpus_inventory",
+        "path": "storage/corpus/corpus_inventory.json",
+        "sha256": "<sha256:storage/corpus/corpus_inventory.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "index_digest",
+        "path": "storage/vector-store/w1-icml-fixture-run/index_digest.json",
+        "sha256": "<sha256:storage/vector-store/w1-icml-fixture-run/index_digest.json>",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "indexing.token_bounded_chunking",
+      "indexing.local_embedding_materialization_policy"
+    ],
+    "resumable": true,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {
+      "accepted_evidence": [
+        "corpus-inventory-index: receipt mode live",
+        "corpus-inventory-index: registry digest matched",
+        "corpus-inventory-index: required owner ids recorded",
+        "corpus-inventory-index: required output <WORKSPACE>/storage/corpus/corpus_inventory.json",
+        "corpus-inventory-index: required output <WORKSPACE>/storage/vector-store/w1-icml-fixture-run/index_digest.json",
+        "corpus-inventory-index: receipt check checks.vector_embeddings_written",
+        "corpus-inventory-index: receipt check checks.embedded_chunk_counts",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.papers.embedding_sidecar_manifest_path",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.papers.embedding_sidecar_manifest_sha256",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.papers.chroma_insert_batch_size",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.artifacts.embedding_sidecar_manifest_path",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.artifacts.embedding_sidecar_manifest_sha256",
+        "corpus-inventory-index: receipt check checks.vector_materialization.stores.artifacts.chroma_insert_batch_size",
+        "corpus-inventory-index: 7 input artifact digests current"
+      ],
+      "blockers": [],
+      "registry_stage_id": "corpus-inventory-index",
+      "required_script_ids": [
+        "indexing.token_bounded_chunking",
+        "indexing.local_embedding_materialization_policy"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "corpus-inventory-index",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "corpus-inventory-index",
+    "stage_order": 6,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

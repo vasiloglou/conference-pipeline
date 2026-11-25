@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">What a vision-language model shares</title>
+<desc id="fc-desc">A vision-language model is where visual features and language modelling meet.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">What a vision-language model shares</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">A vision-language model is where visual features and language modelling meet.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Vision and language share one space</tspan></text>
+<circle cx="510.18" cy="414.36" r="216.36" fill="#a8d8ea" stroke="#a8d8ea" stroke-width="2.5" opacity="0.18" />
+<circle cx="769.82" cy="414.36" r="216.36" fill="#4ecdc4" stroke="#4ecdc4" stroke-width="2.5" opacity="0.18" />
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="510.18" y="175.2">Visual features</tspan></text>
+<text font-size="20" fill="#4ecdc4" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="769.82" y="175.2">Language modelling</tspan></text>
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="640" y="393.36">Shared</tspan><tspan x="640" y="417.76">embedding</tspan><tspan x="640" y="442.16">space</tspan></text>
+</svg>

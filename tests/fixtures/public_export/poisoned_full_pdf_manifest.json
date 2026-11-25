@@ -1,0 +1,18 @@
+{
+  "conference": "neurips2025",
+  "families": [
+    {
+      "id": "full_pdfs",
+      "license": "unknown",
+      "private_path": "papers/full-pdf",
+      "provenance": "paper-metadata",
+      "public_path": "exports/public-release/{bundle}/full-pdfs/",
+      "redistribution_status": "prohibited",
+      "storage_manifest_id": "full_pdfs"
+    }
+  ],
+  "release": {
+    "source_sha": "abcdef1234567890"
+  },
+  "schema_version": "1.0.0"
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">A licensed figure from the source</title>
+<desc id="fc-desc">The published figure shows the failure case directly.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">A licensed figure from the source</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">The published figure shows the failure case directly.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">The source figure shows the failure</tspan></text>
+<rect x="44" y="132" width="1192" height="460.32" fill="#16213e" rx="6" stroke="#a8d8ea" stroke-width="2.5" />
+<text x="640" y="362.16" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">assets/licensed/fig3_failure_case.png</text>
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="621.92">Figure 3 from the cited paper (CC BY 4.0)</tspan></text>
+</svg>

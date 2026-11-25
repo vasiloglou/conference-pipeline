@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Conference Storage Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "workspace",
+    "artifact_families"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "workspace": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inventory_exemptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "artifact_families": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/artifactFamily"
+      }
+    }
+  },
+  "definitions": {
+    "artifactFamily": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "purpose",
+        "producer",
+        "storage_class",
+        "share_policy",
+        "rebuildable",
+        "sync_profiles"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path_glob": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "producer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storage_class": {
+          "type": "string",
+          "enum": ["git", "public", "backup", "cache"]
+        },
+        "share_policy": {
+          "type": "string",
+          "enum": ["none", "curated", "private"]
+        },
+        "rebuildable": {
+          "type": "boolean"
+        },
+        "sync_profiles": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["public", "backup"],
+          "properties": {
+            "public": {
+              "type": "boolean"
+            },
+            "backup": {
+              "type": "boolean"
+            },
+            "public_export": {
+              "type": "boolean",
+              "description": "Whether this family participates in the public export profile (Phase 05+). Optional, defaults to false."
+            }
+          }
+        },
+        "public_export_notes": {
+          "type": "string",
+          "description": "Optional operator notes on export scope or redaction intent for this family."
+        },
+        "notes": {
+          "type": "string"
+        },
+        "tracked_samples": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "gitignore_exceptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "oneOf": [
+        { "required": ["path"] },
+        { "required": ["path_glob"] }
+      ]
+    }
+  }
+}

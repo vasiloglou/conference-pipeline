@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Per-ability profile</title>
+<desc id="fc-desc">The aggregate score hides an uneven ability profile.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Per-ability profile</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">The aggregate score hides an uneven ability profile.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">One score, five different abilities</tspan></text>
+<polygon points="640,313.59 704.45,360.42 679.83,436.19 600.17,436.19 575.55,360.42" fill="none" stroke="#333344" stroke-width="1.5" />
+<polygon points="640,245.82 768.9,339.48 719.67,491.01 560.33,491.01 511.1,339.48" fill="none" stroke="#333344" stroke-width="1.5" />
+<polygon points="640,176 835.31,317.9 760.71,547.5 519.29,547.5 444.69,317.9" fill="none" stroke="#333344" stroke-width="1.5" />
+<line x1="640" y1="381.36" x2="640" y2="176" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="640" y="157.2">Counting</tspan></text>
+<line x1="640" y1="381.36" x2="835.31" y2="317.9" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="835.31" y="299.1">Spatial relations</tspan></text>
+<line x1="640" y1="381.36" x2="760.71" y2="547.5" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="760.71" y="528.7">Text reading</tspan></text>
+<line x1="640" y1="381.36" x2="519.29" y2="547.5" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="519.29" y="528.7">Attributes</tspan></text>
+<line x1="640" y1="381.36" x2="444.69" y2="317.9" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="444.69" y="299.1">Comparison</tspan></text>
+<polygon points="640,199.34 731,351.79 760.71,547.5 541.24,517.29 517.93,341.7" fill="#a8d8ea" stroke="#a8d8ea" stroke-width="2.5" opacity="0.3" />
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="622.32">Evaluated model</tspan></text>
+</svg>

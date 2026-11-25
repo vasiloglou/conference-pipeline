@@ -1,0 +1,638 @@
+{
+  "version": 1,
+  "currency": "USD",
+  "refreshed_at": "2026-07-15",
+  "notes": [
+    "Prices are approval-grade static defaults, not invoice records.",
+    "OpenRouter routes can change at runtime; static OpenRouter entries are fallbacks for preflight estimates.",
+    "Gemini 3 preview entries use published Gemini Developer API preview pricing where available.",
+    "OpenAI GPT-5.2 is retained for existing workflow compatibility; the public pricing page no longer lists it, so the static entry uses the same planning rate as gpt-5.3-chat-latest.",
+    "TTS providers do not all publish per-minute prices. Entries with estimate_method include the assumptions used by the estimator.",
+    "gemini-2.5-flash-preview-05-20 is a dated preview snapshot of gemini-2.5-flash and is aliased to that entry's rate card; no distinct preview pricing has been published for the dated snapshot."
+  ],
+  "sources": {
+    "openai_pricing": "https://platform.openai.com/docs/pricing/",
+    "openai_vision_tokens": "https://platform.openai.com/docs/guides/images-vision",
+    "anthropic_pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "anthropic_vision_tokens": "https://platform.claude.com/docs/en/build-with-claude/vision",
+    "gemini_pricing": "https://ai.google.dev/gemini-api/docs/pricing",
+    "tavily_credits": "https://docs.tavily.com/guides/api-credits",
+    "openrouter_pricing": "https://openrouter.ai/pricing",
+    "modal_pricing": "https://modal.com/pricing"
+  },
+  "providers": {
+    "openai": {
+      "models": {
+        "whisper-1": {
+          "pricing_unit": "audio_minute",
+          "audio_minute_usd": 0.006,
+          "source": "openai_pricing"
+        },
+        "gpt-4o-transcribe": {
+          "pricing_unit": "audio_minute",
+          "audio_minute_usd": 0.006,
+          "source": "openai_pricing"
+        },
+        "gpt-4o-transcribe-diarize": {
+          "pricing_unit": "audio_minute",
+          "audio_minute_usd": 0.006,
+          "source": "openai_pricing",
+          "notes": "Same planning rate as gpt-4o-transcribe, with speaker diarization useful for talks and Q&A."
+        },
+        "gpt-4o-mini-transcribe": {
+          "pricing_unit": "audio_minute",
+          "audio_minute_usd": 0.003,
+          "source": "openai_pricing"
+        },
+        "gpt-4o": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 2.5,
+          "output_per_1m_usd": 10.0,
+          "source": "openai_pricing"
+        },
+        "gpt-4o-mini": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.15,
+          "output_per_1m_usd": 0.6,
+          "source": "openai_pricing"
+        },
+        "gpt-4.1": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 2.0,
+          "output_per_1m_usd": 8.0,
+          "source": "openai_pricing"
+        },
+        "gpt-4.1-mini": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.4,
+          "output_per_1m_usd": 1.6,
+          "source": "openai_pricing"
+        },
+        "gpt-4.1-nano": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.1,
+          "output_per_1m_usd": 0.4,
+          "source": "openai_pricing"
+        },
+        "gpt-5.2": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.75,
+          "output_per_1m_usd": 14.0,
+          "source": "openai_pricing",
+          "estimated_from_model": "gpt-5.3-chat-latest",
+          "notes": "Compatibility entry for existing scripts; refresh model choice before live use."
+        },
+        "gpt-5.4": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 2.5,
+          "output_per_1m_usd": 15.0,
+          "source": "openai_pricing"
+        },
+        "gpt-5.4-mini": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.75,
+          "output_per_1m_usd": 4.5,
+          "source": "openai_pricing"
+        },
+        "gpt-5.4-nano": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.2,
+          "output_per_1m_usd": 1.25,
+          "source": "openai_pricing"
+        },
+        "gpt-5.5": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 5.0,
+          "output_per_1m_usd": 30.0,
+          "source": "openai_pricing",
+          "notes": "Historical entry retained for cost reconciliation of pre-July-2026 receipts; forward-looking work uses gpt-5.6-sol."
+        },
+        "gpt-5.6-sol": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 4.0,
+          "output_per_1m_usd": 20.0,
+          "source": "openai_pricing",
+          "notes": "Refreshed 2026-09-24 from the OpenAI pricing page (was 5/30)."
+        },
+        "gpt-5.6-terra": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 2.0,
+          "output_per_1m_usd": 12.0,
+          "source": "openai_pricing",
+          "notes": "Refreshed 2026-09-24 from the OpenAI pricing page (was 2.5/15)."
+        },
+        "gpt-5.6-luna": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.2,
+          "output_per_1m_usd": 1.2,
+          "source": "openai_pricing",
+          "notes": "Refreshed 2026-09-24 from the OpenAI pricing page (was 1/6)."
+        },
+        "gpt-5.3-chat-latest": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.75,
+          "output_per_1m_usd": 14.0,
+          "source": "openai_pricing"
+        },
+        "gpt-5.1": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.25,
+          "output_per_1m_usd": 10.0,
+          "source": "openai_pricing"
+        },
+        "gpt-5": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.25,
+          "output_per_1m_usd": 10.0,
+          "source": "openai_pricing"
+        },
+        "gpt-5-mini": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.25,
+          "output_per_1m_usd": 2.0,
+          "source": "openai_pricing",
+          "notes": "Default small text-task replacement for gpt-5-nano after OCR benchmark quality concerns."
+        },
+        "gpt-5-nano": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.05,
+          "output_per_1m_usd": 0.4,
+          "source": "openai_pricing"
+        },
+        "text-embedding-3-small": {
+          "pricing_unit": "embedding_tokens",
+          "input_per_1m_usd": 0.02,
+          "output_per_1m_usd": 0.0,
+          "source": "openai_pricing"
+        },
+        "gpt-4o-mini-tts": {
+          "pricing_unit": "tts_minute_estimate",
+          "tts_minute_usd": 0.015,
+          "input_per_1m_usd": 0.6,
+          "audio_output_per_1m_usd": 12.0,
+          "estimate_method": "Per-minute approximation derived from OpenAI audio token pricing. Use provider receipts for final invoices.",
+          "source": "openai_pricing"
+        },
+        "gpt-6-sol": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 2.0,
+          "output_per_1m_usd": 10.0,
+          "source": "openai_pricing",
+          "notes": "Added 2026-09-24 by model-catalog-upgrade when alias `sol` moved from gpt-5.6-sol."
+        },
+        "gpt-6-luna": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.1,
+          "output_per_1m_usd": 0.5,
+          "source": "openai_pricing",
+          "notes": "Added 2026-09-24 by model-catalog-upgrade when alias `luna` moved from gpt-5.6-luna."
+        },
+        "gpt-6-astra": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 10.0,
+          "output_per_1m_usd": 50.0,
+          "source": "openai_pricing",
+          "notes": "Standard tier up to 272K input; developers.openai.com/api/docs/pricing read 2026-11-10 (catalog alias astra). Added 2026-11-18 for the v6.1 Phase 3 adjudicators."
+        }
+      }
+    },
+    "anthropic": {
+      "models": {
+        "claude-sonnet-4-20250514": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "source": "anthropic_pricing"
+        },
+        "claude-sonnet-4.6": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "source": "anthropic_pricing"
+        },
+        "claude-sonnet-4-6": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "source": "anthropic_pricing"
+        },
+        "claude-haiku-5-5": {
+        "pricing_unit": "tokens",
+        "input_per_1m_usd": 0.1,
+        "output_per_1m_usd": 0.5,
+        "source": "anthropic_pricing",
+        "notes": "Added 2026-11-21 for the v6.1 Phase 5 pilot: the rate models.yaml alias `haiku` records (operator, 2026-11-10), for prompts up to 100K tokens."
+      },
+      "claude-sonnet-5": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "source": "anthropic_pricing",
+          "notes": "Standard rate recorded; introductory pricing of $2/M input and $10/M output applies through 2026-08-31."
+        },
+        "claude-sonnet-4": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "source": "anthropic_pricing"
+        },
+        "claude-haiku-4-5-20251001": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.0,
+          "output_per_1m_usd": 5.0,
+          "source": "anthropic_pricing"
+        },
+        "claude-haiku-4.5": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.0,
+          "output_per_1m_usd": 5.0,
+          "source": "anthropic_pricing"
+        },
+        "claude-opus-4-7": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 5.0,
+          "output_per_1m_usd": 25.0,
+          "source": "anthropic_pricing"
+        },
+        "claude-opus-4-8": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 5.0,
+          "output_per_1m_usd": 25.0,
+          "source": "anthropic_pricing",
+          "notes": "Verified current as of 2026-07-15 (released 2026-05-28). Fast Mode: $10/$50 per 1M."
+        },
+        "claude-fable-5": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 10.0,
+          "output_per_1m_usd": 50.0,
+          "source": "anthropic_pricing",
+          "notes": "Premium adaptive-reasoning tier above Opus 4.8; not currently wired into any registry task default. Reference pricing only."
+        },
+        "claude-opus-4": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 15.0,
+          "output_per_1m_usd": 75.0,
+          "source": "anthropic_pricing"
+        },
+        "web_search_20250305": {
+          "pricing_unit": "credits",
+          "credit_usd": 0.01,
+          "source": "anthropic_pricing",
+          "notes": "Native Claude web search planning price. Standard token costs are estimated separately."
+        },
+        "claude-opus-5-5": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 4.0,
+          "output_per_1m_usd": 20.0,
+          "source": "anthropic_pricing",
+          "notes": "Added 2026-09-24 by model-catalog-upgrade when alias `opus` moved from claude-opus-4-8."
+        },
+        "claude-fable-5-2": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 8.0,
+          "output_per_1m_usd": 40.0,
+          "source": "anthropic_pricing",
+          "notes": "Catalog alias fable (operator-added 2026-11-10). Added 2026-11-18 for the v6.1 Phase 3 adjudicators."
+        }
+      }
+    },
+    "gemini": {
+      "models": {
+        "gemini-2.0-flash": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.1,
+          "output_per_1m_usd": 0.4,
+          "source": "gemini_pricing"
+        },
+        "gemini-2.5-flash-lite": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.1,
+          "output_per_1m_usd": 0.4,
+          "source": "gemini_pricing"
+        },
+        "gemini-2.5-flash": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.3,
+          "output_per_1m_usd": 2.5,
+          "source": "gemini_pricing"
+        },
+        "gemini-2.5-pro": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.25,
+          "output_per_1m_usd": 10.0,
+          "high_tier_input_token_threshold": 200000,
+          "input_per_1m_usd_high": 2.5,
+          "output_per_1m_usd_high": 15.0,
+          "source": "gemini_pricing",
+          "notes": "Base tier for prompts up to 200k input tokens ($1.25/$10); requests above 200k input tokens are billed at $2.50/$15 per 1M."
+        },
+        "gemini-3.1-flash-lite-preview": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.25,
+          "output_per_1m_usd": 1.5,
+          "source": "gemini_pricing",
+          "notes": "Preview model; rate limits and availability may change before stable release."
+        },
+        "gemini-3-flash-preview": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.5,
+          "output_per_1m_usd": 3.0,
+          "source": "gemini_pricing",
+          "notes": "Preview model; rate limits and availability may change before stable release."
+        },
+        "gemini-3-pro-preview": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 2.0,
+          "output_per_1m_usd": 12.0,
+          "high_tier_input_token_threshold": 200000,
+          "input_per_1m_usd_high": 4.0,
+          "output_per_1m_usd_high": 18.0,
+          "source": "gemini_pricing",
+          "notes": "Preview model; base tier for prompts up to 200k input tokens ($2/$12); requests above 200k input tokens are billed at $4/$18 per 1M."
+        },
+        "gemini-3.1-pro-preview": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 2.0,
+          "output_per_1m_usd": 12.0,
+          "high_tier_input_token_threshold": 200000,
+          "input_per_1m_usd_high": 4.0,
+          "output_per_1m_usd_high": 18.0,
+          "source": "gemini_pricing",
+          "notes": "Verified current as of 2026-07-15 (still in preview; general availability not yet reached, mirrored by the -preview suffix). Base tier for prompts up to 200k input tokens ($2/$12); requests above 200k input tokens are billed at $4/$18 per 1M."
+        },
+        "gemini-3.5-flash": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.5,
+          "output_per_1m_usd": 9.0,
+          "source": "gemini_pricing",
+          "notes": "GA 2026-05-19. Newer/cheaper than gemini-3.1-pro-preview on some benchmarks (e.g. coding); not yet wired into any registry task default as of this refresh (2026-07-15) since gemini-3.1-pro-preview remains the researched authority-tier default. Reference pricing only."
+        },
+        "gemini-2.5-flash-preview-tts": {
+          "pricing_unit": "tts_minute_estimate",
+          "tts_minute_usd": 0.015,
+          "input_per_1m_usd": 0.5,
+          "audio_output_per_1m_usd": 10.0,
+          "estimate_method": "Per-minute approximation for planning; replace with Google usage receipts after generation.",
+          "source": "gemini_pricing"
+        },
+        "gemini-2.5-pro-preview-tts": {
+          "pricing_unit": "tts_minute_estimate",
+          "tts_minute_usd": 0.03,
+          "input_per_1m_usd": 1.0,
+          "audio_output_per_1m_usd": 20.0,
+          "estimate_method": "Per-minute approximation for planning; replace with Google usage receipts after generation.",
+          "source": "gemini_pricing"
+        },
+        "gemini-3.1-flash-tts-preview": {
+          "pricing_unit": "tts_minute_estimate",
+          "tts_minute_usd": 0.03,
+          "input_per_1m_usd": 1.0,
+          "audio_output_per_1m_usd": 20.0,
+          "estimate_method": "Per-minute approximation from Google audio-token pricing (25 tokens/s at $20 per 1M output tokens, checked 2026-07-15); replace with Google usage receipts after generation.",
+          "source": "gemini_pricing"
+        },
+        "text-embedding-004": {
+          "pricing_unit": "embedding_tokens",
+          "input_per_1m_usd": 0.0,
+          "output_per_1m_usd": 0.0,
+          "source": "gemini_pricing",
+          "notes": "Gemini API embedding pricing can vary by billing program; static default is zero when no paid rate is published for the account."
+        },
+        "gemini-3.5-flash-lite": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.3,
+          "output_per_1m_usd": 2.5,
+          "source": "gemini_pricing",
+          "notes": "Added 2026-09-24 by model-catalog-upgrade when alias `gemini_flash_lite` moved from gemini-3.1-flash-lite-preview."
+        },
+        "gemini-3.8-flash-tts": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.0,
+          "output_per_1m_usd": 18.0,
+          "source": "gemini_pricing",
+          "notes": "Price from 2027-01-01 (through 2026-12-31 it is half this); recorded at the 2027 rate so estimates never under-count (operator decision 2026-09-24). Output is audio tokens (25/s)."
+        },
+        "gemini-3.8-flash": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.5,
+          "output_per_1m_usd": 7.5,
+          "source": "gemini_pricing",
+          "notes": "Price from 2027-01-01 (through 2026-12-31 it is half this); recorded at the 2027 rate so estimates never under-count (operator decision 2026-09-24)."
+        }
+      }
+    },
+    "tavily": {
+      "models": {
+        "tavily-search": {
+          "pricing_unit": "credits",
+          "credit_usd": 0.01,
+          "credits_per_basic_search": 1,
+          "credits_per_advanced_search": 2,
+          "credits_per_extract": 1,
+          "source": "tavily_credits",
+          "notes": "Dollar conversion depends on Tavily plan. The default $0.01 per credit preserves the repo's historical planning assumption."
+        }
+      }
+    },
+    "openrouter": {
+      "models": {
+        "openrouter/anthropic/claude-sonnet-4": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing"
+        },
+        "openrouter/anthropic/claude-sonnet-4.6": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing"
+        },
+        "openrouter/anthropic/claude-sonnet-4-6": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing"
+        },
+        "openrouter/anthropic/claude-sonnet-5": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing",
+          "notes": "Standard rate recorded; introductory pricing of $2/M input and $10/M output applies through 2026-08-31."
+        },
+        "openrouter/anthropic/claude-4.6-sonnet": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing"
+        },
+        "openrouter/anthropic/claude-haiku-4.5": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.0,
+          "output_per_1m_usd": 5.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing"
+        },
+        "openrouter/anthropic/claude-haiku-4-5-20251001": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.0,
+          "output_per_1m_usd": 5.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing"
+        },
+        "openrouter/google/gemini-2.5-pro": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 1.25,
+          "output_per_1m_usd": 10.0,
+          "high_tier_input_token_threshold": 200000,
+          "input_per_1m_usd_high": 2.5,
+          "output_per_1m_usd_high": 15.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing"
+        },
+        "openrouter/google/gemini-3.1-pro-preview": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 2.0,
+          "output_per_1m_usd": 12.0,
+          "high_tier_input_token_threshold": 200000,
+          "input_per_1m_usd_high": 4.0,
+          "output_per_1m_usd_high": 18.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing",
+          "notes": "Static planning fallback; refresh OpenRouter route pricing before live failover."
+        },
+        "openrouter/openai/gpt-5-nano": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.05,
+          "output_per_1m_usd": 0.4,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing"
+        },
+        "openrouter/openai/gpt-5-mini": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.25,
+          "output_per_1m_usd": 2.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing"
+        },
+        "openrouter/moonshotai/kimi-k3": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.6638,
+          "output_per_1m_usd": 10.0,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing",
+          "notes": "OpenRouter /api/v1/models listing 2026-10-01."
+        },
+        "openrouter/z-ai/glm-5.3": {
+          "pricing_unit": "tokens",
+          "input_per_1m_usd": 0.2219,
+          "output_per_1m_usd": 3.39,
+          "platform_fee_rate": 0.0,
+          "source": "openrouter_pricing",
+          "notes": "OpenRouter /api/v1/models listing 2026-10-01."
+        }
+      }
+    },
+    "local": {
+      "models": {
+        "local-only": {
+          "pricing_unit": "none",
+          "fixed_usd": 0.0,
+          "source": "local"
+        },
+        "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit": {
+          "pricing_unit": "none",
+          "fixed_usd": 0.0,
+          "source": "local",
+          "notes": "Local MLX runtime; records API cost as $0 while still requiring local runtime receipts."
+        },
+        "mlx-community/Qwen3-VL-32B-Instruct-4bit": {
+          "pricing_unit": "none",
+          "fixed_usd": 0.0,
+          "source": "local",
+          "notes": "Local MLX vision runtime (Qwen3-VL panel judge); records API cost as $0. Requires >=48 GB unified memory. Fail-closed HALT if server unavailable."
+        },
+        "mlx-community/bge-m3-mlx-8bit": {
+          "pricing_unit": "none",
+          "fixed_usd": 0.0,
+          "source": "local",
+          "notes": "Local MLX embedding runtime; records API cost as $0 while still requiring embedding provider, dimension, and vector-store receipts."
+        },
+        "qwen3.5:35b-a3b-optiq": {
+          "pricing_unit": "none",
+          "fixed_usd": 0.0,
+          "source": "local",
+          "notes": "Local Ollama runtime alias used in ICLR extraction experiments; records API cost as $0."
+        }
+      }
+    },
+    "modal": {
+      "models": {
+        "Qwen/Qwen3.8-27B": {
+          "pricing_unit": "gpu_second",
+          "gpu": "H100",
+          "gpu_second_usd": 0.001097,
+          "source": "modal_pricing",
+          "notes": "Self-hosted on Modal (vLLM); billed by GPU wall time incl. queueing and cold start, not tokens. Rate checked 2026-11-10."
+        },
+        "Qwen/Qwen3.8-27B-FP8": {
+          "pricing_unit": "gpu_second",
+          "gpu": "L40S",
+          "gpu_second_usd": 0.000542,
+          "source": "modal_pricing",
+          "notes": "Self-hosted on Modal (vLLM); billed by GPU wall time incl. queueing and cold start, not tokens. Rate checked 2026-11-10."
+        },
+        "google/gemma-4-12B-it": {
+          "pricing_unit": "gpu_second",
+          "gpu": "L40S",
+          "gpu_second_usd": 0.000542,
+          "source": "modal_pricing",
+          "notes": "Self-hosted on Modal (vLLM, scripts/ontology/modal_reader_vllm.py); billed by GPU wall time, not tokens. L40S rate as checked 2026-11-10."
+        },
+        "Qwen/Qwen3.6-35B-A3B": {
+          "pricing_unit": "gpu_second",
+          "gpu": "H100",
+          "gpu_second_usd": 0.001097,
+          "source": "modal_pricing",
+          "notes": "Self-hosted on Modal (vLLM, scripts/ontology/modal_reader_vllm.py); billed by GPU wall time, not tokens. H100 rate as checked 2026-11-10."
+        }
+      }
+    }
+  },
+  "aliases": {
+    "openai/gpt-5-nano": "gpt-5-nano",
+    "openai/gpt-5-mini": "gpt-5-mini",
+    "openai/gpt-5.2": "gpt-5.2",
+    "openai/gpt-5.6-luna": "gpt-5.6-luna",
+    "openai:gpt-5.6-luna": "gpt-5.6-luna",
+    "openai/gpt-5.6-sol": "gpt-5.6-sol",
+    "openai:gpt-5.6-sol": "gpt-5.6-sol",
+    "openai/gpt-5.6-terra": "gpt-5.6-terra",
+    "openai:gpt-5.6-terra": "gpt-5.6-terra",
+    "anthropic/claude-sonnet-4.6": "claude-sonnet-4-6",
+    "anthropic/claude-sonnet-4-6": "claude-sonnet-4-6",
+    "anthropic/claude-sonnet-5": "claude-sonnet-5",
+    "anthropic/claude-haiku-4-5-20251001": "claude-haiku-4-5-20251001",
+    "anthropic/claude-haiku-4.5": "claude-haiku-4-5-20251001",
+    "anthropic/claude-opus-4-8": "claude-opus-4-8",
+    "gemini/gemini-3.1-flash-lite-preview": "gemini-3.1-flash-lite-preview",
+    "gemini/gemini-3.1-pro-preview": "gemini-3.1-pro-preview",
+    "gemini/gemini-3-flash-preview": "gemini-3-flash-preview",
+    "gemini/gemini-2.5-pro": "gemini-2.5-pro",
+    "gemini-2.5-flash-preview-05-20": "gemini-2.5-flash",
+    "openrouter/google/gemini-3.1-pro-preview": "openrouter/google/gemini-3.1-pro-preview",
+    "local/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit": "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit",
+    "mlx/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit": "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit",
+    "local/mlx-community/Qwen3-VL-32B-Instruct-4bit": "mlx-community/Qwen3-VL-32B-Instruct-4bit",
+    "mlx/mlx-community/Qwen3-VL-32B-Instruct-4bit": "mlx-community/Qwen3-VL-32B-Instruct-4bit",
+    "local/mlx-community/bge-m3-mlx-8bit": "mlx-community/bge-m3-mlx-8bit",
+    "mlx/mlx-community/bge-m3-mlx-8bit": "mlx-community/bge-m3-mlx-8bit",
+    "google_genai:models/text-embedding-004": "text-embedding-004"
+  }
+}

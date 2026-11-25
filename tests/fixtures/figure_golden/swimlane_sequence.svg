@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Tool-integrated visual reasoning</title>
+<desc id="fc-desc">The model crops and re-queries the image instead of answering from one glance.</desc>
+<defs><marker id="fc-arrow" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#a8d8ea" /></marker></defs>
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Tool-integrated visual reasoning</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">The model crops and re-queries the image instead of answering from one glance.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">The model looks twice, on purpose</tspan></text>
+<rect x="113.72" y="132" width="257.89" height="44.4" fill="#2a2a4a" rx="10" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="242.67" y="157.6">Vision-language model</tspan></text>
+<rect x="521.58" y="132" width="236.85" height="44.4" fill="#2a2a4a" rx="10" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="640" y="157.6">Crop and zoom tools</tspan></text>
+<rect x="954.47" y="132" width="165.72" height="44.4" fill="#2a2a4a" rx="10" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="1037.33" y="157.6">Source image</tspan></text>
+<rect x="241.42" y="184.4" width="2.5" height="446.32" fill="#333344" opacity="0.7" />
+<rect x="638.75" y="184.4" width="2.5" height="446.32" fill="#333344" opacity="0.7" />
+<rect x="1036.08" y="184.4" width="2.5" height="446.32" fill="#333344" opacity="0.7" />
+<line x1="242.67" y1="237.69" x2="634" y2="237.69" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="441.33" y="218.89">request a crop</tspan></text>
+<line x1="640" y1="344.27" x2="1031.33" y2="344.27" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="838.67" y="325.47">read region</tspan></text>
+<line x1="1037.33" y1="450.85" x2="248.67" y2="450.85" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="654" y="432.05">zoomed evidence</tspan></text>
+<polyline points="242.67,541.43 312.67,541.43 312.67,573.43 248.67,573.43" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="324.67" y="538.63">answer with the region cited</tspan></text>
+</svg>

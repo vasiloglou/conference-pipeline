@@ -1,0 +1,199 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "16d7a95d2f388c72ac1624189c99bb747dcb8ca5401935ec6eb88d70c0c5fa31",
+  "normalized_output_digest": "c4b4240ba8ed23d963f0fd597ac90b9114676881f504c2c6774a1010270ea989",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/download-corpus": {
+      "artifacts/source_page/f17251e5825fa1f14f3daf0e663a4e68bac89e4098bee1e55a21efe8053c4e0b.html": "text:7c83a9650f9a4eba268fc8b72924cae2289a9e6c7f7caf51e9b3e28326ce1a70",
+      "download_corpus.json": "json:b3e4abf2ce884cc1b8d205548773b934bb435b56f8726003a2743ed3157f436e",
+      "download_corpus_report.md": "text:6e8739310bdc2d48b16e8a9a6750ce8b7b66cb11d492f2ebe4ee03d77b54e849",
+      "program_spine.json": "json:8b039002657450960153d02e2cec3b35fa71112284e56de7da6a01a3c6e2f957"
+    },
+    "storage/download-corpus/download_corpus.json": "json:b3e4abf2ce884cc1b8d205548773b934bb435b56f8726003a2743ed3157f436e"
+  },
+  "receipt": {
+    "actual_provider_cost_usd": 0.0,
+    "blockers": [
+      {
+        "affected_stage": "download-corpus",
+        "code": "final_stage_contract_incomplete"
+      }
+    ],
+    "checks": {
+      "artifact_payload_digests_verified": true,
+      "complete_program_item_accounting": true,
+      "complete_result_or_blocker_accounting": true,
+      "disk_capacity": {
+        "available_bytes": 1000000,
+        "manifest_sha256": "<content_digest:storage/storage_manifest.json>",
+        "positive_available_bytes": true,
+        "program_item_reservation_bytes": 512,
+        "request_reservation_bytes": 2048,
+        "required_bytes": 2660,
+        "reservation_version": 1,
+        "safety_margin_bytes": 100,
+        "scope_ledger_sha256": "2ed9d649d3f8056e2850d19d40067253f329fb0a1e510ec7cab787569e70e2ed",
+        "status": "pass_pre_request"
+      },
+      "download_corpus_cvpr2026_execution_status": "blocked",
+      "download_corpus_ledger_sha256": "3fdb8cf2e97e3435a8648692fedeac2f7d9e57e2c6fae00d8bf020295887c480",
+      "focused_recovery_disposition": "not_applicable",
+      "no_cap_hits": true,
+      "phase_02_inventory_sha256": "d0efd5948f5ea6dae902be6848b22370d5c1a94cdbaf8bcb0f91f82b14f9bf1c",
+      "phase_02_inventory_sha256_pinned": true,
+      "phase_03_selection_sha256": "d5ff0a08fb3a9231975163c0d6b36d55b0937caa8afe576413ed95128ad351be",
+      "phase_03_selection_sha256_pinned": true,
+      "policy_exclusions_visible": true,
+      "program_item_count": 2,
+      "program_item_result_count": 2,
+      "provider_and_recovery_evidence_sanitized": true,
+      "public_acquisition_lane_status": "public_lane_complete",
+      "secrets_copied": false,
+      "storage_manifest_sha256": "<content_digest:storage/storage_manifest.json>",
+      "talk_harvest_lane_status": {
+        "gap_count": 0,
+        "matched_talk_count": 0,
+        "priority_gap_count": 0,
+        "status": "succeeded"
+      },
+      "validated_local_artifacts": true
+    },
+    "download_ledger": {
+      "artifact_count": 1,
+      "blocker_count": 1,
+      "manifest_sha256": "3fdb8cf2e97e3435a8648692fedeac2f7d9e57e2c6fae00d8bf020295887c480",
+      "path": "storage/download-corpus/download_corpus.json",
+      "phase_02_inventory_sha256": "d0efd5948f5ea6dae902be6848b22370d5c1a94cdbaf8bcb0f91f82b14f9bf1c",
+      "phase_03_selection_sha256": "d5ff0a08fb3a9231975163c0d6b36d55b0937caa8afe576413ed95128ad351be",
+      "public_item_blocker_count": 0,
+      "report_sha256": "<sha256:storage/download-corpus/download_corpus_report.md>",
+      "request_count": 2
+    },
+    "downloads_made": 1,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "download-corpus.cvpr2026"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-04-download-corpus.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-cvpr-fixture-run/stage-03-corpus-freeze.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-03-corpus-freeze.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-03-corpus-freeze.json",
+          "stage_id": "corpus-freeze",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "name": "download_ledger",
+        "path": "storage/download-corpus/download_corpus.json",
+        "sha256": "3fdb8cf2e97e3435a8648692fedeac2f7d9e57e2c6fae00d8bf020295887c480",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-04-download-corpus.json>",
+    "owner_execution_evidence": {
+      "acquisition.download_corpus.cvpr2026": {
+        "actual_provider_cost_usd": 0.0,
+        "downloads_made": 1,
+        "ledger_path": "storage/download-corpus/download_corpus.json",
+        "owner_function": "run_download_corpus_stage",
+        "provider_calls_made": 0,
+        "transport_created": true
+      }
+    },
+    "provider_calls_made": 0,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "acquisition.download_corpus.cvpr2026"
+    ],
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "download-corpus: receipt mode live",
+        "download-corpus: registry digest matched",
+        "download-corpus: required owner ids recorded",
+        "download-corpus: owner execution evidence present",
+        "download-corpus: lineage bound to storage/workflow-runs/w1-cvpr-fixture-run/stage-03-corpus-freeze.json (output_digest <output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-03-corpus-freeze.json>)",
+        "download-corpus: receipt check stage_id",
+        "download-corpus: receipt check mode",
+        "download-corpus: receipt check stage_contract.status",
+        "download-corpus: receipt check checks.source_lineage_integrity",
+        "download-corpus: receipt check checks.source_inventory_digest_pinned",
+        "download-corpus: receipt check checks.complete_canonical_accounting",
+        "download-corpus: receipt check checks.no_cap_hits",
+        "download-corpus: receipt check checks.included_items_planned_or_unreachable",
+        "download-corpus: required receipt <WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/stage-03-corpus-freeze.json",
+        "download-corpus: required output <WORKSPACE>/storage/download-corpus/download_corpus.json",
+        "download-corpus: required output <WORKSPACE>/storage/download-corpus/download_corpus_report.md",
+        "download-corpus: receipt check checks.download_corpus_cvpr2026_execution_status",
+        "download-corpus: receipt check checks.phase_02_inventory_sha256_pinned",
+        "download-corpus: receipt check checks.phase_02_inventory_sha256",
+        "download-corpus: receipt check checks.phase_03_selection_sha256_pinned",
+        "download-corpus: receipt check checks.phase_03_selection_sha256",
+        "download-corpus: receipt check checks.program_item_result_count",
+        "download-corpus: receipt check checks.complete_program_item_accounting",
+        "download-corpus: receipt check checks.no_cap_hits",
+        "download-corpus: receipt check checks.disk_capacity.positive_available_bytes",
+        "download-corpus: receipt check checks.disk_capacity.scope_ledger_sha256",
+        "download-corpus: receipt check checks.disk_capacity.manifest_sha256",
+        "download-corpus: receipt check checks.storage_manifest_sha256",
+        "download-corpus: receipt check checks.download_corpus_ledger_sha256",
+        "download-corpus: receipt check checks.validated_local_artifacts",
+        "download-corpus: receipt check checks.artifact_payload_digests_verified",
+        "download-corpus: receipt check checks.complete_result_or_blocker_accounting",
+        "download-corpus: receipt check checks.policy_exclusions_visible",
+        "download-corpus: receipt check checks.focused_recovery_disposition",
+        "download-corpus: receipt check checks.provider_and_recovery_evidence_sanitized",
+        "download-corpus: receipt check checks.secrets_copied"
+      ],
+      "blockers": [
+        {
+          "code": "stage_contract_required_check_mismatch",
+          "expected": {
+            "checks.program_item_count": 14583
+          },
+          "observed": {
+            "checks.program_item_count": 2
+          },
+          "retryable": true,
+          "stage_id": "download-corpus"
+        }
+      ],
+      "registry_stage_id": "download-corpus.cvpr2026",
+      "required_script_ids": [
+        "acquisition.download_corpus.cvpr2026"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "download-corpus",
+      "status": "blocked",
+      "warnings": []
+    },
+    "stage_id": "download-corpus",
+    "stage_order": 4,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "packet_type": "conference_pipeline.presentation.rough_cut_review",
+  "deck_id": "04_safety_alignment_privacy",
+  "status": "blocked",
+  "blockers": [
+    {
+      "code": "rough_cut_missing_pdf_screenshots",
+      "severity": "blocker",
+      "message": "rendered PDF/screenshot frame set is missing or incomplete",
+      "path": "rendered_frames",
+      "evidence": {
+        "expected_count": 24,
+        "actual_count": 0
+      }
+    },
+    {
+      "code": "rough_cut_missing_mp4",
+      "severity": "blocker",
+      "message": "required rough-cut artifact is missing: single_presenter_video",
+      "path": "presentation_video.mp4"
+    },
+    {
+      "code": "rough_cut_video_black_frame",
+      "severity": "blocker",
+      "message": "single_speaker video sync report contains VIDEO_FLAT_FRAME_LOW_ENTROPY",
+      "path": "sampled_frame.png"
+    },
+    {
+      "code": "rough_cut_video_desync",
+      "severity": "blocker",
+      "message": "notebooklm video sync report contains PRESENTATION_SLIDE_SYNC_MISMATCH",
+      "path": "presentation_video_notebooklm.mp4"
+    },
+    {
+      "code": "rough_cut_visual_claim_mismatch",
+      "severity": "blocker",
+      "message": "transcript references a diagram claim without proof-object grounding",
+      "path": "6_presenter_script.md",
+      "evidence": {
+        "pattern": "the diagram shows"
+      }
+    },
+    {
+      "code": "rough_cut_mechanical_dialogue",
+      "severity": "blocker",
+      "message": "mechanical NotebookLM host dialogue remains in transcript",
+      "path": "6_presenter_script_notebooklm_2host.md",
+      "evidence": {
+        "sample": "Host A frames and Host B connects"
+      }
+    },
+    {
+      "code": "rough_cut_scaffold_prose_present",
+      "severity": "blocker",
+      "message": "scaffold prose remains in transcript",
+      "path": "6_presenter_script.md",
+      "evidence": {
+        "sample": "Use the visual role"
+      }
+    },
+    {
+      "code": "rough_cut_repeated_author_credit",
+      "severity": "blocker",
+      "message": "repeated prepared-by credit remains in content narration",
+      "path": "6_presenter_script.md",
+      "evidence": {
+        "sample": "Prepared by Nikolaos Vasiloglou"
+      }
+    },
+    {
+      "code": "rough_cut_human_receipt_needs_revision",
+      "severity": "blocker",
+      "message": "needs_revision human receipt cannot approve the rough cut",
+      "path": "human_review_receipt.json",
+      "evidence": {
+        "state": "needs_revision"
+      }
+    }
+  ],
+  "human_review": {
+    "path": "human_review_receipt.json",
+    "exists": true,
+    "state": "needs_revision",
+    "receipt_gate": "pending_human_review",
+    "blocks_rollout": true,
+    "blocks_rough_cut": true
+  }
+}
+

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">AVA-Bench atomic abilities</title>
+<desc id="fc-desc">One aggregate score hides fourteen separately measured visual abilities.</desc>
+<defs><marker id="fc-arrow" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#a8d8ea" /></marker></defs>
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">AVA-Bench atomic abilities</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">One aggregate score hides fourteen separately measured visual abilities.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Aggregate scores hide atomic abilities</tspan></text>
+<rect x="546.92" y="132" width="186.15" height="59.72" fill="#2a2a4a" stroke="#4ecdc4" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="640" y="166.28">AVA-Bench</tspan></text>
+<rect x="323.7" y="335.64" width="195.3" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="421.35" y="369.92">Localisation</tspan></text>
+<rect x="553" y="335.64" width="193.74" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="649.87" y="369.92">Recognition</tspan></text>
+<rect x="780.74" y="335.64" width="175.56" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="868.52" y="369.92">Reasoning</tspan></text>
+<rect x="139.96" y="555.14" width="155.79" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="217.85" y="589.42">Counting</tspan></text>
+<rect x="329.75" y="539.28" width="149.79" height="91.44" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="404.64" y="573.56">Spatial</tspan><tspan x="404.64" y="605.28">relations</tspan></text>
+<rect x="513.54" y="555.14" width="198.33" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="612.7" y="589.42">Text reading</tspan></text>
+<rect x="745.86" y="555.14" width="164.91" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="828.32" y="589.42">Attributes</tspan></text>
+<rect x="944.77" y="555.14" width="195.27" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="1042.41" y="589.42">Comparison</tspan></text>
+<polyline points="640,191.72 640,240.65" fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="421.35,240.65 868.52,240.65" fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<line x1="421.35" y1="240.65" x2="421.35" y2="329.64" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<line x1="649.87" y1="240.65" x2="649.87" y2="329.64" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<line x1="868.52" y1="240.65" x2="868.52" y2="329.64" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<polyline points="421.35,395.36 421.35,444.29" fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="217.85,444.29 421.35,444.29" fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<line x1="217.85" y1="444.29" x2="217.85" y2="549.14" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<line x1="404.64" y1="444.29" x2="404.64" y2="533.28" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<polyline points="649.87,395.36 649.87,475.25" fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="612.7,475.25 828.32,475.25" fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<line x1="612.7" y1="475.25" x2="612.7" y2="549.14" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<line x1="828.32" y1="475.25" x2="828.32" y2="549.14" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<polyline points="868.52,395.36 868.52,500.81" fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="868.52,500.81 1042.41,500.81" fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+<line x1="1042.41" y1="500.81" x2="1042.41" y2="549.14" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+</svg>

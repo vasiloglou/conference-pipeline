@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Most-referenced works in this deck</title>
+<desc id="fc-desc">Four works carry most of this deck&#x27;s evidence.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Most-referenced works in this deck</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Four works carry most of this deck&#x27;s evidence.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Four works carry the evidence</tspan></text>
+<rect x="44" y="132" width="6" height="115.68" fill="#a8d8ea" />
+<text x="64" y="198.94" font-size="26" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold">1</text>
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="93.18" y="194.26">HAWK visual token pruning</tspan></text>
+<text font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="1228" y="193.24">5 slides</tspan></text>
+<rect x="44" y="259.68" width="6" height="115.68" fill="#a8d8ea" />
+<text x="64" y="326.62" font-size="26" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold">2</text>
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="93.18" y="321.94">C2-CLIP concept separation</tspan></text>
+<text font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="1228" y="320.92">4 slides</tspan></text>
+<rect x="44" y="387.36" width="6" height="115.68" fill="#a8d8ea" />
+<text x="64" y="454.3" font-size="26" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold">3</text>
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="93.18" y="449.62">AVA-Bench atomic abilities</tspan></text>
+<text font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="1228" y="448.6">3 slides</tspan></text>
+<rect x="44" y="515.04" width="6" height="115.68" fill="#a8d8ea" />
+<text x="64" y="581.98" font-size="26" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold">4</text>
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="93.18" y="577.3">VisPlay self-play</tspan></text>
+<text font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="1228" y="576.28">2 slides</tspan></text>
+</svg>

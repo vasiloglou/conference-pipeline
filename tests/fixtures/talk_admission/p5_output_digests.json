@@ -1,0 +1,31 @@
+{
+  "base_commit": "b4c4c07d9",
+  "cases": {
+    "C1": {
+      "corpus_inventory.json": "36222022165aaf360d3c992cd34271cc9e1cd55e92cc2e6e55d980a942e6d37c",
+      "corpus_statistics.json": "472689f477c21c12e823c58d81ccea298101f0bbad92fefa1b5671e0aeda444e",
+      "paper_identity_report.json": "42b5b5b624832e4d55a10e40859c20f79970e5d5a0870364a1a818efc7959bf5"
+    },
+    "C2": {
+      "corpus_inventory.json": "55e313c14274f8cc833188431a6b1b2f3d13aff7a70e6f3a5e444059e1d4d5cb",
+      "corpus_statistics.json": "4a98d610356dc540919887c61018f85a50a96c9d1b7b9f57416edc1aee94e83b",
+      "paper_identity_report.json": "4f14ac8e1bb7ace5348a8965cdb1b16317b84f4eb95eebcaf9ee3776fd6ee3ad"
+    },
+    "C3": {
+      "corpus_inventory.json": "92fd4554b1472e582bcb72e530cf6bc02272bab4a8a49ab3808cd88eabd1c984",
+      "corpus_statistics.json": "e827fca5cf1a9ad78c1437c1af7ea6c3edd5501361246af51e0b93e514bc3915",
+      "paper_identity_report.json": "09bb961175f3ab30f8dc11abc470134c480ef124d5f4967edc6cca972ac65466"
+    },
+    "C5": {
+      "corpus_inventory.json": "4c8016697a01b2f9d1b539fe05f2f7f34b8193b75a238557955af939e39311ec",
+      "corpus_statistics.json": "75e488ab88c04049fa703938cb244019e0970eb33c8646e36c3a6e6b9d9ccd1b",
+      "paper_identity_report.json": "c872171449ef9bf2494edec3dd858a0d4e79a11ba3d30b7a4b84f74a200817ed"
+    },
+    "F0": {
+      "corpus_inventory.json": "d5bb4a3e40b613c479eba37cb0dc7d4fa303757e64216a188898a6dd50a1544f",
+      "corpus_statistics.json": "ba7998a7646acb373e5106785db036a14fd621ca80b46827d8a1d5a410061f29",
+      "paper_identity_report.json": "6d2a3fb2533cb9e69ad16dbb04064d54419e05c29d67287cdb8189291092845b"
+    }
+  },
+  "schema": "p5-output-digests/1"
+}

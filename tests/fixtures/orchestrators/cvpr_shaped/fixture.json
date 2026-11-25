@@ -1,0 +1,20 @@
+{
+  "fixture": "cvpr_shaped",
+  "synthetic": true,
+  "orchestrator": "repo/scripts/run_wombat2031_production.py",
+  "slug": "wombat2031",
+  "expected_hooks": [
+    "download-corpus.acquisition_lane"
+  ],
+  "quirks": [
+    "proceedings-and-workshop-records",
+    "program-spine",
+    "organizer-channel-caption-transcripts",
+    "registration-media",
+    "event-media",
+    "r5-retry-authorization"
+  ],
+  "index_format": "npz-buckets-v2",
+  "generated_pdfs": [],
+  "note": "PDFs are gitignored repo-wide; tests/orchestrator_golden.py materialize_fixture_workspace() writes these tiny synthetic PDFs into a temp copy."
+}

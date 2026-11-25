@@ -1,0 +1,89 @@
+{
+  "archetype": "nested_architecture",
+  "claim": "A dynamics-level backdoor hides in the flow-matching action head, evading nominal success testing but visible to action-field audits.",
+  "content": {
+    "edges": [
+      {
+        "from": "encoder",
+        "label": "vector field",
+        "to": "action_head"
+      },
+      {
+        "from": "trigger",
+        "label": "malicious branch",
+        "to": "action_head"
+      },
+      {
+        "from": "action_head",
+        "label": "misses backdoor",
+        "to": "success_test"
+      },
+      {
+        "from": "action_head",
+        "label": "detects backdoor",
+        "to": "action_audit"
+      }
+    ],
+    "groups": [
+      {
+        "id": "pipeline",
+        "label": "Flow-matching VLA pipeline",
+        "members": [
+          "encoder",
+          "action_head",
+          "trigger"
+        ]
+      },
+      {
+        "id": "assurance",
+        "label": "Assurance layer",
+        "members": [
+          "success_test",
+          "action_audit"
+        ]
+      }
+    ],
+    "nodes": [
+      {
+        "id": "encoder",
+        "kind": "frozen",
+        "label": "VLA encoder"
+      },
+      {
+        "id": "action_head",
+        "kind": "frozen",
+        "label": "Flow-matching action head"
+      },
+      {
+        "id": "trigger",
+        "kind": "adapted",
+        "label": "Hidden trigger"
+      },
+      {
+        "id": "success_test",
+        "kind": "adapted",
+        "label": "Nominal success test (blind)"
+      },
+      {
+        "id": "action_audit",
+        "kind": "adapted",
+        "label": "Action-field audit (catches attack)"
+      }
+    ]
+  },
+  "emphasis": {
+    "highlight": [
+      "action_audit"
+    ]
+  },
+  "figure_id": "sl_22_safety-is-an-architectural-property-not-an-figure",
+  "grounding": {
+    "kind": "schematic"
+  },
+  "required_entities": [],
+  "section": "S6_safety_eval",
+  "slide_id": "sl_22_safety-is-an-architectural-property-not-an",
+  "spec_version": "figure-spec/1",
+  "takeaway": "Audit action fields; success rate misses backdoors",
+  "title": "Safety Is an Architectural Property, Not an Input Filter"
+}

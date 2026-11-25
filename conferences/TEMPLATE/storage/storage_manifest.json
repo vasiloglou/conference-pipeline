@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "workspace": "conferences/TEMPLATE",
+  "inventory_exemptions": [
+    "agent-work",
+    "cache",
+    "exports",
+    "legacy"
+  ],
+  "artifact_families": [
+    {
+      "id": "readme_md",
+      "path": "README.md",
+      "purpose": "Workspace notes tracked directly in git.",
+      "producer": "manual-docs",
+      "storage_class": "git",
+      "share_policy": "none",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": false,
+        "backup": false
+      },
+      "notes": "Keep in git. Replace notes with conference-local guidance if needed."
+    },
+    {
+      "id": "config_yaml",
+      "path": "config.yaml",
+      "purpose": "Conference-local configuration contract tracked directly in git.",
+      "producer": "manual-config",
+      "storage_class": "git",
+      "share_policy": "none",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": false,
+        "backup": false
+      },
+      "notes": "Keep in git. Point storage.manifest_path at this file."
+    },
+    {
+      "id": "storage",
+      "path": "storage",
+      "purpose": "Workspace manifest, policy notes, inventory, and verification evidence tracked directly in git.",
+      "producer": "storage-governance",
+      "storage_class": "git",
+      "share_policy": "none",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": false,
+        "backup": false
+      },
+      "notes": "Storage contract artifacts stay versioned in git."
+    },
+    {
+      "id": "assets",
+      "path": "assets",
+      "purpose": "Static workspace assets tracked directly in git.",
+      "producer": "manual-curation",
+      "storage_class": "git",
+      "share_policy": "none",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": false,
+        "backup": false
+      },
+      "notes": "Remove or expand if a future conference does not use this family."
+    },
+    {
+      "id": "scripts",
+      "path": "scripts",
+      "purpose": "Conference-local helper scripts tracked directly in git.",
+      "producer": "manual-scripts",
+      "storage_class": "git",
+      "share_policy": "none",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": false,
+        "backup": false
+      },
+      "notes": "Remove or expand if a future conference does not use this family."
+    },
+    {
+      "id": "analysis",
+      "path": "analysis",
+      "purpose": "Analysis notes, deep reports, slide briefs, manifests, and proof markdown retained in git and mirrored to private backup when requested.",
+      "producer": "analysis-workflow",
+      "storage_class": "git",
+      "share_policy": "private",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": false,
+        "backup": true
+      },
+      "notes": "Markdown analysis deliverables are Git-owned for reviewability. Backup sync may mirror them to Drive, but Git remains the source of truth."
+    },
+    {
+      "id": "presentation_lane",
+      "path": "decks",
+      "purpose": "Presentation workspace lane and Git-owned source/control surface.",
+      "producer": "presentation-pipeline",
+      "storage_class": "git",
+      "share_policy": "none",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": false,
+        "backup": false
+      },
+      "tracked_samples": [
+        "decks/__policy_probe__.md",
+        "decks/presentation_manifest.json"
+      ],
+      "notes": "Keeps the deck lane trackable while generated payload families below own Drive sync for HTML, images, SVGs, PDFs, video, audio, and JSON."
+    },
+    {
+      "id": "presentation_markdown",
+      "path_glob": "decks/**/*.md",
+      "purpose": "Presentation markdown sources, scripts, QC summaries, and human-reviewable deck text.",
+      "producer": "presentation-pipeline",
+      "storage_class": "git",
+      "share_policy": "curated",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Markdown deck sources stay Git-owned so slide and narration changes are reviewable. Drive sync can mirror them for sharing."
+    },
+    {
+      "id": "presentation_manifest",
+      "path": "decks/presentation_manifest.json",
+      "purpose": "Presentation manifest used as a small control/proof file for generated decks.",
+      "producer": "presentation-pipeline",
+      "storage_class": "git",
+      "share_policy": "curated",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Small control artifact tracked in Git and optionally mirrored with public/backup presentation bundles."
+    },
+    {
+      "id": "presentation_html",
+      "path_glob": "decks/*/presentation.html",
+      "purpose": "Rendered Reveal.js presentation HTML prepared for sharing.",
+      "producer": "presentation-pipeline",
+      "storage_class": "public",
+      "share_policy": "curated",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Generated HTML is a Drive-owned payload; rebuild from markdown and templates when needed."
+    },
+    {
+      "id": "presentation_images",
+      "path_glob": "decks/**/*.png",
+      "purpose": "Rendered slide screenshots, thumbnails, and other generated PNG assets.",
+      "producer": "presentation-pipeline",
+      "storage_class": "public",
+      "share_policy": "curated",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Generated image payloads are synced to Drive rather than committed."
+    },
+    {
+      "id": "presentation_svgs",
+      "path_glob": "decks/**/*.svg",
+      "purpose": "Generated programmatic SVG figures used by presentation decks.",
+      "producer": "presentation-pipeline",
+      "storage_class": "public",
+      "share_policy": "curated",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Generated SVG payloads are synced to Drive rather than committed; figure-generation code and markdown references remain reviewable."
+    },
+    {
+      "id": "presentation_pdfs",
+      "path_glob": "decks/**/*.pdf",
+      "purpose": "Exported deck PDFs prepared for sharing.",
+      "producer": "presentation-pipeline",
+      "storage_class": "public",
+      "share_policy": "curated",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Generated PDF payloads are synced to Drive rather than committed."
+    },
+    {
+      "id": "presentation_video_payloads",
+      "path_glob": "decks/**/*.mp4",
+      "purpose": "Generated presenter or NotebookLM-style presentation videos.",
+      "producer": "presentation-pipeline",
+      "storage_class": "public",
+      "share_policy": "curated",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Generated video payloads are synced to Drive rather than committed."
+    },
+    {
+      "id": "presentation_video_workdirs",
+      "path_glob": "decks/*/video_build*/**",
+      "purpose": "Intermediate video build workdirs containing temporary slide renders, audio segments, concat files, and scratch metadata.",
+      "producer": "presentation-pipeline",
+      "storage_class": "cache",
+      "share_policy": "none",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": false
+      },
+      "notes": "Scratch video build directories are ignored and not synced; final video payloads are owned by presentation_video_payloads."
+    },
+    {
+      "id": "presentation_audio_payloads",
+      "path_glob": "decks/**/*.wav",
+      "purpose": "Generated narration audio payloads used by presentation videos.",
+      "producer": "presentation-pipeline",
+      "storage_class": "public",
+      "share_policy": "curated",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Generated audio payloads are synced to Drive rather than committed."
+    },
+    {
+      "id": "presentation_json_payloads",
+      "path_glob": "decks/*/*.json",
+      "purpose": "Generated per-topic presentation metadata such as slide mappings, sanity reports, and structure outputs.",
+      "producer": "presentation-pipeline",
+      "storage_class": "public",
+      "share_policy": "curated",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Generated per-topic JSON payloads are synced to Drive rather than committed; the top-level presentation manifest remains Git-owned."
+    },
+    {
+      "id": "presentation_asset_json_payloads",
+      "path_glob": "decks/*/assets/**/*.json",
+      "purpose": "Generated presentation asset metadata, repair receipts, and visual-QC JSON sidecars.",
+      "producer": "presentation-pipeline",
+      "storage_class": "public",
+      "share_policy": "curated",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Generated asset JSON payloads are synced to Drive rather than committed."
+    },
+    {
+      "id": "podcasts",
+      "path": "audio",
+      "purpose": "Podcast, narration, or other audio release outputs.",
+      "producer": "podcast-pipeline",
+      "storage_class": "public",
+      "share_policy": "curated",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": true,
+        "backup": true
+      },
+      "notes": "Use only if the conference workspace produces shareable audio artifacts."
+    },
+    {
+      "id": "export_for_deep_dive",
+      "path": "exports/deep-dive",
+      "purpose": "Export bundles for deeper analysis workflows.",
+      "producer": "deep-dive-export",
+      "storage_class": "backup",
+      "share_policy": "private",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": true
+      },
+      "notes": "Large working exports are private by default."
+    },
+    {
+      "id": "exhaustive_extractions",
+      "path": "storage/extractions",
+      "purpose": "Exhaustive topic extraction outputs keyed by run id: by-artifact/ and by-topic/ records, the LLM full-read lane (llm-full-read/), and v15_extraction_coverage.json.",
+      "producer": "exhaustive-topic-extraction",
+      "storage_class": "backup",
+      "share_policy": "private",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": true
+      },
+      "notes": "The owner (conference_pipeline.iclr2025_live.run_exhaustive_topic_extraction) writes storage/extractions/<run-id>/; the old exports/exhaustive-extractions path never existed, so the backup profile silently skipped this family (found on CVPR 2026, 2026-09-18; fixed here 2026-09-27)."
+    },
+    {
+      "id": "export_notebooklm",
+      "path": "exports/notebooklm_export",
+      "purpose": "Packaged NotebookLM source bundle: chunked sources, manifest, index, and per-topic plus conference-wide Audio-Overview podcast prompts.",
+      "producer": "notebooklm-export",
+      "storage_class": "backup",
+      "share_policy": "private",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": true
+      },
+      "notes": "Regenerable via scripts/package_conference_for_notebook_lm_export.py; backed up privately so the deep-dive bundle and podcast prompts reach Drive."
+    },
+    {
+      "id": "claude_autonomy",
+      "path": "agent-work/claude",
+      "purpose": "Claude autonomy outputs and working artifacts.",
+      "producer": "claude-autonomy",
+      "storage_class": "backup",
+      "share_policy": "private",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": true
+      },
+      "notes": "Optional family. Keep private unless explicitly promoted."
+    },
+    {
+      "id": "codex_autonomy",
+      "path": "agent-work/codex",
+      "purpose": "Codex autonomy outputs and working artifacts.",
+      "producer": "codex-autonomy",
+      "storage_class": "backup",
+      "share_policy": "private",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": true
+      },
+      "notes": "Optional family. Keep private unless explicitly promoted."
+    },
+    {
+      "id": "gpt_researcher",
+      "path": "agent-work/gpt-researcher",
+      "purpose": "GPT Researcher outputs and intermediate bundles.",
+      "producer": "gpt-researcher",
+      "storage_class": "backup",
+      "share_policy": "private",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": true
+      },
+      "notes": "Optional family. Keep private unless explicitly promoted."
+    },
+    {
+      "id": "notebook_lm_findings",
+      "path": "agent-work/notebook-lm",
+      "purpose": "NotebookLM or note-synthesis findings.",
+      "producer": "notebooklm",
+      "storage_class": "backup",
+      "share_policy": "private",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": true
+      },
+      "notes": "Optional family. Keep private unless explicitly promoted."
+    },
+    {
+      "id": "vector_store",
+      "path": "cache/vector-store",
+      "purpose": "Local retrieval indexes and caches.",
+      "producer": "vector-store-setup",
+      "storage_class": "cache",
+      "share_policy": "none",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": false
+      },
+      "notes": "Rebuild locally. Do not treat as canonical backup state."
+    },
+    {
+      "id": "experimental_videos",
+      "path": "cache/experimental-videos",
+      "purpose": "Experimental or preview videos that are not canonical deliverables.",
+      "producer": "video-experiments",
+      "storage_class": "cache",
+      "share_policy": "none",
+      "rebuildable": true,
+      "sync_profiles": {
+        "public": false,
+        "backup": false
+      },
+      "notes": "Optional family. Remove or adapt if the workspace does not create it."
+    },
+    {
+      "id": "legacy",
+      "path": "legacy",
+      "purpose": "Archived material retained for traceability but not active workspace use.",
+      "producer": "manual-archive",
+      "storage_class": "backup",
+      "share_policy": "private",
+      "rebuildable": false,
+      "sync_profiles": {
+        "public": false,
+        "backup": true
+      },
+      "notes": "Use for historical material that should stay out of active lanes."
+    }
+  ]
+}

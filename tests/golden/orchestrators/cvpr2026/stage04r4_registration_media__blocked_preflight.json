@@ -1,0 +1,109 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "635a19df8d0922ddfd867479057b687ba0820875f04a100457131d125da7c1d0",
+  "normalized_output_digest": "be7ff204285f26459e277f4c901a5baae11fe0f641aaa0250bc78ba66b368fff",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/download-corpus/registration-media/registration_media.json": null
+  },
+  "receipt": {
+    "actual_provider_cost_usd": 0.0,
+    "blockers": [
+      {
+        "affected_stage": "download-corpus",
+        "code": "registration_auth_required"
+      }
+    ],
+    "checks": {
+      "authenticated_registration_media_recovery_status": "blocked",
+      "boundary_no_network_program_item_count": 0,
+      "boundary_no_network_request_count": 0,
+      "complete_program_item_accounting": false,
+      "direct_youtube_media_record_count": 0,
+      "disk_capacity": {
+        "candidate_plan_sha256": "5fc92191b4ee3a00913c4414437463b8d2458794c5bea4eb05c531c60055ce6e",
+        "manifest_sha256": "<content_digest:storage/storage_manifest.json>",
+        "positive_available_bytes": true,
+        "status": "pass"
+      },
+      "download_corpus_cvpr2026_execution_status": "blocked",
+      "no_cap_hits": true,
+      "official_event_media_accounting_complete": false,
+      "official_event_program_item_count": 0,
+      "official_event_request_count": 0,
+      "program_item_count": 0,
+      "program_item_result_count": 0,
+      "registration_media_authenticated_request_count": 0,
+      "registration_media_overlay_canonical_sha256": null,
+      "registration_media_overlay_ledger_sha256": null,
+      "registration_media_overlay_path": "storage/download-corpus/registration-media/registration_media.json",
+      "registration_media_session_preflight": {
+        "auth_status": "registration_auth_required",
+        "preflight_status": "blocked",
+        "secrets_copied": false
+      },
+      "registration_media_transport_created": false,
+      "secrets_copied": false,
+      "stage_contract_profile": "registration-media",
+      "transport_eligible_program_item_count": 0,
+      "transport_eligible_request_count": 0
+    },
+    "downloads_made": 0,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": "registration-media",
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "download-corpus.cvpr2026"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/cvpr2026-live-production-r4-registration-media/stage-04-download-corpus.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "missing": true,
+        "name": "registration_media_overlay",
+        "path": "storage/download-corpus/registration-media/registration_media.json",
+        "sha256": null
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/cvpr2026-live-production-r4-registration-media/stage-04-download-corpus.json>",
+    "owner_execution_evidence": {
+      "acquisition.download_corpus.cvpr2026": {
+        "authenticated_request_count": 0,
+        "overlay_path": "storage/download-corpus/registration-media/registration_media.json",
+        "owner_function": "run_cvpr_registration_media_stage",
+        "transport_created": false
+      }
+    },
+    "provider_calls_made": 0,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "registration_media_overlay": {
+      "overlay_sha256": null,
+      "path": "storage/download-corpus/registration-media/registration_media.json",
+      "status": "not_written"
+    },
+    "required_script_ids": [
+      "acquisition.download_corpus.cvpr2026"
+    ],
+    "run_id": "cvpr2026-live-production-r4-registration-media",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": null,
+    "stage_id": "download-corpus",
+    "stage_order": 4,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

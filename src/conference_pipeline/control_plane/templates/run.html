@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ app_title }} - {{ run_id }}</title>
+  <link rel="stylesheet" href="{{ url_for('control-plane-static', path='control-plane.css') }}">
+  <script src="{{ url_for('control-plane-static', path='control-plane.js') }}" defer></script>
+</head>
+<body>
+  {% import "partials/icons.html" as icons %}
+  {% set active = run_status and run_status.active %}
+  {% set summary = namespace(label="Not started", class_name="status-not-started", failed=false, planned=false, completed=false) %}
+  {% for receipt in receipt_rows %}
+    {% if receipt.status == "failed" %}
+      {% set summary.failed = true %}
+    {% elif receipt.status == "planned" %}
+      {% set summary.planned = true %}
+    {% elif receipt.status == "succeeded" or receipt.status == "skipped" %}
+      {% set summary.completed = true %}
+    {% endif %}
+  {% endfor %}
+  {% if active %}
+    {% set summary.label = "Running" %}
+    {% set summary.class_name = "status-running" %}
+  {% elif run_status and run_status.next_resume_stage %}
+    {% set summary.label = "Resumable" %}
+    {% set summary.class_name = "status-resumable" %}
+  {% elif summary.failed %}
+    {% set summary.label = "Failed" %}
+    {% set summary.class_name = "status-failed" %}
+  {% elif summary.planned %}
+    {% set summary.label = "Planned" %}
+    {% set summary.class_name = "status-planned" %}
+  {% elif summary.completed %}
+    {% set summary.label = "Succeeded" %}
+    {% set summary.class_name = "status-succeeded" %}
+  {% endif %}
+  <header class="topbar">
+    <div class="topbar-title">
+      <h1>Conference Control Plane</h1>
+      <div class="workspace-path" title="{{ current_workspace }}">{{ current_workspace }}</div>
+    </div>
+    <div class="topbar-actions">
+      <span class="status-badge {{ summary.class_name }}" data-run-summary-status>{{ summary.label }}</span>
+      <button class="icon-button" type="button" data-refresh-button aria-label="Refresh run status" data-tooltip="Refresh">
+        {{ icons.icon("refresh") }}
+      </button>
+    </div>
+  </header>
+
+  <main
+    class="app-shell"
+    data-action-token="{{ action_token }}"
+    data-run-id="{{ run_id }}"
+    data-status-url="{{ run_status_api_url }}"
+    data-run-active="{% if active %}true{% else %}false{% endif %}"
+  >
+    <section class="panel launch-panel" aria-label="Launch controls">
+      <div class="panel-heading">
+        <h2>Launch Run</h2>
+      </div>
+      <form class="launch-form" method="post" action="/api/runs" data-enhance-submit>
+        <input type="hidden" name="action_token" value="{{ action_token }}">
+        <input type="hidden" name="response_format" value="html">
+
+        <div class="field">
+          <label for="workspace">Workspace</label>
+          <input id="workspace" name="workspace" type="text" value="{{ current_workspace }}" autocomplete="off">
+        </div>
+
+        <fieldset class="field">
+          <legend>Mode</legend>
+          <div class="segmented-control" role="radiogroup" aria-label="Workflow mode">
+            {% for mode in ["live", "dry-run", "mock"] %}
+              <label class="segment">
+                <input type="radio" name="mode" value="{{ mode }}" {% if mode == default_mode %}checked{% endif %}>
+                <span>{{ mode }}</span>
+              </label>
+            {% endfor %}
+          </div>
+          <span class="caution-badge">live uses real execution</span>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Stages</legend>
+          <div class="stage-checks">
+            {% for stage in canonical_stages %}
+              <label class="checkbox-row">
+                <input type="checkbox" name="stage_ids" value="{{ stage.id }}" {% if stage.id in default_stage_ids %}checked{% endif %}>
+                <span>{{ stage.id }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="topic">Topic</label>
+          <input id="topic" name="topic" type="text" placeholder="all topics" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="run_id">Run ID</label>
+          <input id="run_id" name="run_id" type="text" autocomplete="off">
+        </div>
+
+        <label class="toggle-row">
+          <input type="checkbox" name="resume" value="true">
+          <span>Resume</span>
+        </label>
+
+        <p class="form-error" data-form-error hidden>Run could not start. Check the highlighted fields and receipt error, then retry with dry-run or resume.</p>
+
+        <div class="button-stack">
+          <button class="primary-button" type="submit">
+            {{ icons.icon("launch") }}
+            <span>Launch Run</span>
+          </button>
+        </div>
+      </form>
+
+      <form class="preset-form" method="post" action="/api/presets/small-neurips-smoketest" data-enhance-submit>
+        <input type="hidden" name="action_token" value="{{ action_token }}">
+        <input type="hidden" name="response_format" value="html">
+        <button class="secondary-button" type="submit">
+          {{ icons.icon("launch") }}
+          <span>Launch Smoke Test</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="panel run-panel" aria-live="polite" data-run-summary>
+      {% if error_message %}
+        <div class="error-message">{{ error_message }}</div>
+      {% endif %}
+      <div class="panel-heading">
+        <div>
+          <h2 class="run-id" title="{{ run_id }}">{{ run_id }}</h2>
+          <p class="muted">Mode: <span class="mono">{{ run_status.mode if run_status else default_mode }}</span></p>
+        </div>
+        <span class="status-badge {{ summary.class_name }}" data-run-summary-status>{{ summary.label }}</span>
+      </div>
+      <dl class="summary-grid">
+        <div>
+          <dt>Workspace</dt>
+          <dd class="mono" title="{{ current_workspace }}">{{ current_workspace }}</dd>
+        </div>
+        <div>
+          <dt>Next resume stage</dt>
+          <dd class="mono" data-next-resume-stage>{{ run_status.next_resume_stage if run_status and run_status.next_resume_stage else "None" }}</dd>
+        </div>
+      </dl>
+
+      <ol class="stage-timeline" aria-label="Stage timeline">
+        {% for stage in canonical_stages %}
+          {% set row = namespace(receipt=None) %}
+          {% for receipt in receipt_rows %}
+            {% if receipt.stage_id == stage.id %}
+              {% set row.receipt = receipt %}
+            {% endif %}
+          {% endfor %}
+          {% set status = row.receipt.status if row.receipt else "not_started" %}
+          {% set label = "Not started" %}
+          {% if status == "succeeded" %}
+            {% set label = "Succeeded" %}
+          {% elif status == "planned" %}
+            {% set label = "Planned" %}
+          {% elif status == "failed" %}
+            {% set label = "Failed" %}
+          {% elif status == "skipped" %}
+            {% set label = "Skipped" %}
+          {% elif status == "running" %}
+            {% set label = "Running" %}
+          {% endif %}
+          <li class="timeline-row">
+            <span class="stage-name">{{ stage.id }}</span>
+            <span class="status-badge status-{{ status|replace('_', '-') }}">{{ label }}</span>
+            {% if row.receipt and row.receipt.next_resume_stage %}
+              <span class="status-badge status-resumable">Resumable</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Stage ID</th>
+              <th>Status</th>
+              <th>Mode</th>
+              <th>Topic</th>
+              <th>Started</th>
+              <th>Ended</th>
+              <th>Resumable</th>
+              <th>Next Resume Stage</th>
+              <th>Receipt Filename</th>
+              <th>Artifact Count</th>
+              <th>Cost (actual / est.)</th>
+              <th>Error</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if receipt_rows %}
+              {% for receipt in receipt_rows %}
+                {% set receipt_label = "Not started" %}
+                {% if receipt.status == "succeeded" %}
+                  {% set receipt_label = "Succeeded" %}
+                {% elif receipt.status == "planned" %}
+                  {% set receipt_label = "Planned" %}
+                {% elif receipt.status == "failed" %}
+                  {% set receipt_label = "Failed" %}
+                {% elif receipt.status == "skipped" %}
+                  {% set receipt_label = "Skipped" %}
+                {% elif receipt.status == "running" %}
+                  {% set receipt_label = "Running" %}
+                {% endif %}
+                <tr>
+                  <td class="mono" data-label="Stage ID">{{ receipt.stage_id }}</td>
+                  <td data-label="Status"><span class="status-badge status-{{ receipt.status|replace('_', '-') }}">{{ receipt_label }}</span></td>
+                  <td data-label="Mode">{{ receipt.mode }}</td>
+                  <td class="mono" data-label="Topic">{{ receipt.topic or "all" }}</td>
+                  <td class="mono" data-label="Started">{{ receipt.started_at or "" }}</td>
+                  <td class="mono" data-label="Ended">{{ receipt.ended_at or "" }}</td>
+                  <td data-label="Resumable">{% if receipt.resumable %}true{% else %}false{% endif %}</td>
+                  <td data-label="Next Resume Stage">{{ receipt.next_resume_stage or "None" }}</td>
+                  <td class="mono" data-label="Receipt Filename" title="{{ receipt.receipt_path }}">{{ receipt.receipt_filename }}</td>
+                  <td data-label="Artifact Count">{{ receipt.artifact_count }}</td>
+                  <td data-label="Cost (actual / est.)" class="mono">
+                    {%- if receipt.stage_actual_usd is not none %}
+                      ${{ "%.4f"|format(receipt.stage_actual_usd) }}
+                      {%- if receipt.stage_estimated_usd is not none %} / ${{ "%.4f"|format(receipt.stage_estimated_usd) }}{% endif %}
+                      {%- if receipt.local_call_count %} <span class="muted">({{ receipt.local_call_count }} local)</span>{% endif %}
+                      {%- if receipt.has_unknown_cost %} <span class="caution-badge">unknown cost</span>{% endif %}
+                    {%- else %}&mdash;{%- endif %}
+                  </td>
+                  <td data-label="Error">{% if receipt.error %}<span class="error-inline">{{ receipt.error }}</span>{% endif %}</td>
+                  <td data-label="Details">
+                    <details>
+                      <summary>Details</summary>
+                      <pre>{{ receipt.commands or [] }}</pre>
+                    </details>
+                  </td>
+                </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="13" class="empty-cell">No receipt rows yet.</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="panel artifact-panel">
+      <div class="panel-heading">
+        <h2>Artifacts</h2>
+      </div>
+      {% if artifact_records %}
+        <ul class="artifact-list">
+          {% for artifact in artifact_records %}
+            <li class="artifact-row">
+              <div class="artifact-main">
+                <span class="artifact-icon">{{ icons.icon("preview") }}</span>
+                <div>
+                  <strong title="{{ artifact.label }}">{{ artifact.label }}</strong>
+                  <span class="mono path-truncate" title="{{ artifact.relative_path }}">{{ artifact.relative_path }}</span>
+                  <span class="muted">{{ artifact.source }} - {{ artifact.preview_type }}</span>
+                </div>
+              </div>
+              {% if artifact.preview_type != "unsupported" %}
+                <div class="artifact-actions">
+                  <button
+                    class="icon-button"
+                    type="button"
+                    data-preview-button
+                    data-preview-url="{{ artifact.preview_url }}"
+                    data-preview-type="{{ artifact.preview_type }}"
+                    data-preview-label="{{ artifact.label }}"
+                    aria-label="Preview {{ artifact.label }}"
+                    data-tooltip="Preview"
+                  >
+                    {{ icons.icon("preview") }}
+                  </button>
+                  <button
+                    class="icon-button"
+                    type="button"
+                    data-copy-value="{{ artifact.preview_url }}"
+                    aria-label="Copy preview URL for {{ artifact.label }}"
+                    data-tooltip="Copy"
+                  >
+                    {{ icons.icon("copy") }}
+                  </button>
+                  <a
+                    class="icon-button"
+                    href="{{ artifact.preview_url }}"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Open {{ artifact.label }} in a new tab"
+                    data-tooltip="Open"
+                  >
+                    {{ icons.icon("external-open") }}
+                  </a>
+                </div>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="artifact-empty">
+          <h2>No previewable artifacts</h2>
+          <p>This run has no supported audio, video, deck, document, JSON, or markdown artifacts yet.</p>
+        </div>
+      {% endif %}
+
+      <div class="preview-pane" data-preview-pane>
+        {% if artifact_previews %}
+          {% set preview = artifact_previews[0] %}
+          {% set artifact = preview.artifact %}
+          <div class="preview-heading">
+            <h2>{{ artifact.label }}</h2>
+            <a class="icon-button" href="{{ artifact.preview_url }}" target="_blank" rel="noreferrer" aria-label="Open {{ artifact.label }} in a new tab" data-tooltip="Open">
+              {{ icons.icon("external-open") }}
+            </a>
+          </div>
+          {% if artifact.preview_type == "audio" %}
+            <audio controls src="{{ artifact.preview_url }}"></audio>
+          {% elif artifact.preview_type == "video" %}
+            <video controls src="{{ artifact.preview_url }}"></video>
+          {% elif artifact.preview_type == "deck-html" %}
+            <iframe sandbox="allow-scripts" class="preview-frame" title="{{ artifact.label }}" src="{{ artifact.preview_url }}"></iframe>
+          {% elif artifact.preview_type == "document" %}
+            <object class="preview-object" data="{{ artifact.preview_url }}"></object>
+          {% elif artifact.preview_type == "markdown" %}
+            <pre>{{ preview.text or "" }}</pre>
+          {% elif artifact.preview_type == "json" %}
+            <pre>{{ preview.text or "" }}</pre>
+          {% endif %}
+        {% else %}
+          <h2>No previewable artifacts</h2>
+          <p>This run has no supported audio, video, deck, document, JSON, or markdown artifacts yet.</p>
+        {% endif %}
+      </div>
+    </aside>
+  </main>
+</body>
+</html>

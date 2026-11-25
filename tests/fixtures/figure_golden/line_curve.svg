@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Quality against sampling steps</title>
+<desc id="fc-desc">Measured quality saturates well before the maximum step count.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Quality against sampling steps</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Measured quality saturates well before the maximum step count.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Quality saturates before the step budget</tspan></text>
+<rect x="94.28" y="174" width="1.5" height="404.72" fill="#333344" />
+<rect x="95.03" y="577.97" width="970.97" height="1.5" fill="#333344" />
+<text x="44" y="148" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif">Quality score</text>
+<text x="580.51" y="626.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Sampling steps</text>
+<rect x="95.03" y="577.97" width="970.97" height="1.5" fill="#333344" opacity="0.45" />
+<text x="85.03" y="585.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">0</text>
+<rect x="95.03" y="476.79" width="970.97" height="1.5" fill="#333344" opacity="0.45" />
+<text x="85.03" y="484.54" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">25</text>
+<rect x="95.03" y="375.61" width="970.97" height="1.5" fill="#333344" opacity="0.45" />
+<text x="85.03" y="383.36" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">50</text>
+<rect x="95.03" y="274.43" width="970.97" height="1.5" fill="#333344" opacity="0.45" />
+<text x="85.03" y="282.18" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">75</text>
+<rect x="95.03" y="173.25" width="970.97" height="1.5" fill="#333344" opacity="0.45" />
+<text x="85.03" y="181" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">100</text>
+<text x="95.03" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">0</text>
+<text x="337.77" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">5</text>
+<text x="580.51" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">10</text>
+<text x="823.26" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">15</text>
+<text x="1066" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">20</text>
+<polyline points="143.58,327.79 192.13,279.23 289.22,250.9 483.42,238.76 871.81,234.71" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="143.58" cy="327.79" r="5" fill="#a8d8ea" />
+<circle cx="192.13" cy="279.23" r="5" fill="#a8d8ea" />
+<circle cx="289.22" cy="250.9" r="5" fill="#a8d8ea" />
+<circle cx="483.42" cy="238.76" r="5" fill="#a8d8ea" />
+<circle cx="871.81" cy="234.71" r="5" fill="#a8d8ea" />
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="879.81" y="217.91">Flow matching</tspan></text>
+<polyline points="143.58,453.26 192.13,384.45 289.22,311.6 483.42,263.04 871.81,238.76" fill="none" stroke="#4ecdc4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="143.58" cy="453.26" r="5" fill="#4ecdc4" />
+<circle cx="192.13" cy="384.45" r="5" fill="#4ecdc4" />
+<circle cx="289.22" cy="311.6" r="5" fill="#4ecdc4" />
+<circle cx="483.42" cy="263.04" r="5" fill="#4ecdc4" />
+<circle cx="871.81" cy="238.76" r="5" fill="#4ecdc4" />
+<text font-size="20" fill="#4ecdc4" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="879.81" y="262.36">Diffusion</tspan><tspan x="879.81" y="286.76">baseline</tspan></text>
+</svg>

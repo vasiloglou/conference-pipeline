@@ -1,0 +1,11 @@
+{
+  "frames": [
+    {
+      "path": "video_build/structured-slide-001.png",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "slide_id": "sl_01_title"
+    }
+  ],
+  "production_evidence": false,
+  "schema_version": 1
+}

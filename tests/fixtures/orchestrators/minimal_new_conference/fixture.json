@@ -1,0 +1,13 @@
+{
+  "fixture": "minimal_new_conference",
+  "synthetic": true,
+  "orchestrator": "repo/scripts/run_newconf2032_production.py",
+  "slug": "newconf2032",
+  "expected_hooks": [],
+  "quirks": [],
+  "index_format": null,
+  "generated_pdfs": [
+    "papers/n-001.pdf"
+  ],
+  "note": "PDFs are gitignored repo-wide; tests/orchestrator_golden.py materialize_fixture_workspace() writes these tiny synthetic PDFs into a temp copy."
+}

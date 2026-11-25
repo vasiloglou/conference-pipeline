@@ -1,0 +1,177 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "84354ea0f9aad2dd98bd6d3697901a1e48f5a712cf9166e4b6706c8438e20831",
+  "normalized_output_digest": "c9fad18ca3e9e0d0663e078c384cbffc1d3b9b507425266f89cd5afe4d371e29",
+  "output_digest_consistent": true,
+  "output_files": {},
+  "receipt": {
+    "blocker_receipt_path": "<WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/blocker-receipts/transcription-ocr/20310102T030405Z-missing_receipt.json",
+    "checks": {
+      "blockers": [
+        {
+          "code": "workshop_talk_media_acquisition_required",
+          "inventory_present": false,
+          "reason": "workshop papers exist, so transcription-ocr requires Phase 04.3 workshop talk media receipt and inventory",
+          "receipt_present": false,
+          "retryable": true
+        }
+      ],
+      "download_corpus_counts": {
+        "direct_download_artifact_count": 12,
+        "local_artifact_count": 21,
+        "media_artifact_count": 6,
+        "paper_artifact_count": 6,
+        "workshop_paper_pdf_count": 1
+      },
+      "download_corpus_inventory_path": "storage/download-corpus/download_corpus.json",
+      "download_corpus_inventory_sha256": "<sha256:storage/download-corpus/download_corpus.json>",
+      "download_corpus_inventory_status": "succeeded",
+      "download_corpus_stage_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json",
+      "download_corpus_stage_receipt_sha256": "<sha256:storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json>",
+      "download_corpus_stage_status": "succeeded",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "live_provider_calls_made": false,
+      "provider_calls_made": false,
+      "provider_cost_posture": {
+        "api_cost_usd": 0.0,
+        "cost_task_ids": [
+          "asr_transcription",
+          "slide_poster_visual_ocr",
+          "slide_poster_visual_ocr_fallback",
+          "pdf_visual_ocr",
+          "pdf_text_extraction_followup"
+        ],
+        "governed_registry_tasks": [
+          "ocr.slide_image_parse",
+          "transcription.session_speech"
+        ],
+        "live_provider_calls_made": false,
+        "paid_provider_calls_made": false,
+        "provider_calls_made": false,
+        "provider_values_recorded": false,
+        "secret_values_recorded": false,
+        "secrets_copied": false
+      },
+      "secrets_copied": false,
+      "talk_media_acquisition_receipt_error": null,
+      "talk_media_acquisition_receipt_path": "storage/workshops/talk_media_acquisition_receipt.json",
+      "talk_media_acquisition_receipt_present": false,
+      "talk_media_acquisition_receipt_sha256": null,
+      "talk_media_acquisition_receipt_status": null,
+      "talk_media_inventory_blocked_workshop_count": 0,
+      "talk_media_inventory_blocker_count": 0,
+      "talk_media_inventory_error": null,
+      "talk_media_inventory_media_record_count": 0,
+      "talk_media_inventory_path": "storage/workshops/talk_media_inventory.json",
+      "talk_media_inventory_present": false,
+      "talk_media_inventory_sha256": null,
+      "talk_media_inventory_status": null,
+      "talk_media_inventory_workshop_count": 0,
+      "talk_media_scope_waiver_accepted": false,
+      "talk_media_scope_waiver_decision": null,
+      "talk_media_scope_waiver_error": null,
+      "talk_media_scope_waiver_path": "storage/workshops/workshop_talk_media_scope_waiver.json",
+      "talk_media_scope_waiver_present": false,
+      "talk_media_scope_waiver_status": null,
+      "workshop_acquisition_workshop_count": 1,
+      "workshop_talk_media_input_blockers": [
+        {
+          "code": "workshop_talk_media_acquisition_required",
+          "inventory_present": false,
+          "reason": "workshop papers exist, so transcription-ocr requires Phase 04.3 workshop talk media receipt and inventory",
+          "receipt_present": false,
+          "retryable": true
+        }
+      ],
+      "workshop_talk_media_required": true,
+      "workshop_talk_media_waived": false
+    },
+    "error": "transcription-ocr requires Phase 04.3 workshop talk media inputs",
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "transcription-ocr.icml2026"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-05-transcription-ocr.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/transcription-ocr/workshop-talks/workshop_talk_segmentation_batch_receipt.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": true,
+          "source": "required_receipts",
+          "spec_path": "storage/transcription-ocr/workshop-talks/workshop_talk_segmentation_batch_receipt.json",
+          "stage_id": null,
+          "status": null
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-04-download-corpus.json",
+          "stage_id": "download-corpus",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue to corpus-inventory-index only after Phase 5 verification and BK-05 backup pass.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-05-transcription-ocr.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "transcription_ocr.local_media_processing"
+    ],
+    "resumable": false,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {},
+    "stage_id": "transcription-ocr",
+    "stage_order": 5,
+    "stage_script_owner_refs": [
+      "transcription_ocr.local_media_processing",
+      "conference_pipeline.transcription_ocr",
+      "src/conference_pipeline/transcription_ocr.py"
+    ],
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

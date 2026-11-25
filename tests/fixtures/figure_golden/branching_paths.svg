@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Recall or perception?</title>
+<desc id="fc-desc">On a modified illusion the model can answer from memory instead of from the pixels.</desc>
+<defs><marker id="fc-arrow" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#a8d8ea" /></marker><marker id="fc-arrow-emphasis" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#ffd43b" /></marker></defs>
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Recall or perception?</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">On a modified illusion the model can answer from memory instead of from the pixels.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Modified illusions separate recall from sight</tspan></text>
+<rect x="44" y="335.64" width="260" height="91.44" fill="#16213e" rx="10" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="174" y="369.92">Modified illusion</tspan><tspan x="174" y="401.64">image</tspan></text>
+<rect x="368.4" y="132" width="867.6" height="232.36" fill="#16213e" rx="10" stroke="#333344" stroke-width="1.5" />
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="382.4" y="157.6">Recall path</tspan></text>
+<rect x="472.34" y="234.52" width="365.21" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="654.94" y="268.8">Matches a known illusion</tspan></text>
+<rect x="873.05" y="234.52" width="259.01" height="59.72" fill="#16213e" rx="10" stroke="#51cf66" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="1002.56" y="268.8">Textbook answer</tspan></text>
+<line x1="837.55" y1="264.38" x2="867.05" y2="264.38" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<polyline points="304,381.36 318,381.36 318,264.38 466.34,264.38" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<rect x="368.4" y="398.36" width="867.6" height="232.36" fill="#1a1a2e" rx="10" stroke="#ffd43b" stroke-width="4" />
+<text font-size="20" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="382.4" y="423.96">Perception path</tspan></text>
+<rect x="464.73" y="500.88" width="337.94" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="633.7" y="535.16">Reads the actual pixels</tspan></text>
+<rect x="838.17" y="485.02" width="301.49" height="91.44" fill="#16213e" rx="10" stroke="#51cf66" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="988.92" y="519.3">Answer matches the</tspan><tspan x="988.92" y="551.02">image</tspan></text>
+<line x1="802.67" y1="530.74" x2="832.17" y2="530.74" stroke="#ffd43b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow-emphasis)" />
+<polyline points="304,381.36 318,381.36 318,530.74 458.73,530.74" fill="none" stroke="#ffd43b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow-emphasis)" />
+</svg>

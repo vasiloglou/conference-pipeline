@@ -1,0 +1,92 @@
+{
+  "archetype": "nested_architecture",
+  "claim": "Remote heavy inference buys accuracy but adds delay that on-device correction must resolve before output is timely.",
+  "content": {
+    "edges": [
+      {
+        "from": "capture",
+        "to": "heavy_model"
+      },
+      {
+        "from": "heavy_model",
+        "to": "delay"
+      },
+      {
+        "from": "delay",
+        "label": "tail-latency frames",
+        "to": "correction"
+      },
+      {
+        "from": "correction",
+        "to": "timely_output"
+      }
+    ],
+    "groups": [
+      {
+        "id": "device",
+        "label": "On-device system",
+        "members": [
+          "capture",
+          "device_model",
+          "correction",
+          "timely_output"
+        ]
+      },
+      {
+        "id": "cloud",
+        "label": "Remote cloud system",
+        "members": [
+          "heavy_model",
+          "delay"
+        ]
+      }
+    ],
+    "nodes": [
+      {
+        "id": "capture",
+        "kind": "frozen",
+        "label": "On-device capture"
+      },
+      {
+        "id": "device_model",
+        "kind": "frozen",
+        "label": "Lightweight device model"
+      },
+      {
+        "id": "heavy_model",
+        "kind": "frozen",
+        "label": "Remote heavy model"
+      },
+      {
+        "id": "delay",
+        "kind": "frozen",
+        "label": "Network delay"
+      },
+      {
+        "id": "correction",
+        "kind": "adapted",
+        "label": "On-device correction"
+      },
+      {
+        "id": "timely_output",
+        "kind": "adapted",
+        "label": "Timely output"
+      }
+    ]
+  },
+  "emphasis": {
+    "highlight": [
+      "correction",
+      "timely_output"
+    ]
+  },
+  "figure_id": "sl_24_the-edge-budget-latency-is-a-first-class-p-figure",
+  "grounding": {
+    "kind": "schematic"
+  },
+  "section": "S6_fusion_edge",
+  "slide_id": "sl_24_the-edge-budget-latency-is-a-first-class-p",
+  "spec_version": "figure-spec/1",
+  "takeaway": "Correction realigns stale remote results to now",
+  "title": "The edge budget: latency is a first-class perception input"
+}

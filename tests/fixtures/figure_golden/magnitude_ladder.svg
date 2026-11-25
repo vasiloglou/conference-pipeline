@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Parameter count is not the story</title>
+<desc id="fc-desc">A 7B medical model matches reasoners an order of magnitude larger.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Parameter count is not the story</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">A 7B medical model matches reasoners an order of magnitude larger.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">7B matches models ten times larger</tspan></text>
+<text x="44" y="148.8" font-size="21" fill="#cccccc" font-family="Helvetica, Arial, sans-serif">Parameters (B) (log scale)</text>
+<rect x="233.57" y="214.45" width="115.3" height="48" fill="#ffd43b" />
+<text font-size="21" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="bold"><tspan x="219.57" y="242.02">OctoMed</tspan></text>
+<text x="358.87" y="245.8" font-size="21" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif" font-weight="bold">7 B</text>
+<rect x="233.57" y="374.16" width="576.49" height="48" fill="#4ecdc4" />
+<text font-size="21" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="219.57" y="401.73">General reasoner</tspan></text>
+<text x="820.06" y="405.51" font-size="21" fill="#4ecdc4" font-family="Helvetica, Arial, sans-serif" font-weight="bold">70 B</text>
+<rect x="233.57" y="533.87" width="925.6" height="48" fill="#9775fa" />
+<text font-size="21" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="219.57" y="561.44">Frontier reasoner</tspan></text>
+<text x="1169.17" y="565.22" font-size="21" fill="#9775fa" font-family="Helvetica, Arial, sans-serif" font-weight="bold">400 B</text>
+</svg>

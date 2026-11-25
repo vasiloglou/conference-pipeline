@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Visual tokens homogenise with depth</title>
+<desc id="fc-desc">Visual token representations converge as they pass through the language model&#x27;s layers.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Visual tokens homogenise with depth</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Visual token representations converge as they pass through the language model&#x27;s layers.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Deeper layers, less visual variety</tspan></text>
+<rect x="44" y="132" width="938" height="158.24" fill="#2a2a4a" rx="6" stroke="#333344" stroke-width="1.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="513" y="215.54">Early layers</tspan></text>
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="1016" y="202.32">tokens still carry</tspan><tspan x="1016" y="226.72">distinct regions</tspan></text>
+<line x1="990" y1="211.12" x2="1006" y2="211.12" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<rect x="44" y="302.24" width="938" height="158.24" fill="#16213e" rx="6" stroke="#333344" stroke-width="1.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="513" y="385.78">Middle layers</tspan></text>
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="1016" y="372.56">region identity begins</tspan><tspan x="1016" y="396.96">to blur</tspan></text>
+<line x1="990" y1="381.36" x2="1006" y2="381.36" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<rect x="44" y="472.48" width="938" height="158.24" fill="#2a2a4a" rx="6" stroke="#ffd43b" stroke-width="4" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="513" y="556.02">Late layers</tspan></text>
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="1016" y="542.8">tokens are</tspan><tspan x="1016" y="567.2">near-interchangeable</tspan></text>
+<line x1="990" y1="551.6" x2="1006" y2="551.6" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<text x="1236" y="122" font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="bold">token diversity</text>
+</svg>

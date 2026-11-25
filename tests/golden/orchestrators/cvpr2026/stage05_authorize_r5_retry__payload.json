@@ -1,0 +1,5 @@
+{
+  "archive_path": "<WORKSPACE>/storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.pre-repair-blocked.json",
+  "authorization_path": "<WORKSPACE>/storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-05-transcription-ocr.retry-authorization.json",
+  "status": "authorized"
+}

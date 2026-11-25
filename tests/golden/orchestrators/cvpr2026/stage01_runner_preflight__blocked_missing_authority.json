@@ -1,0 +1,113 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "635a19df8d0922ddfd867479057b687ba0820875f04a100457131d125da7c1d0",
+  "normalized_output_digest": "b64f9ae5ff076e95a4ec02d56f942d73f385e5fabd68de2acb52580332b289f6",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/workflow-runs/w1-cvpr-fixture-run/blocker-receipts/runner-preflight/20310102T030405Z-stage_blocked.json": "json:e241924f7e1f599e305dc1171bb8838020d9625b75a5f336ef3a7952226417fa",
+    "storage/workflow-runs/w1-cvpr-fixture-run/runner-preflight-remediation.json": "json:a8675b7d6af5456be5344a1ed27a81f945aac3cafc6fbb22b4fd49af1455c8a1"
+  },
+  "receipt": {
+    "blocker_receipt_path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/blocker-receipts/runner-preflight/20310102T030405Z-stage_blocked.json",
+    "checks": {
+      "approval": {
+        "path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/provider-approval.json",
+        "status": "invalid"
+      },
+      "credential_value_marker_persisted": false,
+      "owner_binding": {
+        "owner_id": "cvpr2026.production_runner",
+        "registration": {
+          "existence": "required",
+          "path": "scripts/run_cvpr2026_production.py",
+          "scope": "production",
+          "status": "required"
+        },
+        "registry_sha256": "<REGISTRY_SHA>",
+        "status": "valid"
+      },
+      "prepared_estimate": {
+        "estimate_digest": null,
+        "path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/preflight-full-run-estimate.json",
+        "provider_stage_projection": {},
+        "status": "invalid"
+      },
+      "provider_probe_scope": "all_declared_providers",
+      "provider_probes": [],
+      "secrets_copied": false,
+      "spend_authority": {
+        "mode": "approval_required"
+      },
+      "storage_capacity": {
+        "ready": false,
+        "required_bytes": null
+      }
+    },
+    "credential_value_marker_persisted": false,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "runner-preflight"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-01-runner-preflight.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "kind": "file",
+        "name": "remediation_report",
+        "path": "storage/workflow-runs/w1-cvpr-fixture-run/runner-preflight-remediation.json",
+        "sha256": "<sha256:storage/workflow-runs/w1-cvpr-fixture-run/runner-preflight-remediation.json>"
+      },
+      {
+        "kind": "file",
+        "name": "blocker_receipt",
+        "path": "storage/workflow-runs/w1-cvpr-fixture-run/blocker-receipts/runner-preflight/20310102T030405Z-stage_blocked.json",
+        "sha256": "<sha256:storage/workflow-runs/w1-cvpr-fixture-run/blocker-receipts/runner-preflight/20310102T030405Z-stage_blocked.json>"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-01-runner-preflight.json>",
+    "owner_execution_evidence": {
+      "cvpr2026.production_runner": {
+        "runner_function": "run_runner_preflight",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "stage_receipt_path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/stage-01-runner-preflight.json"
+      }
+    },
+    "owner_registration": {
+      "existence": "required",
+      "path": "scripts/run_cvpr2026_production.py",
+      "scope": "production",
+      "status": "required"
+    },
+    "preflight_resume_policy": "rerun_required",
+    "provider_probe_scope": null,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "remediation_report_path": "<WORKSPACE>/storage/workflow-runs/w1-cvpr-fixture-run/runner-preflight-remediation.json",
+    "required_script_ids": [
+      "cvpr2026.production_runner"
+    ],
+    "resumable": false,
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": null,
+    "stage_id": "runner-preflight",
+    "stage_order": 1,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

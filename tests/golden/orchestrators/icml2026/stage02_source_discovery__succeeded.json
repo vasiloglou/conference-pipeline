@@ -1,0 +1,131 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "635a19df8d0922ddfd867479057b687ba0820875f04a100457131d125da7c1d0",
+  "normalized_output_digest": "dc4a0b6db88e1ef84a033a521963423dd3d7c3ec42ee6026259db84ae999c09e",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/source-discovery/source_discovery_inventory.json": "json:6c9a3e7628c8009fa213c7ceab96e799d707e93c44ec2278bde52f5a2d678d85",
+    "storage/source-discovery/source_discovery_report.md": "text:fb5ea614b4e7badc029c62c2ee87a6135a7d5946bdf647f8ee4dd298cd063e78"
+  },
+  "receipt": {
+    "blocker_receipt_path": null,
+    "checks": {
+      "auth_posture": {
+        "any_auth_required": false,
+        "auth_required_families": [],
+        "secret_values_recorded": false
+      },
+      "blocked_count": 0,
+      "download_heavy_acquisition_made": false,
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "live_provider_calls_made": false,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [],
+        "approved": false,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "reachable_or_recovered_count": 2,
+      "safe_recoveries": [],
+      "secrets_copied": false,
+      "source_blockers": [],
+      "source_discovery_inventory_path": "<WORKSPACE>/storage/source-discovery/source_discovery_inventory.json",
+      "source_discovery_report_path": "<WORKSPACE>/storage/source-discovery/source_discovery_report.md",
+      "source_family_count": 2,
+      "source_intake_inventory_path": "<WORKSPACE>/storage/source-intake/source_inventory.json",
+      "source_intake_inventory_sha256": "<sha256:storage/source-intake/source_inventory.json>"
+    },
+    "error": null,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "source-discovery.icml2026"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-02-source-discovery.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "next_action": "Continue to corpus-freeze after Phase 2 verification passes.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [
+      {
+        "kind": "file",
+        "name": "source_discovery_inventory",
+        "path": "storage/source-discovery/source_discovery_inventory.json",
+        "sha256": "<sha256:storage/source-discovery/source_discovery_inventory.json>"
+      },
+      {
+        "kind": "file",
+        "name": "source_discovery_report",
+        "path": "storage/source-discovery/source_discovery_report.md",
+        "sha256": "<sha256:storage/source-discovery/source_discovery_report.md>"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-02-source-discovery.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "acquisition.source_discovery"
+    ],
+    "resumable": true,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {
+      "accepted_evidence": [
+        "source-discovery: receipt mode live",
+        "source-discovery: registry digest matched",
+        "source-discovery: required owner ids recorded",
+        "source-discovery: required output <WORKSPACE>/storage/source-discovery/source_discovery_inventory.json"
+      ],
+      "blockers": [],
+      "registry_stage_id": "source-discovery.icml2026",
+      "required_script_ids": [
+        "acquisition.source_discovery"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "source-discovery",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "source-discovery",
+    "stage_order": 2,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

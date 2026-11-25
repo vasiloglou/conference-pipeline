@@ -1,0 +1,261 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "90e3dbac0df4d21f01d6dd73ef2991b5c41d4f652601c111b9c0a19b88c1829a",
+  "normalized_output_digest": "853fe33552825361c63677431adc5b0ea1eab323e686a5863eac4a58bf3831bf",
+  "output_digest_consistent": true,
+  "output_files": {
+    "cache/acquisition-downloads": {
+      "item-page-probes/virtual-2026-expo-talk-5001-a538a04ae4de.html": "text:d463a58e87a204cf0ce61415803b690b145a83ac27f4307071467e065eaec123",
+      "item-page-probes/virtual-2026-invited-talk-6001-9d535646fd1c.html": "text:10bb9d08d3163c6a90c34713b96a3877fb02f70b0a7fca87de84fa0873fe569d",
+      "item-page-probes/virtual-2026-oral-2001-6b827e9d99ee.html": "text:6a17ab803391b02c6009b754f271c546b7dd2394c73b8cacafbc3bfb6f6a058b",
+      "item-page-probes/virtual-2026-poster-1001-3f7abc87c51c.html": "text:0cb39096dfe7ac01ce0753d97cc4c85bc922d8f92b5008fbe639a68cdcee7413",
+      "item-page-probes/virtual-2026-tutorial-3001-b65a6e1900db.html": "text:9eb14722e166ff4303f494f63ffe5d0c1b6d0c101d26286cd457dca2c8f143fc",
+      "item-page-probes/virtual-2026-workshop-4001-7e46f891109a.html": "text:7326ad3c483b1d83c325a18eeb49c647599345ad46b2023c3993ff7e5bf8ba93",
+      "media_asset/icml-calendar/expo-5001-93a3eef7d913.mp4": "text:5bba061d46eddff66f971c9f60fa220f7dc3087e4bab86be99a10d71be9f72d6",
+      "media_asset/icml-calendar/invited-6001-cf0bd5d05f76.mp4": "text:33bcd6cb5485a48dc8b8467be5a9d10240b088cee2cc2ce71f97b82d67c6a1e2",
+      "media_asset/icml-calendar/oral-2001-d89b00b357e0.mp4": "text:79fb3e7044ebb18da7f478bfa60cf1b1349ae1a6f356fad863cf17fb0a9637bb",
+      "media_asset/icml-calendar/poster-1001-ae0a564164d7.mp4": "text:07e5d4e93f1c9cd6baa958cf5e22729663740351419f7938deb3cc373825f639",
+      "media_asset/icml-calendar/tutorial-3001-586cf8e52260.mp4": "text:a40862583f4d5e6707273c5bfbc026823f3ee598a9b862c72bedf08a7f2be19a",
+      "media_asset/icml-calendar/workshop-4001-8465cd7bb72f.mp4": "text:7b7c57dee40f2b703b8762f54a61b4bfc009a97e4e5e5cdcd0c9d1c45d237924",
+      "paper_pdf/openreview-venue/q001-ca3b2da29787.pdf": "bytes:5bc170a9e1184282810d21d1e34e21ce5fd1000327fc8440f113e4e2e48f4b52",
+      "paper_pdf/openreview-venue/q002-583a567182d5.pdf": "bytes:160900ea289db1dee3607c1470b0026531cc25637869d4b76ee29c5f5dc3e47d",
+      "paper_pdf/openreview-venue/q003-86df5d79a14b.pdf": "bytes:1660782a8370c8747a9b5f850f51799f7e0e7e1bdc374f6305c5df629e5705af",
+      "paper_pdf/openreview-venue/q004-0866c6bf0faf.pdf": "bytes:710a9a81c96aa63b4b584e11a5c0c9a88c72356e28db945487516e9a2fb82809",
+      "paper_pdf/openreview-venue/q005-194a1aa6754b.pdf": "bytes:9f04ae411cbd5d722a31866176c15c66cf274dc782333b932b062f5638c46852",
+      "paper_pdf/openreview-venue/q006-c60427a05b1f.pdf": "bytes:62e939e4a52ef394b35e16cfcbf190a955333c8e044bd48b5e2e34dd7606929a",
+      "source-pages/icml-calendar.html": "text:510c0655352b6585a87b6ce8685d82b79fbdf72e2e45ad9719d99af540a67285",
+      "source-pages/openreview-venue.html": "text:b40fc1050aba181d5422681fe1ed6d14553ea9499da4ba68299fa388445e1b64"
+    },
+    "storage/download-corpus/download_corpus.json": "json:fa19de0f513275c02375812f81b9ac961752133849d11613e93ada274d3f772b",
+    "storage/download-corpus/download_corpus_report.md": "text:ad1e1b50233f0131594093b1e64a9bb9a05b3f1ec62fc4db9fdd10571290bfcb",
+    "storage/download-corpus/openreview_accepted_papers.json": "json:f4007398a26cdccb6cc2c973cf2cf58b14a440e4f2043ce56cd3c2e677605be2"
+  },
+  "receipt": {
+    "blocker_receipt_path": null,
+    "checks": {
+      "attempted_source_count": 21,
+      "auth_posture": {
+        "any_auth_required": false,
+        "auth_required_blockers": [],
+        "secret_values_recorded": false
+      },
+      "blockers": [],
+      "corpus_freeze_path": "<WORKSPACE>/storage/corpus-freeze/corpus_freeze.json",
+      "corpus_freeze_sha256": "<sha256:storage/corpus-freeze/corpus_freeze.json>",
+      "direct_download_artifact_count": 12,
+      "discovered_target_count": 18,
+      "download_corpus_inventory_path": "<WORKSPACE>/storage/download-corpus/download_corpus.json",
+      "download_corpus_report_path": "<WORKSPACE>/storage/download-corpus/download_corpus_report.md",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "icml_cookie_file": {
+        "attempted": false,
+        "cookie_names": [],
+        "exists": false,
+        "loaded": false,
+        "secret_values_recorded": false
+      },
+      "item_page_expansion": {
+        "auth_required_count": 0,
+        "complete": true,
+        "failed_count": 0,
+        "probed_count": 6,
+        "status": "completed",
+        "target_count": 6,
+        "waiver_path": null,
+        "worker_count": 1
+      },
+      "live_provider_calls_made": false,
+      "local_artifact_count": 21,
+      "media_artifact_count": 6,
+      "media_family_coverage": {
+        "excluded_families": [],
+        "families": {
+          "expo": {
+            "item_page_count": 1,
+            "slugs": [
+              "expo",
+              "expo-talk",
+              "expo-demonstration",
+              "expo-workshop"
+            ]
+          },
+          "invited_talks": {
+            "item_page_count": 1,
+            "slugs": [
+              "invited-talk",
+              "keynote",
+              "invited-speaker"
+            ]
+          },
+          "orals": {
+            "item_page_count": 1,
+            "slugs": [
+              "oral"
+            ]
+          },
+          "tutorials": {
+            "item_page_count": 1,
+            "slugs": [
+              "tutorial"
+            ]
+          },
+          "workshops": {
+            "item_page_count": 1,
+            "slugs": [
+              "workshop"
+            ]
+          }
+        },
+        "unattributed_bare_id_count": 0,
+        "year": 2026,
+        "zero_item_families": []
+      },
+      "media_scope": {
+        "item_page_media_mode": "full_item_page_expansion",
+        "rationale": null,
+        "waiver_path": null
+      },
+      "paper_artifact_count": 6,
+      "paper_metadata_artifact_count": 1,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [],
+        "approved": false,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "secrets_copied": false,
+      "source_family_count": 2,
+      "target_counts": {
+        "media_asset": 6,
+        "paper_page": 6,
+        "paper_pdf": 6,
+        "session_page": 0,
+        "source_archive": 0
+      },
+      "unreachable_source_count": 0,
+      "workshop_acquisition": {
+        "discovery": {
+          "workshop_count": 1
+        },
+        "download": {
+          "output_dir": "storage/workshops/paper-downloads",
+          "totals": {
+            "available": 1,
+            "failed": 0,
+            "resume_skipped": 0,
+            "succeeded": 1
+          }
+        },
+        "parent_venue": "ICML.cc/2026/Workshop",
+        "rate_limit_rps": 1.4,
+        "status": "succeeded"
+      },
+      "workshop_paper_pdf_count": 1
+    },
+    "error": null,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "download-corpus.icml2026"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-03-corpus-freeze.json",
+          "stage_id": "corpus-freeze",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue to transcription-ocr after Phase 4 verification passes.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [
+      {
+        "kind": "file",
+        "name": "download_corpus_inventory",
+        "path": "storage/download-corpus/download_corpus.json",
+        "sha256": "<sha256:storage/download-corpus/download_corpus.json>"
+      },
+      {
+        "kind": "file",
+        "name": "download_corpus_report",
+        "path": "storage/download-corpus/download_corpus_report.md",
+        "sha256": "<sha256:storage/download-corpus/download_corpus_report.md>"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "acquisition.download_corpus"
+    ],
+    "resumable": true,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {
+      "accepted_evidence": [
+        "download-corpus: receipt mode live",
+        "download-corpus: registry digest matched",
+        "download-corpus: required owner ids recorded",
+        "download-corpus: lineage bound to storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json (output_digest <output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json>)",
+        "download-corpus: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/stage-03-corpus-freeze.json",
+        "download-corpus: required output <WORKSPACE>/storage/download-corpus/download_corpus.json"
+      ],
+      "blockers": [],
+      "registry_stage_id": "download-corpus.icml2026",
+      "required_script_ids": [
+        "acquisition.download_corpus"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "download-corpus",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "download-corpus",
+    "stage_order": 4,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

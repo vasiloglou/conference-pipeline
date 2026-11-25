@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Higher-order fusion with a missing modality</title>
+<desc id="fc-desc">The fusion still produces an answer when one modality is missing.</desc>
+<defs><marker id="fc-arrow" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#a8d8ea" /></marker><marker id="fc-arrow-muted" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#cccccc" /></marker></defs>
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Higher-order fusion with a missing modality</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">The fusion still produces an answer when one modality is missing.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Fusion survives a missing modality</tspan></text>
+<rect x="54" y="121.3" width="220" height="1.4" fill="#a8d8ea" opacity="0.5" />
+<rect x="273.3" y="122" width="1.4" height="96" fill="#a8d8ea" opacity="0.5" />
+<rect x="49" y="126.3" width="220" height="1.4" fill="#a8d8ea" opacity="0.5" />
+<rect x="268.3" y="127" width="1.4" height="96" fill="#a8d8ea" opacity="0.5" />
+<rect x="44" y="132" width="220" height="96" fill="#16213e" rx="6" stroke="#a8d8ea" stroke-width="2.5" />
+<polygon points="72.4,205.6 121.36,173.6 158.08,205.6" fill="#a8d8ea" opacity="1" />
+<polygon points="141.76,205.6 190.72,164 239.68,205.6" fill="#a8d8ea" opacity="0.75" />
+<circle cx="211.12" cy="160.8" r="7.2" fill="#ffd43b" opacity="1" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="154" y="253.6">RGB frames</tspan></text>
+<line x1="272" y1="180" x2="777.04" y2="351.36" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<rect x="44" y="313.36" width="220" height="96" fill="#16213e" rx="6" stroke="#4ecdc4" stroke-width="2.5" />
+<line x1="50" y1="361.36" x2="258" y2="361.36" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<circle cx="58" cy="349.36" r="4" fill="#4ecdc4" />
+<circle cx="82" cy="373.36" r="4" fill="#ff6b6b" />
+<circle cx="106" cy="349.36" r="4" fill="#4ecdc4" />
+<circle cx="130" cy="373.36" r="4" fill="#ff6b6b" />
+<circle cx="154" cy="349.36" r="4" fill="#4ecdc4" />
+<circle cx="178" cy="373.36" r="4" fill="#ff6b6b" />
+<circle cx="202" cy="349.36" r="4" fill="#4ecdc4" />
+<circle cx="226" cy="373.36" r="4" fill="#ff6b6b" />
+<circle cx="250" cy="349.36" r="4" fill="#4ecdc4" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="154" y="434.96">Event stream</tspan></text>
+<line x1="272" y1="361.36" x2="777.04" y2="381.36" stroke="#4ecdc4" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<rect x="44" y="494.72" width="220" height="96" fill="#16213e" rx="6" stroke="#cccccc" stroke-width="2.5" />
+<rect x="52" y="502.72" width="204" height="16" fill="#cccccc" opacity="0.15" />
+<rect x="52" y="518.72" width="204" height="16" fill="#cccccc" opacity="0.31" />
+<rect x="52" y="534.72" width="204" height="16" fill="#cccccc" opacity="0.47" />
+<rect x="52" y="550.72" width="204" height="16" fill="#cccccc" opacity="0.63" />
+<rect x="52" y="566.72" width="204" height="16" fill="#cccccc" opacity="0.79" />
+<text font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="154" y="616.32">Depth</tspan></text>
+<line x1="272" y1="542.72" x2="777.04" y2="411.36" stroke="#cccccc" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6" marker-end="url(#fc-arrow-muted)" />
+<rect x="783.04" y="321.36" width="280" height="120" fill="#2a2a4a" rx="10" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="923.04" y="385.78">Higher-order fusion</tspan></text>
+<rect x="1128.64" y="330.76" width="107.36" height="101.2" fill="#16213e" rx="10" stroke="#51cf66" stroke-width="2.5" />
+<line x1="1063.04" y1="381.36" x2="1122.64" y2="381.36" stroke="#a8d8ea" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="1182.32" y="360.36">Robust</tspan><tspan x="1182.32" y="384.76">scene</tspan><tspan x="1182.32" y="409.16">estimate</tspan></text>
+</svg>

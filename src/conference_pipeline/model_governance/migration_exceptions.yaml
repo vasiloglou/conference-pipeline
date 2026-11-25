@@ -1,0 +1,18 @@
+schema_version: 1
+description: >
+  Machine-readable allowlist for current-looking model references that are not
+  migrated in the skill-improvements-iclr2025 workstream. Exceptions require an
+  owner, reason, and revisit trigger.
+exceptions:
+  - path: docs/analysis-plans/
+    owner: planning-history
+    reason: Historical plans remain as prior art and are not runnable operator defaults.
+    revisit: next docs hygiene milestone
+  - path: docs/Final_Podcast_Presentation.md
+    owner: planning-history
+    reason: Historical NeurIPS narrative and code sketches; not current platform contract.
+    revisit: next NeurIPS docs archival pass
+  - path: scripts/presentations/NOTEBOOKLM_VIDEO_IMPROVEMENTS.md
+    owner: presentation-history
+    reason: Exploratory note for a richer historical video path; not the workflow-owned adapter.
+    revisit: before any NotebookLM-style video production milestone

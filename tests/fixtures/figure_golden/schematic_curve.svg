@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Confidence should fall as the image degrades</title>
+<desc id="fc-desc">A calibrated model loses confidence as blur rises; the observed model does not.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Confidence should fall as the image degrades</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">A calibrated model loses confidence as blur rises; the observed model does not.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Confidence stays flat as blur rises</tspan></text>
+<text x="1236" y="671.82" font-size="19" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">schematic - illustrates the claim, not measured data</text>
+<rect x="67.25" y="182" width="1.5" height="404.72" fill="#cccccc" />
+<polygon points="68,182 62.6,191 73.4,191" fill="#cccccc" />
+<rect x="68" y="585.97" width="968" height="1.5" fill="#cccccc" />
+<polygon points="1036,586.72 1027,581.32 1027,592.12" fill="#cccccc" />
+<text x="44" y="150" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif">Reported confidence</text>
+<text x="557" y="624.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Blur applied to the image</text>
+<rect x="605.9" y="172" width="440.1" height="414.72" fill="#2a2a4a" opacity="0.5" />
+<text font-size="18" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="825.95" y="192.04">image no longer legible</tspan></text>
+<polyline points="84,221.77 107.65,229.65 131.3,237.53 154.95,245.41 178.6,253.29 202.25,261.16 225.9,269.04 249.55,276.92 273.2,284.8 296.85,292.68 320.5,300.56 344.15,308.44 367.8,316.32 391.45,324.2 415.1,332.08 438.75,339.96 462.4,347.84 486.05,355.72 509.7,363.6 533.35,371.48 557,379.36 580.65,387.24 604.3,395.12 627.95,403 651.6,410.88 675.25,418.76 698.9,426.64 722.55,434.52 746.2,442.4 769.85,450.28 793.5,458.16 817.15,466.04 840.8,473.92 864.45,481.8 888.1,489.68 911.75,497.56 935.4,505.43 959.05,513.31 982.7,521.19 1006.35,529.07 1030,536.95" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 6" />
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="1064" y="528.15">Calibrated</tspan><tspan x="1064" y="552.55">behaviour</tspan></text>
+<polyline points="84,341.54 107.65,341.54 131.3,341.54 154.95,341.54 178.6,341.54 202.25,341.54 225.9,341.54 249.55,341.54 273.2,341.54 296.85,341.54 320.5,341.54 344.15,341.54 367.8,341.54 391.45,341.54 415.1,341.54 438.75,341.54 462.4,341.54 486.05,341.54 509.7,341.54 533.35,341.54 557,341.54 580.65,341.54 604.3,341.54 627.95,341.54 651.6,341.54 675.25,341.54 698.9,341.54 722.55,341.54 746.2,341.54 769.85,341.54 793.5,341.54 817.15,341.54 840.8,341.54 864.45,341.54 888.1,341.54 911.75,341.54 935.4,341.54 959.05,341.54 982.7,341.54 1006.35,341.54 1030,341.54" fill="none" stroke="#ffd43b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
+<text font-size="20" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="1064" y="332.74">Observed</tspan><tspan x="1064" y="357.14">behaviour</tspan></text>
+</svg>

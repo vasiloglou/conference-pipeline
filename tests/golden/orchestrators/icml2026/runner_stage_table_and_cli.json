@@ -1,0 +1,565 @@
+{
+  "cli": {
+    "--accept-podcast-review-findings": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "accept_podcast_review_findings",
+      "nargs": 0,
+      "required": false
+    },
+    "--accept-presentation-review-findings": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "accept_presentation_review_findings",
+      "nargs": null,
+      "required": false
+    },
+    "--accept-visual-qc-findings": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "accept_visual_qc_findings",
+      "nargs": 0,
+      "required": false
+    },
+    "--ack-live-notebooklm": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "ack_live_notebooklm",
+      "nargs": 0,
+      "required": false
+    },
+    "--adopt-existing-outputs": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "adopt_existing_outputs",
+      "nargs": 0,
+      "required": false
+    },
+    "--allow-figure-variety-findings": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "allow_figure_variety_findings",
+      "nargs": 0,
+      "required": false
+    },
+    "--approval-file": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "approval_file",
+      "nargs": null,
+      "required": false
+    },
+    "--blueprint-approved-by": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "blueprint_approved_by",
+      "nargs": null,
+      "required": false
+    },
+    "--capacity-estimate-path": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "capacity_estimate_path",
+      "nargs": null,
+      "required": false
+    },
+    "--deck-ids": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "deck_ids",
+      "nargs": null,
+      "required": false
+    },
+    "--download-retry-count": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 3,
+      "dest": "download_retry_count",
+      "nargs": null,
+      "required": false
+    },
+    "--download-timeout-seconds": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 45.0,
+      "dest": "download_timeout_seconds",
+      "nargs": null,
+      "required": false
+    },
+    "--env-file": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": "<REPO>/.env",
+      "dest": "env_file",
+      "nargs": null,
+      "required": false
+    },
+    "--exclude-media-family": {
+      "action": "_AppendAction",
+      "choices": null,
+      "default": [],
+      "dest": "exclude_media_families",
+      "nargs": null,
+      "required": false
+    },
+    "--figure-route": {
+      "action": "_StoreAction",
+      "choices": [
+        "compiler",
+        "drawsvg"
+      ],
+      "default": "compiler",
+      "dest": "figure_route",
+      "nargs": null,
+      "required": false
+    },
+    "--figure-slide-ids": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": "",
+      "dest": "figure_slide_ids",
+      "nargs": null,
+      "required": false
+    },
+    "--force-regenerate-podcasts": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "force_regenerate_podcasts",
+      "nargs": 0,
+      "required": false
+    },
+    "--full-rebuild": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "full_rebuild",
+      "nargs": 0,
+      "required": false
+    },
+    "--icml-cookie-file": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "icml_cookie_file",
+      "nargs": null,
+      "required": false
+    },
+    "--item-page-auth-retry-delay-seconds": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 2.0,
+      "dest": "item_page_auth_retry_delay_seconds",
+      "nargs": null,
+      "required": false
+    },
+    "--item-page-auth-retry-passes": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 2,
+      "dest": "item_page_auth_retry_passes",
+      "nargs": null,
+      "required": false
+    },
+    "--item-page-request-delay-seconds": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 0.0,
+      "dest": "item_page_request_delay_seconds",
+      "nargs": null,
+      "required": false
+    },
+    "--item-page-worker-count": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 8,
+      "dest": "item_page_worker_count",
+      "nargs": null,
+      "required": false
+    },
+    "--min-free-gb": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 5.0,
+      "dest": "min_free_gb",
+      "nargs": null,
+      "required": false
+    },
+    "--mode": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": "live",
+      "dest": "mode",
+      "nargs": null,
+      "required": false
+    },
+    "--no-env-file": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "no_env_file",
+      "nargs": 0,
+      "required": false
+    },
+    "--notebooklm-format": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": "deep-dive",
+      "dest": "notebooklm_format",
+      "nargs": null,
+      "required": false
+    },
+    "--notebooklm-length": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "notebooklm_length",
+      "nargs": null,
+      "required": false
+    },
+    "--notebooklm-profile": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "notebooklm_profile",
+      "nargs": null,
+      "required": false
+    },
+    "--notebooklm-shared-notebook": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "notebooklm_shared_notebook",
+      "nargs": null,
+      "required": false
+    },
+    "--paper-pdf-worker-count": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 4,
+      "dest": "paper_pdf_worker_count",
+      "nargs": null,
+      "required": false
+    },
+    "--prepare-preflight-estimate": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "prepare_preflight_estimate",
+      "nargs": 0,
+      "required": false
+    },
+    "--prepare-storage-estimate": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "prepare_storage_estimate",
+      "nargs": 0,
+      "required": false
+    },
+    "--prepared-estimate-path": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "prepared_estimate_path",
+      "nargs": null,
+      "required": false
+    },
+    "--presentation-substage": {
+      "action": "_StoreAction",
+      "choices": [
+        "all",
+        "deck_figures",
+        "delivery_video"
+      ],
+      "default": "all",
+      "dest": "presentation_substage",
+      "nargs": null,
+      "required": false
+    },
+    "--presentation-topics": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "presentation_topics",
+      "nargs": null,
+      "required": false
+    },
+    "--provider-cost-approved": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "provider_cost_approved",
+      "nargs": 0,
+      "required": false
+    },
+    "--publish-approved-by": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "publish_approved_by",
+      "nargs": null,
+      "required": false
+    },
+    "--publish-target": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "publish_target",
+      "nargs": null,
+      "required": false
+    },
+    "--rerun-steps": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": "",
+      "dest": "rerun_steps",
+      "nargs": null,
+      "required": false
+    },
+    "--resume": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "resume",
+      "nargs": 0,
+      "required": false
+    },
+    "--run-id": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": "icml2026-live-production",
+      "dest": "run_id",
+      "nargs": null,
+      "required": false
+    },
+    "--run-speech-transcription": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "run_speech_transcription",
+      "nargs": 0,
+      "required": false
+    },
+    "--skip-item-page-media": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "skip_item_page_media",
+      "nargs": 0,
+      "required": false
+    },
+    "--skip-workshop-acquisition": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "skip_workshop_acquisition",
+      "nargs": 0,
+      "required": false
+    },
+    "--source-timeout-seconds": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 20.0,
+      "dest": "source_timeout_seconds",
+      "nargs": null,
+      "required": false
+    },
+    "--speech-transcription-chunk-concurrency": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 4,
+      "dest": "speech_transcription_chunk_concurrency",
+      "nargs": null,
+      "required": false
+    },
+    "--speech-transcription-chunk-duration-seconds": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 900,
+      "dest": "speech_transcription_chunk_duration_seconds",
+      "nargs": null,
+      "required": false
+    },
+    "--speech-transcription-max-attempts": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 3,
+      "dest": "speech_transcription_max_attempts",
+      "nargs": null,
+      "required": false
+    },
+    "--speech-transcription-max-rpm": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 80,
+      "dest": "speech_transcription_max_rpm",
+      "nargs": null,
+      "required": false
+    },
+    "--speech-transcription-record-timeout-seconds": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 600.0,
+      "dest": "speech_transcription_record_timeout_seconds",
+      "nargs": null,
+      "required": false
+    },
+    "--speech-transcription-worker-count": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": 4,
+      "dest": "speech_transcription_worker_count",
+      "nargs": null,
+      "required": false
+    },
+    "--stage": {
+      "action": "_StoreAction",
+      "choices": [
+        "analysis",
+        "corpus-freeze",
+        "corpus-inventory-index",
+        "download-corpus",
+        "exhaustive-topic-extraction",
+        "notebooklm-podcast",
+        "podcast",
+        "presentation",
+        "proof",
+        "qa-gap-fill-synthesis",
+        "release",
+        "runner-preflight",
+        "source-discovery",
+        "transcription-ocr"
+      ],
+      "default": null,
+      "dest": "stage",
+      "nargs": null,
+      "required": false
+    },
+    "--summary": {
+      "action": "_StoreTrueAction",
+      "choices": null,
+      "default": false,
+      "dest": "summary",
+      "nargs": 0,
+      "required": false
+    },
+    "--visual-qc-max-rounds": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": null,
+      "dest": "visual_qc_max_rounds",
+      "nargs": null,
+      "required": false
+    },
+    "--workspace": {
+      "action": "_StoreAction",
+      "choices": null,
+      "default": "conferences/icml2026",
+      "dest": "workspace",
+      "nargs": null,
+      "required": false
+    }
+  },
+  "code_identity": {
+    "runner": "icml2026",
+    "runner_path": "scripts/run_icml2026_production.py"
+  },
+  "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+  "stages": {
+    "analysis": {
+      "implemented": true,
+      "next_action": "Continue only after source-backed analysis reports, slide briefs, provenance, citation manifest, and analysis_manifest.json are written from final corpus evidence.",
+      "order": 7,
+      "receipt_filename": "stage-07-analysis.json"
+    },
+    "corpus-freeze": {
+      "implemented": true,
+      "next_action": "Continue to download-corpus after Phase 3 verification passes.",
+      "order": 3,
+      "receipt_filename": "stage-03-corpus-freeze.json"
+    },
+    "corpus-inventory-index": {
+      "implemented": true,
+      "next_action": "Continue to analysis only after Phase 6 verification and BK-06 backup pass.",
+      "order": 6,
+      "receipt_filename": "stage-06-corpus-inventory-index.json"
+    },
+    "download-corpus": {
+      "implemented": true,
+      "next_action": "Continue to transcription-ocr after Phase 4 verification passes.",
+      "order": 4,
+      "receipt_filename": "stage-04-download-corpus.json"
+    },
+    "exhaustive-topic-extraction": {
+      "implemented": true,
+      "next_action": "Continue to analysis only after the exhaustive extraction receipt and by-topic/by-artifact output families pass the runtime contract.",
+      "order": 7,
+      "receipt_filename": "14A-exhaustive-topic-extraction-receipt.json"
+    },
+    "notebooklm-podcast": {
+      "implemented": true,
+      "next_action": "Repair the Stage 10 presentation gate (succeeded receipt with a passing stage contract), the NotebookLM auth preflight (`notebooklm login --browser-cookies chrome`), a per-deck source-join or generation blocker, wait out a notebooklm_quota_exhausted halt, or the strict-execution owner-evidence blockers, then rerun with --resume.",
+      "order": 10,
+      "receipt_filename": "stage-10-notebooklm-podcast.json"
+    },
+    "podcast": {
+      "implemented": true,
+      "next_action": "Continue to presentation only after Phase 9 rendered podcast and BK-09 backup pass.",
+      "order": 9,
+      "receipt_filename": "stage-09-podcast.json"
+    },
+    "presentation": {
+      "implemented": true,
+      "next_action": "Continue to release only after Phase 10 deck/presentation production and BK-10 backup pass.",
+      "order": 10,
+      "receipt_filename": "stage-10-presentation.json"
+    },
+    "proof": {
+      "implemented": true,
+      "next_action": "Repair the Stage 12 proof packet: the Stage 11 gate, an artifact with no receipt, a support label without live evidence, or the strict-execution owner-evidence blockers, then rerun the owner.",
+      "order": 12,
+      "receipt_filename": "stage-12-proof.json"
+    },
+    "qa-gap-fill-synthesis": {
+      "implemented": true,
+      "next_action": "Continue to podcast only after Phase 8 QA/gap-fill/synthesis and BK-08 backup pass.",
+      "order": 8,
+      "receipt_filename": "stage-08-qa-gap-fill-synthesis.json"
+    },
+    "release": {
+      "implemented": true,
+      "next_action": "Repair the Stage 11 release inventory: the Stage 10 gate, a missing or undigested deliverable, rejected evidence cited by an upstream receipt, or the strict-execution owner-evidence blockers, then rerun the owner.",
+      "order": 11,
+      "receipt_filename": "stage-11-release.json"
+    },
+    "runner-preflight": {
+      "implemented": true,
+      "next_action": "Continue to source-discovery after Phase 1 verification passes.",
+      "order": 1,
+      "receipt_filename": "stage-01-runner-preflight.json"
+    },
+    "source-discovery": {
+      "implemented": true,
+      "next_action": "Continue to corpus-freeze after Phase 2 verification passes.",
+      "order": 2,
+      "receipt_filename": "stage-02-source-discovery.json"
+    },
+    "transcription-ocr": {
+      "implemented": true,
+      "next_action": "Continue to corpus-inventory-index only after Phase 5 verification and BK-05 backup pass.",
+      "order": 5,
+      "receipt_filename": "stage-05-transcription-ocr.json"
+    }
+  }
+}

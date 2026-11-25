@@ -1,0 +1,13 @@
+Attacks on Agents
+
+Abstract
+We study multi-turn jailbreak attacks on tool-using agents. Attack success rises from 12% single-turn to 47% multi-turn.
+
+1. Introduction
+Agents act over many steps, so single-turn tests miss failures.
+
+2. Results
+On the Darcy benchmark of agent tasks, our attack succeeds in 47% of episodes.
+
+3. Conclusion
+Multi-turn attacks are stronger than single-turn ones.

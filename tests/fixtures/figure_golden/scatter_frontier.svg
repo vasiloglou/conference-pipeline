@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Speed against quality</title>
+<desc id="fc-desc">Three methods sit on the speed-quality frontier; the rest are dominated.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Speed against quality</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Three methods sit on the speed-quality frontier; the rest are dominated.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Three methods hold the frontier</tspan></text>
+<rect x="94.28" y="174" width="1.5" height="404.72" fill="#333344" />
+<rect x="95.03" y="577.97" width="1140.97" height="1.5" fill="#333344" />
+<text x="44" y="148" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif">Quality retained (%)</text>
+<text x="665.51" y="626.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Speedup (x)</text>
+<rect x="95.03" y="569.97" width="1140.97" height="1.5" fill="#333344" opacity="0.45" />
+<text x="85.03" y="577.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">70</text>
+<rect x="95.03" y="440.4" width="1140.97" height="1.5" fill="#333344" opacity="0.45" />
+<text x="85.03" y="448.15" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">80</text>
+<rect x="95.03" y="310.82" width="1140.97" height="1.5" fill="#333344" opacity="0.45" />
+<text x="85.03" y="318.57" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">90</text>
+<rect x="95.03" y="181.25" width="1140.97" height="1.5" fill="#333344" opacity="0.45" />
+<text x="85.03" y="189" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">100</text>
+<text x="103.03" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">1</text>
+<text x="384.27" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">2</text>
+<text x="665.51" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">3</text>
+<text x="946.76" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">4</text>
+<text x="1228" y="608.72" font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">5</text>
+<polyline points="258.78,206.78 1210.06,284.2" fill="none" stroke="#ffd43b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6" />
+<circle cx="240.84" cy="205.32" r="7" fill="#a8d8ea" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="240.84" y="185.52">SegQuant</tspan></text>
+<circle cx="198.65" cy="233.83" r="7" fill="#a8d8ea" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="198.65" y="214.03">HAWK</tspan></text>
+<circle cx="1228" cy="285.66" r="7" fill="#a8d8ea" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="1217" y="312.26">Speculative decoding</tspan></text>
+<circle cx="412.4" cy="557.76" r="7" fill="#a8d8ea" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="412.4" y="537.96">Naive downsampling</tspan></text>
+<text font-size="20" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="1236" y="161.2">Pareto frontier</tspan></text>
+</svg>

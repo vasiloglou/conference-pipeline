@@ -1,0 +1,202 @@
+{
+  "bugs_fixed": [
+    {
+      "description": "Workflow receipt tests referenced deleted draft-generation stages.",
+      "file": "tests/test_workflow_receipts.py",
+      "id": "BUG-01",
+      "post_fix_status": "green",
+      "pre_fix_status": "red",
+      "regression_test": "tests/test_workflow_receipts.py",
+      "summary": "Workflow receipt tests now use current structured presentation stage IDs."
+    },
+    {
+      "description": "Presentation review hardcoded a Gemini model literal instead of model-governance routing.",
+      "file": "src/conference_pipeline/presentation/presentation_review.py",
+      "id": "BUG-02",
+      "post_fix_status": "green",
+      "pre_fix_status": "red",
+      "regression_test": "tests/test_model_governance.py",
+      "summary": "Presentation review Gemini defaults route through model governance."
+    },
+    {
+      "description": "Figure quality panel hardcoded a Gemini model literal instead of model-governance routing.",
+      "file": "scripts/presentations/figure_quality_panel.py",
+      "id": "BUG-03",
+      "post_fix_status": "green",
+      "pre_fix_status": "red",
+      "regression_test": "tests/test_model_governance.py",
+      "summary": "Figure quality panel Gemini defaults route through model governance."
+    },
+    {
+      "description": "The analysis unit-test fake Chroma client rejected metadata forwarded by production code.",
+      "file": "tests/test_analysis_steps_unit.py",
+      "id": "BUG-04",
+      "post_fix_status": "green",
+      "pre_fix_status": "red",
+      "regression_test": "tests/test_analysis_steps_unit.py",
+      "summary": "Analysis vector-store fake client accepts and asserts metadata forwarding."
+    },
+    {
+      "description": "Duplicate pytest_plugins declarations caused presentation validation collection errors.",
+      "file": "tests/conftest.py",
+      "id": "BUG-05",
+      "post_fix_status": "green",
+      "pre_fix_status": "red",
+      "regression_test": "tests/test_presentation_validation_report.py tests/test_presentation_validation_stages.py tests/test_presentation_validation_cli.py",
+      "summary": "Presentation validation fixtures use one centralized validation workspace plugin registration."
+    },
+    {
+      "description": "Presentation validation stage assertions were pinned to a stale hardcoded validator count.",
+      "file": "tests/test_presentation_validation_report.py",
+      "id": "BUG-06",
+      "post_fix_status": "green",
+      "pre_fix_status": "red",
+      "regression_test": "tests/test_presentation_validation_report.py",
+      "summary": "Presentation validation stage assertions no longer depend on stale hardcoded counts."
+    },
+    {
+      "description": "Presentation validation report and legacy-stage cascade fixtures did not write current validation reports.",
+      "file": "tests/test_presentation_validation_stages.py",
+      "id": "BUG-07",
+      "post_fix_status": "green",
+      "pre_fix_status": "red",
+      "regression_test": "tests/test_presentation_validation_report.py tests/test_presentation_validation_stages.py tests/test_presentation_validation_cli.py tests/test_presentation_validation_checks.py",
+      "summary": "Presentation validation report and legacy alias behavior now exercise current manifest checkpoints."
+    }
+  ],
+  "deferred_findings": [
+    {
+      "description": "stage_owner_registry.json still contains a stale draft_generation_validation entry.",
+      "id": "DEF-01",
+      "owner_phase": "Phase 05",
+      "reason": "Registry cleanup should happen with export-contract registry extension."
+    },
+    {
+      "description": "No per-run cost rollup regression exists yet.",
+      "id": "DEF-02",
+      "owner_phase": "Phase 02",
+      "reason": "Phase 02 owns cost rollups and budget-cap enforcement."
+    },
+    {
+      "description": "cost_status estimated semantics are not guarded by non-null estimated costs.",
+      "id": "DEF-03",
+      "owner_phase": "Phase 02",
+      "reason": "Cost-status semantics will be touched with Phase 02 cost work."
+    },
+    {
+      "description": "researcher.py imports reusable helpers from conference_pipeline.iclr2025_live.",
+      "id": "DEF-04",
+      "owner_phase": "Phase 04",
+      "reason": "Reusable research utilities should move with GPT-Researcher optimization work."
+    },
+    {
+      "description": "BM25 indexing is rebuilt per query and has no persisted index receipt.",
+      "id": "DEF-05",
+      "owner_phase": "Phase 04",
+      "reason": "Phase 04 owns retrieval optimization and record persistence."
+    },
+    {
+      "description": "ResearchRecord lacks a full offline serialization roundtrip test.",
+      "id": "DEF-06",
+      "owner_phase": "Phase 04",
+      "reason": "Best handled with record-schema work during GPTR changes."
+    },
+    {
+      "description": "storage_manifest.schema.json has no sync_profiles.public_export field yet.",
+      "id": "DEF-07",
+      "owner_phase": "Phase 05",
+      "reason": "Public export contract work owns the profile schema."
+    },
+    {
+      "description": "storage.py migration catches broad sqlite3.OperationalError while adding columns.",
+      "id": "DEF-08",
+      "owner_phase": "Platform maintenance",
+      "reason": "Low-risk design debt; narrow when storage migrations are next edited."
+    },
+    {
+      "description": "tests/live_llm/conftest.py uses non-top-level pytest_plugins.",
+      "id": "DEF-09",
+      "owner_phase": "Future live-test maintenance",
+      "reason": "Offline harness ignores tests/live_llm; live-test restructure is out of Phase 01 scope."
+    },
+    {
+      "description": "Tavily credit metering is represented but not proven by an offline fixture.",
+      "id": "NF-01",
+      "owner_phase": "Phase 02 COST-03",
+      "reason": "Needs a mocked or fixture-backed receipt test when Phase 02 wires cost rollups."
+    },
+    {
+      "description": "sync_to_gdrive secret checks are filename-oriented and do not scan public-export file contents.",
+      "id": "NF-02",
+      "owner_phase": "Phase 05 SAFETY-01",
+      "reason": "Private Drive backup is manifest-bounded; public export needs content scanning before publishing."
+    }
+  ],
+  "findings_summary": {
+    "by_severity": {
+      "HIGH": 5,
+      "LOW": 6,
+      "MEDIUM": 7
+    },
+    "by_status": {
+      "deferred": 9,
+      "needs-follow-up": 2,
+      "resolved": 7
+    },
+    "total": 18
+  },
+  "full_suite_result": {
+    "command": "env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY -u GOOGLE_API_KEY -u GEMINI_API_KEY -u TAVILY_API_KEY -u EXTERNAL_TRANSCRIPTION_API_KEY -u GOOGLE_APPLICATION_CREDENTIALS -u GDRIVE_MOUNT_PATH -u ENABLE_LIVE_SEARCH -u ENABLE_TAVILY .venv/bin/python scripts/run_offline_regression.py",
+    "result": "2361 passed, 20 skipped, 1 xfailed, 1 xpassed, 20 warnings",
+    "timestamp": "2026-06-25T05:02:55.864104+00:00"
+  },
+  "offline_command": "python scripts/run_offline_regression.py",
+  "offline_command_exit_code": 1,
+  "offline_command_result": "failed",
+  "offline_command_timestamp": "2026-06-27T13:58:58.052469+00:00",
+  "receipt_type": "conference_pipeline.quality_baseline_receipt",
+  "review_date": "2026-06-25",
+  "reviewed_modules": [
+    "conference_pipeline.analysis",
+    "conference_pipeline.model_governance",
+    "conference_pipeline.presentation",
+    "conference_pipeline.research",
+    "conference_pipeline.storage",
+    "conference_pipeline.workflow",
+    "scripts.exhaustive_extraction",
+    "scripts.sync_to_gdrive"
+  ],
+  "schema_version": 1,
+  "source_git_sha": "877f86ddde3ddf898674baf6db5c02eb07e1e799",
+  "surfaces_covered": [
+    "costs",
+    "research",
+    "local_model",
+    "export_adjacent",
+    "workflow",
+    "presentation",
+    "public_byok_tools"
+  ],
+  "tests_added": [
+    {
+      "guard": "receipt schema and no obvious secret values",
+      "path": "tests/test_offline_regression_gate.py",
+      "surface": "quality_baseline"
+    },
+    {
+      "guard": "historical gap register and closeout artifacts exist",
+      "path": "tests/test_gap_closeout_contract.py",
+      "surface": "planning_traceability"
+    },
+    {
+      "guard": "historical phase verification and validation artifacts exist",
+      "path": "tests/test_phase_01_traceability_contract.py tests/test_phase_02_traceability_contract.py tests/test_phase_03_traceability_contract.py",
+      "surface": "planning_traceability"
+    },
+    {
+      "guard": "full offline pytest suite runs without live providers",
+      "path": "scripts/run_offline_regression.py",
+      "surface": "offline_regression"
+    }
+  ]
+}

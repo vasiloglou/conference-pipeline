@@ -1,0 +1,16 @@
+name: Docs Link Check
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  linkcheck:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check docs links
+        run: python3 scripts/check_docs_links.py

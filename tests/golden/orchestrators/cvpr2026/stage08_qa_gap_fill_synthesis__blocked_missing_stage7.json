@@ -1,0 +1,134 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "b4eca44c2d1f3425fcddb085d115b62346413c699a24b9b009192d443abdaf34",
+  "normalized_output_digest": "c9fad18ca3e9e0d0663e078c384cbffc1d3b9b507425266f89cd5afe4d371e29",
+  "output_digest_consistent": true,
+  "output_files": {},
+  "receipt": {
+    "blockers": [
+      {
+        "affected_stage": "qa-gap-fill-synthesis",
+        "code": "stage8_required_inputs_blocked"
+      }
+    ],
+    "checks": {
+      "blocker_code": "stage8_required_inputs_blocked",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "input_blockers": [
+        {
+          "code": "stage8_input_missing",
+          "evidence": "storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json",
+          "input": "stage_07_analysis_receipt",
+          "retryable": true
+        }
+      ],
+      "live_provider_calls_made": false,
+      "provider_calls_made": false,
+      "provider_cost_approval": {
+        "approval_sources": [
+          "--provider-cost-approved"
+        ],
+        "approved": true,
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "secrets_copied": false,
+      "stage7_receipt_path": "storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json",
+      "topic_reconciliation_receipt_path": "storage/workflow-runs/w1-cvpr-fixture-run/07D-topic-reconciliation.json",
+      "topic_reconciliation_reference_workflow_receipt_path": "storage/workflow-runs/w1-cvpr-fixture-run/07H-topic-reconciliation-reference-workflow.json",
+      "topic_reference_validation_receipt_path": "storage/workflow-runs/w1-cvpr-fixture-run/07E-topic-reference-validation.json"
+    },
+    "downloads_made": 0,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "qa-gap-fill-synthesis"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "analysis_manifest": {
+          "missing": false,
+          "optional": false,
+          "path": "analysis/analysis_manifest.json",
+          "sha256": "<sha256:analysis/analysis_manifest.json>",
+          "source": "registry"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-cvpr-fixture-run/07D-topic-reconciliation.json": {
+          "digest": "61adf448ef2dd51f50311a9c5731a64902c1cbb63dd9ea6ea07b24f1fecab7f1",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07D-topic-reconciliation.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-cvpr-fixture-run/07E-topic-reference-validation.json": {
+          "digest": "af4b04d81267600875124831b0042f86dbd69ad1cd2ea44c542ea0ef2506c438",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07E-topic-reference-validation.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-cvpr-fixture-run/07H-topic-reconciliation-reference-workflow.json": {
+          "digest": "148237937804866ffce10141c9cec808714e705b90834103020cb516367c6219",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/07H-topic-reconciliation-reference-workflow.json",
+          "stage_id": null,
+          "status": "succeeded"
+        },
+        "storage/workflow-runs/w1-cvpr-fixture-run/stage-07-analysis.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-07-analysis.json",
+          "stage_id": null,
+          "status": null
+        }
+      }
+    },
+    "mode": "live",
+    "output_artifacts": [],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+    "owner_execution_evidence": {},
+    "provider_calls_made": false,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "analysis.coverage_gap_fill",
+      "analysis.synthesis_trend_report"
+    ],
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": null,
+    "stage_id": "qa-gap-fill-synthesis",
+    "stage_order": 8,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

@@ -1,0 +1,380 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "c0caf7b37f3526b0d9aca53c12ea2e2fa0f44b31858346f22a10d005d93d13de",
+  "normalized_output_digest": "b2172ff2a8dcbcfb2338e9495585912443363dc317bc59352bc9d44dcc29aff9",
+  "output_digest_consistent": true,
+  "output_files": {
+    "analysis/podcast_source.md": "text:198099280d68984323bdca98fa93ede8945f33f79fa10ce85b6be94ee7fcdd7c",
+    "audio": {
+      "icml2026_overview/focused_podcast/audio_manifest.json": "json:6f9597da2fa6625b9fc0fc065ebdb911e8a022ebab6cb2049214200be35c0e77",
+      "icml2026_overview/focused_podcast/audio_ready_package.json": "json:7f086d7d3e57a3bb92663fe65bd3814fec869a4b2b4bf8dcf008846665de7553",
+      "icml2026_overview/focused_podcast/podcast.mp3": "text:a47b7401e2fbedd2f7325daf74625bb8e98456e904cb19574f3294a326e46f5d",
+      "icml2026_overview/focused_podcast/script.json": "json:a1ed878b1e6a0ec63286b0d49e00b8b97b14bc0e4dfc1600086e01fb47de8b96",
+      "icml2026_overview/focused_podcast/script.md": "text:eee15572f2817f2b210b42d8b42d394767ed519189f4b69c858b9fe126a45b1c",
+      "icml2026_overview/focused_podcast/show_notes.md": "text:4b85d9a428cf47610474bd8e9a795593557198f10ce29e48980544d2b8bb6243",
+      "icml2026_overview/ranks.json": "json:a461652c632e6c135abe78a6a6e67d9fe138941806b32168ae0f66f728bf8e09"
+    },
+    "audio/icml2026_overview/focused_podcast/audio_manifest.json": "json:6f9597da2fa6625b9fc0fc065ebdb911e8a022ebab6cb2049214200be35c0e77",
+    "audio/icml2026_overview/focused_podcast/audio_ready_package.json": "json:7f086d7d3e57a3bb92663fe65bd3814fec869a4b2b4bf8dcf008846665de7553",
+    "audio/icml2026_overview/focused_podcast/podcast.mp3": "text:a47b7401e2fbedd2f7325daf74625bb8e98456e904cb19574f3294a326e46f5d",
+    "audio/icml2026_overview/focused_podcast/script.json": "json:a1ed878b1e6a0ec63286b0d49e00b8b97b14bc0e4dfc1600086e01fb47de8b96",
+    "audio/icml2026_overview/focused_podcast/script.md": "text:eee15572f2817f2b210b42d8b42d394767ed519189f4b69c858b9fe126a45b1c",
+    "audio/icml2026_overview/focused_podcast/show_notes.md": "text:4b85d9a428cf47610474bd8e9a795593557198f10ce29e48980544d2b8bb6243",
+    "audio/icml2026_overview/ranks.json": "json:a461652c632e6c135abe78a6a6e67d9fe138941806b32168ae0f66f728bf8e09"
+  },
+  "receipt": {
+    "blocker_receipt_path": null,
+    "checks": {
+      "analysis_manifest_content_sha256": "<content_sha256:analysis/analysis_manifest.json>",
+      "analysis_manifest_path": "analysis/analysis_manifest.json",
+      "analysis_manifest_sha256": "<sha256:analysis/analysis_manifest.json>",
+      "audio_command": [
+        "<PYTHON>",
+        "scripts/render_podcast_audio.py",
+        "--script-json",
+        "<WORKSPACE>/audio/icml2026_overview/focused_podcast/script.json",
+        "--output-dir",
+        "<WORKSPACE>/audio/icml2026_overview/focused_podcast",
+        "--model",
+        "<MODEL:podcast.tts>",
+        "--host-a",
+        "Maya",
+        "--host-b",
+        "Leo",
+        "--workspace",
+        "<WORKSPACE>",
+        "--run-id",
+        "w1-icml-fixture-run",
+        "--stage-id",
+        "podcast",
+        "--summary"
+      ],
+      "audio_manifest_path": "audio/icml2026_overview/focused_podcast/audio_manifest.json",
+      "audio_manifest_sha256": "<sha256:audio/icml2026_overview/focused_podcast/audio_manifest.json>",
+      "audio_package": {
+        "audio_manifest_path": "audio/icml2026_overview/focused_podcast/audio_manifest.json",
+        "audio_manifest_sha256": "<sha256:audio/icml2026_overview/focused_podcast/audio_manifest.json>",
+        "audio_stats": {
+          "audio_file_count": 2,
+          "podcast_byte_count": 17,
+          "segment_count": 2
+        },
+        "podcast_mp3_path": "audio/icml2026_overview/focused_podcast/podcast.mp3",
+        "podcast_mp3_sha256": "<sha256:audio/icml2026_overview/focused_podcast/podcast.mp3>",
+        "provider_summary": {
+          "canonical_receipt_files_scanned": 2,
+          "canonical_total_estimated_cost_usd": 0.02,
+          "canonical_totals_by_model": {
+            "fixture-provider:fixture-tts": 0.02
+          },
+          "canonical_totals_by_operation": {
+            "tts": 0.02
+          },
+          "canonical_totals_by_provider": {
+            "fixture-provider": 0.02
+          },
+          "failed_receipts": 0,
+          "receipt_paths": [
+            "provider-call-1.json",
+            "provider-call-2.json"
+          ],
+          "unknown_cost_receipts": 0
+        },
+        "receipt_type": "conference_pipeline.icml2026_podcast_audio_ready_package",
+        "run_id": "w1-icml-fixture-run",
+        "schema_version": 1,
+        "script_json_path": "audio/icml2026_overview/focused_podcast/script.json",
+        "script_json_sha256": "<sha256:audio/icml2026_overview/focused_podcast/script.json>",
+        "script_markdown_path": "audio/icml2026_overview/focused_podcast/script.md",
+        "script_markdown_sha256": "<sha256:audio/icml2026_overview/focused_podcast/script.md>",
+        "script_stats": {
+          "segment_count": 2,
+          "title": "Fixture podcast",
+          "word_count": 360
+        },
+        "secrets_copied": false,
+        "show_notes_path": "audio/icml2026_overview/focused_podcast/show_notes.md",
+        "show_notes_sha256": "<sha256:audio/icml2026_overview/focused_podcast/show_notes.md>",
+        "source_binding": {
+          "fact_count": 20,
+          "fact_ranks_path": "audio/icml2026_overview/ranks.json",
+          "fact_ranks_sha256": "<sha256:audio/icml2026_overview/ranks.json>",
+          "source_path": "analysis/podcast_source.md",
+          "source_sha256": "<sha256:analysis/podcast_source.md>"
+        }
+      },
+      "audio_ready_package_path": "audio/icml2026_overview/focused_podcast/audio_ready_package.json",
+      "audio_ready_package_sha256": "<sha256:audio/icml2026_overview/focused_podcast/audio_ready_package.json>",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "estimated_cost_usd": 0.02,
+      "executive_summary_path": "analysis/executive_summary.md",
+      "executive_summary_sha256": "<sha256:analysis/executive_summary.md>",
+      "fact_count": 20,
+      "fact_ranks_path": "audio/icml2026_overview/ranks.json",
+      "fact_ranks_sha256": "<sha256:audio/icml2026_overview/ranks.json>",
+      "live_provider_calls_made": true,
+      "model_governance_task_ids": [
+        "podcast.focused_script_generation",
+        "podcast.tts"
+      ],
+      "paid_provider_calls_made": true,
+      "podcast_audio_byte_count": 17,
+      "podcast_audio_sha256": "<sha256:audio/icml2026_overview/focused_podcast/podcast.mp3>",
+      "podcast_audio_status": "pass",
+      "podcast_mp3_path": "audio/icml2026_overview/focused_podcast/podcast.mp3",
+      "podcast_output_dir": "audio/icml2026_overview/focused_podcast",
+      "podcast_script_status": "pass",
+      "provider_calls_made": true,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [
+          "--provider-cost-approved"
+        ],
+        "approved": true,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "provider_summary": {
+        "canonical_receipt_files_scanned": 2,
+        "canonical_total_estimated_cost_usd": 0.02,
+        "canonical_totals_by_model": {
+          "fixture-provider:fixture-tts": 0.02
+        },
+        "canonical_totals_by_operation": {
+          "tts": 0.02
+        },
+        "canonical_totals_by_provider": {
+          "fixture-provider": 0.02
+        },
+        "failed_receipts": 0,
+        "receipt_paths": [
+          "provider-call-1.json",
+          "provider-call-2.json"
+        ],
+        "unknown_cost_receipts": 0
+      },
+      "script_command": [
+        "<PYTHON>",
+        "scripts/generate_focused_podcast.py",
+        "<WORKSPACE>/analysis/podcast_source.md",
+        "--fact-ranks",
+        "<WORKSPACE>/audio/icml2026_overview/ranks.json",
+        "--output-dir",
+        "<WORKSPACE>/audio/icml2026_overview/focused_podcast",
+        "--target-minutes",
+        "12",
+        "--top-n-facts",
+        "50",
+        "--max-tier",
+        "3",
+        "--model",
+        "<MODEL:synthesis.executive_summary>",
+        "--two-hosts",
+        "--host-a",
+        "Maya",
+        "--host-b",
+        "Leo",
+        "--title",
+        "ICML 2026: What Changed in AI Research"
+      ],
+      "script_generation_model": "<MODEL:synthesis.executive_summary>",
+      "script_json_path": "audio/icml2026_overview/focused_podcast/script.json",
+      "script_json_sha256": "<sha256:audio/icml2026_overview/focused_podcast/script.json>",
+      "script_markdown_path": "audio/icml2026_overview/focused_podcast/script.md",
+      "script_markdown_sha256": "<sha256:audio/icml2026_overview/focused_podcast/script.md>",
+      "script_stats": {
+        "segment_count": 2,
+        "title": "Fixture podcast",
+        "word_count": 360
+      },
+      "secrets_copied": false,
+      "show_notes_path": "audio/icml2026_overview/focused_podcast/show_notes.md",
+      "show_notes_sha256": "<sha256:audio/icml2026_overview/focused_podcast/show_notes.md>",
+      "source_path": "analysis/podcast_source.md",
+      "source_sha256": "<sha256:analysis/podcast_source.md>",
+      "stage8_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json",
+      "stage8_receipt_sha256": "<sha256:storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+      "trend_report_path": "analysis/trend_report.md",
+      "trend_report_sha256": "<sha256:analysis/trend_report.md>",
+      "tts_model": "<MODEL:podcast.tts>"
+    },
+    "error": null,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "podcast"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "analysis_manifest": {
+          "declared_sha256": "<content_sha256:analysis/analysis_manifest.json>",
+          "missing": false,
+          "optional": false,
+          "path": "analysis/analysis_manifest.json",
+          "sha256": "<sha256:analysis/analysis_manifest.json>",
+          "source": "stage"
+        },
+        "executive_summary": {
+          "declared_sha256": "<sha256:analysis/executive_summary.md>",
+          "missing": false,
+          "optional": false,
+          "path": "analysis/executive_summary.md",
+          "sha256": "<sha256:analysis/executive_summary.md>",
+          "source": "stage"
+        },
+        "trend_report": {
+          "declared_sha256": "<sha256:analysis/trend_report.md>",
+          "missing": false,
+          "optional": false,
+          "path": "analysis/trend_report.md",
+          "sha256": "<sha256:analysis/trend_report.md>",
+          "source": "stage"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-09-podcast.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-08-qa-gap-fill-synthesis.json",
+          "stage_id": "qa-gap-fill-synthesis",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue to presentation only after Phase 9 rendered podcast and BK-09 backup pass.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [
+      {
+        "name": "podcast_source",
+        "path": "analysis/podcast_source.md",
+        "sha256": "<sha256:analysis/podcast_source.md>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "fact_ranks",
+        "path": "audio/icml2026_overview/ranks.json",
+        "sha256": "<sha256:audio/icml2026_overview/ranks.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "script_json",
+        "path": "audio/icml2026_overview/focused_podcast/script.json",
+        "sha256": "<sha256:audio/icml2026_overview/focused_podcast/script.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "script_markdown",
+        "path": "audio/icml2026_overview/focused_podcast/script.md",
+        "sha256": "<sha256:audio/icml2026_overview/focused_podcast/script.md>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "show_notes",
+        "path": "audio/icml2026_overview/focused_podcast/show_notes.md",
+        "sha256": "<sha256:audio/icml2026_overview/focused_podcast/show_notes.md>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "audio_manifest",
+        "path": "audio/icml2026_overview/focused_podcast/audio_manifest.json",
+        "sha256": "<sha256:audio/icml2026_overview/focused_podcast/audio_manifest.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "audio_ready_package",
+        "path": "audio/icml2026_overview/focused_podcast/audio_ready_package.json",
+        "sha256": "<sha256:audio/icml2026_overview/focused_podcast/audio_ready_package.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "name": "podcast_mp3",
+        "path": "audio/icml2026_overview/focused_podcast/podcast.mp3",
+        "sha256": "<sha256:audio/icml2026_overview/focused_podcast/podcast.mp3>",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-09-podcast.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "podcast.focused_script",
+      "podcast.render_audio"
+    ],
+    "resumable": true,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {
+      "accepted_evidence": [
+        "podcast: receipt mode live",
+        "podcast: registry digest matched",
+        "podcast: required owner ids recorded",
+        "podcast: lineage bound to storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json (output_digest <output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json>)",
+        "podcast: receipt check checks.executive_summary_status",
+        "podcast: receipt check checks.trend_report_status",
+        "podcast: required receipt <WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json",
+        "podcast: output glob audio/*/focused_podcast/script.json count=1",
+        "podcast: output glob audio/*/focused_podcast/script.md count=1",
+        "podcast: output glob audio/*/focused_podcast/audio_manifest.json count=1",
+        "podcast: output glob audio/*/focused_podcast/audio_ready_package.json count=1",
+        "podcast: output glob audio/*/focused_podcast/podcast.mp3 count=1",
+        "podcast: receipt check checks.podcast_script_status",
+        "podcast: receipt check checks.podcast_audio_status",
+        "podcast: receipt check checks.podcast_audio_sha256",
+        "podcast: receipt check checks.provider_calls_made",
+        "podcast: 3 input artifact digests current"
+      ],
+      "blockers": [],
+      "registry_stage_id": "podcast",
+      "required_script_ids": [
+        "podcast.focused_script",
+        "podcast.render_audio"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "podcast",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "podcast",
+    "stage_order": 9,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

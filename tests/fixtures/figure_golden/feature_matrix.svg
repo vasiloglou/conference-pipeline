@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">What &#x27;open&#x27; actually covers</title>
+<desc id="fc-desc">Only one of these releases opens weights, data and the training recipe together.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">What &#x27;open&#x27; actually covers</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Only one of these releases opens weights, data and the training recipe together.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Open weights is not an open recipe</tspan></text>
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="379.12" y="155.6">Open weights</tspan></text>
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="623.94" y="155.6">Open data</tspan></text>
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="868.77" y="155.6">Open recipe</tspan></text>
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="1113.59" y="155.6">Not distilled</tspan></text>
+<line x1="44" y1="172.4" x2="1236" y2="172.4" stroke="#a8d8ea" stroke-width="1.5" stroke-linecap="round" />
+<rect x="44" y="172.4" width="1192" height="137.44" fill="#16213e" />
+<text font-size="20" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="54" y="244.52">OpenMMReasoner</tspan></text>
+<circle cx="379.12" cy="241.12" r="21.99" fill="#51cf66" />
+<circle cx="623.94" cy="241.12" r="21.99" fill="#51cf66" />
+<circle cx="868.77" cy="241.12" r="21.99" fill="#51cf66" />
+<circle cx="1113.59" cy="241.12" r="21.99" fill="#51cf66" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="54" y="381.96">Molmo2</tspan></text>
+<circle cx="379.12" cy="378.56" r="21.99" fill="#51cf66" />
+<circle cx="623.94" cy="378.56" r="21.99" fill="#51cf66" />
+<circle cx="868.77" cy="378.56" r="21.99" fill="none" stroke="#ffd43b" stroke-width="2.5" />
+<circle cx="868.77" cy="378.56" r="11" fill="#ffd43b" />
+<circle cx="1113.59" cy="378.56" r="21.99" fill="#51cf66" />
+<rect x="44" y="447.28" width="1192" height="137.44" fill="#16213e" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="54" y="519.4">Closed checkpoint</tspan></text>
+<circle cx="379.12" cy="516" r="21.99" fill="none" stroke="#ff6b6b" stroke-width="2.5" />
+<circle cx="623.94" cy="516" r="21.99" fill="none" stroke="#ff6b6b" stroke-width="2.5" />
+<circle cx="868.77" cy="516" r="21.99" fill="none" stroke="#ff6b6b" stroke-width="2.5" />
+<circle cx="1113.59" cy="516" r="21.99" fill="none" stroke="#ff6b6b" stroke-width="2.5" />
+<circle cx="58" cy="612.72" r="5" fill="#51cf66" />
+<text font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif"><tspan x="78" y="616.32">Yes</tspan></text>
+<circle cx="150.18" cy="612.72" r="5" fill="none" stroke="#ffd43b" stroke-width="2.5" />
+<circle cx="150.18" cy="612.72" r="2.5" fill="#ffd43b" />
+<text font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif"><tspan x="170.18" y="616.32">Part</tspan></text>
+<circle cx="244.7" cy="612.72" r="5" fill="none" stroke="#ff6b6b" stroke-width="2.5" />
+<text font-size="20" fill="#cccccc" font-family="Helvetica, Arial, sans-serif"><tspan x="264.7" y="616.32">No</tspan></text>
+</svg>

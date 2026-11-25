@@ -1,0 +1,247 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "1d00bd5f71ac885f36135ac4cc541a9c2bc2f688a2c0348ebcde5b9e31fec578",
+  "normalized_output_digest": "0014ce94ba8e3fb768c3bcf0f1d4adf16a4e6741df345f9ff5e72c0960166bab",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/extractions": {
+      "w1-icml-fixture-run/by-artifact/paper_text_1ac2fe947c315d2622cd0b83.json": "json:0a77a07aff56077161ff5f1e289beda7c3443a19aa199190c5c059e7980dfb80",
+      "w1-icml-fixture-run/by-artifact/paper_text_45ffa0d63453fcad9654c654.json": "json:bd516a5a907d62c24fcfbfe11d9527df511cd5f483db45754068c08921ed8f32",
+      "w1-icml-fixture-run/by-artifact/paper_text_81238dcf6c7f0e493919a968.json": "json:60fcabf8cd318297eca07f96af70dccbdc46cc0cbdd8fe28ff6059793e2065d9",
+      "w1-icml-fixture-run/by-artifact/paper_text_d1977e8d617d97cd5c7509f5.json": "json:2613a6fa7b55e53d0837c4085ce499dc281cc794225c6f2f083aaa3c2333ccad",
+      "w1-icml-fixture-run/by-artifact/paper_text_f09ba867f7573340b9e6a783.json": "json:8dbbb27439d52caeba3b3551bf41762790398c4da7e4f07c28200fc96efc9a23",
+      "w1-icml-fixture-run/by-artifact/paper_text_f1b877dd32c77ff501d3b64f.json": "json:97cfce6e00eb4223de03c97a8be754424091e9be8198e81d57f93836bbe64e5a",
+      "w1-icml-fixture-run/by-topic/01_synthetic_topic_one.json": "json:ba8806706b604602cb3a759d6c46f3ef9a43b5994ad9e2e7e6daa68439f25086",
+      "w1-icml-fixture-run/by-topic/02_synthetic_topic_two.json": "json:bb57aaf77880a41973f6041ad5e1ae8852e3f7d34654892b20fde4bd09d2175f",
+      "w1-icml-fixture-run/v15_extraction_coverage.json": "json:b8a9454ea4f973ac8f012eeb9c333ec64b3ea2f4e46524f8d0b50ddfc5c25c13"
+    },
+    "storage/extractions/w1-icml-fixture-run/by-artifact": {
+      "paper_text_1ac2fe947c315d2622cd0b83.json": "json:0a77a07aff56077161ff5f1e289beda7c3443a19aa199190c5c059e7980dfb80",
+      "paper_text_45ffa0d63453fcad9654c654.json": "json:bd516a5a907d62c24fcfbfe11d9527df511cd5f483db45754068c08921ed8f32",
+      "paper_text_81238dcf6c7f0e493919a968.json": "json:60fcabf8cd318297eca07f96af70dccbdc46cc0cbdd8fe28ff6059793e2065d9",
+      "paper_text_d1977e8d617d97cd5c7509f5.json": "json:2613a6fa7b55e53d0837c4085ce499dc281cc794225c6f2f083aaa3c2333ccad",
+      "paper_text_f09ba867f7573340b9e6a783.json": "json:8dbbb27439d52caeba3b3551bf41762790398c4da7e4f07c28200fc96efc9a23",
+      "paper_text_f1b877dd32c77ff501d3b64f.json": "json:97cfce6e00eb4223de03c97a8be754424091e9be8198e81d57f93836bbe64e5a"
+    },
+    "storage/extractions/w1-icml-fixture-run/by-topic": {
+      "01_synthetic_topic_one.json": "json:ba8806706b604602cb3a759d6c46f3ef9a43b5994ad9e2e7e6daa68439f25086",
+      "02_synthetic_topic_two.json": "json:bb57aaf77880a41973f6041ad5e1ae8852e3f7d34654892b20fde4bd09d2175f"
+    },
+    "storage/extractions/w1-icml-fixture-run/v15_extraction_coverage.json": "json:b8a9454ea4f973ac8f012eeb9c333ec64b3ea2f4e46524f8d0b50ddfc5c25c13"
+  },
+  "receipt": {
+    "artifacts": [
+      {
+        "kind": "coverage-report",
+        "path": "storage/extractions/w1-icml-fixture-run/v15_extraction_coverage.json",
+        "sha256": "<sha256:storage/extractions/w1-icml-fixture-run/v15_extraction_coverage.json>"
+      },
+      {
+        "file_count": 6,
+        "kind": "by-artifact-dir",
+        "path": "storage/extractions/w1-icml-fixture-run/by-artifact"
+      },
+      {
+        "file_count": 2,
+        "kind": "by-topic-dir",
+        "path": "storage/extractions/w1-icml-fixture-run/by-topic"
+      }
+    ],
+    "blockers": [],
+    "checks": {
+      "by_artifact_count": 6,
+      "by_artifact_dir": "storage/extractions/w1-icml-fixture-run/by-artifact",
+      "by_topic_count": 2,
+      "by_topic_dir": "storage/extractions/w1-icml-fixture-run/by-topic",
+      "coverage_classes": {
+        "blocked": 0,
+        "covered": 6,
+        "not_attempted": 0,
+        "skipped_unusable": 0,
+        "unclassifiable": 0
+      },
+      "coverage_path": "storage/extractions/w1-icml-fixture-run/v15_extraction_coverage.json",
+      "coverage_present": true,
+      "coverage_sha256": "<sha256:storage/extractions/w1-icml-fixture-run/v15_extraction_coverage.json>",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "live_provider_calls_made": false,
+      "provider_calls_made": false,
+      "secrets_copied": false,
+      "token_usage": {
+        "estimated_cost_usd": 0.0,
+        "input_tokens": 0,
+        "llm_assisted_artifact_count": 0,
+        "local_llm_attempt_count": 0,
+        "local_llm_failed_count": 0,
+        "local_llm_provider_receipts": [],
+        "local_llm_skipped_count": 0,
+        "local_llm_succeeded_count": 0,
+        "output_tokens": 0
+      }
+    },
+    "command": "conference-pipeline workflow run exhaustive-topic-extraction --workspace icml2026 --run-id w1-icml-fixture-run --rebuild",
+    "details": {
+      "by_kind_counts": {
+        "paper_pdf": 6
+      },
+      "coverage": {
+        "by_kind_counts": {
+          "paper_pdf": 6
+        },
+        "classes": {
+          "blocked": 0,
+          "covered": 6,
+          "not_attempted": 0,
+          "skipped_unusable": 0,
+          "unclassifiable": 0
+        },
+        "coverage_ratio": 1.0,
+        "expected_count": 6,
+        "run_id": "w1-icml-fixture-run",
+        "schema_version": 1,
+        "thresholds": {
+          "not_attempted_max": 0
+        }
+      },
+      "expected_count": 6,
+      "media_prep_evidence_path": "storage/workflow-runs/w1-icml-fixture-run/stage-05-transcription-ocr.json",
+      "media_prep_evidence_resolved_run_id": null,
+      "media_prep_rationale": "Phase 13 transcription-ocr receipts already document upstream media preparation outcomes; Phase 14A consumes those outputs only and does not re-perform OCR/transcription.",
+      "media_prep_status": "waived",
+      "paper_reference_scope": {
+        "deferred_to": "Phase 14B linkage / future paper-level milestone",
+        "reference_extraction_status": "deferred",
+        "selected_paper_ids": []
+      },
+      "pruned_obsolete": {
+        "artifact_records": 0,
+        "moved_to": null,
+        "topic_files": 0
+      },
+      "resume_stats": {
+        "extracted": 6,
+        "resumed": 0,
+        "rewritten_due_to_digest_change": 0
+      },
+      "token_usage": {
+        "estimated_cost_usd": 0.0,
+        "input_tokens": 0,
+        "llm_assisted_artifact_count": 0,
+        "local_llm_attempt_count": 0,
+        "local_llm_failed_count": 0,
+        "local_llm_provider_receipts": [],
+        "local_llm_skipped_count": 0,
+        "local_llm_succeeded_count": 0,
+        "output_tokens": 0
+      }
+    },
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "exhaustive-topic-extraction"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_upstream_stages",
+          "spec_path": null,
+          "stage_id": "corpus-inventory-index",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue to analysis only after the exhaustive extraction receipt and by-topic/by-artifact output families pass the runtime contract.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [
+      {
+        "name": "extraction_coverage",
+        "path": "storage/extractions/w1-icml-fixture-run/v15_extraction_coverage.json",
+        "sha256": "<sha256:storage/extractions/w1-icml-fixture-run/v15_extraction_coverage.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "kind": "directory",
+        "name": "by_topic_extractions",
+        "path": "storage/extractions/w1-icml-fixture-run/by-topic",
+        "sha256": "<dir:storage/extractions/w1-icml-fixture-run/by-topic>"
+      },
+      {
+        "kind": "directory",
+        "name": "by_artifact_extractions",
+        "path": "storage/extractions/w1-icml-fixture-run/by-artifact",
+        "sha256": "<dir:storage/extractions/w1-icml-fixture-run/by-artifact>"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/14A-exhaustive-topic-extraction-receipt.json>",
+    "phase": 14,
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "analysis.exhaustive_topic_extraction"
+    ],
+    "resumable": true,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "exhaustive-topic-extraction: receipt mode live",
+        "exhaustive-topic-extraction: registry digest matched",
+        "exhaustive-topic-extraction: required owner ids recorded",
+        "exhaustive-topic-extraction: output glob storage/extractions/w1-icml-fixture-run/by-topic/*.json count=2",
+        "exhaustive-topic-extraction: output glob storage/extractions/w1-icml-fixture-run/by-artifact/*.json count=6",
+        "exhaustive-topic-extraction: upstream stage corpus-inventory-index lineage current (storage/workflow-runs/w1-icml-fixture-run/stage-06-corpus-inventory-index.json)"
+      ],
+      "blockers": [],
+      "registry_stage_id": "exhaustive-topic-extraction",
+      "required_script_ids": [
+        "analysis.exhaustive_topic_extraction"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "exhaustive-topic-extraction",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "exhaustive-topic-extraction",
+    "stage_order": 7,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "clusters": [
+    {
+      "cluster_id": "CLU-001",
+      "description": "AIWILD-concentrated cluster — should be blocked when alternatives exist",
+      "contributions": [
+        {
+          "contribution_id": "C001",
+          "role": "primary",
+          "source_family": "AIWILD transcript",
+          "visible_label": "AI Wild Talk",
+          "paper_url": null,
+          "status": "resolved",
+          "eligible_alternative_count": 3
+        },
+        {
+          "contribution_id": "C002",
+          "role": "supporting",
+          "source_family": "AIWILD transcript",
+          "visible_label": "AI Wild Talk 2",
+          "paper_url": null,
+          "status": "resolved",
+          "eligible_alternative_count": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": "CLU-002",
+      "description": "Generic-label contributions — should be blocked",
+      "contributions": [
+        {
+          "contribution_id": "C003",
+          "role": "primary",
+          "source_family": "arxiv",
+          "visible_label": "Ref 1",
+          "paper_url": null,
+          "status": "resolved",
+          "eligible_alternative_count": 0
+        },
+        {
+          "contribution_id": "C004",
+          "role": "supporting",
+          "source_family": "arxiv",
+          "visible_label": "Ref 2",
+          "paper_url": null,
+          "status": "resolved",
+          "eligible_alternative_count": 0
+        }
+      ]
+    },
+    {
+      "cluster_id": "CLU-003",
+      "description": "Blocked-status contributions — should be rejected",
+      "contributions": [
+        {
+          "contribution_id": "C005",
+          "role": "primary",
+          "source_family": "arxiv",
+          "visible_label": "Some Paper A",
+          "paper_url": null,
+          "status": "unresolved",
+          "eligible_alternative_count": 0
+        },
+        {
+          "contribution_id": "C006",
+          "role": "supporting",
+          "source_family": "arxiv",
+          "visible_label": "Some Paper B",
+          "paper_url": null,
+          "status": "ambiguous",
+          "eligible_alternative_count": 0
+        },
+        {
+          "contribution_id": "C007",
+          "role": "supporting",
+          "source_family": "arxiv",
+          "visible_label": "Some Paper C",
+          "paper_url": null,
+          "status": "title_mismatch",
+          "eligible_alternative_count": 0
+        },
+        {
+          "contribution_id": "C008",
+          "role": "supporting",
+          "source_family": "web",
+          "visible_label": "Some Page D",
+          "paper_url": null,
+          "status": "homepage_only",
+          "eligible_alternative_count": 0
+        },
+        {
+          "contribution_id": "C009",
+          "role": "supporting",
+          "source_family": "web",
+          "visible_label": "Some Page E",
+          "paper_url": null,
+          "status": "generic_fallback",
+          "eligible_alternative_count": 0
+        }
+      ]
+    },
+    {
+      "cluster_id": "CLU-004",
+      "description": "Passing cluster — named paper with paper_url and non-generic label",
+      "contributions": [
+        {
+          "contribution_id": "C010",
+          "role": "primary",
+          "source_family": "arxiv",
+          "visible_label": "Attention Is All You Need",
+          "paper_url": "https://arxiv.org/abs/1706.03762",
+          "status": "resolved",
+          "eligible_alternative_count": 0
+        }
+      ]
+    }
+  ]
+}

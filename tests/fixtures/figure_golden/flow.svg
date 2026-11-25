@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Concept-aware contrastive training</title>
+<desc id="fc-desc">Hard negatives are mined per concept before the contrastive loss sees the batch.</desc>
+<defs><marker id="fc-arrow" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#a8d8ea" /></marker></defs>
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Concept-aware contrastive training</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Hard negatives are mined per concept before the contrastive loss sees the batch.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Mine hard negatives per concept</tspan></text>
+<rect x="58.26" y="306.27" width="146.27" height="150.17" fill="#16213e" stroke="#9775fa" stroke-width="2.5" />
+<ellipse cx="131.39" cy="322.27" rx="73.14" ry="16" fill="#2a2a4a" stroke="#9775fa" stroke-width="2.5" />
+<text font-size="21" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="131.39" y="388.12">Image-text</tspan><tspan x="131.39" y="413.74">corpus</tspan></text>
+<rect x="313.4" y="276.06" width="140" height="210.6" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="383.4" y="332.96">Concept-</tspan><tspan x="383.4" y="357.36">aware</tspan><tspan x="383.4" y="381.76">batch</tspan><tspan x="383.4" y="406.16">sampling</tspan></text>
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="383.4" y="436.56">C2-CLIP</tspan></text>
+<rect x="562.27" y="319.64" width="142.2" height="123.44" fill="#2a2a4a" stroke="#4ecdc4" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="633.37" y="369.92">Vision</tspan><tspan x="633.37" y="401.64">encoder</tspan></text>
+<rect x="813.34" y="329.52" width="151.52" height="103.68" fill="#2a2a4a" stroke="#ffd43b" stroke-width="4" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="889.1" y="372.56">Contrastive</tspan><tspan x="889.1" y="396.96">loss</tspan></text>
+<rect x="1073.73" y="313.05" width="148.01" height="136.62" fill="#16213e" rx="10" stroke="#51cf66" stroke-width="2.5" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="1147.73" y="360.36">Concept-</tspan><tspan x="1147.73" y="384.76">separated</tspan><tspan x="1147.73" y="409.16">embedding</tspan></text>
+<polyline points="204.53,381.36 307.4,381.36" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="258.97" y="336.16">per</tspan><tspan x="258.97" y="360.56">concept</tspan></text>
+<polyline points="453.4,381.36 556.27,381.36" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<polyline points="704.47,381.36 807.34,381.36" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="758.9" y="336.16">hard</tspan><tspan x="758.9" y="360.56">negatives</tspan></text>
+<polyline points="964.86,381.36 1067.73,381.36" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+</svg>

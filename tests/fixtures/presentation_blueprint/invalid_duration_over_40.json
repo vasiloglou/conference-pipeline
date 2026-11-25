@@ -1,0 +1,54 @@
+{
+  "audience_promise": "Operators will understand duration failures.",
+  "blueprint_id": "bp-demo-duration-over",
+  "conclusion_synthesis": "Blueprint estimates above forty minutes fail before Phase 13 render checks.",
+  "deck_thesis": "The blueprint must leave runtime headroom.",
+  "provenance": {
+    "source_metadata": [
+      {
+        "label": "SRC-001",
+        "path": "analysis/01_demo_topic.md"
+      }
+    ]
+  },
+  "revision": 1,
+  "slides": [
+    {
+      "estimated_minutes": 41,
+      "intent": "Show an over-budget blueprint.",
+      "narration_beat": "This cannot proceed to draft generation.",
+      "slide_id": "slide-001",
+      "slide_type": "content",
+      "source_plan": [
+        {
+          "label": "SRC-001",
+          "rationale": "The source exists."
+        }
+      ],
+      "visual_role": "Runtime budget gauge showing the blueprint crossing the forty minute limit"
+    }
+  ],
+  "subtopic_clusters": [
+    {
+      "cluster_id": "cluster-001",
+      "slide_bindings": [
+        "slide-001"
+      ],
+      "sources": [
+        "SRC-001"
+      ],
+      "title": "Duration"
+    }
+  ],
+  "target_runtime_minutes": 41,
+  "target_slide_count": 1,
+  "telescopic_section_map": [
+    {
+      "cluster_ids": [
+        "cluster-001"
+      ],
+      "section_id": "section-001",
+      "title": "Duration"
+    }
+  ]
+}

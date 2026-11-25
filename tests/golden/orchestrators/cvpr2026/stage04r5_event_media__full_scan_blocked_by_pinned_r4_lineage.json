@@ -1,0 +1,166 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "635a19df8d0922ddfd867479057b687ba0820875f04a100457131d125da7c1d0",
+  "normalized_output_digest": "65162f511e688e770c3a93d1db3d1cfe9c0ec36b1dad9790d99c9e5fde51b180",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/download-corpus/event-media": {
+      "event_media.checkpoint.json": "json:0b1e9ca77844021594a96da8c949fdc42898493b85a10bedafadf43366ca3efb"
+    },
+    "storage/download-corpus/event-media/event_media_inventory.json": null
+  },
+  "receipt": {
+    "actual_provider_cost_usd": 0.0,
+    "blockers": [
+      {
+        "affected_stage": "download-corpus",
+        "code": "final_event_media_stage_contract_incomplete"
+      }
+    ],
+    "checks": {
+      "asr_dispatched": false,
+      "audio_downloaded": false,
+      "caption_candidate_accounting_complete": true,
+      "caption_candidate_count": 0,
+      "direct_youtube_route_count": 0,
+      "event_category_counts": {
+        "keynote": 3,
+        "main_event": 17,
+        "oral": 24,
+        "poster": 5023,
+        "session": 19,
+        "tutorial": 19,
+        "workshop": 153
+      },
+      "event_media_authenticated_request_count": 2693,
+      "event_media_coverage_status": "pass",
+      "event_media_inventory_canonical_sha256": "802cdcc9bead8c9c156c7d19d83dc4c486c8bae9f47300063e20c2c4d95a3905",
+      "event_media_inventory_path": "storage/download-corpus/event-media/event_media_inventory.json",
+      "event_media_inventory_sha256": "<sha256:storage/download-corpus/event-media/event_media.checkpoint.json>",
+      "event_media_resume_mode": false,
+      "event_media_resumed_authenticated_request_count": 0,
+      "event_media_session_preflight": {
+        "auth_status": "preflight_passed",
+        "preflight_status": "pass",
+        "secrets_copied": false
+      },
+      "event_route_accounting_complete": true,
+      "event_route_count": 5258,
+      "ocr_dispatched": false,
+      "oral_session_route_count": 24,
+      "provider_calls_made": 0,
+      "r4_registration_media_overlay_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "r4_reused_poster_route_count": 2565,
+      "secrets_copied": false,
+      "stage_contract_profile": "event-media-coverage",
+      "terminal_event_route_count": 5258,
+      "video_downloaded": false
+    },
+    "downloads_made": 0,
+    "event_media_inventory": {
+      "inventory_sha256": "802cdcc9bead8c9c156c7d19d83dc4c486c8bae9f47300063e20c2c4d95a3905",
+      "path": "storage/download-corpus/event-media/event_media_inventory.json"
+    },
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": "event-media-coverage",
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "download-corpus.cvpr2026"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "name": "event_media_inventory",
+        "path": "storage/download-corpus/event-media/event_media_inventory.json",
+        "sha256": "<sha256:storage/download-corpus/event-media/event_media.checkpoint.json>",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/cvpr2026-live-production-r5-event-media/stage-04-download-corpus.json>",
+    "owner_execution_evidence": {
+      "acquisition.download_corpus.cvpr2026": {
+        "authenticated_request_count": 2693,
+        "caption_only": true,
+        "inventory_path": "storage/download-corpus/event-media/event_media_inventory.json",
+        "owner_function": "run_cvpr_event_media_stage",
+        "resumed_authenticated_request_count": 0,
+        "transport_created": true
+      }
+    },
+    "provider_calls_made": 0,
+    "receipt_type": "conference_pipeline.cvpr2026_event_media_stage_receipt",
+    "required_script_ids": [
+      "acquisition.download_corpus.cvpr2026"
+    ],
+    "run_id": "cvpr2026-live-production-r5-event-media",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "download-corpus: receipt mode live",
+        "download-corpus: registry digest matched",
+        "download-corpus: required owner ids recorded",
+        "download-corpus: owner execution evidence present",
+        "download-corpus: required output <WORKSPACE>/storage/download-corpus/event-media/event_media_inventory.json",
+        "download-corpus: receipt check checks.stage_contract_profile",
+        "download-corpus: receipt check checks.event_media_coverage_status",
+        "download-corpus: receipt check checks.event_route_accounting_complete",
+        "download-corpus: receipt check checks.caption_candidate_accounting_complete",
+        "download-corpus: receipt check checks.event_route_count",
+        "download-corpus: receipt check checks.event_category_counts.poster",
+        "download-corpus: receipt check checks.event_category_counts.keynote",
+        "download-corpus: receipt check checks.event_category_counts.tutorial",
+        "download-corpus: receipt check checks.event_category_counts.workshop",
+        "download-corpus: receipt check checks.event_category_counts.oral",
+        "download-corpus: receipt check checks.event_category_counts.session",
+        "download-corpus: receipt check checks.event_category_counts.main_event",
+        "download-corpus: receipt check checks.r4_reused_poster_route_count",
+        "download-corpus: receipt check checks.audio_downloaded",
+        "download-corpus: receipt check checks.video_downloaded",
+        "download-corpus: receipt check checks.asr_dispatched",
+        "download-corpus: receipt check checks.ocr_dispatched",
+        "download-corpus: receipt check checks.provider_calls_made",
+        "download-corpus: receipt check checks.secrets_copied",
+        "download-corpus: receipt check checks.event_media_inventory_sha256",
+        "download-corpus: receipt check checks.event_media_inventory_canonical_sha256",
+        "download-corpus: receipt check checks.r4_registration_media_overlay_sha256",
+        "download-corpus: receipt check checks.event_media_authenticated_request_count"
+      ],
+      "blockers": [
+        {
+          "code": "stage_contract_event_media_r4_lineage_invalid",
+          "expected": "valid immutable r4 registration-media overlay",
+          "observed": "missing or invalid",
+          "retryable": true,
+          "stage_id": "download-corpus"
+        }
+      ],
+      "registry_stage_id": "download-corpus.cvpr2026",
+      "required_script_ids": [
+        "acquisition.download_corpus.cvpr2026"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "download-corpus",
+      "status": "blocked",
+      "warnings": []
+    },
+    "stage_id": "download-corpus",
+    "stage_order": 4,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Speedup by efficiency method</title>
+<desc id="fc-desc">Speculative decoding gives the largest measured speedup of the three.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Speedup by efficiency method</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Speculative decoding gives the largest measured speedup of the three.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Speculative decoding leads on speed</tspan></text>
+<text x="44" y="148.8" font-size="21" fill="#cccccc" font-family="Helvetica, Arial, sans-serif">End-to-end speedup (x)</text>
+<rect x="286.31" y="217.05" width="876.52" height="54" fill="#ffd43b" />
+<text font-size="21" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="bold"><tspan x="272.31" y="247.62">Speculative decoding</tspan></text>
+<text x="1172.83" y="251.4" font-size="21" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif" font-weight="bold">5x</text>
+<rect x="286.31" y="387.96" width="261.2" height="54" fill="#a8d8ea" />
+<text font-size="21" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="272.31" y="418.53">SegQuant quantisation</tspan></text>
+<text x="557.52" y="422.31" font-size="21" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold">1.49x</text>
+<rect x="286.31" y="558.87" width="234.91" height="54" fill="#a8d8ea" />
+<text font-size="21" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="272.31" y="589.44">HAWK token pruning</tspan></text>
+<text x="531.22" y="593.22" font-size="21" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold">1.34x</text>
+</svg>

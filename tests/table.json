@@ -1,0 +1,465 @@
+{
+ "bar_compare": {
+  "max_primary": 6,
+  "steps": [
+   [
+    6,
+    72
+   ]
+  ]
+ },
+ "branching_paths": {
+  "max_primary": 3,
+  "steps": [
+   [
+    3,
+    72
+   ]
+  ]
+ },
+ "composite": {
+  "max_primary": 3,
+  "steps": [
+   [
+    3,
+    72
+   ]
+  ]
+ },
+ "decision_tree": {
+  "max_primary": 7,
+  "steps": [
+   [
+    4,
+    72
+   ],
+   [
+    5,
+    60
+   ],
+   [
+    7,
+    40
+   ]
+  ]
+ },
+ "distribution_breakdown": {
+  "max_primary": 12,
+  "steps": [
+   [
+    3,
+    72
+   ],
+   [
+    4,
+    60
+   ],
+   [
+    9,
+    48
+   ],
+   [
+    12,
+    60
+   ]
+  ]
+ },
+ "feature_matrix": {
+  "max_primary": 12,
+  "steps": [
+   [
+    4,
+    72
+   ],
+   [
+    7,
+    60
+   ],
+   [
+    12,
+    32
+   ]
+  ]
+ },
+ "flow": {
+  "max_primary": 6,
+  "steps": [
+   [
+    6,
+    72
+   ]
+  ]
+ },
+ "heatmap_grid": {
+  "max_primary": 12,
+  "steps": [
+   [
+    6,
+    72
+   ],
+   [
+    9,
+    60
+   ],
+   [
+    10,
+    48
+   ],
+   [
+    12,
+    32
+   ]
+  ]
+ },
+ "hierarchy_tree": {
+  "max_primary": 6,
+  "steps": [
+   [
+    2,
+    72
+   ],
+   [
+    3,
+    60
+   ],
+   [
+    6,
+    40
+   ]
+  ]
+ },
+ "hub_spoke": {
+  "max_primary": 11,
+  "steps": [
+   [
+    7,
+    72
+   ],
+   [
+    9,
+    60
+   ],
+   [
+    10,
+    26
+   ],
+   [
+    11,
+    20
+   ]
+  ]
+ },
+ "image_transform_strip": {
+  "max_primary": 9,
+  "steps": [
+   [
+    9,
+    72
+   ]
+  ]
+ },
+ "landscape_regions": {
+  "max_primary": 5,
+  "steps": [
+   [
+    2,
+    72
+   ],
+   [
+    3,
+    32
+   ],
+   [
+    4,
+    26
+   ],
+   [
+    5,
+    20
+   ]
+  ]
+ },
+ "layered_stack": {
+  "max_primary": 12,
+  "steps": [
+   [
+    12,
+    72
+   ]
+  ]
+ },
+ "line_curve": {
+  "max_primary": 2,
+  "steps": [
+   [
+    2,
+    40
+   ]
+  ]
+ },
+ "loop": {
+  "max_primary": 10,
+  "steps": [
+   [
+    6,
+    72
+   ],
+   [
+    7,
+    48
+   ],
+   [
+    8,
+    60
+   ],
+   [
+    9,
+    26
+   ],
+   [
+    10,
+    20
+   ]
+  ]
+ },
+ "magnitude_ladder": {
+  "max_primary": 12,
+  "steps": [
+   [
+    11,
+    72
+   ],
+   [
+    12,
+    40
+   ]
+  ]
+ },
+ "modality_fusion": {
+  "max_primary": 4,
+  "steps": [
+   [
+    1,
+    72
+   ],
+   [
+    3,
+    48
+   ],
+   [
+    4,
+    26
+   ]
+  ]
+ },
+ "nested_architecture": {
+  "max_primary": 9,
+  "steps": [
+   [
+    7,
+    72
+   ],
+   [
+    8,
+    40
+   ],
+   [
+    9,
+    26
+   ]
+  ]
+ },
+ "paired_delta": {
+  "max_primary": 12,
+  "steps": [
+   [
+    6,
+    72
+   ],
+   [
+    9,
+    60
+   ],
+   [
+    12,
+    32
+   ]
+  ]
+ },
+ "quadrant_map": {
+  "max_primary": 9,
+  "steps": [
+   [
+    4,
+    72
+   ],
+   [
+    5,
+    60
+   ],
+   [
+    6,
+    48
+   ],
+   [
+    9,
+    40
+   ]
+  ]
+ },
+ "radar_profile": {
+  "max_primary": 12,
+  "steps": [
+   [
+    4,
+    48
+   ],
+   [
+    12,
+    32
+   ]
+  ]
+ },
+ "ranked_list": {
+  "max_primary": 12,
+  "steps": [
+   [
+    12,
+    72
+   ]
+  ]
+ },
+ "scatter_frontier": {
+  "max_primary": 7,
+  "steps": [
+   [
+    6,
+    72
+   ],
+   [
+    7,
+    48
+   ]
+  ]
+ },
+ "schematic_curve": {
+  "max_primary": 2,
+  "steps": [
+   [
+    2,
+    72
+   ]
+  ]
+ },
+ "spatial_3d_schematic": {
+  "max_primary": 9,
+  "steps": [
+   [
+    5,
+    72
+   ],
+   [
+    7,
+    60
+   ],
+   [
+    8,
+    48
+   ],
+   [
+    9,
+    40
+   ]
+  ]
+ },
+ "stat_callout": {
+  "max_primary": 7,
+  "steps": [
+   [
+    7,
+    72
+   ]
+  ]
+ },
+ "swimlane_sequence": {
+  "max_primary": 6,
+  "steps": [
+   [
+    2,
+    60
+   ],
+   [
+    3,
+    32
+   ],
+   [
+    4,
+    26
+   ],
+   [
+    6,
+    20
+   ]
+  ]
+ },
+ "timeline_data": {
+  "max_primary": 12,
+  "steps": [
+   [
+    8,
+    72
+   ],
+   [
+    12,
+    60
+   ]
+  ]
+ },
+ "trajectory_on_manifold": {
+  "max_primary": 8,
+  "steps": [
+   [
+    5,
+    72
+   ],
+   [
+    7,
+    48
+   ],
+   [
+    8,
+    40
+   ]
+  ]
+ },
+ "venn_overlap": {
+  "max_primary": 3,
+  "steps": [
+   [
+    2,
+    72
+   ],
+   [
+    3,
+    40
+   ]
+  ]
+ },
+ "video_frame_strip": {
+  "max_primary": 10,
+  "steps": [
+   [
+    7,
+    72
+   ],
+   [
+    8,
+    60
+   ],
+   [
+    10,
+    40
+   ]
+  ]
+ }
+}

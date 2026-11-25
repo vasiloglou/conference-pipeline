@@ -1,0 +1,7 @@
+repo: https://github.com/teng-lin/notebooklm-py
+commit: 1712d76cc2906d96a9386177e554529d677567a8
+discovery_command: git ls-remote https://github.com/teng-lin/notebooklm-py HEAD
+discovered_at: 2026-06-26
+license: MIT
+use: operator/self-host NotebookLM podcast generation only
+

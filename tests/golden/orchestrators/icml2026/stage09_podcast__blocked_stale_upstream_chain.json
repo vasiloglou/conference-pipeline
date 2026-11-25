@@ -1,0 +1,142 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "c0caf7b37f3526b0d9aca53c12ea2e2fa0f44b31858346f22a10d005d93d13de",
+  "normalized_output_digest": "c9fad18ca3e9e0d0663e078c384cbffc1d3b9b507425266f89cd5afe4d371e29",
+  "output_digest_consistent": true,
+  "output_files": {},
+  "receipt": {
+    "blocker_receipt_path": null,
+    "checks": {
+      "analysis_manifest_path": "analysis/analysis_manifest.json",
+      "blocker_code": "upstream_lineage_not_fresh",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "executive_summary_path": "analysis/executive_summary.md",
+      "live_provider_calls_made": false,
+      "provider_calls_made": false,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [
+          "--provider-cost-approved"
+        ],
+        "approved": true,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "secrets_copied": false,
+      "stage8_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json",
+      "trend_report_path": "analysis/trend_report.md",
+      "upstream_lineage_blockers": [
+        {
+          "chain": [
+            "storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json"
+          ],
+          "code": "stage_contract_upstream_stale",
+          "expected": "storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json lineage verifies",
+          "observed": [
+            "stage_contract_upstream_output_changed",
+            "stage_contract_input_artifact_changed"
+          ],
+          "receipt": "storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json",
+          "stage_id": "podcast",
+          "upstream_stage_id": "qa-gap-fill-synthesis"
+        }
+      ]
+    },
+    "error": "an upstream stage is stale or unbound: run `conference-pipeline workflow stage-status --workspace <workspace> --run-id <run>` and re-run its next_stage_to_run first",
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "podcast"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {
+        "analysis_manifest": {
+          "missing": false,
+          "optional": false,
+          "path": "analysis/analysis_manifest.json",
+          "sha256": "<sha256:analysis/analysis_manifest.json>",
+          "source": "stage"
+        },
+        "executive_summary": {
+          "missing": false,
+          "optional": false,
+          "path": "analysis/executive_summary.md",
+          "sha256": "<sha256:analysis/executive_summary.md>",
+          "source": "stage"
+        },
+        "trend_report": {
+          "missing": false,
+          "optional": false,
+          "path": "analysis/trend_report.md",
+          "sha256": "<sha256:analysis/trend_report.md>",
+          "source": "stage"
+        }
+      },
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-09-podcast.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-08-qa-gap-fill-synthesis.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-08-qa-gap-fill-synthesis.json",
+          "stage_id": "qa-gap-fill-synthesis",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue to presentation only after Phase 9 rendered podcast and BK-09 backup pass.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-09-podcast.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "podcast.focused_script",
+      "podcast.render_audio"
+    ],
+    "resumable": false,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {},
+    "stage_id": "podcast",
+    "stage_order": 9,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

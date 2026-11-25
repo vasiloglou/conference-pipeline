@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Conference Pipeline"
+abstract: "A platform that acquires, transcribes, indexes and analyzes machine-learning conferences and publishes per-conference decks, videos, podcasts and searchable sites."
+type: software
+authors:
+  - family-names: "Vasiloglou"
+    given-names: "Nikolaos"
+license: MIT
+repository-code: "https://github.com/vasiloglou/conference-pipeline"
+version: "0.1.0"
+date-released: "2026-11-20"

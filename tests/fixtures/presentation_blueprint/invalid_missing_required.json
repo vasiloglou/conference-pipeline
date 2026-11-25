@@ -1,0 +1,18 @@
+{
+  "audience_promise": "Operators will understand the contract.",
+  "blueprint_id": "bp-demo-missing",
+  "conclusion_synthesis": "Missing required fields should fail deterministically.",
+  "provenance": {
+    "source_metadata": [
+      {
+        "label": "SRC-001",
+        "path": "analysis/01_demo_topic.md"
+      }
+    ]
+  },
+  "revision": 1,
+  "slides": [],
+  "subtopic_clusters": [],
+  "target_runtime_minutes": 10,
+  "target_slide_count": 2
+}

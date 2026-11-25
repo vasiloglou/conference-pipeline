@@ -1,0 +1,108 @@
+# Conference workspace template
+
+conference:
+  slug: "replace-me"
+  name: "Conference Name"
+  full_name: "Conference Full Name"
+  year: 2026
+  status: "planned"
+  site_format: "tbd"
+
+urls:
+  base: ""
+  schedule: ""
+  virtual: ""
+
+auth:
+  required: false
+  method: "tbd"
+
+session_types:
+  - keynotes
+  - tutorials
+  - workshops
+  - orals
+  - posters
+
+storage:
+  manifest_path: "storage/storage_manifest.json"
+  workspace_layout:
+    analysis: "analysis"
+    decks: "decks"
+    audio: "audio"
+    exports:
+      root: "exports"
+      deep_dive: "exports/deep-dive"
+      exhaustive_extractions: "exports/exhaustive-extractions"
+      notebooklm: "exports/notebooklm_export"
+    agent_work:
+      root: "agent-work"
+      claude: "agent-work/claude"
+      codex: "agent-work/codex"
+      gpt_researcher: "agent-work/gpt-researcher"
+      notebook_lm: "agent-work/notebook-lm"
+    cache:
+      root: "cache"
+      vector_store: "cache/vector-store"
+      experimental_videos: "cache/experimental-videos"
+    legacy: "legacy"
+  support_material:
+    storage: "storage"
+    runtime_logs: "storage/logs"
+    assets: "assets"
+    scripts: "scripts"
+
+workflow:
+  # Stop points -- operator decisions the pipeline never defaults. Each stage
+  # refuses and asks until the key is set here (or passed on its command line).
+  # research_engine: inhouse            # 07C: inhouse | gpt_researcher
+  # research_engine_decision: "operator, <date>, <evidence>"
+  # exhaustive_summary_model: luna      # 07A: luna | kimi_openrouter | gemini_pro | sol
+  # exhaustive_summary_model_decision: "operator, <date>, <evidence>"
+  vector_store:
+    stores:
+      papers:
+        source_families:
+          - "paper_pdf"
+          - "paper_text"
+          - "paper_metadata_fallback"
+      artifacts:
+        exclude_source_families:
+          - "paper_pdf"
+          - "paper_text"
+          - "paper_metadata_fallback"
+  paper_matching:
+    enabled: true
+    keypoint_provider: "openai"
+    keypoint_model: "gpt-5.5"
+    keypoint_source: "artifact_gpt_researcher_findings"
+    paper_research_store: "papers"
+    artifact_research_store: "artifacts"
+    output_top_n: 20
+  podcast:
+    target_minutes: 30
+    max_tier: 3
+    top_n_facts: 100
+    host_a: "Alex"
+    host_b: "Sam"
+    model: "gemini-2.0-flash"
+  deck:
+    target_slides: 60
+    reflow_model: "gemini"
+    max_papers: 2
+    required_env:
+      - "ANTHROPIC_API_KEY"
+      - "OPENAI_API_KEY"
+      - "GOOGLE_API_KEY"
+
+notes: |
+  Replace this template metadata with conference-specific details.
+  Keep shared platform logic in src/ and root scripts/.
+
+# Public release targets for `conference-pipeline release` (all optional; flags override).
+# release:
+#   bundle_id: "replace-me-v1.0.0"
+#   github_repo: "<owner>/replace-me-data"
+#   pages_project: "replace-me-data"
+#   hf_repo_id: "<owner>/replace-me"
+#   zenodo_sandbox: true

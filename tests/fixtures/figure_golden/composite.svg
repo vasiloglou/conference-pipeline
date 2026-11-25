@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Pruning: the mechanism and the result</title>
+<desc id="fc-desc">Pruning drops most patches, and the accuracy barely moves.</desc>
+<defs><marker id="fc-arrow" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#a8d8ea" /></marker></defs>
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Pruning: the mechanism and the result</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Pruning drops most patches, and the accuracy barely moves.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Fewer patches, nearly all the accuracy</tspan></text>
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="147.6">Mechanism</tspan></text>
+<rect x="44" y="339.47" width="140" height="122.18" fill="#16213e" stroke="#9775fa" stroke-width="2.5" />
+<ellipse cx="114" cy="355.47" rx="70" ry="16" fill="#2a2a4a" stroke="#9775fa" stroke-width="2.5" />
+<text font-size="25" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="114" y="420.81">Patches</tspan></text>
+<rect x="259.9" y="348.72" width="149.19" height="103.68" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="334.5" y="391.76">Importance</tspan><tspan x="334.5" y="416.16">score</tspan></text>
+<rect x="485" y="338.84" width="140" height="123.44" fill="#16213e" rx="10" stroke="#51cf66" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="555" y="389.12">Kept</tspan><tspan x="555" y="420.84">tokens</tspan></text>
+<polyline points="184,400.56 253.9,400.56" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<polyline points="409.09,400.56 479,400.56" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="655" y="147.6">Result</tspan></text>
+<rect x="811.87" y="312.32" width="267.26" height="176.48" fill="#16213e" rx="10" stroke="#ffd43b" stroke-width="4" />
+<text font-size="64" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="945.5" y="392.24">96%</tspan></text>
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="945.5" y="450">accuracy retained</tspan></text>
+</svg>

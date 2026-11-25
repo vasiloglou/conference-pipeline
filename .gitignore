@@ -1,0 +1,144 @@
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+.venv/
+.env
+.env.bak
+*.sqlite
+
+# Local agent/GSD session state
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/conference-*/
+!.claude/skills/conference-*/**
+!.claude/skills/plan-conference-analysis/
+!.claude/skills/plan-conference-analysis/**
+!.claude/skills/plan-conference-production/
+!.claude/skills/plan-conference-production/**
+!.claude/skills/model-registry-audit/
+!.claude/skills/model-registry-audit/**
+!.claude/skills/model-catalog-upgrade/
+!.claude/skills/model-catalog-upgrade/**
+!.claude/skills/corpus-metadata-audit/
+!.claude/skills/corpus-metadata-audit/**
+# Milestone workflow skills synced from dev-tools (.devtools.toml); never edited here
+!.claude/skills/start-milestone/
+!.claude/skills/start-milestone/**
+!.claude/skills/process-milestone/
+!.claude/skills/process-milestone/**
+!.claude/skills/process-phase/
+!.claude/skills/process-phase/**
+!.claude/skills/review-pr/
+!.claude/skills/review-pr/**
+!.claude/skills/handle-issue/
+!.claude/skills/handle-issue/**
+!.claude/skills/components/
+!.claude/skills/components/**
+.claude/skills/**/__pycache__/
+.planning/config.json
+.planning/research/.cache/
+.playwright-mcp/
+.wrangler/
+
+data/
+!conferences/*/data/
+conferences/*/data/**
+!conferences/*/data/.gitkeep
+
+# Sensitive files
+cookies.json
+.planning/*cookie*
+.planning/*session*
+
+# Temporary files
+*.log
+*.html
+!**/presentation.html
+!src/conference_pipeline/control_plane/templates/**/*.html
+!tests/fixtures/**/*.html
+*.png
+!assets/
+!assets/brand/
+!assets/brand/relationalai/
+!assets/brand/relationalai/*.png
+test_slides/
+test_*.json
+sessions_from_calendar.json
+conferences/*/.quarantine/
+
+# Helper scripts (session filtering)
+scripts/helpers/
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# First Principles strategy documents (private)
+first_principles/
+
+# Conference workspace artifact lanes are governed by each
+# conferences/<slug>/.gitignore file generated from storage/storage_manifest.json.
+
+# High-volume regenerated local outputs stay out of git; receipts and curated
+# proof artifacts remain explicitly addable.
+storage/provider-calls/**
+conferences/*/storage/transcription-ocr/media/**
+conferences/*/storage/transcription-ocr/text-extraction/**
+conferences/*/storage/transcription-ocr/ocr-model-benchmark/**
+conferences/*/storage/experiments/**
+conferences/*/storage/extractions/**
+conferences/*/storage/research/**
+conferences/*/storage/vector-store/**
+conferences/*/storage/workflow-runs/*presentation-validation*/**
+conferences/*/storage/workflow-runs/v15-pv-*/**
+
+# Remote-backup payload staging. Keep backup receipts/verification evidence in
+# git; only ignore copied payloads that are meant to live in backup storage.
+conferences/*/storage/**/backup-payloads/**
+conferences/*/storage/**/backup-staging/**
+conferences/*/storage/**/backup-store/**
+
+# Generic timestamped workflow scratch runs; commit named proof receipts explicitly
+conferences/*/storage/workflow-runs/run-*/
+
+# Analysis attachments
+conferences/*/analysis/*.pdf
+
+# Regenerable cache binaries
+*.pkl
+*.sqlite3
+*.bin
+
+# Regenerable conference vector stores
+conferences/*/vector_store/
+
+# Binary/media files
+*.pptx
+*.pdf
+*.mp3
+*.mp4
+*.m4a
+*.wav
+*.tmp
+
+# Historical bulk not meant for the live repo
+past-conferences/
+
+# Regenerable intermediate canonical markdown (adapter build artifact --
+# regenerate via scripts/presentations/adapt_ai4physics_slides_to_revealjs.py)
+cross-conference-talks/ai4physics2026/decks/ai4physics-talk/_canonical_slides.md
+
+# Local tool caches (tiktoken files pre-fetched for GPT-Researcher; never downloaded at run time)
+/.cache/
+
+# Codex runtime copy of the repo skills (word-swapped from .claude/skills, which is canonical).
+/.agents/
+
+# Review rounds: the diff and the reviewer log carry diff text with private markers
+# (the removed lines of a scrub, generic fixtures); they stay in the checkout only.
+.planning/milestones/*/notes/reviews/*/diff.patch
+.planning/milestones/*/notes/reviews/*/review.log

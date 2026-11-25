@@ -1,0 +1,250 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "84354ea0f9aad2dd98bd6d3697901a1e48f5a712cf9166e4b6706c8438e20831",
+  "normalized_output_digest": "188dd9ffb92fc0e091a8cc9e44f2ad5a7a0ba2643dea02e5e0a6ef9c38913d68",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/transcription-ocr": {
+      "text-extraction/main/paper_text_extraction-q001-ca3b2da29787-5bc170a9e118.txt": "text:a5aa49cfae4475d6e8cc7235ed6faa644060202c2d69f8f53fa228c2e25552d9",
+      "text-extraction/main/paper_text_extraction-q002-583a567182d5-160900ea289d.txt": "text:f4558ef8b305098d7ef25fd743f8d903b8c877085e944e4b5d4c1aea197a698b",
+      "text-extraction/main/paper_text_extraction-q003-86df5d79a14b-1660782a8370.txt": "text:42aad484c632c4b5b4f72e1c8b104668c656bd2ba9630d065be4f5c092a3adbb",
+      "text-extraction/main/paper_text_extraction-q004-0866c6bf0faf-710a9a81c96a.txt": "text:fe435d1da2c7064706fe6451148b737e686d4e3358628daa5064baad99eb80a7",
+      "text-extraction/main/paper_text_extraction-q005-194a1aa6754b-9f04ae411cbd.txt": "text:1b0d31822b1abe4df7fc62a77794f6b7f3decc0e5a3bdeede108ab098309b551",
+      "text-extraction/main/paper_text_extraction-q006-c60427a05b1f-62e939e4a52e.txt": "text:4cc17b317b21a4d9bcefd4ff2488d3657aa33aa6e44026ece25ed215d024a384",
+      "text-extraction/workshops/workshop_paper_text_extraction-q-002-160900ea289d.txt": "text:f4558ef8b305098d7ef25fd743f8d903b8c877085e944e4b5d4c1aea197a698b",
+      "transcription_ocr_inventory.json": "json:6516b4b59e64008ba8c00087c26a70516e2fb9aa90e9e446d47b247ae554bc5a"
+    },
+    "storage/transcription-ocr/transcription_ocr_inventory.json": "json:6516b4b59e64008ba8c00087c26a70516e2fb9aa90e9e446d47b247ae554bc5a"
+  },
+  "receipt": {
+    "blocker_receipt_path": "<WORKSPACE>/storage/workflow-runs/w1-icml-fixture-run/blocker-receipts/transcription-ocr/20310102T030405Z-stage_blocked.json",
+    "checks": {
+      "blockers": [
+        {
+          "code": "speech_inputs_present_provider_path_required",
+          "input_count": 6,
+          "provider_calls_made": false,
+          "reason": "speech media inputs exist, but no governed transcription provider path was run in this stage",
+          "retryable": true
+        }
+      ],
+      "download_corpus_counts": {
+        "direct_download_artifact_count": 12,
+        "local_artifact_count": 21,
+        "media_artifact_count": 6,
+        "paper_artifact_count": 6,
+        "workshop_paper_pdf_count": 1
+      },
+      "download_corpus_inventory_path": "storage/download-corpus/download_corpus.json",
+      "download_corpus_inventory_sha256": "<sha256:storage/download-corpus/download_corpus.json>",
+      "download_corpus_inventory_status": "succeeded",
+      "download_corpus_stage_receipt_path": "storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json",
+      "download_corpus_stage_receipt_sha256": "<sha256:storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json>",
+      "download_corpus_stage_status": "succeeded",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "lane_counts": {
+        "image_ocr": {
+          "blocked_count": 0,
+          "input_count": 0,
+          "provider_calls_made": false,
+          "text_output_count": 0
+        },
+        "paper_text_extraction": {
+          "blocked_count": 0,
+          "input_count": 6,
+          "succeeded_count": 6
+        },
+        "session_speech_transcription": {
+          "blocked_count": 6,
+          "input_count": 6,
+          "provider_calls_made": false,
+          "succeeded_count": 0,
+          "transcript_output_count": 0
+        },
+        "unsupported_or_blocked": {
+          "blocked_count": 0,
+          "input_count": 0
+        },
+        "workshop_paper_text_extraction": {
+          "blocked_count": 0,
+          "input_count": 1,
+          "succeeded_count": 1
+        },
+        "workshop_talk_media": {
+          "blocked_count": 0,
+          "blocker_count": 0,
+          "input_count": 0,
+          "succeeded_count": 0
+        }
+      },
+      "live_provider_calls_made": false,
+      "operator_waivers": {
+        "applied": [],
+        "present": false,
+        "unwaived_blocker_count": 1
+      },
+      "output_inventory": {
+        "path": "storage/transcription-ocr/transcription_ocr_inventory.json",
+        "sha256": "<sha256:storage/transcription-ocr/transcription_ocr_inventory.json>",
+        "status": "blocked"
+      },
+      "provider_calls_made": false,
+      "provider_cost_approval": {
+        "actuals_command": ".venv/bin/python -m conference_pipeline.costs actual --workspace <WORKSPACE> --scope full --json",
+        "approval_sources": [],
+        "approved": false,
+        "estimate_command": ".venv/bin/python -m conference_pipeline.costs estimate --workspace <WORKSPACE> --scope full --scenario base --json",
+        "required_before_paid_provider_calls": true,
+        "secret_values_recorded": false
+      },
+      "provider_cost_posture": {
+        "api_cost_usd": 0.0,
+        "cost_task_ids": [
+          "asr_transcription",
+          "slide_poster_visual_ocr",
+          "slide_poster_visual_ocr_fallback",
+          "pdf_visual_ocr",
+          "pdf_text_extraction_followup"
+        ],
+        "governed_registry_tasks": [
+          "ocr.slide_image_parse",
+          "transcription.session_speech"
+        ],
+        "live_provider_calls_made": false,
+        "paid_provider_calls_made": false,
+        "provider_calls_made": false,
+        "provider_values_recorded": false,
+        "secret_values_recorded": false,
+        "secrets_copied": false
+      },
+      "secrets_copied": false,
+      "speech_provider_requested": false,
+      "stage_script_owner": {
+        "refs": [
+          "transcription_ocr.local_media_processing",
+          "conference_pipeline.transcription_ocr",
+          "src/conference_pipeline/transcription_ocr.py"
+        ],
+        "script_id": "transcription_ocr.local_media_processing"
+      },
+      "talk_media_acquisition_receipt_error": null,
+      "talk_media_acquisition_receipt_path": "storage/workshops/talk_media_acquisition_receipt.json",
+      "talk_media_acquisition_receipt_present": false,
+      "talk_media_acquisition_receipt_sha256": null,
+      "talk_media_acquisition_receipt_status": null,
+      "talk_media_inventory_blocked_workshop_count": 0,
+      "talk_media_inventory_blocker_count": 0,
+      "talk_media_inventory_error": null,
+      "talk_media_inventory_media_record_count": 0,
+      "talk_media_inventory_path": "storage/workshops/talk_media_inventory.json",
+      "talk_media_inventory_present": false,
+      "talk_media_inventory_sha256": null,
+      "talk_media_inventory_status": null,
+      "talk_media_inventory_workshop_count": 0,
+      "talk_media_scope_waiver_accepted": true,
+      "talk_media_scope_waiver_decision": "deferred_with_explicit_scope",
+      "talk_media_scope_waiver_error": null,
+      "talk_media_scope_waiver_path": "storage/workshops/workshop_talk_media_scope_waiver.json",
+      "talk_media_scope_waiver_present": true,
+      "talk_media_scope_waiver_status": "deferred_with_explicit_scope",
+      "workshop_acquisition_workshop_count": 1,
+      "workshop_talk_media_input_blockers": [],
+      "workshop_talk_media_required": true,
+      "workshop_talk_media_waived": true
+    },
+    "error": "transcription-ocr blocked: speech_inputs_present_provider_path_required",
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "transcription-ocr.icml2026"
+      },
+      "code_identity": {
+        "runner": "icml2026",
+        "runner_path": "scripts/run_icml2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-icml-fixture-run/stage-05-transcription-ocr.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/transcription-ocr/workshop-talks/workshop_talk_segmentation_batch_receipt.json": {
+          "digest": null,
+          "digest_kind": "output_digest",
+          "missing": true,
+          "optional": true,
+          "source": "required_receipts",
+          "spec_path": "storage/transcription-ocr/workshop-talks/workshop_talk_segmentation_batch_receipt.json",
+          "stage_id": null,
+          "status": null
+        },
+        "storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-04-download-corpus.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_receipts",
+          "spec_path": "storage/workflow-runs/<run-id>/stage-04-download-corpus.json",
+          "stage_id": "download-corpus",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "next_action": "Continue to corpus-inventory-index only after Phase 5 verification and BK-05 backup pass.",
+    "optional_runtime_environment_variables": [
+      "OPENROUTER_API_KEY",
+      "EMBEDDING_PROVIDER",
+      "EMBEDDING_MODEL",
+      "EMBEDDING_DIM",
+      "EMBEDDING_BATCH_SIZE",
+      "EMBEDDING_MAX_LENGTH",
+      "OLLAMA_BASE_URL",
+      "OLLAMA_MANAGE_SERVER",
+      "OLLAMA_STARTUP_TIMEOUT_SECONDS"
+    ],
+    "output_artifacts": [
+      {
+        "name": "transcription_ocr_inventory",
+        "path": "storage/transcription-ocr/transcription_ocr_inventory.json",
+        "sha256": "<sha256:storage/transcription-ocr/transcription_ocr_inventory.json>",
+        "sha256_source": "sha256"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-icml-fixture-run/stage-05-transcription-ocr.json>",
+    "provider_values_recorded": false,
+    "receipt_type": "conference_pipeline.icml2026_production_stage_receipt",
+    "required_environment_variables": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "GOOGLE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "required_script_ids": [
+      "transcription_ocr.local_media_processing"
+    ],
+    "resumable": false,
+    "run_id": "w1-icml-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "skip_reason": null,
+    "stage_contract": {},
+    "stage_id": "transcription-ocr",
+    "stage_order": 5,
+    "stage_script_owner_refs": [
+      "transcription_ocr.local_media_processing",
+      "conference_pipeline.transcription_ocr",
+      "src/conference_pipeline/transcription_ocr.py"
+    ],
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Per-frame versus joint temporal editing</title>
+<desc id="fc-desc">Editing each frame alone produces flicker that joint temporal modelling removes.</desc>
+
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Per-frame versus joint temporal editing</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">Editing each frame alone produces flicker that joint temporal modelling removes.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Per-frame edits flicker; joint edits hold</tspan></text>
+<rect x="44" y="291.9" width="579" height="178.92" fill="#16213e" rx="10" stroke="#333344" stroke-width="2.5" />
+<text font-size="26" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="333.5" y="328.18">Per-frame enhancement</tspan></text>
+<line x1="62" y1="347.62" x2="605" y2="347.62" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<circle cx="66" cy="363.62" r="4" fill="#a8d8ea" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="80" y="371.22">Each frame is corrected alone</tspan></text>
+<circle cx="66" cy="400.02" r="4" fill="#a8d8ea" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="80" y="407.62">Identity drifts between frames</tspan></text>
+<circle cx="66" cy="436.42" r="4" fill="#a8d8ea" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="80" y="444.02">Flicker appears in motion</tspan></text>
+<rect x="657" y="291.9" width="579" height="178.92" fill="#16213e" rx="10" stroke="#ffd43b" stroke-width="4" />
+<text font-size="26" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="946.5" y="328.18">Joint temporal modelling</tspan></text>
+<line x1="675" y1="347.62" x2="1218" y2="347.62" stroke="#333344" stroke-width="1.5" stroke-linecap="round" />
+<circle cx="679" cy="363.62" r="4" fill="#ffd43b" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="693" y="371.22">Frames are corrected together</tspan></text>
+<circle cx="679" cy="400.02" r="4" fill="#ffd43b" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="693" y="407.62">Identity is shared across time</tspan></text>
+<circle cx="679" cy="436.42" r="4" fill="#ffd43b" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="693" y="444.02">Motion stays coherent</tspan></text>
+</svg>

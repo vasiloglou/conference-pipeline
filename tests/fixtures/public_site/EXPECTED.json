@@ -1,0 +1,39 @@
+{
+  "schema": "public-site-corpus/1",
+  "cases": {
+    "C1": {"build_exits_nonzero": true, "effects": ["the output directory is not created"]},
+    "C2": {
+      "topic_pages": ["topics/01_reasoning.html", "topics/02_agents.html"],
+      "01_reasoning": {"deck_html": true, "deck_pdf": true, "videos": 2, "podcast": true, "narrative": true, "papers": ["openreview:A1", "openreview:A2"]},
+      "02_agents": {"deck_html": true, "deck_pdf": false, "videos": 0, "podcast": false, "narrative": false, "papers": []},
+      "effects": [
+        "index.html lists both topics in manifest order, with what each has",
+        "each missing item on 02_agents reads 'not in this release'",
+        "each video is a <video controls> whose src is the sidecar's cdn_url"
+      ]
+    },
+    "C3": {"effects": ["site:s1 is listed with the text 'no public copy known'", "there is no link for site:s1"]},
+    "C4": {
+      "check_links_exit": 0,
+      "effects": [
+        "every relative href and src names a file in the built site",
+        "no file under public-repo/ or .git/ is in the site",
+        "RELEASE.json, CHECKSUMS.json and the presentation manifest are linked only from data.html"
+      ]
+    },
+    "C5": {"first_result_source": "narratives/01_reasoning.md"},
+    "C6": {"modes_shown": ["text", "semantic", "both"], "search_config": {"model": "fixture-embed-model", "dim": 8}},
+    "C7": {"modes_shown": ["text"], "effects": ["the page says this release has full-text search only", "no semantic or both control is in the page"]},
+    "C8": {"build_exits_nonzero": true, "error": "bundle_file_not_in_checksums"},
+    "C9": {"rows_total": 6, "rows_by_release": {"alphaconf-v1.0.0": 4, "betaconf-v1.0.0": 2}},
+    "C10": {
+      "results_include_conferences": ["Alpha Conference 2026", "Beta Conference 2025"],
+      "effects": ["each result shows its conference and its release id", "each result's id is <release id>/<paper id>"]
+    },
+    "C11": {
+      "absent": ["betaconf-v1.0.0/openreview:B3", "betaconf-v1.0.0/openreview:B9"],
+      "hub_manifest": {"betaconf-v1.0.0": {"rows_read": 2, "rows_excluded": 1, "files_ignored_not_in_checksums": 1}}
+    },
+    "C12": {"modes_shown": ["text"]}
+  }
+}

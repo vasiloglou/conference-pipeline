@@ -1,0 +1,88 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "635a19df8d0922ddfd867479057b687ba0820875f04a100457131d125da7c1d0",
+  "normalized_output_digest": "e7a33e30fbe25a4fd03b1c3b2eef335ce3bffb7a1c4a2f8a6445cd02e6e8e485",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/source-discovery/source_discovery_inventory.json": null
+  },
+  "receipt": {
+    "actual_cost_usd": 0.0,
+    "blockers": [
+      {
+        "code": "source_collection_blocked"
+      }
+    ],
+    "boundary_method": null,
+    "canonical_inventory": {
+      "candidate_frontier_sha256": null,
+      "inventory_sha256": null,
+      "path": "<WORKSPACE>/storage/source-discovery/source_discovery_inventory.json",
+      "taxonomy_sha256": null
+    },
+    "collection": {
+      "blockers": [
+        {
+          "code": "source_collection_blocked"
+        }
+      ],
+      "status": "blocked"
+    },
+    "frontier_authority_lineage": null,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "source-discovery.cvpr2026"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-02-source-discovery.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {}
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "missing": true,
+        "name": "source_discovery_inventory",
+        "path": "storage/source-discovery/source_discovery_inventory.json",
+        "sha256": null
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-02-source-discovery.json>",
+    "owner_execution_evidence": {
+      "acquisition.source_discovery.cvpr2026": {
+        "inventory_path": "<WORKSPACE>/storage/source-discovery/source_discovery_inventory.json",
+        "owner_function": "run_source_discovery_stage",
+        "provider_calls_made": 0
+      }
+    },
+    "pre_spend": null,
+    "provider_calls_made": 0,
+    "provider_receipt_paths": [],
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "acquisition.source_discovery.cvpr2026"
+    ],
+    "resume": {
+      "requested": false
+    },
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": null,
+    "stage_id": "source-discovery",
+    "stage_order": 2,
+    "status": "blocked",
+    "workspace": "<WORKSPACE>"
+  }
+}

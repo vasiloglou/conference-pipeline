@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">Adapting a frozen vision-language model</title>
+<desc id="fc-desc">A small surrogate adapts the encoder while the language model stays frozen.</desc>
+<defs><marker id="fc-arrow" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#a8d8ea" /></marker></defs>
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">Adapting a frozen vision-language model</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">A small surrogate adapts the encoder while the language model stays frozen.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Adapt the encoder, freeze the rest</tspan></text>
+<rect x="269.03" y="190.71" width="344" height="381.3" fill="#16213e" rx="10" stroke="#333344" stroke-width="1.5" />
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="441.03" y="219.51">Frozen LVLM</tspan></text>
+<rect x="291.03" y="247.11" width="300" height="124.48" fill="#16213e" stroke="#cccccc" stroke-width="2.5" stroke-dasharray="7 5" />
+<text x="573.03" y="273.11" font-size="19" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">frozen</text>
+<text font-size="26" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="441.03" y="325.77">Vision encoder</tspan></text>
+<rect x="291.03" y="425.53" width="300" height="124.48" fill="#16213e" stroke="#cccccc" stroke-width="2.5" stroke-dasharray="7 5" />
+<text x="573.03" y="451.53" font-size="19" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">frozen</text>
+<text font-size="26" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="441.03" y="504.19">Language model</tspan></text>
+<rect x="666.97" y="190.71" width="344" height="381.3" fill="#16213e" rx="10" stroke="#333344" stroke-width="1.5" />
+<text font-size="20" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="838.97" y="219.51">Trained surrogate</tspan></text>
+<rect x="688.97" y="247.11" width="300" height="124.48" fill="#2a2a4a" stroke="#ffd43b" stroke-width="2.5" />
+<text x="970.97" y="273.11" font-size="19" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">trained</text>
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="838.97" y="325.77">Surrogate adapter</tspan></text>
+<rect x="688.97" y="425.53" width="300" height="124.48" fill="#2a2a4a" stroke="#ffd43b" stroke-width="2.5" />
+<text x="970.97" y="451.53" font-size="19" fill="#cccccc" font-family="Helvetica, Arial, sans-serif" text-anchor="end">trained</text>
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="838.97" y="504.19">Task head</tspan></text>
+<polyline points="838.97,371.59 838.97,419.53" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<polyline points="591.03,309.35 682.97,309.35" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="middle"><tspan x="637" y="147.6">features</tspan></text>
+</svg>

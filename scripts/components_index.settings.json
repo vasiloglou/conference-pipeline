@@ -1,0 +1,10 @@
+{
+  "docs_dir": "components",
+  "extra_source_dirs": [
+    "scripts"
+  ],
+  "import_prefix": "conference_pipeline",
+  "package_dir": "src/conference_pipeline",
+  "script_path": "scripts/components_index.py",
+  "verb_list": "shared"
+}

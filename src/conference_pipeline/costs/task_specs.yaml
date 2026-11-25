@@ -1,0 +1,780 @@
+version: 1
+refreshed_at: "2026-07-15"
+description: "Whole-pipeline paid provider task specs for conference production."
+scenario_defaults:
+  low:
+    retry_multiplier: 1.0
+    ocr_output_tokens_per_image: 500
+    pdf_visual_ocr_enabled: false
+  base:
+    retry_multiplier: 1.1
+    ocr_output_tokens_per_image: 1000
+    pdf_visual_ocr_enabled: false
+  high:
+    retry_multiplier: 1.25
+    ocr_output_tokens_per_image: 1800
+    pdf_visual_ocr_enabled: true
+tasks:
+  - task_id: cvpr2026_tavily_priority_gap_search
+    family: web_search
+    stage: download-corpus
+    provider: tavily
+    pricing_unit: credits
+    quantity_source: tavily_priority_gap_queries
+    credits_per_unit:
+      low: 1
+      base: 1
+      high: 1
+    models:
+      low: tavily-search
+      base: tavily-search
+      high: tavily-search
+    enabled_by: priority_gap_frontier_present
+    notes: "CVPR Stage-4 exception: exactly one Tavily basic-search credit for each digest-bound unmatched priority program item after the public YouTube harvest. Disabled without a complete current priority-gap frontier. Pricing provenance is the canonical Tavily credits catalog."
+
+  - task_id: source_discovery_cross_source_join
+    family: source_discovery
+    stage: source-discovery
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: source_discovery_candidate_pairs
+    max_quantity: 25000
+    input_tokens_per_unit: 1200
+    output_tokens_per_unit: 200
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-6-luna
+    enabled_by: candidate_frontier_present
+    notes: "Receipt-bound cross-source reconciliation is priced only from the canonical digest-bound candidate frontier and is disabled when that frontier has no pairs."
+
+  - task_id: asr_transcription
+    family: asr_transcription
+    stage: transcription-ocr
+    provider: openai
+    pricing_unit: audio_minute
+    quantity_source: audio_minutes
+    models:
+      low: gpt-4o-mini-transcribe
+      base: gpt-4o-transcribe-diarize
+      high: gpt-4o-transcribe-diarize
+    enabled_by: provider_calls_approved
+    notes: "Speech transcription for downloaded talk/workshop audio; base/high use diarization because talks and Q&A benefit from speaker labels at the same planning rate as gpt-4o-transcribe."
+
+  - task_id: workshop_talk_boundary_discovery
+    family: llm_generation
+    stage: transcription-ocr
+    provider: gemini
+    pricing_unit: tokens
+    quantity_source: workshop_talk_discovery_tokens
+    fallback_input_tokens: 40000
+    fallback_output_tokens: 8000
+    input_multiplier: 1.0
+    models:
+      low: gemini-2.5-pro
+      base: gemini-2.5-pro
+      high: gemini-2.5-pro
+    enabled_by: workshop_talk_boundary_discovery_enabled
+    notes: "Provider-backed workshop talk boundary discovery promoted from the NeurIPS 2025 exhaustive extraction flow. Gemini 2.5 Pro analyzes long workshop transcripts plus slide timestamps, writes *_talks.json and 5-minute talk-context batches, and must emit provider-call receipts with estimated cost before talk-aware transcript evidence can pass."
+
+  - task_id: slide_poster_visual_ocr
+    family: visual_ocr
+    stage: transcription-ocr
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: openai_image_tokens
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-6-luna
+    enabled_by: use_llm_ocr
+    notes: "Primary vision OCR for poster and slide PNGs; input tokens use OpenAI image tiling rules."
+
+  - task_id: slide_poster_visual_ocr_fallback
+    family: visual_ocr
+    stage: transcription-ocr
+    provider: gemini
+    pricing_unit: tokens
+    quantity_source: openai_image_tokens
+    fallback_share:
+      low: 0.05
+      base: 0.1
+      high: 0.2
+    models:
+      low: gemini-3.5-flash-lite
+      base: gemini-3.5-flash-lite
+      high: gemini-3.5-flash-lite
+    enabled_by: ocr_fallback_enabled
+    notes: "Fallback visual OCR reserve for low-confidence or failed primary image parses; Gemini image tokens are estimated using the OpenAI image-token proxy until provider receipts exist."
+
+  - task_id: pdf_visual_ocr
+    family: visual_ocr
+    stage: transcription-ocr
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: pdf_pages_as_images
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-6-luna
+    enabled_scenarios: [high]
+    enabled_by: pdf_visual_ocr_enabled
+    notes: "Optional paid visual OCR over PDF pages when local text extraction is insufficient."
+
+  - task_id: pdf_text_extraction_followup
+    family: pdf_text_followup
+    stage: transcription-ocr
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: text_tokens
+    input_multiplier: 0.25
+    output_tokens: 120000
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-6-luna
+    enabled_by: extraction_cleanup_enabled
+    notes: "Follow-up LLM cleanup and structure extraction after local PDF text extraction."
+
+  - task_id: exhaustive_extraction_direct
+    family: exhaustive_extraction
+    stage: exhaustive-topic-extraction
+    provider: local
+    pricing_unit: tokens
+    quantity_source: exhaustive_extraction_tokens
+    fallback_input_tokens: 26000000
+    fallback_output_tokens: 1600000
+    models:
+      low: mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit
+      base: mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit
+      high: mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit
+    enabled_by: exhaustive_extraction_enabled
+    notes: "Stage id matches WorkflowStage.id in src/conference_pipeline/workflow.py. ICLR recovery defaults bulk exhaustive extraction to local Qwen3.5 35B-A3B over transcripts, OCR, and papers; local MLX receipts record $0 API cost. Cloud escalation/failover remains represented separately."
+
+  - task_id: exhaustive_extraction_local_full_read
+    family: exhaustive_extraction
+    stage: analysis
+    provider: local
+    pricing_unit: tokens
+    quantity_source: llm_full_read_tokens
+    fallback_input_tokens: 28000000
+    fallback_output_tokens: 2500000
+    models:
+      low: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+      base: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+      high: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+    enabled_by: llm_full_read_extraction_enabled
+    notes: "Local Qwen full-read exhaustive extraction over all transcript windows first and paper abstracts last. Production receipts must use --scope all with no --limit and prove completed_unit_count equals expected_unit_count; pilot, heuristic-only, transcript-only, and metadata-only receipts are blockers. Uses Qwen3.6-35B-A3B-OptiQ-4bit (matches model_governance/registry.yaml's analysis.llm_full_read_extraction default) — the same already-cached weights used by analysis.topic_reconciliation and the research.gpt_researcher_* lanes; Qwen3.5-35B-A3B-4bit was never downloaded for this workstream."
+
+  - task_id: exhaustive_topic_summary_synthesis
+    family: llm_generation
+    stage: analysis
+    provider: openrouter
+    pricing_unit: tokens
+    quantity_source: exhaustive_summary_tokens
+    # Sized per topic/category pair from the latest summary_plan.json, else from
+    # the llm-full-read by-topic/by-unit records; each chunk and merge call is
+    # priced per request at the tier-aware chunk ceiling, so the high-tier split
+    # is explicit. The fallback budget is priced (and flagged UNMEASURED) only
+    # when the workspace has neither.
+    fallback_input_tokens: 20000000
+    fallback_output_tokens: 1000000
+    provider_default_max_input_tokens:
+      gemini: 400000
+      openai: 400000
+      openrouter: 400000
+      default: 120000
+    # ICML 2026 07A: provider billed ~1.09x the local token count; outputs
+    # averaged 2,149 and peaked at 3,100 tokens per call.
+    provider_token_inflation: 1.1
+    prompt_scaffold_tokens_per_call: 1000
+    output_tokens_per_call: 3000
+    input_multiplier: 1.0
+    models:
+      low: gpt-6-luna
+      base: openrouter/moonshotai/kimi-k3
+      high: gpt-6-sol
+    enabled_by: exhaustive_topic_summary_enabled
+    notes: "Experimental v2.1 summary-pack pass over completed LLM full-read by-topic evidence. It summarizes each topic/category pair (transcripts and paper abstracts), chunks large pairs at the configured token budget, and writes JSON/Markdown packs before formal Stage 7 source-pack promotion. kimi-k3 via OpenRouter is the benchmarked default (2026-10-01, ICML 2026 topic 09: densest grounded packs at ~25% of the Gemini Pro cost, ~5x the latency; operator choice); gpt-6-luna is the alternative (grounded packs at ~3% of the cost, fast); gemini-3.1-pro-preview is the legacy default. Low/high bracket the base estimate with the cheaper and the more expensive allowed model."
+
+  - task_id: exhaustive_extraction_openrouter_failover
+    family: exhaustive_extraction
+    stage: exhaustive-topic-extraction
+    provider: openrouter
+    pricing_unit: tokens
+    quantity_source: exhaustive_extraction_failover_tokens
+    failover_share:
+      low: 0.05
+      base: 0.1
+      high: 0.2
+    models:
+      low: openrouter/openai/gpt-5.6-luna
+      base: openrouter/anthropic/claude-sonnet-5
+      high: openrouter/anthropic/claude-sonnet-5
+    enabled_by: openrouter_failover_enabled
+    notes: "OpenRouter failover budget for direct provider failures. claude-haiku-4-5-20251001 was retired 2026-07-15 (quick-260715-rz1) in favor of claude-sonnet-5; base/high now share the same model."
+
+  - task_id: gpt_researcher_llm
+    family: gpt_researcher
+    stage: query-planning-gpt-researcher
+    provider: local
+    pricing_unit: tokens
+    quantity_source: topic_count
+    input_tokens_per_unit: 80000
+    output_tokens_per_unit: 10000
+    models:
+      low: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+      base: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+      high: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+    enabled_by: gpt_researcher_enabled
+    notes: "GPT Researcher corpus evidence/draft synthesis defaults to local Qwen3.6 35B-A3B with WEB_SEARCH_ENABLED=false, BM25+BGE hybrid retrieval, and $0 paid API cost. OpenAI/Tavily is an explicit web-search or local-runtime-failure escalation; final public report composition remains analysis.deep_narrative_synthesis."
+
+  - task_id: deep_dive_question_selection
+    family: llm_generation
+    stage: analysis
+    provider: anthropic
+    pricing_unit: tokens
+    quantity_source: topic_count
+    input_tokens_per_unit: 12000
+    output_tokens_per_unit: 2000
+    models:
+      low: claude-opus-5-5
+      base: claude-opus-5-5
+      high: claude-opus-5-5
+    enabled_by: deep_dive_question_selection_enabled
+    notes: "Claude Opus 4.8 editorial selection step that compresses exhaustive summary key points and tensions into 4-6 deep-research questions per topic before dual GPT-Researcher lanes run."
+
+  - task_id: topic_reconciliation
+    family: llm_generation
+    stage: analysis
+    provider: local
+    pricing_unit: tokens
+    quantity_source: topic_count
+    input_tokens_per_unit: 50000
+    output_tokens_per_unit: 16000
+    models:
+      low: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+      base: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+      high: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit
+    enabled_by: topic_reconciliation_enabled
+    notes: "Local Qwen3.6 35B-A3B reconciliation of exhaustive summaries, current narrative source pack, and dual GPT-Researcher deep dives before final GPT-5.6 Sol topic narrative synthesis. Paid provider cost is $0 unless an explicit GPT-5.6 Sol fallback is approved."
+
+  - task_id: topic_strategy_generation
+    family: llm_generation
+    stage: analysis
+    provider: anthropic
+    pricing_unit: tokens
+    quantity_source: topic_count
+    input_tokens_per_unit: 5000
+    output_tokens_per_unit: 2000
+    input_multiplier: 1.0
+    models:
+      low: claude-opus-5-5
+      base: claude-opus-5-5
+      high: claude-opus-5-5
+    enabled_by: topic_strategy_enabled
+    notes: "Claude Opus 4.8 merge-model budget proxy for three-model title-spine topic strategy. scripts/build_topic_strategy.py collects invited/keynote, oral, session, workshop, and segmented workshop talk titles, asks OpenAI/Anthropic/Gemini for independent 12-topic recommendations, and merges them into analysis/topic_strategy.json; live provider-call receipts carry exact model-specific cost."
+
+  - task_id: gpt_researcher_embeddings
+    family: embeddings
+    stage: deep-research
+    provider: local
+    pricing_unit: embedding_tokens
+    quantity_source: embedding_tokens
+    input_multiplier: 1.0
+    models:
+      low: mlx-community/bge-m3-mlx-8bit
+      base: mlx-community/bge-m3-mlx-8bit
+      high: mlx-community/bge-m3-mlx-8bit
+    enabled_by: gpt_researcher_enabled
+    notes: "Default GPT-Researcher corpus embeddings: local BGE-M3 MLX, 1024 dim, paired with hybrid BM25+vector retrieval (RETRIEVAL_K=18, PAPER_MATCHING_RETRIEVAL_K=18, CANDIDATE_MULTIPLIER=3, RRF_K=60)."
+
+  - task_id: phase_14b_indexing_embeddings
+    family: embeddings
+    stage: enhanced-indexing-vector-store
+    provider: local
+    pricing_unit: embedding_tokens
+    quantity_source: phase_14b_embedding_tokens
+    fallback_input_tokens: 9000000
+    input_multiplier: 1.0
+    models:
+      low: mlx-community/bge-m3-mlx-8bit
+      base: mlx-community/bge-m3-mlx-8bit
+      high: mlx-community/bge-m3-mlx-8bit
+    enabled_by: vector_store_indexing_enabled
+    notes: "Phase 14B vector-store embeddings default to local BGE-M3 MLX (EMBEDDING_PROVIDER=mlx, EMBEDDING_DIM=1024); stage id matches WorkflowStage.id in src/conference_pipeline/workflow.py. OpenAI text-embedding-3-small is compatibility fallback only when local MLX embeddings are unavailable or receipt validation fails."
+
+  - task_id: paper_matching_keypoint_extraction
+    family: llm_generation
+    stage: paper-matching
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: paper_matching_keypoint_tokens
+    # One keypoint call per topic, sized from the latest artifact findings per
+    # topic (truncated at the extractor's 24,000-char cap) or, before paper
+    # matching runs, topic_count x the cap. The fallback budget is priced (and
+    # flagged UNMEASURED) only when no topic is known.
+    fallback_input_tokens: 250000
+    fallback_output_tokens: 50000
+    # Observed ICML 2026 keypoint calls: ~1-2.3k input, <=340 output tokens.
+    prompt_scaffold_tokens_per_call: 300
+    output_tokens_per_call: 1000
+    input_multiplier: 1.0
+    models:
+      low: gpt-6-luna
+      base: gpt-6-sol
+      high: gpt-6-sol
+    enabled_by: paper_matching_enabled
+    notes: "v1.91 frontier-model keypoint extraction from artifact GPT-Researcher findings before paper-store GPT-Researcher matching."
+
+  - task_id: tavily_search_extract
+    family: web_search
+    stage: query-planning-gpt-researcher
+    provider: tavily
+    pricing_unit: credits
+    quantity_source: topic_count
+    credits_per_unit:
+      low: 6
+      base: 12
+      high: 24
+    models:
+      low: tavily-search
+      base: tavily-search
+      high: tavily-search
+    enabled_by: tavily_enabled
+    notes: "Tavily search and extract credits for GPT Researcher and deep research. Phase 14C secondary web-search; default-OFF when `TAVILY_API_KEY` unset (local-only mode)."
+
+  - task_id: topic_report_generation
+    family: topic_analysis
+    stage: analysis
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: topic_count
+    input_tokens_per_unit: 50000
+    output_tokens_per_unit: 7000
+    models:
+      low: gpt-6-luna
+      base: gpt-6-sol
+      high: gpt-6-sol
+    enabled_by: topic_analysis_enabled
+    notes: "Topic report generation from transcript/OCR/paper context. base/high match analysis.deep_narrative_synthesis's governed gpt-6-sol default (see model_governance/registry.yaml), consistent with the sibling paper_matching_keypoint_extraction row."
+
+  - task_id: traceability_recovery
+    family: topic_analysis
+    stage: analysis
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: topic_count
+    input_tokens_per_unit: 12000
+    output_tokens_per_unit: 3000
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-6-luna
+    enabled_by: traceability_recovery_enabled
+    notes: "LLM repair and citation recovery when source traceability is weak."
+
+  - task_id: fact_ranking
+    family: rankings
+    stage: ranking
+    provider: gemini
+    pricing_unit: tokens
+    quantity_source: topic_count
+    input_tokens_per_unit: 135000
+    output_tokens_per_unit: 17000
+    run_count:
+      low: 3
+      base: 5
+      high: 9
+    models:
+      low: gemini-3.5-flash-lite
+      base: gemini-3.5-flash-lite
+      high: gemini-3.1-pro-preview
+    enabled_by: fact_ranking_enabled
+    notes: "Repeated fact-ranking passes, including telescopic duration variants."
+
+  - task_id: paper_ranking
+    family: rankings
+    stage: ranking
+    provider: gemini
+    pricing_unit: tokens
+    quantity_source: topic_count
+    input_tokens_per_unit: 30000
+    output_tokens_per_unit: 9000
+    run_count:
+      low: 3
+      base: 5
+      high: 9
+    models:
+      low: gemini-3.5-flash-lite
+      base: gemini-3.5-flash-lite
+      high: gemini-3.1-pro-preview
+    enabled_by: paper_ranking_enabled
+    notes: "Repeated paper-ranking and frequency aggregation calls."
+
+  - task_id: focused_podcast_script
+    family: podcast_generation
+    stage: podcast
+    provider: anthropic
+    pricing_unit: tokens
+    quantity_source: topic_count
+    input_tokens_per_unit: 60000
+    output_tokens_per_unit: 5000
+    models:
+      low: claude-opus-5-5
+      base: claude-opus-5-5
+      high: claude-opus-5-5
+    enabled_by: podcast_script_enabled
+    notes: "Focused podcast and narration script generation with Claude Opus 4.8."
+
+  - task_id: openai_podcast_tts
+    family: podcast_generation
+    stage: podcast
+    provider: openai
+    pricing_unit: tts_minute_estimate
+    quantity_source: topic_count
+    target_minutes_per_unit:
+      low: 8
+      base: 20
+      high: 40
+    models:
+      low: gpt-4o-mini-tts
+      base: gpt-4o-mini-tts
+      high: gpt-4o-mini-tts
+    enabled_by: podcast_tts_enabled
+    notes: "Rendered focused podcast or narration audio."
+
+  - task_id: deck_draft_generation
+    family: presentation_generation
+    stage: presentation
+    provider: gemini
+    pricing_unit: tokens
+    quantity_source: presentation_targets
+    input_tokens_per_unit: 80000
+    output_tokens_per_unit: 10000
+    models:
+      low: gemini-3.5-flash-lite
+      base: gemini-3.1-pro-preview
+      high: gemini-3.1-pro-preview
+    enabled_by: presentation_generation_enabled
+    notes: "Initial slide deck draft generation."
+
+  - task_id: deck_research_enrichment
+    family: presentation_generation
+    stage: presentation
+    provider: anthropic
+    pricing_unit: tokens
+    quantity_source: presentation_targets
+    input_tokens_per_unit: 60000
+    output_tokens_per_unit: 20000
+    models:
+      low: claude-sonnet-5
+      base: claude-sonnet-5
+      high: claude-sonnet-5
+    enabled_by: presentation_enrichment_enabled
+    notes: "Paper-grounded enrichment and correction for generated decks. claude-haiku-4-5-20251001 was retired 2026-07-15 (quick-260715-rz1) in favor of claude-sonnet-5; all three tiers now share the same model."
+
+  - task_id: slide_consolidation
+    family: presentation_generation
+    stage: presentation
+    provider: gemini
+    pricing_unit: tokens
+    quantity_source: presentation_targets
+    input_tokens_per_unit: 25000
+    output_tokens_per_unit: 10000
+    models:
+      low: gemini-3.5-flash-lite
+      base: gemini-3.1-pro-preview
+      high: gemini-3.1-pro-preview
+    enabled_by: slide_consolidation_enabled
+    notes: "Deck consolidation and reflow."
+
+  - task_id: figure_extraction_captioning
+    family: presentation_generation
+    stage: presentation
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: presentation_targets
+    input_tokens_per_unit: 30000
+    output_tokens_per_unit: 10000
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-6-luna
+    enabled_by: figure_extraction_enabled
+    notes: "Figure extraction, captioning, and slide asset mapping."
+
+  - task_id: presentation_blueprint_generation
+    family: presentation_generation
+    stage: presentation
+    provider: anthropic
+    pricing_unit: tokens
+    quantity_source: presentation_targets
+    input_tokens_per_unit: 120000
+    output_tokens_per_unit: 30000
+    run_count:
+      low: 1
+      base: 1
+      high: 2
+    models:
+      low: claude-sonnet-5
+      base: claude-opus-5-5
+      high: claude-opus-5-5
+    enabled_by: presentation_blueprint_generation_enabled
+    notes: "Phase 14 blueprint-first planning pass over analysis, source corpus, paper/source plans, visual roles, and narration beats before draft slide generation."
+
+  - task_id: programmatic_figure_codegen
+    family: presentation_generation
+    stage: presentation
+    provider: anthropic
+    pricing_unit: tokens
+    quantity_source: presentation_targets
+    input_tokens_per_unit: 45000
+    output_tokens_per_unit: 18000
+    run_count:
+      low: 1
+      base: 2
+      high: 4
+    models:
+      low: claude-sonnet-5
+      base: claude-sonnet-5
+      high: claude-sonnet-5
+    enabled_by: programmatic_figure_codegen_enabled
+    notes: "v1.51 ICLR recovery requires Anthropic claude-sonnet-5 for LLM-generated Python/Plotly/Matplotlib/svgwrite figure code; local Python rendering is tracked as $0 API cost. Gemini outputs cannot satisfy SVG generation completion evidence."
+
+  - task_id: programmatic_figure_repair
+    family: presentation_generation
+    stage: presentation
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: presentation_targets
+    input_tokens_per_unit: 15000
+    output_tokens_per_unit: 6000
+    run_count:
+      low: 1
+      base: 1
+      high: 2
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-6-luna
+    enabled_by: programmatic_figure_repair_enabled
+    notes: "LLM repair loop for generated SVG Python after syntax, render, or validation failures."
+
+  - task_id: presenter_script
+    family: presentation_generation
+    stage: presentation
+    provider: gemini
+    pricing_unit: tokens
+    quantity_source: presentation_targets
+    input_tokens_per_unit: 40000
+    output_tokens_per_unit: 16000
+    models:
+      low: gemini-3.5-flash-lite
+      base: gemini-3.1-pro-preview
+      high: gemini-3.1-pro-preview
+    enabled_by: presenter_script_enabled
+    notes: "Presenter narration script generation."
+
+  - task_id: notebooklm_dialogue
+    family: presentation_generation
+    stage: presentation
+    provider: gemini
+    pricing_unit: tokens
+    quantity_source: presentation_targets
+    input_tokens_per_unit: 30000
+    output_tokens_per_unit: 12000
+    models:
+      low: gemini-3.5-flash-lite
+      base: gemini-3.1-pro-preview
+      high: gemini-3.1-pro-preview
+    enabled_by: notebooklm_dialogue_enabled
+    notes: "NotebookLM-style dialogue script generation for presenter videos."
+
+  - task_id: gemini_video_tts
+    family: video_generation
+    stage: presentation-video
+    provider: gemini
+    pricing_unit: tts_minute_estimate
+    quantity_source: presentation_targets
+    target_minutes_per_unit:
+      low: 10
+      base: 30
+      high: 45
+    models:
+      low: gemini-2.5-flash-preview-tts
+      base: gemini-2.5-flash-preview-tts
+      high: gemini-2.5-pro-preview-tts
+    enabled_by: video_tts_enabled
+    notes: "Gemini rendered presenter-video narration audio."
+
+  - task_id: notebooklm_audio_overview
+    family: podcast_generation
+    stage: notebooklm-podcast
+    provider: google_notebooklm
+    pricing_unit: none
+    quantity_source: fixed
+    fixed_usd: 0.0
+    models:
+      low: notebooklm-audio-overview
+      base: notebooklm-audio-overview
+      high: notebooklm-audio-overview
+    enabled_by: always
+    notes: "Per-deck NotebookLM podcasts (Audio Overviews) are subscription-metered on the operator's Google account, not API-billed: 14 generations per conference against a ~20/day Pro quota. Governance task id podcast.notebooklm_audio_overview."
+
+  - task_id: local_zero_cost_work
+    family: local_zero_cost
+    stage: local-work
+    provider: local
+    pricing_unit: none
+    quantity_source: fixed
+    fixed_usd: 0.0
+    models:
+      low: local-only
+      base: local-only
+      high: local-only
+    enabled_by: always
+    notes: "Downloads, browser rendering, ffmpeg, Tesseract, local PDF text extraction, local Python/Plotly/Matplotlib/svgwrite SVG rendering, and normal filesystem work are not API-billed by this estimator."
+
+  # ----------------------------------------------------------------------
+  # v1.61: vision and OCR task families.
+  # Paid lane (OpenAI vision tokens) is the production default.
+  # Local lane (vllm-mlx / mlx-vlm / FastVLM-MLX) costs $0 in API billing
+  # and is opt-in via --local --local-vision-model. Both lanes are kept so
+  # the cost calculator can show the local-vs-paid delta per task.
+  # ----------------------------------------------------------------------
+
+  - task_id: vision_slide_analysis_paid
+    family: vision
+    stage: presentation
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: openai_image_tokens
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-5.6-terra
+    enabled_by: vision_slide_analysis_enabled
+    notes: "Paid lane for v1.61 multimodal slide analysis (salient claims, figures, code, equations, reading order)."
+
+  - task_id: vision_slide_analysis_local
+    family: vision
+    stage: presentation
+    provider: local
+    pricing_unit: none
+    quantity_source: fixed
+    fixed_usd: 0.0
+    models:
+      low: mlx-community/Qwen3-VL-8B-Instruct-4bit
+      base: mlx-community/Qwen3-VL-8B-Instruct-4bit
+      high: mlx-community/Qwen3-VL-32B-Instruct-4bit
+    enabled_by: local_vision_enabled
+    notes: "v1.61 local vision lane for slide analysis. $0 API cost; gated on benchmark receipts (VLM-BENCH-03 promotion)."
+
+  - task_id: vision_figure_caption_paid
+    family: vision
+    stage: presentation
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: openai_image_tokens
+    models:
+      low: gpt-6-luna
+      base: gpt-6-sol
+      high: gpt-6-sol
+    enabled_by: vision_figure_caption_enabled
+    notes: "Paid lane for figure-caption generation (provenance-preserving). base/high match vision.figure_caption's governed gpt-6-sol default (see model_governance/registry.yaml); gpt-5.6-terra is not a registered selection for this task."
+
+  - task_id: vision_figure_caption_local
+    family: vision
+    stage: presentation
+    provider: local
+    pricing_unit: none
+    quantity_source: fixed
+    fixed_usd: 0.0
+    models:
+      low: mlx-community/Qwen3-VL-8B-Instruct-4bit
+      base: mlx-community/Qwen3-VL-8B-Instruct-4bit
+      high: mlx-community/Pixtral-12B-4bit
+    enabled_by: local_vision_enabled
+    notes: "v1.61 local figure caption. $0 API cost; gated on benchmark receipts."
+
+  - task_id: presentation_visual_qc_paid
+    family: vision
+    stage: presentation
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: openai_image_tokens
+    models:
+      low: gpt-5.6-terra
+      base: gpt-6-sol
+      high: gpt-6-sol
+    enabled_by: presentation_visual_qc_enabled
+    notes: "v1.63 governed vision-LLM visual QC over rendered deck screenshots."
+
+  - task_id: presentation_visual_qc_local
+    family: vision
+    stage: presentation
+    provider: local
+    pricing_unit: none
+    quantity_source: fixed
+    fixed_usd: 0.0
+    models:
+      low: mlx-community/Qwen3-VL-8B-Instruct-4bit
+      base: mlx-community/Qwen3-VL-8B-Instruct-4bit
+      high: mlx-community/Qwen3-VL-32B-Instruct-4bit
+    enabled_by: local_vision_enabled
+    notes: "Local candidate lane for visual QC; cannot replace paid production default until benchmark-approved."
+
+  - task_id: vision_chart_summary_paid
+    family: vision
+    stage: presentation
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: openai_image_tokens
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-5.6-terra
+    enabled_by: vision_chart_summary_enabled
+    notes: "Paid lane for chart summarization (axes, units, key trends)."
+
+  - task_id: vision_chart_summary_local
+    family: vision
+    stage: presentation
+    provider: local
+    pricing_unit: none
+    quantity_source: fixed
+    fixed_usd: 0.0
+    models:
+      low: mlx-community/Qwen3-VL-8B-Instruct-4bit
+      base: mlx-community/Qwen3-VL-8B-Instruct-4bit
+      high: mlx-community/Qwen3-VL-32B-Instruct-4bit
+    enabled_by: local_vision_enabled
+    notes: "v1.61 local chart summary. $0 API cost; gated on benchmark receipts."
+
+  - task_id: ocr_slide_image_parse_paid
+    family: ocr
+    stage: transcription-ocr
+    provider: openai
+    pricing_unit: tokens
+    quantity_source: openai_image_tokens
+    models:
+      low: gpt-6-luna
+      base: gpt-6-luna
+      high: gpt-5.6-terra
+    enabled_by: ocr_slide_image_parse_enabled
+    notes: "Paid lane for slide-image OCR (text-only output) using OpenAI vision tokens. Mirrors vision_*_paid rows so cost calculator can show local-vs-paid delta for ocr.slide_image_parse."
+
+  - task_id: ocr_slide_image_parse_local
+    family: ocr
+    stage: transcription-ocr
+    provider: local
+    pricing_unit: none
+    quantity_source: fixed
+    fixed_usd: 0.0
+    models:
+      low: mlx-community/GLM-OCR-0.9B-4bit
+      base: mlx-community/GLM-OCR-0.9B-4bit
+      high: mlx-community/Qwen3-VL-8B-Instruct-4bit
+    enabled_by: local_vision_enabled
+    notes: "v1.61 local OCR-specialized lane. GLM-OCR (0.9B) recommended once benchmark receipts exist; Qwen3-VL multimodal fallback for high scenario. $0 API cost."

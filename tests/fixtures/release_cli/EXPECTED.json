@@ -1,0 +1,167 @@
+{
+  "schema": "release-cli-corpus/1",
+  "exit_codes": {
+    "0": "done",
+    "1": "check finding, or isolated digest mismatch",
+    "2": "refused or blocked"
+  },
+  "cases": {
+    "C1": {
+      "exit": 0,
+      "effects": [
+        "storage/public_export_manifest.json is created",
+        "it has schema_version 1.0.0, conference sampleconf2027 and release.source_sha equal to the repository HEAD",
+        "families is the empty list",
+        "excluded_families has 29 rows, one per storage-manifest family in storage-manifest order",
+        "each row carries storage_manifest_id, path (path or path_glob), storage_class, share_policy and reason 'default: not reviewed for publication'",
+        "no file is created under exports/"
+      ],
+      "amended": {
+        "by": "owner, 2026-11-15 (IF3)",
+        "prior": "it has schema_version 1.1.0, conference sampleconf2027 and release.source_sha equal to the repository HEAD"
+      }
+    },
+    "C2": {
+      "exit": 2,
+      "effects": [
+        "storage/public_export_manifest.json is byte-identical before and after",
+        "the message names --force-draft-path"
+      ]
+    },
+    "C3": {
+      "exit": 2,
+      "effects": [
+        "no storage/public_export_manifest.json is created"
+      ]
+    },
+    "C4": {
+      "exit": 2,
+      "effects": [
+        "the blocker is no_family_promoted",
+        "no exports/ directory is created"
+      ]
+    },
+    "C5": {
+      "exit": 2,
+      "effects": [
+        "the orchestrator's write gate blocks export_write for a missing reviewed dry-run receipt",
+        "no bundle directory is created under exports/public-release/"
+      ]
+    },
+    "C6": {
+      "exit": 0,
+      "effects": [
+        "storage/workflow-runs/public-export-sampleconf2027-v1.0.0-validation-receipt.json is written",
+        "storage/workflow-runs/public-export-sampleconf2027-v1.0.0-dry-run-receipt.json is written with status succeeded and dry_run true",
+        "no exports/ directory is created"
+      ]
+    },
+    "C7": {
+      "exit": 0,
+      "effects": [
+        "exports/public-release/sampleconf2027-v1.0.0/ exists with RELEASE.json, CHECKSUMS.json and decks/01_sample/slides.md",
+        "the write receipt's bundle_verification.bundle_tree_sha256 equals bundle_tree_sha256 recomputed over the receipt's actual_artifacts plus RELEASE.json and CHECKSUMS.json",
+        "the derived stages ran after the export: index, site, dataset package, repo dry-run"
+      ]
+    },
+    "C8": {
+      "exit": 0,
+      "effects": [
+        "no finding is printed"
+      ]
+    },
+    "C9": {
+      "exit": 1,
+      "effects": [
+        "one finding of rule home_path in decks/01_sample/slides.md",
+        "the finding prints <redacted:home_path>, and the planted path never appears in the output"
+      ]
+    },
+    "C10": {
+      "exit": 1,
+      "effects": [
+        "the finding names decks/01_sample/slides.md as a checksum or tree-digest mismatch"
+      ]
+    },
+    "C11": {
+      "exit": 2,
+      "effects": [
+        "the blocker is owner_approval_missing",
+        "the runner is never called",
+        "the .env file is never opened"
+      ]
+    },
+    "C12": {
+      "exit": 2,
+      "effects": [
+        "as C11"
+      ]
+    },
+    "C13": {
+      "exit": 0,
+      "effects": [
+        "the runner is called for exactly these stages, in order: live_github, then (a second run) check_liveness, check_metadata",
+        "the top-level receipt records owner_approval.approved_by 'alice' and owner_approval.surfaces ['github']",
+        "no credential value appears in any receipt"
+      ],
+      "amended": {
+        "by": "owner, 2026-11-15 (IF1: starts from W4; IF2: live stage first, then verification)",
+        "prior": "the runner is called for exactly these stages, in order: preflight_live, live_github, check_liveness, check_metadata"
+      }
+    },
+    "C14": {
+      "exit": 2,
+      "effects": [
+        "the message says at least one --surface is required",
+        "the runner is never called"
+      ]
+    },
+    "C15": {
+      "exit": 0,
+      "effects": [
+        "both commands exit 0",
+        "D/plan-report.json and D/build-report.json exist; D/bundle/ holds RELEASE.json, CHECKSUMS.json and decks/01_sample/slides.md",
+        "the listing and file digests of conferences/sampleconf2027/ are identical before and after: no receipt is written or overwritten, no exports/ is created",
+        "the reports hold bundle-relative paths and digests only"
+      ]
+    },
+    "C16": {
+      "exit": 2,
+      "effects": [
+        "the error is ERROR_IMMUTABLE_BUNDLE ('public export bundle is immutable after publication')",
+        "no bundle is written"
+      ]
+    },
+    "C17": {
+      "exit": 1,
+      "effects": [
+        "D/build-report.json records the computed tree sha256 and the expected one",
+        "it lists the differing paths, sorted"
+      ]
+    },
+    "C18": {
+      "exit": 0,
+      "effects": [
+        "(a) the live_github command line carries the target example-org/sampleconf2027-data from config.yaml",
+        "(b) the staged repository name is sampleconf2027-data; no neurips2025 text appears"
+      ],
+      "amended": {
+        "by": "owner, 2026-11-15 (IF1: part (a) starts from W4; answer unchanged)"
+      }
+    },
+    "C19": {
+      "exit": 2,
+      "effects": [
+        "in both variants D/bundle/ is not created",
+        "the message names the missing or mismatched plan report"
+      ]
+    },
+    "C20": {
+      "exit": 2,
+      "effects": [
+        "in both variants nothing is written: not inside the workspace, not into D"
+      ]
+    }
+  },
+  "amendments": "IF1-IF3, accepted by the owner on 2026-11-15; see notes/phase-3-spec.md section 12"
+}

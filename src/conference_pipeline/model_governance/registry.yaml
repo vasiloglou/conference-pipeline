@@ -1,0 +1,3668 @@
+schema_version: 1
+description: >
+  Platform-owned task/model registry. Model names here are planning defaults
+  only; selected live production defaults still require dated current research,
+  provider approval, and stage-local benchmark receipts.
+
+# Local runtime profile extension (Phase 7+):
+# Tasks that support local execution may add:
+#   local_runtime_profile_id: mlx_light   # references local_runtime_profiles.yaml
+# Until a task has a benchmark receipt and operator approval, local_runtime_policy
+# must remain "deferred_until_*" and local_runtime_profile_id is omitted.
+#
+# Profile definitions: src/conference_pipeline/model_governance/local_runtime_profiles.yaml
+# Profile schema and loader: src/conference_pipeline/model_governance/local_runtime.py
+# Proof chain documentation: docs/reference/local-runtime.md
+
+tasks:
+  analysis.local_summary_benchmark:
+    task_family: analysis
+    stage: analysis
+    model_ref: qwen36_local
+    budget_cap_usd: 25
+    current_research:
+      required: true
+      status: experimental_short_context_comparison
+      reference: docs/operations/local-summary-benchmark.md
+    benchmark:
+      required: true
+      receipt_required: true
+    quality_threshold: source-grounded noninferiority pilot; no production promotion
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: isolated_experiment_only_serial_gpu
+    selection_status: experimental_not_production
+    allowed_selections:
+      - {provider: local, model: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, role: default}
+      - {provider: local, model: mlx-community/Qwen3.8-27B-4bit, role: candidate}
+      - {provider: openai, model: gpt-6-luna, role: bounded_synthesis}
+      - {provider: openai, model: gpt-6-sol, role: independent_evaluator}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: cloud_comparator}
+  transcription.session_speech:
+    task_family: transcription
+    stage: transcription-ocr
+    model_ref: gpt4o_transcribe_diarize
+    fallback_model_ref: whisper_local
+    budget_cap_usd: 200
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/pricing_catalog.json
+    benchmark:
+      required: true
+      placement: after representative audio or video samples are downloaded
+      receipt_required: true
+      authority_models: [gpt-4o-transcribe-diarize]
+      candidates: [gpt-4o-mini-transcribe, whisper-1]
+    quality_threshold: speaker-aware transcript with source timestamps or explicit blocker
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_runtime_receipts
+    local_candidates:
+      - model_id: "mlx-community/whisper-large-v3-mlx"
+        source_url: "https://huggingface.co/mlx-community/whisper-large-v3-mlx"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "mit"
+        commercial_use_allowed: true
+        expected_memory_gb: 3.2
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/transcription.session_speech/mlx-community_whisper-large-v3-mlx.json"
+    selection_status: planning_default_requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-4o-transcribe-diarize, role: default}
+      - {provider: openai, model: gpt-4o-transcribe, role: candidate}
+      - {provider: openai, model: gpt-4o-mini-transcribe, role: cheaper_candidate}
+      - {provider: local, model: whisper-1, role: deferred_local_candidate}
+
+  transcription.youtube_url:
+    task_family: transcription
+    stage: acquisition
+    model_ref: gemini_flash_lite
+    fallback_model_ref: gemini_pro
+    # Raised 25 -> 100 on 2026-09-17 by operator decision, to cover the full
+    # CVPR 2026 poster-video backlog (~1,400 five-minute videos) in one run.
+    # Headroom, not a forecast: that backlog prices at ~$5-10, the lane halts
+    # rather than crossing this cap, and the $800 global provider cap still
+    # governs the workspace.
+    budget_cap_usd: 100
+    current_research:
+      required: true
+      status: current
+      reference: docs/reference/stage-owner-audit.md#acquisition-youtube-talk-harvest
+      checked_date: "2026-09-17"
+      notes: >
+        Gemini accepts a public YouTube URL as file_data and fetches it
+        server-side, so it works while the local IP is bot-gated by YouTube.
+        It transcribes the speech (it does not read the caption track).
+        Measured 2026-09-17 on CVPR 2026 videos with gemini_flash_lite: ~0.90
+        word-sequence agreement with YouTube auto-captions on a 5-minute
+        poster video; clean transcript of a caption-less tutorial; fps 0.02 +
+        low media resolution cut prompt tokens ~3.4x vs the 1 fps default
+        with an essentially identical transcript (~$0.04-0.05 per hour).
+        Offsets past the video end return a bare HTTP 500, so the duration
+        must come from the watch page first.
+    benchmark:
+      required: true
+      placement: after the first live video-list run, compare Gemini windows against YouTube captions on captioned talks
+      receipt_required: true
+      authority_models: [gemini-3.1-pro-preview]
+      candidates: [gemini-3.5-flash-lite]
+    quality_threshold: verbatim speech transcript per time window that a reader can quote technical terms, model names, and numbers from, or an explicit per-video gap
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: not_applicable_remote_url_ingestion
+    selection_status: planning_default_requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: default}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: authority_candidate}
+
+  ocr.slide_image_parse:
+    task_family: ocr
+    stage: transcription-ocr
+    model_ref: luna
+    fallback_model_ref: gemini_flash_lite
+    budget_cap_usd: 30
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/api/slide_ocr.md
+    benchmark:
+      required: true
+      placement: after representative PDFs, slides, images, or media samples exist
+      receipt_required: true
+      authority_models: [gpt-6-sol, gpt-5.6-terra]
+      authority_selections:
+        - {provider: openai, model: gpt-6-sol, role: authority}
+        - {provider: openai, model: gpt-5.6-terra, role: authority_fallback}
+      candidates: [gpt-6-luna, claude-sonnet-5, gemini-3.5-flash-lite]
+    quality_threshold: valid JSON with locator, numeric, and citation recall checks
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_image_model_receipts
+    # v1.61 Default OCR pick once benchmark receipts exist: GLM-OCR (0.9B) — OmniDocBench v1.5 SOTA.
+    # Multimodal fallback: Qwen3-VL-8B-Instruct-4bit (already widely tested in mlx-community).
+    local_candidates:
+      - model_id: "mlx-community/GLM-OCR-0.9B-4bit"
+        source_url: "https://huggingface.co/mlx-community/GLM-OCR-0.9B-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 1.4
+        recommended_um_floor_gb: 8.0
+        parameter_count: "0.9B"
+        quantization: "4bit"
+        multimodal: false
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/dots-ocr-3B-4bit"
+        source_url: "https://huggingface.co/mlx-community/dots-ocr-3B-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 3.0
+        recommended_um_floor_gb: 16.0
+        parameter_count: "3B"
+        quantization: "4bit"
+        multimodal: false
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/DeepSeek-OCR-2-3B-4bit"
+        source_url: "https://huggingface.co/mlx-community/DeepSeek-OCR-2-3B-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report_early"
+        runtime_support: "mlx_community_pending_maturity"
+        license: "deepseek-license"
+        commercial_use_allowed: true
+        expected_memory_gb: 3.0
+        recommended_um_floor_gb: 16.0
+        parameter_count: "3B"
+        quantization: "4bit"
+        multimodal: false
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "8B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/ocr.slide_image_parse/mlx-community_Qwen3-VL-8B-Instruct-4bit.json"
+      - model_id: "apple/FastVLM-7B-MLX"
+        source_url: "https://huggingface.co/apple/FastVLM-7B-MLX"
+        checked_date: "2026-05-03"
+        source_class: "vendor_release"
+        runtime_support: "apple_mlx_native"
+        license: "apple-ascl"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.0
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "fp16"
+        multimodal: true
+        runtime_kind: mlx_native_fastvlm
+        status: benchmark_pending
+    selection_status: planning_default_requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-sol, role: authority}
+      - {provider: openai, model: gpt-5.6-terra, role: authority_fallback}
+      - {provider: openai, model: gpt-6-luna, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: candidate}
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: fallback}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: authority_candidate}
+  vision.figure_caption:
+    task_family: vision
+    stage: presentation
+    model_ref: sol
+    # gpt-6-sol must run with high reasoning effort (July 2026 model-upgrade directive).
+    reasoning_effort: high
+    budget_cap_usd: 25
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after final figure/image samples exist
+      receipt_required: true
+      authority_models: [gpt-5.6-terra]
+      candidates: [gpt-6-luna, gemini-3.1-pro-preview]
+    quality_threshold: figure caption preserves visible evidence and citation/provenance notes
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_vision_runtime_receipts
+    # v1.61 Default pick (multimodal): mlx-community/Qwen3-VL-8B-Instruct-4bit.
+    # Memory-rich alt (≥48 GB UM): mlx-community/Qwen3-VL-32B-Instruct-4bit.
+    # Sub-second TTFT: apple/FastVLM-7B-MLX.
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "8B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/vision.figure_caption/mlx-community_Qwen3-VL-8B-Instruct-4bit.json"
+      - model_id: "mlx-community/Qwen3-VL-32B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-32B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 22.0
+        recommended_um_floor_gb: 48.0
+        parameter_count: "32B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Pixtral-12B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Pixtral-12B-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.0
+        recommended_um_floor_gb: 24.0
+        parameter_count: "12B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "apple/FastVLM-7B-MLX"
+        source_url: "https://huggingface.co/apple/FastVLM-7B-MLX"
+        checked_date: "2026-05-03"
+        source_class: "vendor_release"
+        runtime_support: "apple_mlx_native"
+        license: "apple-ascl"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.0
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "fp16"
+        multimodal: true
+        runtime_kind: mlx_native_fastvlm
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen2.5-VL-7B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen2.5-VL-7B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+    selection_status: planning_default_requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-sol, role: default}
+      - {provider: openai, model: gpt-6-luna, role: legacy_candidate}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: candidate}
+  presentation.visual_qc:
+    task_family: vision
+    stage: presentation
+    model_ref: sol
+    # gpt-6-sol must run with high reasoning effort (July 2026 model-upgrade directive).
+    reasoning_effort: high
+    fallback_model_ref: terra
+    budget_cap_usd: 50
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after representative rendered slide screenshots exist
+      receipt_required: true
+      authority_models: [gpt-6-sol, gpt-5.6-terra]
+      candidates: [gpt-5.6-terra, gpt-6-luna, gemini-3.1-pro-preview, openrouter/moonshotai/kimi-k3]
+    quality_threshold: detects overflowing text, clipped text, overlap, illegible labels, low contrast, broken SVG rendering, and placeholder visuals from rendered screenshots
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_vision_runtime_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-VL-32B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-32B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 22.0
+        recommended_um_floor_gb: 48.0
+        parameter_count: "32B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "8B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+    selection_status: planning_default_requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-sol, role: authority}
+      - {provider: openai, model: gpt-5.6-terra, role: authority_fallback}
+      - {provider: openai, model: gpt-6-luna, role: cheaper_candidate}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: candidate}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: candidate}
+  presentation.presentation_review:
+    task_family: presentation
+    stage: presentation
+    model_ref: gemini_pro
+    fallback_model_ref: sol
+    budget_cap_usd: 50
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after full presentation artifacts and rendered screenshots exist
+      receipt_required: true
+      authority_models: [gpt-6-sol, gemini-3.1-pro-preview]
+      candidates: [gemini-3.1-pro-preview, gpt-6-sol, gpt-5.6-terra]
+    quality_threshold: whole-presentation review catches guideline drift, source gaps, narration mismatch, and production blockers
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates: []
+    selection_status: planning_default_requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: openai, model: gpt-6-sol, role: authority}
+      - {provider: openai, model: gpt-5.6-terra, role: legacy_candidate}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: candidate}
+  presentation.figure_quality_panel:
+    task_family: presentation
+    stage: presentation
+    model_ref: gemini_pro
+    budget_cap_usd: 30
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after generated figure panels and source context exist
+      receipt_required: true
+      authority_models: [gpt-6-luna, gemini-3.1-pro-preview]
+      candidates: [gemini-3.1-pro-preview]
+    quality_threshold: panel judges identify wrong-source, missing component, invented component, legibility, and style-drift failures
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates: []
+    selection_status: planning_default_requires_stage_receipt
+    local_proof: {}
+    # Three-judge panel (scripts/presentations/figure_quality_panel.py): this
+    # task's own provider/model fields govern the Gemini judge only. The
+    # anthropic and local rows below govern the Claude and Qwen judges that
+    # run alongside it — all three are required members of the same panel,
+    # not alternates for one role.
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: anthropic, model: claude-opus-5-5, role: judge_claude}
+      - {provider: local, model: mlx-community/Qwen3-VL-32B-Instruct-4bit, role: judge_qwen}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: judge_kimi}
+
+  vision.slide_analysis:
+    task_family: vision
+    stage: presentation
+    model_ref: luna
+    budget_cap_usd: 35
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after representative slide samples are rendered
+      receipt_required: true
+      authority_models: [gpt-5.6-terra]
+      candidates: [gpt-6-luna, gemini-3.1-pro-preview]
+    quality_threshold: structured slide analysis with salient claims, figures, code, equations, and reading order
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_vision_runtime_receipts
+    # v1.61 primary slide-analysis task. Defaults:
+    #   General slide analysis: mlx-community/Qwen3-VL-8B-Instruct-4bit
+    #   Memory-rich alt (>=48 GB UM): mlx-community/Qwen3-VL-32B-Instruct-4bit
+    #   Stylistic alt: mlx-community/Pixtral-12B-4bit
+    #   Sub-second TTFT (image-only): apple/FastVLM-7B-MLX
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "8B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen3-VL-4B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-4B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 3.5
+        recommended_um_floor_gb: 8.0
+        parameter_count: "4B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen3-VL-32B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-32B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 22.0
+        recommended_um_floor_gb: 48.0
+        parameter_count: "32B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen3-VL-72B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-72B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 48.0
+        recommended_um_floor_gb: 96.0
+        parameter_count: "72B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen2.5-VL-7B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen2.5-VL-7B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen2.5-VL-3B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen2.5-VL-3B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 2.5
+        recommended_um_floor_gb: 8.0
+        parameter_count: "3B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen2.5-VL-32B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen2.5-VL-32B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 22.0
+        recommended_um_floor_gb: 48.0
+        parameter_count: "32B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen2.5-VL-72B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen2.5-VL-72B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 48.0
+        recommended_um_floor_gb: 96.0
+        parameter_count: "72B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "apple/FastVLM-7B-MLX"
+        source_url: "https://huggingface.co/apple/FastVLM-7B-MLX"
+        checked_date: "2026-05-03"
+        source_class: "vendor_release"
+        runtime_support: "apple_mlx_native"
+        license: "apple-ascl"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.0
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "fp16"
+        multimodal: true
+        runtime_kind: mlx_native_fastvlm
+        status: benchmark_pending
+      - model_id: "apple/FastVLM-1.5B-MLX"
+        source_url: "https://huggingface.co/apple/FastVLM-1.5B-MLX"
+        checked_date: "2026-05-03"
+        source_class: "vendor_release"
+        runtime_support: "apple_mlx_native"
+        license: "apple-ascl"
+        commercial_use_allowed: true
+        expected_memory_gb: 1.5
+        recommended_um_floor_gb: 8.0
+        parameter_count: "1.5B"
+        quantization: "fp16"
+        multimodal: true
+        runtime_kind: mlx_native_fastvlm
+        status: benchmark_pending
+      - model_id: "apple/FastVLM-0.5B-MLX"
+        source_url: "https://huggingface.co/apple/FastVLM-0.5B-MLX"
+        checked_date: "2026-05-03"
+        source_class: "vendor_release"
+        runtime_support: "apple_mlx_native"
+        license: "apple-ascl"
+        commercial_use_allowed: true
+        expected_memory_gb: 0.6
+        recommended_um_floor_gb: 8.0
+        parameter_count: "0.5B"
+        quantization: "fp16"
+        multimodal: true
+        runtime_kind: mlx_native_fastvlm
+        status: benchmark_pending
+      - model_id: "mlx-community/Pixtral-12B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Pixtral-12B-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.0
+        recommended_um_floor_gb: 24.0
+        parameter_count: "12B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Pixtral-12B-8bit"
+        source_url: "https://huggingface.co/mlx-community/Pixtral-12B-8bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 14.0
+        recommended_um_floor_gb: 32.0
+        parameter_count: "12B"
+        quantization: "8bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/gemma-3-vision-4bit"
+        source_url: "https://huggingface.co/mlx-community/gemma-3-vision-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "gemma"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.0
+        recommended_um_floor_gb: 16.0
+        parameter_count: "varies"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/SmolVLM-2.2B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/SmolVLM-2.2B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 1.8
+        recommended_um_floor_gb: 8.0
+        parameter_count: "2.2B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Idefics3-8B-Llama3-4bit"
+        source_url: "https://huggingface.co/mlx-community/Idefics3-8B-Llama3-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "8B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Molmo-7B-D-0924-4bit"
+        source_url: "https://huggingface.co/mlx-community/Molmo-7B-D-0924-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Phi-3-Vision-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Phi-3-Vision-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "mit"
+        commercial_use_allowed: true
+        expected_memory_gb: 3.0
+        recommended_um_floor_gb: 8.0
+        parameter_count: "4.2B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/llava-1.5-7B-4bit"
+        source_url: "https://huggingface.co/mlx-community/llava-1.5-7B-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.0
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/llava-v1.6-mistral-7B-4bit"
+        source_url: "https://huggingface.co/mlx-community/llava-v1.6-mistral-7B-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/llava-llama-3-8B-v1.1-4bit"
+        source_url: "https://huggingface.co/mlx-community/llava-llama-3-8B-v1.1-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "llama-3"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "8B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+    selection_status: planning_default_requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-luna, role: default}
+      - {provider: openai, model: gpt-5.6-terra, role: authority}
+      - {provider: anthropic, model: claude-sonnet-5, role: candidate}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: candidate}
+  vision.chart_summary:
+    task_family: vision
+    stage: presentation
+    model_ref: luna
+    budget_cap_usd: 25
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after representative chart slides are rendered
+      receipt_required: true
+      authority_models: [gpt-5.6-terra]
+      candidates: [gpt-6-luna, gemini-3.1-pro-preview]
+    quality_threshold: chart summary preserves axes, units, key trends, and visible data points
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_vision_runtime_receipts
+    # v1.61 chart-specific summary task. Defaults same as vision.slide_analysis
+    # but receipts must additionally exercise chart-only fixtures (line/bar/scatter).
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "8B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen3-VL-32B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-32B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 22.0
+        recommended_um_floor_gb: 48.0
+        parameter_count: "32B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "mlx-community/Pixtral-12B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Pixtral-12B-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.0
+        recommended_um_floor_gb: 24.0
+        parameter_count: "12B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+      - model_id: "apple/FastVLM-7B-MLX"
+        source_url: "https://huggingface.co/apple/FastVLM-7B-MLX"
+        checked_date: "2026-05-03"
+        source_class: "vendor_release"
+        runtime_support: "apple_mlx_native"
+        license: "apple-ascl"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.0
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "fp16"
+        multimodal: true
+        runtime_kind: mlx_native_fastvlm
+        status: benchmark_pending
+      - model_id: "mlx-community/Qwen2.5-VL-7B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen2.5-VL-7B-Instruct-4bit"
+        checked_date: "2026-05-03"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        recommended_um_floor_gb: 16.0
+        parameter_count: "7B"
+        quantization: "4bit"
+        multimodal: true
+        runtime_kind: vllm_mlx
+        status: benchmark_pending
+    selection_status: planning_default_requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-luna, role: default}
+      - {provider: openai, model: gpt-5.6-terra, role: authority}
+      - {provider: anthropic, model: claude-sonnet-5, role: candidate}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: candidate}
+  analysis.source_reading:
+    task_family: extraction
+    stage: analysis
+    model_ref: sonnet
+    fallback_model_ref: sonnet_openrouter
+    budget_cap_usd: 150
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after representative source papers, transcripts, and OCR text exist
+      receipt_required: true
+      authority_models: [gpt-6-luna, gemini-3.1-pro-preview]
+      candidates: [claude-sonnet-5, gpt-5-mini, openrouter/anthropic/claude-sonnet-5]
+    quality_threshold: source-grounded extraction meets citation and schema-validity thresholds
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/analysis.source_reading/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_current_research_before_live_default
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: openai, model: gpt-5-mini, role: cheaper_candidate}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: authority_candidate}
+      - {provider: openrouter, model: openrouter/anthropic/claude-sonnet-5, role: fallback}
+
+  analysis.llm_full_read_extraction:
+    task_family: extraction
+    stage: analysis
+    model_ref: qwen36_local
+    budget_cap_usd: 0
+    current_research:
+      required: true
+      status: pinned_to_local_qwen_for_full_read_repair
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after topic strategy, transcript window inventory, annotated workshop transcripts, and paper abstract inventory exist
+      receipt_required: true
+      authority_models: [mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit]
+      candidates: [mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit]
+    quality_threshold: full-read receipt covers scope=all with no limit, completed_unit_count equals expected_unit_count, failed_count=0, and by-unit/by-topic outputs exist
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: required_local_qwen_full_read; no cloud or heuristic production fallback
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-07-22"
+        source_class: "local_runtime_operator_validation"
+        runtime_support: "mlx_lm_report_level_reconciliation"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.5
+        recommended_um_floor_gb: 64.0
+        runtime_kind: "mlx_lm"
+        quantization: "4bit_optiq"
+        max_position_embeddings: 262144
+        status: approved
+        benchmark_receipt_ref: "conferences/iclr2026/storage/workflow-runs/iclr2026-live-production/07D-topic-reconciliation.json"
+        rejection_reason: "Same physical weights already the operator-approved production choice for analysis.topic_reconciliation and the research.gpt_researcher_* lanes; reused here in place of the never-downloaded Qwen3.5-35B-A3B-4bit per operator directive 2026-07-22 (Qwen3.5 has no cloud/heuristic fallback and would otherwise block Phase 7's live evidence layer on a ~20GB download)."
+    selection_status: required_before_final_analysis_when_exhaustive_extraction_is_in_scope
+    local_proof:
+      required_receipt: "storage/workflow-runs/<run-id>/14A-llm-full-read-extraction-receipt.json"
+      required_checks: ["scope=all", "limit=null", "completion_state=complete", "completed_unit_count==expected_unit_count", "failed_count=0"]
+    allowed_selections:
+      - {provider: local, model: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, role: default}
+
+  analysis.exhaustive_topic_summarization:
+    task_family: analysis
+    stage: analysis
+    model_ref: kimi_openrouter
+    fallback_model_ref: luna
+    budget_cap_usd: 150
+    current_research:
+      required: true
+      status: provisional_v2_1_summary_pack_experiment
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after LLM full-read by-topic outputs exist
+      receipt_required: true
+      authority_models: [openrouter/moonshotai/kimi-k3, gpt-6-luna]
+      candidates: [openrouter/moonshotai/kimi-k3, gpt-6-luna, gemini-3.1-pro-preview, gpt-6-sol, gpt-5.6-terra, mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit]
+      benchmark_receipt_ref: "conferences/icml2026/storage/workflow-runs/icml2026-v4.0-live-production-20260711/07A-model-benchmark-20261001.json"
+      benchmark_note: "2026-10-01 ICML 2026 topic 09: exact 07A prompts (131k-token papers chunk, 400k-token transcripts chunk) re-run on gpt-6-luna, kimi-k3 and glm-5.3 against the stored gemini-3.1-pro-preview packs. Luna and Kimi parsed, cited only real unit_ids and quoted figures found in the evidence; Kimi was the densest pack (9x the baseline's evidence items) but 5x slower; GLM exhausted the output cap at default effort and fabricated unit_ids at low effort. Gemini had spent $115.73 of the run's $115.79 Gemini Pro bill on this stage."
+    quality_threshold: per-topic/category summaries preserve unit_ids, key points, narrative, notable evidence, caveats, and analysis-feed bullets
+    schema_validity_required: true
+    provenance_required: true
+    # Local lane is Qwen3.6-35B by operator decision 2026-09-24: the same
+    # weights already approved for analysis.llm_full_read_extraction and
+    # analysis.topic_reconciliation, and cached on the production Mac. The
+    # previously listed baa-ai/Qwen3.5-122B-A10B was never downloaded (48 GB,
+    # heavy swap on its 2026-05-22 probe) and is retired in models.yaml.
+    local_runtime_policy: optional_local_qwen36_35b; explicit --provider local only, input capped at 120k tokens
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-09-24"
+        source_class: "local_runtime_operator_validation"
+        runtime_support: "mlx_lm"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.5
+        recommended_um_floor_gb: 64.0
+        runtime_kind: "mlx_lm"
+        quantization: "4bit_optiq"
+        max_position_embeddings: 262144
+        status: benchmark_pending
+        note: "Operator-selected local model for this task 2026-09-24; no summarization-quality benchmark receipt yet."
+    selection_status: benchmarked_2026_10_01_kimi_default_luna_alternative
+    local_proof: {}
+    allowed_selections:
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: default}
+      - {provider: openai, model: gpt-6-luna, role: alternative}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: legacy_default}
+      - {provider: openai, model: gpt-6-sol, role: candidate}
+      - {provider: openai, model: gpt-5.6-terra, role: fallback_candidate}
+      - {provider: local, model: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, role: local_candidate}
+  analysis.deep_dive_question_selection:
+    task_family: analysis
+    stage: analysis
+    model_ref: opus
+    fallback_model_ref: sonnet
+    budget_cap_usd: 30
+    current_research:
+      required: true
+      status: v2_1_bounded_deep_dive_selection
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after exhaustive topic summaries exist
+      receipt_required: true
+      authority_models: [claude-opus-5-5]
+      candidates: [claude-opus-5-5, claude-sonnet-5, gpt-6-luna]
+    quality_threshold: selects a bounded, deduplicated, slide-usable set of 4-6 deep-research questions per topic from transcript and paper summary packs
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_default_for_question_selection
+    local_candidates:
+      - model_id: null
+        source_url: null
+        checked_date: "2026-05-24"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Question selection is a bounded editorial arbitration step and uses Claude Opus 4.8 so future planning does not expand every summary bullet into a deep-research task."
+    selection_status: v2_1_default
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-opus-5-5, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: fallback}
+      - {provider: openai, model: gpt-6-luna, role: candidate}
+
+  analysis.topic_reconciliation:
+    task_family: analysis
+    stage: analysis
+    model_ref: qwen36_local
+    fallback_model_ref: sol
+    budget_cap_usd: 40
+    current_research:
+      required: true
+      status: v2_1_report_level_topic_reconciliation
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after exhaustive summaries and dual GPT-Researcher deep-dive reports exist
+      receipt_required: true
+      authority_models: [gpt-6-sol, gpt-5.6-terra]
+      candidates: [mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, gpt-6-sol]
+    quality_threshold: reconciles exhaustive paper/transcript summaries, current narrative source pack, and dual deep-dive reports into compact slide-usable evidence before final narrative synthesis
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: approved_for_report_level_topic_reconciliation_under_220k_tokens
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-25"
+        source_class: "local_runtime_operator_validation"
+        runtime_support: "mlx_lm_report_level_reconciliation"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.5
+        recommended_um_floor_gb: 64.0
+        runtime_kind: "mlx_lm"
+        quantization: "4bit_optiq"
+        max_position_embeddings: 262144
+        status: approved
+        benchmark_receipt_ref: "conferences/iclr2026/storage/workflow-runs/iclr2026-live-production/07D-topic-reconciliation.json"
+        rejection_reason: "Approved scope is report-level topic reconciliation with prompt token estimates under the configured 220k ceiling; raw corpus-scale reconciliation still requires chunking or a long-context cloud model."
+    selection_status: v2_1_local_default
+    local_proof:
+      token_count_date: "2026-05-25"
+      max_observed_topic_input_tokens: 49389
+      input_token_ceiling: 220000
+      qwen_context_tokens: 262144
+    allowed_selections:
+      - {provider: local, model: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, role: default}
+      - {provider: openai, model: gpt-6-sol, role: explicit_paid_fallback}
+  analysis.topic_reconciliation_reference_workflow:
+    task_family: analysis
+    stage: analysis
+    model_ref: qwen36_local
+    fallback_model_ref: sol
+    budget_cap_usd: 40
+    current_research:
+      required: true
+      status: v2_1_packaged_reference_validation_workflow
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after exhaustive summaries and dual GPT-Researcher deep-dive reports exist
+      receipt_required: true
+      authority_models: [gpt-6-sol, gpt-5.6-terra]
+      candidates: [mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, gpt-6-sol]
+    quality_threshold: runs topic reconciliation, deterministic reference validation, bounded candidate resolution, fallback repair, and final validation before narrative or slide synthesis
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: approved_for_report_level_topic_reconciliation_reference_workflow_under_220k_tokens
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-25"
+        source_class: "local_runtime_operator_validation"
+        runtime_support: "mlx_lm_report_level_reconciliation"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.5
+        recommended_um_floor_gb: 64.0
+        runtime_kind: "mlx_lm"
+        quantization: "4bit_optiq"
+        max_position_embeddings: 262144
+        status: approved
+        benchmark_receipt_ref: "conferences/iclr2026/storage/workflow-runs/iclr2026-live-production/07H-topic-reconciliation-reference-workflow.json"
+    selection_status: v2_1_local_default
+    local_proof:
+      token_count_date: "2026-05-25"
+      max_observed_topic_input_tokens: 49389
+      input_token_ceiling: 220000
+      qwen_context_tokens: 262144
+    allowed_selections:
+      - {provider: local, model: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, role: default}
+      - {provider: openai, model: gpt-6-sol, role: explicit_paid_fallback}
+  analysis.topic_strategy_generation:
+    task_family: analysis
+    stage: analysis
+    model_ref: opus
+    budget_cap_usd: 80
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after program inventory, workshop talks, and corpus indexing inputs exist
+      receipt_required: true
+      authority_models: [claude-opus-5-5, gpt-6-luna, gemini-3.1-pro-preview]
+      candidates: [claude-opus-5-5, gpt-6-luna, gemini-3.1-pro-preview]
+    quality_threshold: final taxonomy has exactly 12 source-spine-backed topics with title-spine digest, three independent model recommendations, merge notes, source-family coverage, and provider receipts for live runs
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: not_local; topic strategy is a frontier editorial consensus step unless a future benchmark approves a local replacement
+    local_candidates: []
+    selection_status: v2.1 three_model_consensus_default
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-opus-5-5, role: default}
+      - {provider: openai, model: gpt-6-luna, role: consensus_candidate}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: consensus_candidate}
+
+  analysis.deep_narrative_synthesis:
+    task_family: analysis
+    stage: analysis
+    model_ref: sol
+    # gpt-6-sol must run with high reasoning effort (July 2026 model-upgrade directive).
+    reasoning_effort: high
+    fallback_model_ref: terra
+    budget_cap_usd: 120
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after extraction, vector-store, GPT-Researcher, and paper-matching source packs exist
+      receipt_required: true
+      authority_models: [gpt-6-sol, gpt-5.6-terra]
+      candidates: [gpt-6-sol, gpt-5.6-terra]
+    quality_threshold: deep report preserves source evidence, paper-level detail, cross-references, recommendations, questions, and slide brief sidecar suitability
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_deep_narrative_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.1
+        runtime_kind: "mlx_lm"
+        quantization: "4bit"
+        benchmark_receipt_ref: "conferences/iclr2025/storage/experiments/topic2-gptr-hybrid-bge-m3-retrieval-k18-c3-e144/comparison.json"
+        status: rejected
+        rejection_reason: "BGE+Qwen local runs are useful for retrieval/evidence notes and GPT-Researcher findings, but the best receipt failed the production deep narrative schema/keypoint/editorial gates; keep GPT-5.6 Luna/GPT-5.4 as the final synthesis owner."
+      - model_id: null
+        source_url: null
+        checked_date: "2026-05-07"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Production deep narrative synthesis requires frontier-model long-context reasoning, citation discipline, and web/source enrichment beyond current approved local receipts."
+    selection_status: v1.63_default
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-sol, role: default}
+      - {provider: openai, model: gpt-5.6-terra, role: fallback}
+  source_reading.categorization:
+    task_family: categorization
+    stage: analysis
+    model_ref: sonnet
+    fallback_model_ref: gpt5_mini_legacy
+    budget_cap_usd: 80
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after source content and approved interest groups exist
+      receipt_required: true
+      authority_models: [gpt-6-luna]
+      candidates: [claude-sonnet-5, gpt-5-mini, gemini-3.5-flash-lite]
+    quality_threshold: category assignment must preserve exclusions and evidence-class labels
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_classification_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/source_reading.categorization/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: openai, model: gpt-5-mini, role: cheaper_candidate}
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: candidate}
+
+  interest_group.research:
+    task_family: research
+    stage: source-discovery
+    model_ref: gemini_pro
+    fallback_model_ref: luna
+    budget_cap_usd: 75
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: .planning/workstreams/skill-improvements-iclr2025/CONTEXT.md
+    benchmark:
+      required: true
+      placement: after full conference inventory is complete
+      receipt_required: true
+      authority_models: [gpt-5.6-terra, gemini-3.1-pro-preview]
+      candidates: [gpt-6-luna, gemini-3.5-flash-lite]
+    quality_threshold: proposed groups cite conference inventory evidence and preserve rejected/excluded items
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_research_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/interest_group.research/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_inventory_and_user_approval
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: openai, model: gpt-6-luna, role: authority_candidate}
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: cheaper_candidate}
+  podcast.script_generation:
+    task_family: podcast
+    stage: podcast
+    model_ref: opus
+    fallback_model_ref: sonnet
+    budget_cap_usd: 50
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after validated final analysis reports exist
+      receipt_required: true
+      authority_models: [claude-opus-5-5]
+      candidates: [claude-opus-5-5, claude-sonnet-5, gpt-4o, gemini-3.1-pro-preview]
+    quality_threshold: script remains source-backed and audio-ready without unsupported claims
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_audio_script_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/podcast.script_generation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_final_analysis_inputs
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-opus-5-5, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: fallback}
+      - {provider: openai, model: gpt-4o, role: candidate}
+      - {provider: gemini, model: gemini-2.0-flash, role: focused_candidate}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: longform_candidate}
+
+  podcast.focused_script_generation:
+    task_family: podcast
+    stage: podcast
+    model_ref: opus
+    fallback_model_ref: sonnet
+    budget_cap_usd: 35
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after ranked facts or papers and source excerpts exist
+      receipt_required: true
+      authority_models: [claude-opus-5-5]
+      candidates: [claude-opus-5-5, claude-sonnet-5, gemini-3.1-pro-preview]
+    quality_threshold: focused script preserves ranked evidence priorities without unsupported claims
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_audio_script_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/podcast.focused_script_generation/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_ranked_inputs
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-opus-5-5, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: fallback}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: candidate}
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: cheaper_candidate}
+
+  podcast.longform_script_generation:
+    task_family: podcast
+    stage: podcast
+    model_ref: gemini_pro
+    fallback_model_ref: luna
+    budget_cap_usd: 50
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after combined topic analyses are ready
+      receipt_required: true
+      authority_models: [gpt-5.6-terra, gemini-3.1-pro-preview]
+      candidates: [gemini-3.1-pro-preview, gpt-6-luna]
+    quality_threshold: longform script remains source-backed and balanced across selected topics
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_audio_script_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/podcast.longform_script_generation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_final_analysis_inputs
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: openai, model: gpt-6-luna, role: fallback}
+  podcast.tts:
+    task_family: tts
+    stage: podcast
+    model_ref: gpt4o_mini_tts
+    budget_cap_usd: 60
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after final podcast script is approved
+      receipt_required: true
+      authority_models: [gpt-4o-mini-tts]
+      candidates: [gpt-4o-mini-tts]
+    quality_threshold: rendered audio is intelligible and bound to final analysis digest
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_tts_receipts
+    local_candidates:
+      - model_id: "mlx-community/Kokoro-82M-4bit"
+        source_url: "https://huggingface.co/mlx-community/Kokoro-82M-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 0.3
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/podcast.tts/mlx-community_Kokoro-82M-4bit.json"
+    selection_status: requires_audio_render_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-4o-mini-tts, role: default}
+      - {provider: gemini, model: gemini-2.5-pro-preview-tts, role: candidate}
+
+  podcast.notebooklm_audio_overview:
+    task_family: podcast
+    stage: notebooklm-podcast
+    model_ref: notebooklm_audio_overview
+    budget_cap_usd: 0
+    current_research:
+      required: true
+      status: current
+      reference: docs/reference/stage-owner-audit.md#podcast-notebooklm-audio-overview
+      checked_date: "2026-09-15"
+    benchmark:
+      required: true
+      placement: after the first topic deck and the short executive deck live canaries are approved by listening
+      receipt_required: true
+      authority_models: [notebooklm-audio-overview]
+      candidates: [notebooklm-audio-overview]
+    quality_threshold: hosts open with the deck thesis, name the cited works and people, follow the section spine, define jargon, and never refer to the notebook sources as documents
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: not_applicable_subscription_service
+    local_candidates: []
+    selection_status: approved_subscription_service
+    quota_notes: "Google NotebookLM Pro allows ~20 audio overviews/day; 14 per conference; the stage halts resumably on RateLimitError and skips completed decks by notebook_manifest.json sha bindings on --resume."
+    local_proof: {}
+    allowed_selections:
+      - {provider: google_notebooklm, model: notebooklm-audio-overview, role: default}
+
+  podcast.notebooklm_review_transcription:
+    task_family: transcription
+    stage: notebooklm-podcast
+    model_ref: whisper_large_v3_turbo_mlx
+    budget_cap_usd: 0
+    current_research:
+      required: true
+      status: current
+      reference: docs/reference/stage-owner-audit.md#podcast-notebooklm-audio-overview
+      checked_date: "2026-09-16"
+    benchmark:
+      required: true
+      placement: after the first regenerated canary episodes are reviewed against an operator listening pass
+      receipt_required: true
+      authority_models: [mlx-community/whisper-large-v3-turbo]
+      candidates: [mlx-community/whisper-large-v3-turbo]
+    quality_threshold: transcript is accurate enough to detect the creator credit, the how-it-was-made disclaimer, false attendance claims, named workshops, and topic coverage
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: required_local_mlx_whisper_for_podcast_review; no cloud transcription fallback
+    local_candidates:
+      - model_id: "mlx-community/whisper-large-v3-turbo"
+        source_url: "https://huggingface.co/mlx-community/whisper-large-v3-turbo"
+        checked_date: "2026-09-16"
+        source_class: "local_runtime_operator_validation"
+        runtime_support: "mlx_whisper"
+        license: "mit"
+        commercial_use_allowed: true
+        expected_memory_gb: 1.6
+        status: approved
+        benchmark_receipt_ref: "conferences/cvpr2026/audio/01_multimodal_foundation_models/notebooklm_podcast/review.json"
+    selection_status: required_for_notebooklm_podcast_review
+    local_proof: {}
+    allowed_selections:
+      - {provider: local, model: mlx-community/whisper-large-v3-turbo, role: default}
+
+  presentation.deck_generation:
+    task_family: presentation
+    stage: presentation
+    model_ref: gemini_pro
+    fallback_model_ref: sol
+    budget_cap_usd: 80
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after selected final analysis topic and assets exist
+      receipt_required: true
+      authority_models: [gpt-5.6-terra, gemini-3.1-pro-preview]
+      candidates: [gpt-6-luna, gemini-3.5-flash-lite]
+    quality_threshold: deck narrative stays source-backed and exportable
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.deck_generation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_final_analysis_inputs
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: openai, model: gpt-6-sol, role: fallback}
+      - {provider: openai, model: gpt-6-luna, role: legacy_candidate}
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: cheaper_candidate}
+  presentation.blueprint_generation:
+    task_family: presentation
+    stage: presentation
+    model_ref: opus
+    fallback_model_ref: sonnet
+    budget_cap_usd: 60
+    current_research:
+      required: true
+      status: refreshed_2026_06_04
+      reference: https://platform.claude.com/docs/en/about-claude/models/overview
+    benchmark:
+      required: true
+      placement: before first blueprint canary rebuild
+      receipt_required: true
+      authority_models: [claude-opus-5-5]
+      candidates: [claude-opus-5-5, claude-sonnet-5]
+    quality_threshold: blueprint binds full analysis, source corpus, slide intents, visual roles, narration beats, and <=40 minute target before draft generation
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.deck_generation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_blueprint_canary_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-opus-5-5, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: fallback}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: candidate}
+
+  presentation.svg_figure_generation:
+    task_family: presentation
+    stage: presentation
+    model_ref: sonnet
+    fallback_model_ref: sonnet
+    budget_cap_usd: 40
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after final slide assets and source figures exist
+      receipt_required: true
+      authority_models: [claude-sonnet-5]
+      candidates: [claude-sonnet-5]
+    quality_threshold: generated figures preserve source claims and pass visual/structural validation
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_svg_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.svg_figure_generation/mlx-community_Qwen3-VL-8B-Instruct-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+
+  presentation.figure_spec_authoring:
+    task_family: presentation
+    stage: presentation
+    model_ref: sonnet
+    fallback_model_ref: opus
+    budget_cap_usd: 25
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/design/figure-compiler-design-spec.md
+    benchmark:
+      required: true
+      placement: after the approved blueprint and the numeric-claims ledger exist
+      receipt_required: true
+      authority_models: [claude-sonnet-5]
+      candidates: [claude-sonnet-5]
+    # The figure compiler owns layout, so this task only decides WHAT a figure
+    # claims: archetype, entities verbatim, numbers bound to ledger rows,
+    # emphasis and a takeaway. That is a much smaller job than authoring
+    # drawing code, which is why a Sonnet-class model is the default here while
+    # presentation.svg_figure_generation (freeform SVG) needs more.
+    quality_threshold: spec validates against the archetype contract, every number cites a ledger row, and required entities appear verbatim
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_receipts
+    local_candidates: []
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: anthropic, model: claude-opus-5-5, role: fallback}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: candidate}
+
+  presentation.figure_spec_critic:
+    task_family: presentation
+    stage: presentation
+    model_ref: sonnet
+    fallback_model_ref: opus
+    budget_cap_usd: 10
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/design/figure-compiler-design-spec.md
+    benchmark:
+      required: true
+      placement: after figure specs are authored and before they are compiled
+      receipt_required: true
+      authority_models: [claude-sonnet-5]
+      candidates: [claude-sonnet-5]
+    # Reads the SPEC, never the pixels. Eleven deterministic rules already
+    # refuse the structures that can be checked mechanically; what is left is
+    # the judgement -- would a reader draw the wrong conclusion from this shape?
+    # Answering that before the deterministic compile costs a third of a vision
+    # call and arrives while the author can still act on it.
+    quality_threshold: returns valid JSON against the fixed rubric, and a revise verdict names a concrete change to the spec
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_receipts
+    local_candidates: []
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: anthropic, model: claude-opus-5-5, role: fallback}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: candidate}
+
+  presentation.engaging_narration:
+    task_family: presentation
+    stage: presentation
+    model_ref: opus
+    fallback_model_ref: sonnet
+    budget_cap_usd: 40
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after the structured presenter script exists and before the delivery rebuild
+      receipt_required: true
+      authority_models: [claude-opus-5-5]
+      candidates: [claude-opus-5-5, claude-sonnet-5]
+    # Rewrites a deck's mechanical presenter script into the two-host and
+    # single-speaker narration (engaging_narration_raw.json) that the delivery
+    # contracts and TTS are rebuilt from. It was selected by a literal inside
+    # scripts/presentations/generate_engaging_narration.py until 2026-09-24.
+    quality_threshold: every slide narrated in slide order, sources named by work title, and the narration lint and review gates pass
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_receipts
+    local_candidates: []
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-opus-5-5, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: fallback}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: candidate}
+
+  presentation.executive_topic_digest:
+    task_family: presentation
+    stage: presentation
+    model_ref: opus
+    fallback_model_ref: sonnet
+    budget_cap_usd: 20
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after every topic deck's presenter script exists and before the executive summary is built
+      receipt_required: true
+      authority_models: [claude-opus-5-5]
+      candidates: [claude-opus-5-5, claude-sonnet-5]
+    # Digests each topic deck's narration for build_executive_summary.py. It
+    # was selected by a literal in generate_executive_topic_digests.py until
+    # 2026-09-24.
+    quality_threshold: one faithful digest per topic deck, citing only works the topic deck binds
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_receipts
+    local_candidates: []
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-opus-5-5, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: fallback}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: candidate}
+
+  presentation.repair:
+    task_family: presentation
+    stage: presentation
+    model_ref: sonnet
+    fallback_model_ref: luna
+    budget_cap_usd: 30
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after validation failures or representative broken slides exist
+      receipt_required: true
+      authority_models: [gpt-5.6-terra]
+      candidates: [claude-sonnet-5, gpt-6-luna]
+    quality_threshold: repairs pass manifest validation without dropping provenance
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_repair_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.repair/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: openai, model: gpt-6-luna, role: fallback}
+      - {provider: openrouter, model: openrouter/moonshotai/kimi-k3, role: candidate}
+  presentation.paper_enrichment:
+    task_family: presentation
+    stage: presentation
+    model_ref: sonnet
+    fallback_model_ref: gpt5_mini_legacy
+    budget_cap_usd: 35
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after ranked papers and draft slides exist
+      receipt_required: true
+      authority_models: [gpt-6-luna]
+      candidates: [claude-sonnet-5, gpt-5-mini]
+    quality_threshold: slide enrichment preserves paper evidence and avoids duplicate narrative
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.paper_enrichment/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: openai, model: gpt-5-mini, role: fallback}
+
+  presentation.hyperlink_enrichment:
+    task_family: presentation
+    stage: presentation
+    model_ref: sonnet
+    fallback_model_ref: gpt5_mini_legacy
+    budget_cap_usd: 20
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after hyperlink candidate databases and draft slides exist
+      receipt_required: true
+      authority_models: [gpt-6-luna]
+      candidates: [claude-sonnet-5, gpt-5-mini]
+    quality_threshold: linked terms are relevant and do not override verified priority URLs
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.hyperlink_enrichment/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: openai, model: gpt-5-mini, role: fallback}
+
+  presentation.sanity_check:
+    task_family: presentation
+    stage: presentation
+    model_ref: sonnet
+    fallback_model_ref: gpt5_mini_legacy
+    budget_cap_usd: 20
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after reflowed slides exist
+      receipt_required: true
+      authority_models: [gpt-6-luna]
+      candidates: [claude-sonnet-5, gpt-5-mini]
+    quality_threshold: review catches malformed slide text and unsupported claims without dropping evidence
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.sanity_check/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: openai, model: gpt-5-mini, role: fallback}
+
+  presentation.figure_selection:
+    task_family: presentation
+    stage: presentation
+    model_ref: sonnet
+    fallback_model_ref: gpt5_mini_legacy
+    budget_cap_usd: 20
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after candidate figure lists exist for a slide
+      receipt_required: true
+      authority_models: [gpt-6-luna]
+      candidates: [claude-sonnet-5, gpt-5-mini]
+    quality_threshold: selection identifies the most relevant candidate figure for the slide without dropping provenance
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: openai, model: gpt-5-mini, role: fallback}
+
+  presentation.slide_reflow:
+    task_family: presentation
+    stage: presentation
+    model_ref: gemini_pro
+    fallback_model_ref: sonnet
+    budget_cap_usd: 20
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after enriched slide drafts exist
+      receipt_required: true
+      authority_models: [gpt-6-luna]
+      candidates: [gemini-3.1-pro-preview, claude-sonnet-5]
+    quality_threshold: reflow preserves section groupings and narrative coherence without dropping slide content
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: fallback}
+
+  presentation.deck_consolidation:
+    task_family: presentation
+    stage: presentation
+    model_ref: gemini_pro
+    budget_cap_usd: 30
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after hyperlink-enriched full deck exists
+      receipt_required: true
+      authority_models: [gpt-6-luna, gemini-3.1-pro-preview]
+      candidates: [gemini-3.1-pro-preview]
+    quality_threshold: consolidation reduces repetition while preserving all sourced claims
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.deck_consolidation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+
+  presentation.presenter_dialogue_generation:
+    task_family: presentation
+    stage: presentation
+    model_ref: gemini_pro
+    fallback_model_ref: gpt5_mini_legacy
+    budget_cap_usd: 35
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after final presenter script and slide mapping exist
+      receipt_required: true
+      authority_models: [gpt-6-luna, gemini-3.1-pro-preview]
+      candidates: [gemini-3.1-pro-preview, gpt-5-mini]
+    quality_threshold: dialogue script preserves slide timing and source-backed narration
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.presenter_dialogue_generation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: openai, model: gpt-5-mini, role: fallback}
+
+  presentation.presenter_tts:
+    task_family: tts
+    stage: presentation
+    model_ref: gemini_tts
+    fallback_model_ref: gpt4o_mini_tts
+    budget_cap_usd: 60
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after final presenter narration text exists
+      receipt_required: true
+      authority_models: [gpt-4o-mini-tts, gemini-3.8-flash-tts]
+      candidates: [gemini-3.8-flash-tts, gemini-2.5-pro-preview-tts, gpt-4o-mini-tts]
+    quality_threshold: presenter audio is intelligible and synchronized to final slide mapping
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_tts_receipts
+    local_candidates:
+      - model_id: "mlx-community/Kokoro-82M-4bit"
+        source_url: "https://huggingface.co/mlx-community/Kokoro-82M-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 0.3
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.presenter_tts/mlx-community_Kokoro-82M-4bit.json"
+    selection_status: requires_audio_render_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.8-flash-tts, role: default}
+      - {provider: gemini, model: gemini-2.5-pro-preview-tts, role: candidate}
+      - {provider: openai, model: gpt-4o-mini-tts, role: fallback}
+  qa.repair:
+    task_family: qa
+    stage: qa-gap-fill-synthesis
+    model_ref: sonnet
+    fallback_model_ref: gpt5_mini_legacy
+    budget_cap_usd: 45
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after QA failures or source-gap examples exist
+      receipt_required: true
+      authority_models: [gpt-6-luna]
+      candidates: [claude-sonnet-5, gpt-5-mini]
+    quality_threshold: repairs improve traceability without introducing unsupported claims
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_qa_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/qa.repair/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+      - {provider: openai, model: gpt-5-mini, role: fallback}
+
+  synthesis.executive_summary:
+    task_family: synthesis
+    stage: qa-gap-fill-synthesis
+    model_ref: opus
+    fallback_model_ref: sonnet
+    budget_cap_usd: 35
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after validated final topic reports exist
+      receipt_required: true
+      authority_models: [claude-opus-5-5]
+      candidates: [claude-opus-5-5, claude-sonnet-5, gpt-5-mini]
+    quality_threshold: summary cites final topic reports and records residual risk
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_synthesis_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/synthesis.executive_summary/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_validated_reports
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-opus-5-5, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: fallback}
+      - {provider: openai, model: gpt-5-mini, role: candidate}
+
+  video.session_detection:
+    task_family: video
+    stage: source-discovery
+    model_ref: luna
+    budget_cap_usd: 20
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/config.py
+    benchmark:
+      required: true
+      placement: after representative conference pages with media hints exist
+      receipt_required: true
+      authority_models: [gpt-5.6-terra]
+      candidates: [gpt-6-luna]
+    quality_threshold: detects media evidence without promoting unsupported live support
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_video_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/video.session_detection/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-luna, role: default}
+  ranking.paper_reference_frequency:
+    task_family: ranking
+    stage: podcast
+    model_ref: gemini_flash_legacy
+    fallback_model_ref: luna
+    budget_cap_usd: 30
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after candidate paper reports and cached paper text exist
+      receipt_required: true
+      authority_models: [gpt-5.6-terra, gemini-3.1-pro-preview]
+      candidates: [gemini-2.0-flash, gpt-6-luna]
+    quality_threshold: ranking preserves source paper evidence and stable frequency ordering
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_ranking_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/ranking.paper_reference_frequency/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_ranked_inputs
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-2.0-flash, role: default}
+      - {provider: openai, model: gpt-6-luna, role: fallback}
+  ranking.fact_importance:
+    task_family: ranking
+    stage: podcast
+    model_ref: gemini_flash_legacy
+    fallback_model_ref: luna
+    budget_cap_usd: 30
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: src/conference_pipeline/costs/task_specs.yaml
+    benchmark:
+      required: true
+      placement: after source topic documents exist
+      receipt_required: true
+      authority_models: [gpt-5.6-terra, gemini-3.1-pro-preview]
+      candidates: [gemini-2.0-flash, gpt-6-luna]
+    quality_threshold: ranked facts preserve source evidence and tier/frequency stability
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_ranking_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/ranking.fact_importance/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_topic_source_inputs
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-2.0-flash, role: default}
+      - {provider: openai, model: gpt-6-luna, role: fallback}
+  synthesis.exhaustive_topic_summary:
+    task_family: synthesis
+    stage: analysis
+    model_ref: gemini_pro
+    fallback_model_ref: luna
+    budget_cap_usd: 75
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/analysis-contract.md
+    benchmark:
+      required: true
+      placement: after exhaustive extraction JSONL files exist
+      receipt_required: true
+      authority_models: [gpt-5.6-terra, gemini-3.1-pro-preview]
+      candidates: [gemini-3.1-pro-preview, gpt-6-luna]
+    quality_threshold: topic summary cites source evidence and does not generalize beyond extractions
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_synthesis_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/synthesis.exhaustive_topic_summary/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_extraction_inputs
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: openai, model: gpt-6-luna, role: fallback}
+  vector_store.query_answer:
+    task_family: retrieval
+    stage: analysis
+    model_ref: luna
+    fallback_model_ref: terra
+    budget_cap_usd: 25
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/reference/pipeline-capabilities.md
+    benchmark:
+      required: true
+      placement: after vector store and representative queries exist
+      receipt_required: true
+      authority_models: [gpt-5.6-terra]
+      candidates: [gpt-6-luna]
+    quality_threshold: answers cite retrieved context and refuse unsupported questions
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_retrieval_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/vector_store.query_answer/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-luna, role: default}
+      - {provider: openai, model: gpt-5.6-terra, role: fallback}
+  research.deep_research:
+    task_family: research
+    stage: source-discovery
+    model_ref: o3_deep_research
+    budget_cap_usd: 100
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/workflows/pipeline-workflow.md
+    benchmark:
+      required: true
+      placement: after research question and local corpus scope are approved
+      receipt_required: true
+      authority_models: [o3-deep-research-2025-06-26]
+      candidates: [o3-deep-research-2025-06-26]
+    quality_threshold: report uses verifiable citations and records local/web source boundaries
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_research_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm_corpus_only"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.1
+        runtime_kind: "mlx_lm"
+        quantization: "4bit"
+        status: benchmark_pending
+        benchmark_receipt_ref: "conferences/iclr2025/storage/experiments/topic2-gptr-hybrid-bge-m3-retrieval-k18-c3-e144/comparison.json"
+        rejection_reason: "Scope is corpus-only GPT-Researcher evidence/draft findings with BM25+vector retrieval and web search disabled; not approved for live web-search-backed research."
+      - model_id: null
+        source_url: null
+        checked_date: "2026-04-27"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Requires live web search API (OpenAI o3-deep-research). No open-weight model provides equivalent live web retrieval on Apple Silicon as of 2026-04-27."
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: o3-deep-research-2025-06-26, role: default}
+
+  topic_video.scene_generation:
+    task_family: video
+    stage: presentation
+    model_ref: luna
+    fallback_model_ref: terra
+    budget_cap_usd: 50
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/operations/presentation-contract.md
+    benchmark:
+      required: true
+      placement: after topic evidence and slide assets exist
+      receipt_required: true
+      authority_models: [gpt-5.6-terra]
+      candidates: [gpt-6-luna]
+    quality_threshold: scene plan preserves cited evidence and fits generated slide/video timing
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_video_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/topic_video.scene_generation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-luna, role: default}
+      - {provider: openai, model: gpt-5.6-terra, role: fallback}
+  qa.paper_content_verification:
+    task_family: qa
+    stage: analysis
+    model_ref: gemini_flash_2_5
+    fallback_model_ref: gemini_flash_lite
+    budget_cap_usd: 20
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after suspect paper PDFs exist, receipt_required: true, authority_models: [gpt-6-luna], candidates: [gemini-3.8-flash, gemini-3.5-flash-lite]}
+    quality_threshold: verifies paper-title/PDF matches without promoting weak matches
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_qa_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/qa.paper_content_verification/mlx-community_Qwen3-VL-8B-Instruct-4bit.json"
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.8-flash, role: default}
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: fallback}
+
+  presentation.audio_sync:
+    task_family: presentation
+    stage: presentation
+    model_ref: gemini_flash_2_5
+    fallback_model_ref: gemini_flash_lite
+    budget_cap_usd: 20
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/presentation-contract.md}
+    benchmark: {required: true, placement: after final slides and audio segments exist, receipt_required: true, authority_models: [gpt-6-luna], candidates: [gemini-3.8-flash, gemini-3.5-flash-lite]}
+    quality_threshold: maps audio segments to slides without dropping required visual context
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.audio_sync/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.8-flash, role: default}
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: fallback}
+
+  source_discovery.paper_source_ranking:
+    task_family: source_discovery
+    stage: source-discovery
+    model_ref: terra
+    fallback_model_ref: gemini_flash_lite
+    budget_cap_usd: 35
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/source-of-truth.md}
+    benchmark: {required: true, placement: after candidate paper source search results exist, receipt_required: true, authority_models: [gpt-5.6-terra], candidates: [gpt-5.6-terra, gemini-3.5-flash-lite]}
+    quality_threshold: source ranking chooses correct paper match or records no-match
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_discovery_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-8B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-8B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 5.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/source_discovery.paper_source_ranking/mlx-community_Qwen3-8B-4bit.json"
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-5.6-terra, role: default}
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: fallback}
+  source_discovery.cross_source_join:
+    task_family: source_discovery
+    stage: source-discovery
+    model_ref: luna
+    fallback_model_ref: gemini_flash_lite
+    budget_cap_usd: 35
+    current_research:
+      required: true
+      status: current
+      checked_date: "2026-07-16"
+      source_class: official_model_docs
+      reference: https://platform.openai.com/docs/models/gpt-5.2
+    benchmark:
+      required: true
+      placement: after digest-bound cross-source candidate pairs exist
+      receipt_required: true
+      authority_selections: [{provider: openai, model: gpt-6-luna}]
+      candidates: [gpt-6-luna, gemini-3.5-flash-lite]
+    quality_threshold: auto-canonicalize only confidence >= 0.90 with conflict_state == none; narrowly calibrated after CVPR r2 receipt review found a clean exact-title On Sensor Vision Workshop join at 0.93
+    confidence_threshold: 0.90
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_discovery_benchmark_receipts
+    local_candidates: []
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-luna, role: default}
+      - {provider: gemini, model: gemini-3.5-flash-lite, role: fallback}
+
+  analysis.workshop_segmentation:
+    task_family: extraction
+    stage: analysis
+    model_ref: gemini_2_5_pro_legacy
+    fallback_model_ref: gemini_pro
+    budget_cap_usd: 40
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after workshop transcript samples exist, receipt_required: true, authority_models: [gpt-6-luna, gemini-3.1-pro-preview], candidates: [gemini-2.5-pro, gemini-3.1-pro-preview]}
+    quality_threshold: identifies talk boundaries, speakers, and topics from long workshop transcripts
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/analysis.workshop_segmentation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-2.5-pro, role: default}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: fallback}
+
+  transcription_ocr.workshop_talk_boundary_discovery:
+    task_family: segmentation
+    stage: transcription-ocr
+    model_ref: gemini_2_5_pro_legacy
+    fallback_model_ref: gemini_pro
+    budget_cap_usd: 40
+    current_research: {required: true, status: promoted_from_neurips_2025, reference: docs/reference/stage-owner-audit.md#transcription-ocr-workshop-talk-boundary-discovery}
+    benchmark: {required: true, placement: after workshop transcript and slide timestamp samples exist, receipt_required: true, authority_models: [gpt-6-luna, gemini-3.1-pro-preview], candidates: [gemini-2.5-pro, gemini-3.1-pro-preview]}
+    quality_threshold: identifies talk boundaries, speakers, and topics from long workshop transcripts and slide timestamps
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/transcription_ocr.workshop_talk_boundary_discovery/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-2.5-pro, role: default}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: fallback}
+
+  presentation.agentic_deck_generation:
+    task_family: presentation
+    stage: presentation
+    model_ref: gemini_pro
+    fallback_model_ref: luna
+    budget_cap_usd: 80
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/presentation-contract.md}
+    benchmark: {required: true, placement: after podcast script and source analysis exist, receipt_required: true, authority_models: [gpt-5.6-terra, gemini-3.1-pro-preview], candidates: [gemini-3.1-pro-preview, gpt-6-luna]}
+    quality_threshold: agentic deck remains source-backed and exportable
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.agentic_deck_generation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: openai, model: gpt-6-luna, role: fallback}
+  presentation.agentic_vision_crop:
+    task_family: presentation
+    stage: presentation
+    model_ref: luna
+    fallback_model_ref: terra
+    budget_cap_usd: 25
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/presentation-contract.md}
+    benchmark: {required: true, placement: after candidate figure pages exist, receipt_required: true, authority_models: [gpt-5.6-terra], candidates: [gpt-6-luna]}
+    quality_threshold: crop boxes preserve complete figures and visible labels
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_svg_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-VL-8B-Instruct-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 6.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.agentic_vision_crop/mlx-community_Qwen3-VL-8B-Instruct-4bit.json"
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-luna, role: default}
+      - {provider: openai, model: gpt-5.6-terra, role: fallback}
+  presentation.presenter_script_generation:
+    task_family: presentation
+    stage: presentation
+    model_ref: gemini_pro
+    fallback_model_ref: gpt5_mini_legacy
+    budget_cap_usd: 35
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/presentation-contract.md}
+    benchmark: {required: true, placement: after final slide markdown and source context exist, receipt_required: true, authority_models: [gpt-6-luna, gemini-3.1-pro-preview], candidates: [gemini-3.1-pro-preview, gpt-5-mini]}
+    quality_threshold: presenter script preserves timing, context, and source-backed claims
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_presentation_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3-14B-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3-14B-4bit"
+        checked_date: "2026-04-27"
+        source_class: "community_runtime_report"
+        runtime_support: "mlx_community_tested"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 9.5
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/workstreams/skill-improvements-iclr2025/phases/09-benchmark-harness-and-target-mac-receipts/receipts/presentation.presenter_script_generation/mlx-community_Qwen3-14B-4bit.json"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+      - {provider: openai, model: gpt-5-mini, role: fallback}
+
+  research.gpt_researcher_fast:
+    task_family: research
+    stage: source-discovery
+    model_ref: qwen36_local
+    fallback_model_ref: luna
+    budget_cap_usd: 40
+    current_research: {required: true, status: current_for_v2_1_local_corpus_default, reference: conferences/iclr2026/storage/analysis/deep-dive-topics}
+    benchmark: {required: true, placement: before changing Qwen+BGE corpus-only default or enabling web search, receipt_required: true, authority_models: [gpt-5.6-terra], candidates: [mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit, gpt-6-luna]}
+    quality_threshold: local Qwen 3.6 fast lane supports corpus-only GPT-Researcher evidence/draft planning with BM25+BGE hybrid retrieval, web search disabled, and citation provenance
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: approved_for_corpus_only_gpt_researcher_with_loopback_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-24"
+        source_class: "local_runtime_operator_validation"
+        runtime_support: "mlx_lm_corpus_only"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.5
+        runtime_kind: "mlx_lm"
+        quantization: "4bit_optiq"
+        status: approved
+        benchmark_receipt_ref: "conferences/iclr2026/storage/analysis/deep-dive-topics"
+        rejection_reason: "Approved scope is corpus-only GPT-Researcher evidence/draft findings with BM25+BGE hybrid retrieval and WEB_SEARCH_ENABLED=false; not a final public narrative model and not approved for live web-search-backed research."
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm_corpus_only"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.1
+        runtime_kind: "mlx_lm"
+        quantization: "4bit"
+        status: approved
+        benchmark_receipt_ref: "conferences/iclr2025/storage/experiments/topic2-gptr-hybrid-bge-m3-retrieval-k18-c3-e144/comparison.json"
+        rejection_reason: "Approved scope is corpus-only GPT-Researcher evidence/draft findings with BM25+BGE hybrid retrieval and WEB_SEARCH_ENABLED=false; not a final public narrative model and not approved for live web-search-backed research."
+      - model_id: null
+        source_url: null
+        checked_date: "2026-04-27"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Web-search-backed research task requires cloud provider search APIs. No open-weight local model provides equivalent live web retrieval on Apple Silicon as of 2026-04-27."
+    selection_status: v2_1_qwen36_local_corpus_default
+    local_proof: {}
+    allowed_selections:
+      - {provider: local, model: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, role: default}
+      - {provider: local, model: mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit, role: legacy_fallback}
+      - {provider: openai, model: gpt-6-luna, role: fallback}
+  research.gpt_researcher_smart:
+    task_family: research
+    stage: source-discovery
+    model_ref: qwen36_local
+    fallback_model_ref: luna
+    budget_cap_usd: 60
+    current_research: {required: true, status: current_for_v2_1_local_corpus_default, reference: conferences/iclr2026/storage/analysis/deep-dive-topics}
+    benchmark: {required: true, placement: before changing Qwen+BGE corpus-only default or enabling web search, receipt_required: true, authority_models: [gpt-5.6-terra], candidates: [mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit, gpt-6-luna]}
+    quality_threshold: local Qwen 3.6 smart lane supports corpus-only GPT-Researcher evidence/draft synthesis with BM25+BGE hybrid retrieval, web search disabled, and citation provenance
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: approved_for_corpus_only_gpt_researcher_with_loopback_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-24"
+        source_class: "local_runtime_operator_validation"
+        runtime_support: "mlx_lm_corpus_only"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.5
+        runtime_kind: "mlx_lm"
+        quantization: "4bit_optiq"
+        status: approved
+        benchmark_receipt_ref: "conferences/iclr2026/storage/analysis/deep-dive-topics"
+        rejection_reason: "Approved scope is corpus-only GPT-Researcher evidence/draft findings with BM25+BGE hybrid retrieval and WEB_SEARCH_ENABLED=false; not a final public narrative model and not approved for live web-search-backed research."
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm_corpus_only"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: 21.1
+        runtime_kind: "mlx_lm"
+        quantization: "4bit"
+        status: approved
+        benchmark_receipt_ref: "conferences/iclr2025/storage/experiments/topic2-gptr-hybrid-bge-m3-retrieval-k18-c3-e144/comparison.json"
+        rejection_reason: "Approved scope is corpus-only GPT-Researcher evidence/draft findings with BM25+BGE hybrid retrieval and WEB_SEARCH_ENABLED=false; not a final public narrative model and not approved for live web-search-backed research."
+      - model_id: null
+        source_url: null
+        checked_date: "2026-04-27"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Web-search-backed research task requires cloud provider search APIs. No open-weight local model provides equivalent live web retrieval on Apple Silicon as of 2026-04-27."
+    selection_status: v2_1_qwen36_local_corpus_default
+    local_proof: {}
+    allowed_selections:
+      - {provider: local, model: mlx-community/Qwen3.6-35B-A3B-OptiQ-4bit, role: default}
+      - {provider: local, model: mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit, role: legacy_fallback}
+      - {provider: openai, model: gpt-6-luna, role: fallback}
+  research.paper_matching_keypoints:
+    task_family: research
+    stage: analysis
+    model_ref: sol
+    # gpt-6-sol must run with high reasoning effort (July 2026 model-upgrade directive).
+    reasoning_effort: high
+    fallback_model_ref: luna
+    budget_cap_usd: 30
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/workflows/pipeline-workflow.md}
+    benchmark: {required: true, placement: after artifact-store GPT-Researcher findings exist, receipt_required: true, authority_models: [gpt-6-sol], candidates: [gpt-6-sol, gpt-6-luna]}
+    quality_threshold: frontier model extracts concise artifact-derived keypoints that preserve topic evidence needs for paper-store GPT-Researcher matching
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_research_benchmark_receipts
+    local_candidates:
+      - model_id: null
+        source_url: null
+        checked_date: "2026-05-01"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Artifact-grounded paper matching keypoints require frontier-model synthesis before paper-store GPT-Researcher matching."
+    selection_status: v1.91_default
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-sol, role: default}
+      - {provider: openai, model: gpt-6-luna, role: fallback}
+  research.gemini_deep_research_fast:
+    task_family: research
+    stage: source-discovery
+    model_ref: gemini_flash_legacy
+    budget_cap_usd: 40
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/workflows/pipeline-workflow.md}
+    benchmark: {required: true, placement: after GPT-Researcher Gemini config exists, receipt_required: true, authority_models: [gemini-3.1-pro-preview], candidates: [gemini-2.0-flash]}
+    quality_threshold: fast Gemini research model supports planning subtasks with citations
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_research_benchmark_receipts
+    local_candidates:
+      - model_id: null
+        source_url: null
+        checked_date: "2026-04-27"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Web-search-backed research task requires cloud provider search APIs. No open-weight local model provides equivalent live web retrieval on Apple Silicon as of 2026-04-27."
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-2.0-flash, role: default}
+
+  research.gemini_deep_research_strategic:
+    task_family: research
+    stage: source-discovery
+    model_ref: gemini_2_5_pro_legacy
+    fallback_model_ref: gemini_pro
+    budget_cap_usd: 75
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/workflows/pipeline-workflow.md}
+    benchmark: {required: true, placement: after GPT-Researcher Gemini config exists, receipt_required: true, authority_models: [gemini-3.1-pro-preview], candidates: [gemini-2.5-pro, gemini-3.1-pro-preview]}
+    quality_threshold: strategic Gemini model synthesizes long-horizon research with citations
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_research_benchmark_receipts
+    local_candidates:
+      - model_id: null
+        source_url: null
+        checked_date: "2026-04-27"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Web-search-backed research task requires cloud provider search APIs. No open-weight local model provides equivalent live web retrieval on Apple Silicon as of 2026-04-27."
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-2.5-pro, role: default}
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: fallback}
+
+  research.claude_deep_research:
+    task_family: research
+    stage: source-discovery
+    model_ref: sonnet
+    budget_cap_usd: 100
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/workflows/pipeline-workflow.md}
+    benchmark: {required: true, placement: after Claude deep-research question is approved, receipt_required: true, authority_models: [claude-sonnet-5], candidates: [claude-sonnet-5]}
+    quality_threshold: research report uses web citations and explicit uncertainty
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_research_benchmark_receipts
+    local_candidates:
+      - model_id: null
+        source_url: null
+        checked_date: "2026-04-27"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Web-search-backed research task requires cloud provider search APIs. No open-weight local model provides equivalent live web retrieval on Apple Silicon as of 2026-04-27."
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+
+  research.claude_deep_synthesis:
+    task_family: research
+    stage: source-discovery
+    model_ref: opus
+    fallback_model_ref: sonnet
+    budget_cap_usd: 120
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/workflows/pipeline-workflow.md}
+    benchmark: {required: true, placement: after Claude deep-research sources are gathered, receipt_required: true, authority_models: [claude-opus-5-5], candidates: [claude-opus-5-5, claude-sonnet-5]}
+    quality_threshold: synthesis preserves citations and distinguishes evidence from interpretation
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_research_benchmark_receipts
+    local_candidates:
+      - model_id: null
+        source_url: null
+        checked_date: "2026-04-27"
+        source_class: null
+        runtime_support: "mlx_not_supported"
+        license: null
+        commercial_use_allowed: null
+        expected_memory_gb: null
+        status: no_local_candidate
+        rejection_reason: "Web-search-backed research task requires cloud provider search APIs. No open-weight local model provides equivalent live web retrieval on Apple Silicon as of 2026-04-27."
+    selection_status: optional_runtime_feature
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-opus-5-5, role: default}
+      - {provider: anthropic, model: claude-sonnet-5, role: fallback}
+
+  exhaustive_extraction.cost_estimation:
+    task_family: extraction
+    stage: analysis
+    model_ref: sonnet
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: src/conference_pipeline/costs/task_specs.yaml}
+    benchmark: {required: true, placement: after extraction batch samples exist, receipt_required: true, authority_models: [claude-sonnet-5], candidates: [claude-sonnet-5]}
+    quality_threshold: cost estimates use the same model family as extraction receipts
+    schema_validity_required: false
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+
+  exhaustive_extraction.gpt5_mini:
+    task_family: extraction
+    stage: analysis
+    model_ref: gpt5_mini_legacy
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after extraction batch samples exist, receipt_required: true, authority_models: [gpt-6-luna], candidates: [gpt-5-mini]}
+    quality_threshold: extraction JSON remains valid and source-grounded
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-5-mini, role: default}
+
+  exhaustive_extraction.gpt52_quote_fallback:
+    task_family: extraction
+    stage: analysis
+    model_ref: luna
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after quote-extraction fallback samples exist, receipt_required: true, authority_models: [gpt-6-luna], candidates: [gpt-6-luna]}
+    quality_threshold: fallback quote extraction preserves exact source wording
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openai, model: gpt-6-luna, role: default}
+
+  exhaustive_extraction.claude_sonnet:
+    task_family: extraction
+    stage: analysis
+    model_ref: sonnet
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after extraction batch samples exist, receipt_required: true, authority_models: [claude-sonnet-5], candidates: [claude-sonnet-5]}
+    quality_threshold: extraction JSON remains valid and source-grounded
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+
+  exhaustive_extraction.claude_haiku:
+    task_family: extraction
+    stage: analysis
+    model_ref: sonnet
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after extraction batch samples exist, receipt_required: true, authority_models: [gpt-6-luna], candidates: [claude-sonnet-5]}
+    quality_threshold: extraction JSON remains valid and source-grounded
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-sonnet-5, role: default}
+
+  exhaustive_extraction.gemini_pro:
+    task_family: extraction
+    stage: analysis
+    model_ref: gemini_pro
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after extraction batch samples exist, receipt_required: true, authority_models: [gemini-3.1-pro-preview], candidates: [gemini-3.1-pro-preview]}
+    quality_threshold: extraction JSON remains valid and source-grounded
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: gemini, model: gemini-3.1-pro-preview, role: default}
+
+  exhaustive_extraction.openrouter_sonnet:
+    task_family: extraction
+    stage: analysis
+    model_ref: sonnet_openrouter
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after OpenRouter extraction samples exist, receipt_required: true, authority_models: [claude-sonnet-5], candidates: [openrouter/anthropic/claude-sonnet-5]}
+    quality_threshold: OpenRouter fallback preserves extraction schema and source grounding
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openrouter, model: openrouter/anthropic/claude-sonnet-5, role: default}
+
+  exhaustive_extraction.openrouter_gemini:
+    task_family: extraction
+    stage: analysis
+    model_ref: gemini_pro_openrouter
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after OpenRouter extraction samples exist, receipt_required: true, authority_models: [gemini-3.1-pro-preview], candidates: [openrouter/google/gemini-3.1-pro-preview]}
+    quality_threshold: OpenRouter fallback preserves extraction schema and source grounding
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openrouter, model: openrouter/google/gemini-3.1-pro-preview, role: default}
+
+  exhaustive_extraction.openrouter_gpt5_mini:
+    task_family: extraction
+    stage: analysis
+    model_ref: sonnet_openrouter
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after OpenRouter extraction samples exist, receipt_required: true, authority_models: [gpt-6-luna], candidates: [openrouter/anthropic/claude-sonnet-5]}
+    quality_threshold: OpenRouter fallback preserves extraction schema and source grounding
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openrouter, model: openrouter/anthropic/claude-sonnet-5, role: default}
+
+  exhaustive_extraction.openrouter_haiku:
+    task_family: extraction
+    stage: analysis
+    model_ref: sonnet_openrouter
+    budget_cap_usd: 150
+    current_research: {required: true, status: pending_for_new_milestones, reference: docs/operations/analysis-contract.md}
+    benchmark: {required: true, placement: after OpenRouter extraction samples exist, receipt_required: true, authority_models: [gpt-6-luna], candidates: [openrouter/anthropic/claude-sonnet-5]}
+    quality_threshold: OpenRouter fallback preserves extraction schema and source grounding
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_source_reading_benchmark_receipts
+    local_candidates:
+      - model_id: "mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        source_url: "https://huggingface.co/mlx-community/Qwen3.5-35B-A3B-OptiQ-4bit"
+        checked_date: "2026-05-13"
+        source_class: "huggingface_model_card"
+        runtime_support: "mlx_lm"
+        license: "apache-2.0"
+        commercial_use_allowed: true
+        expected_memory_gb: 21.1
+        status: benchmark_pending
+        benchmark_receipt_ref: ".planning/phases/26-two-topic-corrected-extraction-and-research-rerun/26-VERIFICATION.md"
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: openrouter, model: openrouter/anthropic/claude-sonnet-5, role: default}
+
+  ai4science.candidate_confirmation:
+    task_family: classification
+    stage: cross-conference-census
+    model_ref: qwen38_27b_modal
+    fallback_model_ref: qwen38_27b_fp8_modal
+    # Operator ceiling for all of v5.2 Phase 02 (waves 0-2), set 2026-11-10.
+    # Modal bills GPU seconds; the lane tracks container time and halts
+    # before crossing this cap. Wave 1 needs its own estimate and approval.
+    budget_cap_usd: 100
+    current_research:
+      required: true
+      status: current
+      checked_date: "2026-11-10"
+      reference: https://modal.com/pricing
+      notes: >
+        Qwen/Qwen3.8-27B (dense 27.8B, Apache-2.0, released 2026-08-14) is the
+        newest open-weight Qwen in the ~30B class; served with vLLM on Modal.
+    benchmark:
+      required: true
+      placement: v5.2 Phase 02 wave 0, on ~20 regex candidates from three clusters
+      receipt_required: true
+      authority_models: [Qwen/Qwen3.8-27B]
+      candidates: [Qwen/Qwen3.8-27B-FP8]
+    quality_threshold: per-candidate confirm/reject verdict with a GT cluster label and an evidence quote, valid JSON
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: not_local; self-hosted open weights on Modal
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: modal, model: Qwen/Qwen3.8-27B, role: default}
+      - {provider: modal, model: Qwen/Qwen3.8-27B-FP8, role: cheaper_candidate}
+
+  ai4science.confirmation_reference:
+    task_family: classification
+    stage: cross-conference-census
+    # Two frontier labellers, run independently and blind to the Qwen verdict,
+    # are the reference for v5.2 Phase 02 wave 2 (precision of the wave 1
+    # confirmations). Operator choice 2026-11-10: "give it to astra and fable".
+    model_ref: fable
+    fallback_model_ref: astra
+    # Counts against the shared Phase 02 ceiling ($100 for waves 0-2).
+    budget_cap_usd: 40
+    current_research:
+      required: true
+      status: current
+      checked_date: "2026-11-10"
+      reference: https://developers.openai.com/api/docs/pricing
+      notes: >
+        Claude Fable 5.2 ($8/$40) and GPT-6 Astra ($10/$50) are each provider's
+        top widely available tier on 2026-11-10.
+    benchmark:
+      required: false
+    quality_threshold: per-pair confirm/reject verdict with an evidence quote, valid JSON; agreement between the two labellers reported
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: not_local; reference labels need frontier models
+    selection_status: operator_selected
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-fable-5-2, role: default}
+      - {provider: openai, model: gpt-6-astra, role: second_reference}
+
+  ai4science.confirmation_second_pass:
+    task_family: classification
+    stage: cross-conference-census
+    # Cheap second labeller over the wave 1 Qwen rejects only, to recover the
+    # ~29% true hits wave 2 found there. Both candidates are tested on the 100
+    # validated sample rejects first (operator, 2026-11-10).
+    model_ref: haiku
+    fallback_model_ref: luna
+    # Counts against the shared Phase 02 ceiling ($100 for waves 0-2).
+    budget_cap_usd: 10
+    current_research:
+      required: true
+      status: current
+      checked_date: "2026-11-10"
+      reference: https://developers.openai.com/api/docs/pricing
+      notes: >
+        Claude Haiku 5.5 and GPT-6 Luna, both $0.10/$0.50 per 1M tokens on 2026-11-10.
+    benchmark:
+      required: true
+      placement: v5.2 Phase 02, the 100 wave 2 sample rejects with Fable + Astra consensus labels
+      receipt_required: true
+      authority_models: [claude-fable-5-2, gpt-6-astra]
+      candidates: [claude-haiku-5-5, gpt-6-luna]
+    quality_threshold: recovers wave 1 false rejects without adding false confirms, measured on the wave 2 consensus pairs
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: not_local; hosted budget tier
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: anthropic, model: claude-haiku-5-5, role: default}
+      - {provider: openai, model: gpt-6-luna, role: candidate}
+
+  ai4science.gnd_model_build:
+    task_family: structured_generation
+    stage: cross-conference-findings
+    # v5.2 Phase 03: proposes the GND ORM model of the census findings from the
+    # requirement text. Operator order 2026-11-08: Qwen first, Claude Haiku if
+    # its bounded sessions do not converge. GND's validator is the gate.
+    model_ref: qwen38_27b_modal
+    fallback_model_ref: haiku
+    # Operator ceiling for v5.2 Phase 03, set 2026-11-10 ("Start wave 1" at $10).
+    # Wave 0 trial spent $1.08 of it.
+    budget_cap_usd: 10
+    current_research:
+      required: true
+      status: current
+      checked_date: "2026-11-10"
+      reference: https://modal.com/pricing
+      notes: >
+        Same self-hosted endpoint as ai4science.candidate_confirmation (H100,
+        $0.001097/s on 2026-11-10); Haiku 5.5 $0.10/$0.50 per 1M tokens.
+    benchmark:
+      required: true
+      placement: v5.2 Phase 03 wave 0, toy three-fact-type model checked with gnd validate and four labelled populations
+      receipt_required: true
+      authority_models: [claude-fable-5-2]
+      candidates: [Qwen/Qwen3.8-27B, claude-haiku-5-5]
+    quality_threshold: gnd validate accepts the model within three attempts and gnd check separates the conforming population from the three violating ones
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: not_local; Modal GPU endpoint, stopped after each run
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+      - {provider: modal, model: Qwen/Qwen3.8-27B, role: default}
+      - {provider: anthropic, model: claude-haiku-5-5, role: fallback}
+      # Operator request 2026-11-11: compare the content-ontology growth on GPT-6 Luna.
+      - {provider: openai, model: gpt-6-luna, role: comparison}
+      - {provider: openai, model: gpt-6.1-terra, role: comparison_terra}
+      - {provider: anthropic, model: claude-sonnet-5-5, role: comparison_sonnet}
+      # Operator request 2026-11-11: blind review of the compared ontologies.
+      - {provider: openai, model: gpt-6-astra, role: comparison_judge}
+      # Operator request 2026-11-11 ("use Fable 5.2 extra to go through each cluster of data"):
+      # per-interest synthesis of the talk's storylines at xhigh effort, Batch API.
+      - {provider: anthropic, model: claude-fable-5-2, role: synthesis_fable}
+      # Operator request 2026-11-12 ("Run them on Opus 5.5"): the five biology packets Fable 5.2's
+      # dual-use safeguards refused (stop_reason refusal) are read by Opus 5.5 with the same prompt.
+      - {provider: anthropic, model: claude-opus-5-5, role: synthesis_opus}
+
+  presentation.claim_fidelity_review:
+    task_family: presentation
+    stage: presentation
+    model_ref: sol
+    budget_cap_usd: 5
+    current_research:
+      required: true
+      status: pending_for_new_milestones
+      reference: docs/reference/stage-owner-audit.md#presentation-claim-fidelity-review
+    benchmark:
+      required: true
+      placement: after figure authoring and again after narration, before Gate A
+      receipt_required: true
+    quality_threshold: exhaustive per-slide source-note fidelity with no factual or attribution
+      blockers
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: deferred_until_local_receipts
+    local_candidates: []
+    selection_status: requires_stage_receipt
+    local_proof: {}
+    allowed_selections:
+    - provider: openai
+      model: gpt-6-sol
+      role: default
+
+  # v6.0 Phase 4, spec 6.6 (D1, D2): the public site's two embedding models. No fallback:
+  # the index marks a semantic lane absent rather than switching models silently.
+  public_search.canonical_embedding:
+    task_family: public_search
+    stage: public_release
+    model_ref: bge_m3_mlx
+    current_research:
+      required: false
+      status: owner_approved_2026-11-15
+      reference: .planning/milestones/v6.0-Public-Release/notes/phase-4-spec.md#66-governed-embedding-models-r10-d1-d2
+    benchmark:
+      required: false
+    quality_threshold: the index manifest records the model id and dim; a missing runtime marks the lane absent
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: local_only_maintainer_build
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: mlx
+      model: mlx-community/bge-m3-mlx-8bit
+      role: default
+
+  public_search.browser_embedding:
+    task_family: public_search
+    stage: public_release
+    model_ref: embeddinggemma_onnx_q8
+    current_research:
+      required: false
+      status: owner_approved_2026-11-15
+      reference: .planning/milestones/v6.0-Public-Release/notes/phase-4-spec.md#66-governed-embedding-models-r10-d1-d2
+    benchmark:
+      required: false
+    quality_threshold: documents and queries share one model and its asymmetric prompts; the site reads the id and dim from the index manifest
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: reader_browser_at_query_time
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: browser
+      model: onnx-community/embeddinggemma-300m-ONNX
+      role: default
+
+  # v6.1 Phase 3, spec 6.3 (plan D7, owner-ruled 2026-11-18): two model families label the
+  # gold set independently; each also cross-checks the other's statements with its own
+  # task. The spend cap is set per labelling run at its owner spend gate (R4).
+  ontology.gold_label_primary:
+    task_family: ontology
+    stage: ontology
+    model_ref: gemini_pro
+    current_research:
+      required: false
+      status: owner_approved_2026-11-18
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-3-spec.md#63-labelling-host-gold_labelpy-260-lines
+    benchmark:
+      required: false
+    quality_threshold: every statement quotes its passage exactly; refused, empty and bad-span responses are outcomes, never accepted
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: gemini
+      model: gemini-3.1-pro-preview
+      role: default
+
+  ontology.gold_label_secondary:
+    task_family: ontology
+    stage: ontology
+    model_ref: opus
+    current_research:
+      required: false
+      status: owner_approved_2026-11-18
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-3-spec.md#63-labelling-host-gold_labelpy-260-lines
+    benchmark:
+      required: false
+    quality_threshold: every statement quotes its passage exactly; refused, empty and bad-span responses are outcomes, never accepted
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: anthropic
+      model: claude-opus-5-5
+      role: default
+
+  ontology.gold_adjudicate_fable:
+    task_family: ontology
+    stage: ontology
+    # Owner 2026-11-18: "ask astra and fable to answer on my behalf and see in how many they
+    # agree" -- two blind adjudicators over the Phase 3 adjudication queue.
+    model_ref: fable
+    current_research:
+      required: false
+      status: owner_approved_2026-11-18
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-3-spec.md#23-model-adjudicators-owner-request-2026-11-18
+    benchmark:
+      required: false
+    quality_threshold: one verdict per queued item from the allowed labels, valid JSON; agreement between the two adjudicators reported
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: anthropic
+      model: claude-fable-5-2
+      role: default
+
+  ontology.gold_adjudicate_astra:
+    task_family: ontology
+    stage: ontology
+    # Owner 2026-11-18: "ask astra and fable to answer on my behalf and see in how many they
+    # agree" -- two blind adjudicators over the Phase 3 adjudication queue.
+    model_ref: astra
+    current_research:
+      required: false
+      status: owner_approved_2026-11-18
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-3-spec.md#23-model-adjudicators-owner-request-2026-11-18
+    benchmark:
+      required: false
+    quality_threshold: one verdict per queued item from the allowed labels, valid JSON; agreement between the two adjudicators reported
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: openai
+      model: gpt-6-astra
+      role: default
+
+  ontology.gold_debate_opus:
+    task_family: ontology
+    stage: ontology
+    # Owner 2026-11-19: "can you have opus and Sol have a conversation and try to find a
+    # consensus for these 169 questions" -- a bounded debate over the adjudicators' split items.
+    model_ref: opus
+    current_research:
+      required: false
+      status: owner_approved_2026-11-19
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-3-spec.md#24-opus-and-sol-debate-owner-request-2026-11-19
+    benchmark:
+      required: false
+    quality_threshold: one verdict per debated item per round from the allowed labels, valid JSON; consensus by round reported
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: anthropic
+      model: claude-opus-5-5
+      role: default
+
+  ontology.gold_debate_sol:
+    task_family: ontology
+    stage: ontology
+    # Owner 2026-11-19: "can you have opus and Sol have a conversation and try to find a
+    # consensus for these 169 questions" -- a bounded debate over the adjudicators' split items.
+    model_ref: sol
+    current_research:
+      required: false
+      status: owner_approved_2026-11-19
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-3-spec.md#24-opus-and-sol-debate-owner-request-2026-11-19
+    benchmark:
+      required: false
+    quality_threshold: one verdict per debated item per round from the allowed labels, valid JSON; consensus by round reported
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: openai
+      model: gpt-6-sol
+      role: default
+
+  ontology.read_broad:
+    task_family: ontology
+    stage: ontology
+    # v6.1 Phase 4 (spec §2 R3): tier A broad pass of the reading host (one call per document). Registered for the mock-first hosts.
+    # Phase 5 pilot routing, owner-approved 2026-11-22 (phase-5-spec IF14-IF17). Fallback: Qwen3.8-27B bf16 on Modal.
+    model_ref: luna
+    fallback_model_ref: qwen38_27b_modal
+    current_research:
+      required: true
+      status: owner_approved_2026-11-22
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-5-spec.md
+    benchmark:
+      required: true
+    quality_threshold: one JSON object per call, facts typed by fact-type id, every quote located in its section by the host
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: anthropic
+      model: claude-haiku-5-5
+      role: alternative
+    - provider: modal
+      model: Qwen/Qwen3.8-27B
+      role: fallback
+    - provider: modal
+      model: Qwen/Qwen3.8-27B-FP8
+      role: alternative
+    - provider: openai
+      model: gpt-6-luna
+      role: default
+    - provider: gemini
+      model: gemini-3.5-flash-lite
+      role: alternative
+    - provider: modal
+      model: google/gemma-4-12B-it
+      role: alternative
+    - provider: modal
+      model: Qwen/Qwen3.6-35B-A3B
+      role: alternative
+  ontology.read_targeted:
+    task_family: ontology
+    stage: ontology
+    # v6.1 Phase 4 (spec §2 R3): targeted and recheck passes of the reading host (one call per selected section). Registered for the mock-first hosts.
+    # Phase 5 pilot routing, owner-approved 2026-11-22 (phase-5-spec IF14-IF17). Fallback: Qwen3.8-27B bf16 on Modal.
+    model_ref: luna
+    fallback_model_ref: qwen38_27b_modal
+    current_research:
+      required: true
+      status: owner_approved_2026-11-22
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-5-spec.md
+    benchmark:
+      required: true
+    quality_threshold: as ontology.read_broad
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: anthropic
+      model: claude-sonnet-5
+      role: alternative
+    - provider: anthropic
+      model: claude-haiku-5-5
+      role: alternative
+    - provider: openai
+      model: gpt-6-luna
+      role: default
+    - provider: modal
+      model: Qwen/Qwen3.8-27B
+      role: fallback
+  ontology.read_review:
+    task_family: ontology
+    stage: ontology
+    # v6.1 Phase 4 (spec §2 R3): second-family review of each extracted fact against its excerpt. Registered for the mock-first hosts.
+    # Phase 5 pilot routing, owner-approved 2026-11-22 (phase-5-spec IF14-IF17).
+    model_ref: luna
+    current_research:
+      required: true
+      status: owner_approved_2026-11-22
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-5-spec.md
+    benchmark:
+      required: true
+    quality_threshold: one verdict per fact id, supported or unsupported
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: openai
+      model: gpt-6-luna
+      role: default
+    - provider: anthropic
+      model: claude-haiku-5-5
+      role: alternative
+    - provider: anthropic
+      model: claude-sonnet-5
+      role: alternative
+  ontology.grow_round:
+    task_family: ontology
+    stage: ontology
+    # v6.1 Phase 4 (spec §2 R3): one unattended vocabulary-growth round per input document (GND reply schema, R15). Registered for the mock-first hosts.
+    # Phase 5 pilot routing, owner-approved 2026-11-22 (phase-5-spec IF14-IF17). Thin evidence: 3/5 rounds applied, 2 elements added.
+    model_ref: terra
+    fallback_model_ref: luna
+    current_research:
+      required: true
+      status: owner_approved_2026-11-22
+      reference: .planning/milestones/v6.1-ICML-2026-Ontology/notes/phase-5-spec.md
+    benchmark:
+      required: true
+    quality_threshold: reply in GND's growth schema; Steps 3-7 present for every new fact type
+    schema_validity_required: true
+    provenance_required: true
+    local_runtime_policy: no_local_runtime
+    local_candidates: []
+    selection_status: owner_approved_default
+    local_proof: {}
+    allowed_selections:
+    - provider: anthropic
+      model: claude-opus-5-5
+      role: alternative
+    - provider: openai
+      model: gpt-6-sol
+      role: alternative
+    # v6.1 Phase 5 (spec F7): the pilot candidates of plan §4 Phase 5
+    - provider: anthropic
+      model: claude-sonnet-5
+      role: alternative
+    - provider: openai
+      model: gpt-6-luna
+      role: fallback
+    - provider: openai
+      model: gpt-5.6-terra
+      role: default

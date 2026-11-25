@@ -1,0 +1,103 @@
+title = "neurips-foundation-conf-pipeline gitleaks config"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Extend gitleaks built-in default rules so all upstream detectors remain
+# active. Without this, a custom config file replaces (not augments) the
+# default ruleset, meaning gcp-api-key and other rules would be silently
+# disabled.
+# ─────────────────────────────────────────────────────────────────────────────
+[extend]
+useDefault = true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Global allowlist — suppresses ONLY the 793 resume_compatibility_key false
+# positives that the generic-api-key rule flags in workflow-run receipt JSON
+# files.  These are pipeline-generated SHA256 integrity checksums (64-char
+# lowercase hex), not credentials.
+#
+# Scope is deliberately narrow:
+#   • regexTarget = "line"  → must match the full JSON line, not just the value
+#   • JSON key literal "resume_compatibility_key" anchors the match
+#   • [a-f0-9]{64} restricts to lowercase SHA256 hex only
+#
+# This does NOT suppress gcp-api-key findings or any other rule.
+# Do not widen this allowlist without a new operator sign-off.
+# ─────────────────────────────────────────────────────────────────────────────
+[allowlist]
+description = "resume_compatibility_key SHA256 checksums — pipeline integrity hashes, not credentials"
+regexTarget = "line"
+regexes = [
+  '''"resume_compatibility_key"\s*:\s*"[a-f0-9]{64}"''',
+]
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Phase 05 operator-approved false positives for the built-in generic-api-key
+# rule. These entries are rule-scoped, not global, so higher-confidence rules
+# such as gcp-api-key remain active on the same files and paths.
+#
+# Approval scope: 55 post-history-rewrite `generic-api-key` findings classified
+# as prose, metric/model names, or benchmark/config labels. Do not add new paths
+# here without a fresh gitleaks report and operator sign-off.
+# ─────────────────────────────────────────────────────────────────────────────
+[[rules]]
+id = "generic-api-key"
+
+  [[rules.allowlists]]
+  description = "Phase 05 approved generic-api-key false positives in planning and conference artifact text"
+  condition = "OR"
+  paths = [
+    '''^\.planning/workstreams/v2-4/phases/03-graduation-contract-for-v2\.3-adoption/03-RESEARCH\.md$''',
+    '''^\.planning/workstreams/v2-5/phases/02-offline-panel-rescoring-voting-rule-decision-and-dinov2-floor-re-derivation/02-CONTEXT\.md$''',
+    '''^\.planning/workstreams/v2-5/phases/02-offline-panel-rescoring-voting-rule-decision-and-dinov2-floor-re-derivation/02-RESEARCH\.md$''',
+    '''^\.planning/workstreams/v2-5/phases/02-offline-panel-rescoring-voting-rule-decision-and-dinov2-floor-re-derivation/02-dinov2-floor\.json$''',
+    '''^\.planning/workstreams/v2-5/phases/02-offline-panel-rescoring-voting-rule-decision-and-dinov2-floor-re-derivation/invalid-live-provider-run-20260614T011205Z/02-dinov2-floor\.json$''',
+    '''^conferences/iclr2026/analysis/exhaustive_summaries/04_safety_alignment_privacy__papers\.json$''',
+    '''^conferences/iclr2026/analysis/exhaustive_summaries/04_safety_alignment_privacy__papers\.md$''',
+    '''^conferences/iclr2026/analysis/topic_reference_candidate_resolution/04_safety_alignment_privacy__packets\.json$''',
+    '''^conferences/iclr2026/storage/analysis/deep-dive-topics/iclr2026-live-production/12_open_science_society_post_agi__dd02_how_should_scientific_p/heuristic_prefilter_evidence\.json$''',
+    '''^conferences/neurips2025/claude-autonomy/paper-analysis/paper-texts/20_small_language_models__rank01__smollm2-efficient-small-language-models__93d1bcc9\.txt$''',
+    '''^conferences/neurips2025/export_for_deep_dive/notebooklm/presentations_part_030\.txt$''',
+    '''^conferences/neurips2025/export_for_deep_dive/notebooklm/presentations_part_033\.txt$''',
+    '''^conferences/neurips2025/export_for_deep_dive/openai_claude/presentations/the-art-of-artificial-reasoning\.txt$''',
+    '''^conferences/neurips2025/export_for_deep_dive/openai_claude/presentations/using-the-virtual-cell-platform-to-accelerate-machine-learning-in-biology\.txt$''',
+    '''^conferences/neurips2025/gpt_researcher/documents/using-the-virtual-cell-platform-to-accelerate-machine-learning-in-biology\.txt$''',
+    '''^conferences/neurips2025/podcasts/05_data_markets/frequency_runs/run_01\.json$''',
+    '''^conferences/neurips2025/podcasts/05_data_markets/ranks\.json$''',
+    '''^conferences/neurips2025/presentations/06_visual_models/6_presenter_script\.md$''',
+  ]
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Phase 05 operator-approved false positives for the built-in generic-api-key
+# rule. These entries are rule-scoped, not global, so higher-confidence rules
+# such as gcp-api-key remain active on the same files and paths.
+#
+# Approval scope: 55 post-history-rewrite `generic-api-key` findings classified
+# as prose, metric/model names, or benchmark/config labels. Do not add new paths
+# here without a fresh gitleaks report and operator sign-off.
+# ─────────────────────────────────────────────────────────────────────────────
+[[rules]]
+id = "generic-api-key"
+
+  [[rules.allowlists]]
+  description = "Phase 05 approved generic-api-key false positives in planning and conference artifact text"
+  condition = "OR"
+  paths = [
+    '''^\.planning/workstreams/v2-4/phases/03-graduation-contract-for-v2\.3-adoption/03-RESEARCH\.md$''',
+    '''^\.planning/workstreams/v2-5/phases/02-offline-panel-rescoring-voting-rule-decision-and-dinov2-floor-re-derivation/02-CONTEXT\.md$''',
+    '''^\.planning/workstreams/v2-5/phases/02-offline-panel-rescoring-voting-rule-decision-and-dinov2-floor-re-derivation/02-RESEARCH\.md$''',
+    '''^\.planning/workstreams/v2-5/phases/02-offline-panel-rescoring-voting-rule-decision-and-dinov2-floor-re-derivation/02-dinov2-floor\.json$''',
+    '''^\.planning/workstreams/v2-5/phases/02-offline-panel-rescoring-voting-rule-decision-and-dinov2-floor-re-derivation/invalid-live-provider-run-20260614T011205Z/02-dinov2-floor\.json$''',
+    '''^conferences/iclr2026/analysis/exhaustive_summaries/04_safety_alignment_privacy__papers\.json$''',
+    '''^conferences/iclr2026/analysis/exhaustive_summaries/04_safety_alignment_privacy__papers\.md$''',
+    '''^conferences/iclr2026/analysis/topic_reference_candidate_resolution/04_safety_alignment_privacy__packets\.json$''',
+    '''^conferences/iclr2026/storage/analysis/deep-dive-topics/iclr2026-live-production/12_open_science_society_post_agi__dd02_how_should_scientific_p/heuristic_prefilter_evidence\.json$''',
+    '''^conferences/neurips2025/claude-autonomy/paper-analysis/paper-texts/20_small_language_models__rank01__smollm2-efficient-small-language-models__93d1bcc9\.txt$''',
+    '''^conferences/neurips2025/export_for_deep_dive/notebooklm/presentations_part_030\.txt$''',
+    '''^conferences/neurips2025/export_for_deep_dive/notebooklm/presentations_part_033\.txt$''',
+    '''^conferences/neurips2025/export_for_deep_dive/openai_claude/presentations/the-art-of-artificial-reasoning\.txt$''',
+    '''^conferences/neurips2025/export_for_deep_dive/openai_claude/presentations/using-the-virtual-cell-platform-to-accelerate-machine-learning-in-biology\.txt$''',
+    '''^conferences/neurips2025/gpt_researcher/documents/using-the-virtual-cell-platform-to-accelerate-machine-learning-in-biology\.txt$''',
+    '''^conferences/neurips2025/podcasts/05_data_markets/frequency_runs/run_01\.json$''',
+    '''^conferences/neurips2025/podcasts/05_data_markets/ranks\.json$''',
+    '''^conferences/neurips2025/presentations/06_visual_models/6_presenter_script\.md$''',
+  ]

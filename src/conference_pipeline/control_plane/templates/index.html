@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ app_title }}</title>
+  <link rel="stylesheet" href="{{ url_for('control-plane-static', path='control-plane.css') }}">
+  <script src="{{ url_for('control-plane-static', path='control-plane.js') }}" defer></script>
+</head>
+<body>
+  {% import "partials/icons.html" as icons %}
+  <header class="topbar">
+    <div class="topbar-title">
+      <h1>Conference Control Plane</h1>
+      <div class="workspace-path" title="{{ default_workspace }}">{{ default_workspace }}</div>
+    </div>
+    <div class="topbar-actions">
+      <span class="status-badge status-not-started">Not started</span>
+      <button class="icon-button" type="button" data-refresh-button aria-label="Refresh run status" data-tooltip="Refresh">
+        {{ icons.icon("refresh") }}
+      </button>
+    </div>
+  </header>
+
+  <main
+    class="app-shell"
+    data-action-token="{{ action_token }}"
+    data-run-active="false"
+  >
+    <section class="panel launch-panel" aria-label="Launch controls">
+      <div class="panel-heading">
+        <h2>Launch Run</h2>
+      </div>
+      <form class="launch-form" method="post" action="/api/runs" data-enhance-submit>
+        <input type="hidden" name="action_token" value="{{ action_token }}">
+        <input type="hidden" name="response_format" value="html">
+
+        <div class="field">
+          <label for="workspace">Workspace</label>
+          <input id="workspace" name="workspace" type="text" value="{{ default_workspace }}" autocomplete="off">
+        </div>
+
+        <fieldset class="field">
+          <legend>Mode</legend>
+          <div class="segmented-control" role="radiogroup" aria-label="Workflow mode">
+            {% for mode in ["live", "dry-run", "mock"] %}
+              <label class="segment">
+                <input type="radio" name="mode" value="{{ mode }}" {% if mode == default_mode %}checked{% endif %}>
+                <span>{{ mode }}</span>
+              </label>
+            {% endfor %}
+          </div>
+          <span class="caution-badge">live uses real execution</span>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Stages</legend>
+          <div class="stage-checks">
+            {% for stage in canonical_stages %}
+              <label class="checkbox-row">
+                <input type="checkbox" name="stage_ids" value="{{ stage.id }}" {% if stage.id in default_stage_ids %}checked{% endif %}>
+                <span>{{ stage.id }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="topic">Topic</label>
+          <input id="topic" name="topic" type="text" placeholder="all topics" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="run_id">Run ID</label>
+          <input id="run_id" name="run_id" type="text" autocomplete="off">
+        </div>
+
+        <label class="toggle-row">
+          <input type="checkbox" name="resume" value="true">
+          <span>Resume</span>
+        </label>
+
+        <p class="form-error" data-form-error hidden>Run could not start. Check the highlighted fields and receipt error, then retry with dry-run or resume.</p>
+
+        <div class="button-stack">
+          <button class="primary-button" type="submit">
+            {{ icons.icon("launch") }}
+            <span>Launch Run</span>
+          </button>
+        </div>
+      </form>
+
+      <form class="preset-form" method="post" action="/api/presets/small-neurips-smoketest" data-enhance-submit>
+        <input type="hidden" name="action_token" value="{{ action_token }}">
+        <input type="hidden" name="response_format" value="html">
+        <button class="secondary-button" type="submit">
+          {{ icons.icon("launch") }}
+          <span>Launch Smoke Test</span>
+        </button>
+      </form>
+
+      <div class="status-card">
+        <div class="panel-heading">
+          <h2>Backup</h2>
+          {% set backup_state = backup_status.status if backup_status else "missing" %}
+          <span class="status-badge status-{{ backup_state|replace('_', '-') }}">{{ backup_state }}</span>
+        </div>
+        <p class="muted mono">{{ backup_status.receipt_path if backup_status and backup_status.receipt_path else "storage/workflow-runs/scheduled-backup/" }}</p>
+      </div>
+    </section>
+
+    <section class="panel run-panel" aria-live="polite" data-run-summary>
+      {% if error_message %}
+        <div class="error-message">{{ error_message }}</div>
+      {% endif %}
+      <div class="panel-heading">
+        <h2>No runs yet</h2>
+        <span class="status-badge status-not-started">Not started</span>
+      </div>
+      <p class="muted">Launch a dry-run or mock workflow to create the first receipt-backed run.</p>
+
+      <ol class="stage-timeline" aria-label="Stage timeline">
+        {% for stage in canonical_stages %}
+          <li class="timeline-row">
+            <span class="stage-name">{{ stage.id }}</span>
+            <span class="status-badge status-not-started">Not started</span>
+          </li>
+        {% endfor %}
+      </ol>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Stage ID</th>
+              <th>Status</th>
+              <th>Mode</th>
+              <th>Topic</th>
+              <th>Receipt Filename</th>
+              <th>Artifact Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="6" class="empty-cell">No receipt rows yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="panel artifact-panel">
+      <div class="panel-heading">
+        <h2>Artifacts</h2>
+      </div>
+      <div class="artifact-empty">
+        <h2>No previewable artifacts</h2>
+        <p>This run has no supported audio, video, deck, document, JSON, or markdown artifacts yet.</p>
+      </div>
+      <div class="preview-pane" data-preview-pane>
+        <h2>No previewable artifacts</h2>
+        <p>This run has no supported audio, video, deck, document, JSON, or markdown artifacts yet.</p>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "slide_id": "slide-01-passing",
+      "viewer_facing_claim": "Test-time compute scaling improves reasoning beyond training limits.",
+      "proof_object": "Figure 2 from DeepSeek-R1 showing pass@k vs compute",
+      "visual_concept": "Line chart comparing pass@k across compute budgets",
+      "named_source_contribution": "DeepSeek-R1 [https://arxiv.org/abs/2501.12948] — chain-of-thought RL training",
+      "narration_beat": "Open with the core empirical result: more compute at test time beats larger models.",
+      "reason_to_exist": "Establishes the central claim that motivates the entire deck."
+    },
+    {
+      "slide_id": "",
+      "viewer_facing_claim": "GRPO eliminates the critic network from PPO without performance loss.",
+      "proof_object": "Algorithm 1 and ablation table from DeepSeek-R1",
+      "visual_concept": "Side-by-side diagram: PPO actor-critic vs GRPO group-relative baseline",
+      "named_source_contribution": "DeepSeek-R1 [https://arxiv.org/abs/2501.12948] — GRPO algorithm design",
+      "narration_beat": "Show how GRPO computes the baseline from group rewards.",
+      "reason_to_exist": "Explains the algorithmic innovation that enables efficient RL at scale."
+    },
+    {
+      "slide_id": "slide-03-missing-claim",
+      "viewer_facing_claim": "",
+      "proof_object": "Figure 3 from Scaling Laws for Neural LMs",
+      "visual_concept": "Log-log chart of loss vs. compute budget",
+      "named_source_contribution": "Kaplan et al. 2020 [https://arxiv.org/abs/2001.08361] — scaling laws",
+      "narration_beat": "Explain power-law exponents from the original scaling laws paper.",
+      "reason_to_exist": "Grounds the compute-budget framing in empirical evidence."
+    },
+    {
+      "slide_id": "slide-04-missing-proof",
+      "viewer_facing_claim": "Compute-optimal training requires more data than previously assumed.",
+      "proof_object": "",
+      "visual_concept": "Frontier curve comparing GPT-3 vs Chinchilla",
+      "named_source_contribution": "Hoffmann et al. 2022 [https://arxiv.org/abs/2203.15556] — Chinchilla",
+      "narration_beat": "Show that Chinchilla outperforms GPT-3 at the same compute budget.",
+      "reason_to_exist": "Motivates the token-count scaling discussion."
+    },
+    {
+      "slide_id": "slide-05-missing-visual",
+      "viewer_facing_claim": "More tokens, smaller model can match larger under-trained model.",
+      "proof_object": "Table 3 from Chinchilla paper",
+      "visual_concept": "",
+      "named_source_contribution": "Hoffmann et al. 2022 [https://arxiv.org/abs/2203.15556] — Chinchilla",
+      "narration_beat": "Walk through the token-budget trade-off using the table.",
+      "reason_to_exist": "Leads into dataset curation discussion."
+    },
+    {
+      "slide_id": "slide-06-missing-source",
+      "viewer_facing_claim": "Data quality dominates at frontier scale.",
+      "proof_object": "Deduplication ablations from The Pile paper",
+      "visual_concept": "Pipeline diagram showing dedup + quality filters",
+      "named_source_contribution": "",
+      "narration_beat": "Explain how data quality compounds over training.",
+      "reason_to_exist": "Connects to reproducibility discussion."
+    },
+    {
+      "slide_id": "slide-07-missing-narration",
+      "viewer_facing_claim": "Frontier runs are expensive; community replication is limited.",
+      "proof_object": "Bar chart from Reproducibility Study 2023",
+      "visual_concept": "Bar chart of reported vs reproducible benchmarks",
+      "named_source_contribution": "Biderman et al. 2023 [https://arxiv.org/abs/2304.01373] — Pythia",
+      "narration_beat": "",
+      "reason_to_exist": "Frames the reproducibility challenge for the audience."
+    },
+    {
+      "slide_id": "slide-08-missing-reason",
+      "viewer_facing_claim": "Releasing intermediate checkpoints enables mechanistic study.",
+      "proof_object": "Checkpoint release schedule from Pythia technical report",
+      "visual_concept": "Timeline of checkpoint releases",
+      "named_source_contribution": "Biderman et al. 2023 [https://arxiv.org/abs/2304.01373] — Pythia",
+      "narration_beat": "Walk through the checkpoint release timeline.",
+      "reason_to_exist": ""
+    },
+    {
+      "slide_id": "slide-09-scaffold-visual",
+      "viewer_facing_claim": "Circuits emerge predictably across scale.",
+      "proof_object": "Figure 4 from Mathematical Framework for Transformer Circuits",
+      "visual_concept": "Use the visual role",
+      "named_source_contribution": "Elhage et al. 2021 [https://arxiv.org/abs/2106.07463] — Transformer Circuits",
+      "narration_beat": "Show that circuit structure is consistent across model sizes.",
+      "reason_to_exist": "Grounds mechanistic interpretability in the circuits framework."
+    },
+    {
+      "slide_id": "slide-10-repeated-author",
+      "viewer_facing_claim": "Superposition allows models to store more features than dimensions.",
+      "proof_object": "Figure 1 from Toy Models of Superposition",
+      "visual_concept": "Diagram of feature superposition across polysemantic neurons",
+      "named_source_contribution": "Prepared by Nikolaos Vasiloglou",
+      "narration_beat": "Introduce the superposition hypothesis with the toy model.",
+      "reason_to_exist": "Motivates sparse feature extraction research."
+    },
+    {
+      "slide_id": "slide-11-source-id-table",
+      "viewer_facing_claim": "All sources used in this section are listed for traceability.",
+      "proof_object": "Reference list compiled from analysis manifest",
+      "visual_concept": "Source-ID table: see attached",
+      "named_source_contribution": "Multiple authors — aggregated reference list [https://example.com/refs]",
+      "narration_beat": "Walk the audience through the traceability table.",
+      "reason_to_exist": "Closes the reference inventory for the section."
+    }
+  ]
+}

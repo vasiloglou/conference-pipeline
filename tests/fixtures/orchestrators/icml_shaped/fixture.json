@@ -1,0 +1,24 @@
+{
+  "fixture": "icml_shaped",
+  "synthetic": true,
+  "orchestrator": "repo/scripts/run_quokka2031_production.py",
+  "slug": "quokka2031",
+  "expected_hooks": [
+    "download-corpus.acquisition_lane",
+    "download-corpus.auth"
+  ],
+  "quirks": [
+    "openreview-bearer-auth",
+    "slideslive-carry-forward",
+    "event-talk-split-map",
+    "workshop-talk-annotation-binding",
+    "physics-first-paper-priority",
+    "pre-incremental-index-stub"
+  ],
+  "index_format": "npz-shards-v1",
+  "generated_pdfs": [
+    "papers/q-001.pdf",
+    "papers/q-002.pdf"
+  ],
+  "note": "PDFs are gitignored repo-wide; tests/orchestrator_golden.py materialize_fixture_workspace() writes these tiny synthetic PDFs into a temp copy."
+}

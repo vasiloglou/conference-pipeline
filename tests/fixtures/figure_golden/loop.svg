@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="fc-title fc-desc">
+<title id="fc-title">VisPlay self-play loop</title>
+<desc id="fc-desc">A proposer and a solver improve each other without new human labels.</desc>
+<defs><marker id="fc-arrow" viewBox="-10 -5 10 10" refX="0" refY="0" markerWidth="7" markerHeight="7" orient="auto" markerUnits="strokeWidth"><path d="M-10,-4.5 L0,0 L-10,4.5 Z" fill="#a8d8ea" /></marker></defs>
+<rect x="0" y="0" width="1280" height="720" fill="#1a1a2e" />
+<text font-size="34" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="bold"><tspan x="44" y="70.52">VisPlay self-play loop</tspan></text>
+<text font-size="24" fill="#a8d8ea" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="108.72">A proposer and a solver improve each other without new human labels.</tspan></text>
+<text font-size="24" fill="#ffd43b" font-family="Helvetica, Arial, sans-serif"><tspan x="44" y="665.44">Self-play replaces new human labels</tspan></text>
+<rect x="562.08" y="140" width="155.85" height="59.72" fill="#2a2a4a" stroke="#4ecdc4" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="640" y="174.28">Proposer</tspan></text>
+<rect x="1000" y="351.5" width="140" height="59.72" fill="#2a2a4a" stroke="#4ecdc4" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="1070" y="385.78">Solver</tspan></text>
+<rect x="528.7" y="563" width="222.6" height="59.72" fill="#2a2a4a" stroke="#ffd43b" stroke-width="4" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="640" y="597.28">Reward model</tspan></text>
+<rect x="103.25" y="351.5" width="213.5" height="59.72" fill="#2a2a4a" stroke="#a8d8ea" stroke-width="2.5" />
+<text font-size="26" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="210" y="385.78">Policy update</tspan></text>
+<polyline points="700.71,199.72 746.81,214.99 790.75,231.32 832.55,248.71 872.2,267.15 909.7,286.65 945.05,307.21 978.24,328.83 1009.29,351.5" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="901.4" y="237.89">asks</tspan></text>
+<polyline points="1009.29,411.22 978.24,433.89 945.05,455.51 909.7,476.07 872.2,495.57 832.55,514.01 790.75,531.4 746.81,547.73 700.71,563" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif"><tspan x="901.4" y="531.63">answers</tspan></text>
+<polyline points="579.29,563 533.19,547.73 489.25,531.4 447.45,514.01 407.8,495.57 370.3,476.07 334.95,455.51 301.76,433.89 270.71,411.22" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="378.6" y="531.63">scores</tspan></text>
+<polyline points="270.71,351.5 301.76,328.83 334.95,307.21 370.3,286.65 407.8,267.15 447.45,248.71 489.25,231.32 533.19,214.99 579.29,199.72" fill="none" stroke="#a8d8ea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+<text font-size="20" fill="#e0e0e0" font-family="Helvetica, Arial, sans-serif" text-anchor="end"><tspan x="378.6" y="237.89">updates</tspan></text>
+<rect x="514.64" y="355.16" width="250.73" height="52.4" fill="#2a2a4a" rx="10" stroke="#51cf66" stroke-width="2.5" />
+<text font-size="20" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold"><tspan x="640" y="384.76">No new human labels</tspan></text>
+<line x1="316.75" y1="381.36" x2="508.64" y2="381.36" stroke="#51cf66" stroke-width="2.5" stroke-linecap="round" marker-end="url(#fc-arrow)" />
+</svg>

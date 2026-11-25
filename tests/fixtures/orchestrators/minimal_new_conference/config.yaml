@@ -1,0 +1,10 @@
+# Synthetic minimal new-conference workspace: no quirks, no hooks.
+conference:
+  slug: "newconf2032"
+  name: "New Conference"
+  year: 2032
+  status: "fixture"
+urls:
+  papers: "https://newconf.example.test/papers"
+auth:
+  required: false

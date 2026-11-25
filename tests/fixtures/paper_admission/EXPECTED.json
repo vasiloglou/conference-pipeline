@@ -1,0 +1,76 @@
+{
+  "schema": "paper-admission-corpus/1",
+  "base": {"existing_papers": 4, "existing_full_text": 0},
+  "cases": {
+    "C1": {
+      "papers_total": 5,
+      "new_paper_keys": ["openreview:NNNNNNNNN1"],
+      "text_gained_keys": [],
+      "full_text_after": 1,
+      "effects": ["the new paper counts once, as a workshop paper"]
+    },
+    "C2": {
+      "papers_total": 4,
+      "new_paper_keys": [],
+      "text_gained_keys": ["openreview:AAAAAAAAA1"],
+      "full_text_after": 1,
+      "effects": ["P1 is one paper with two records: its existing metadata record and the added text"]
+    },
+    "C3": {
+      "papers_total": 5,
+      "new_paper_keys": ["arxiv:2501.00001"],
+      "duplicate_copies_merged": 1,
+      "full_text_after": 1,
+      "effects": ["the arXiv version suffix is not part of the identity"]
+    },
+    "C4": {
+      "papers_total": 4,
+      "new_paper_keys": [],
+      "text_gained_keys": ["openreview:AAAAAAAAA2"],
+      "title_joins": [{"from": "site:site_abc123", "to": "openreview:AAAAAAAAA2"}],
+      "effects": ["a site-only record joins by normalized title and the join is listed in the report"]
+    },
+    "C4b": {
+      "papers_total": 5,
+      "new_paper_keys": ["openreview:NNNNNNNNN2"],
+      "title_joins": [],
+      "effects": ["two stable ids are two papers even with one title; the shared title is listed as a title collision, not merged"]
+    },
+    "C5": {
+      "papers_total": 3,
+      "exclusions": [{"id": "openreview:BBBBBBBBB1", "reason": "rejected_submission"}],
+      "effects": ["W1's record stays in the inventory with index_exclusion rejected_submission", "it is not counted in papers_total or by_track"]
+    },
+    "C6": {
+      "papers_total": 4,
+      "effects": ["P3's record is in the inventory unchanged: same title, authors, track and text"]
+    },
+    "C7": {
+      "papers_total": 4,
+      "text_gained_keys": [],
+      "full_text_after": 0,
+      "artifacts_total": 5,
+      "effects": ["the short text is an admitted artifact attached to P2", "P2 does not count as gaining full text"]
+    },
+    "C8": {
+      "effects": ["corpus_inventory.json, paper_identity_report.json and corpus_statistics.json are byte-identical after the second run"]
+    },
+    "C9": {
+      "papers_total": 5,
+      "effects": ["no file is written under storage/corpus/", "the tallies are returned and printed"]
+    },
+    "C10": {
+      "papers_total": 5,
+      "by_track": {"main": 3, "workshop": 2},
+      "full_text_after": 3,
+      "text_gained": 1,
+      "duplicate_copies_merged": 1,
+      "previous_corpus_papers_total": 4,
+      "effects": [
+        "every number in corpus_statistics.json equals a recount from corpus_inventory.json",
+        "previous_corpus states the F0 corpus: 4 papers",
+        "corpus_version carries a label and the inventory records' sha256"
+      ]
+    }
+  }
+}

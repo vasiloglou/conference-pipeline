@@ -1,0 +1,133 @@
+{
+  "lineage_digest_consistent": true,
+  "normalized_lineage_digest": "c8c35b046fa0e6b0af6bd44dce138f56c7efc656fc7d2b7fb5fed9cf85a3e2fa",
+  "normalized_output_digest": "93318a4651dcae9d7a18a10da0e2f6840b5cd9c4547b839ca69ee2c845ed483e",
+  "output_digest_consistent": true,
+  "output_files": {
+    "storage/extractions/w1-cvpr-fixture-run": {
+      "by-artifact/fixture-artifact.json": "json:fa2e511341f481dc306f0328a47d34e4cbab1993caf16bf56ca24d6ce188c196",
+      "by-topic/01_fixture_topic.json": "json:91aab6195b6647ccc933d03c2044f9f7e2b74b9d6ff31eb44ee9bdec5398463c",
+      "v15_extraction_coverage.json": "json:a9bf70fc256c373e6766705a9019b09c7d02137dc7a019bed727c7cb74e10504"
+    },
+    "storage/extractions/w1-cvpr-fixture-run/by-artifact": {
+      "fixture-artifact.json": "json:fa2e511341f481dc306f0328a47d34e4cbab1993caf16bf56ca24d6ce188c196"
+    },
+    "storage/extractions/w1-cvpr-fixture-run/by-topic": {
+      "01_fixture_topic.json": "json:91aab6195b6647ccc933d03c2044f9f7e2b74b9d6ff31eb44ee9bdec5398463c"
+    },
+    "storage/extractions/w1-cvpr-fixture-run/v15_extraction_coverage.json": "json:a9bf70fc256c373e6766705a9019b09c7d02137dc7a019bed727c7cb74e10504"
+  },
+  "receipt": {
+    "blockers": [],
+    "checks": {
+      "by_artifact_dir": "storage/extractions/w1-cvpr-fixture-run/by-artifact",
+      "by_topic_dir": "storage/extractions/w1-cvpr-fixture-run/by-topic",
+      "coverage_path": "storage/extractions/w1-cvpr-fixture-run/v15_extraction_coverage.json",
+      "coverage_sha256": "<sha256:storage/extractions/w1-cvpr-fixture-run/v15_extraction_coverage.json>",
+      "env_file": {
+        "attempted": false,
+        "exists": false,
+        "loaded": false
+      },
+      "extraction_receipt_blockers": [],
+      "extraction_receipt_status": "succeeded",
+      "live_provider_calls_made": false,
+      "provider_calls_made": false,
+      "secrets_copied": false
+    },
+    "downloads_made": 0,
+    "lineage": {
+      "backfill": null,
+      "binding_source": {
+        "layout": "production",
+        "profile": null,
+        "registry_sha256": "<REGISTRY_SHA>",
+        "registry_stage_id": "exhaustive-topic-extraction"
+      },
+      "code_identity": {
+        "runner": "cvpr2026",
+        "runner_path": "scripts/run_cvpr2026_production.py",
+        "script_registry_sha256": "<REGISTRY_SHA>"
+      },
+      "input_artifacts": {},
+      "lineage_digest": "<lineage_digest:storage/workflow-runs/w1-cvpr-fixture-run/14A-exhaustive-topic-extraction-receipt.json>",
+      "output_digest_components": {},
+      "schema_version": 1,
+      "upstream_receipts": {
+        "storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json": {
+          "digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json>",
+          "digest_kind": "output_digest",
+          "missing": false,
+          "optional": false,
+          "source": "required_upstream_stages",
+          "spec_path": null,
+          "stage_id": "corpus-inventory-index",
+          "status": "succeeded"
+        }
+      }
+    },
+    "mode": "live",
+    "output_artifacts": [
+      {
+        "name": "extraction_coverage",
+        "path": "storage/extractions/w1-cvpr-fixture-run/v15_extraction_coverage.json",
+        "sha256": "<sha256:storage/extractions/w1-cvpr-fixture-run/v15_extraction_coverage.json>",
+        "sha256_source": "sha256"
+      },
+      {
+        "kind": "directory",
+        "name": "by_topic_extractions",
+        "path": "storage/extractions/w1-cvpr-fixture-run/by-topic",
+        "sha256": "<dir:storage/extractions/w1-cvpr-fixture-run/by-topic>"
+      },
+      {
+        "kind": "directory",
+        "name": "by_artifact_extractions",
+        "path": "storage/extractions/w1-cvpr-fixture-run/by-artifact",
+        "sha256": "<dir:storage/extractions/w1-cvpr-fixture-run/by-artifact>"
+      }
+    ],
+    "output_digest": "<output_digest:storage/workflow-runs/w1-cvpr-fixture-run/14A-exhaustive-topic-extraction-receipt.json>",
+    "owner_execution_evidence": {
+      "analysis.exhaustive_topic_extraction": {
+        "downloads_made": 0,
+        "owner_function": "run_exhaustive_topic_extraction_stage",
+        "owner_module": "conference_pipeline.iclr2025_live.run_exhaustive_topic_extraction",
+        "provider_calls_made": 0
+      }
+    },
+    "provider_calls_made": 0,
+    "receipt_type": "conference_pipeline.cvpr2026_production_stage_receipt",
+    "required_script_ids": [
+      "analysis.exhaustive_topic_extraction"
+    ],
+    "run_id": "w1-cvpr-fixture-run",
+    "schema_version": 1,
+    "script_registry_sha256": "<REGISTRY_SHA>",
+    "secrets_copied": false,
+    "stage_contract": {
+      "accepted_evidence": [
+        "exhaustive-topic-extraction: receipt mode live",
+        "exhaustive-topic-extraction: registry digest matched",
+        "exhaustive-topic-extraction: required owner ids recorded",
+        "exhaustive-topic-extraction: owner execution evidence present",
+        "exhaustive-topic-extraction: output glob storage/extractions/w1-cvpr-fixture-run/by-topic/*.json count=1",
+        "exhaustive-topic-extraction: output glob storage/extractions/w1-cvpr-fixture-run/by-artifact/*.json count=1",
+        "exhaustive-topic-extraction: upstream stage corpus-inventory-index lineage current (storage/workflow-runs/w1-cvpr-fixture-run/stage-06-corpus-inventory-index.json)"
+      ],
+      "blockers": [],
+      "registry_stage_id": "exhaustive-topic-extraction",
+      "required_script_ids": [
+        "analysis.exhaustive_topic_extraction"
+      ],
+      "script_registry_sha256": "<REGISTRY_SHA>",
+      "stage_id": "exhaustive-topic-extraction",
+      "status": "pass",
+      "warnings": []
+    },
+    "stage_id": "exhaustive-topic-extraction",
+    "stage_order": 7,
+    "status": "succeeded",
+    "workspace": "<WORKSPACE>"
+  }
+}

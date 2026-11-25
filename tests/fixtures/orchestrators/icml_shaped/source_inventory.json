@@ -1,0 +1,11 @@
+{
+  "families": ["openreview-conference", "openreview-venue"],
+  "papers": [
+    {"id": "q-001", "family": "openreview-conference", "title": "Neural PDE Solvers for Fluid Flow", "authors": ["A. Author"], "path": "papers/q-001.pdf"},
+    {"id": "q-002", "family": "openreview-venue", "venue": "Quokka/2031/Workshop/Agents", "title": "Tool-Using Agents", "authors": ["B. Author"], "path": "papers/q-002.pdf"}
+  ],
+  "media": [
+    {"id": "m-001", "kind": "audio", "slideslive_id": "39000001", "media_path": "media/m-001.json", "title": "Invited Talk"},
+    {"id": "m-002", "kind": "caption", "slideslive_id": null, "media_path": null, "title": "Oral Session 1"}
+  ]
+}

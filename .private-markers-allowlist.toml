@@ -1,0 +1,103 @@
+# Reviewed exemptions for scripts/audit_private_markers.py (v6.0-Public-Release Phase 2).
+#
+# Each entry exempts one rule on lines of the matching path(s) that contain `match`.
+# Only generic text may appear here: fixture usernames, fixture or documentation
+# addresses, the scanner's own patterns. Never a real person's name, address or path:
+# those are supplied at run time through CONFERENCE_PIPELINE_PRIVATE_MARKERS and can
+# never be allowlisted. An entry nothing uses is reported as stale and should be removed.
+
+# This file: its match strings are the generic fixtures below. The run-time `extra`
+# rule (real identities) cannot be allowlisted, so this entry cannot hide one.
+[[allow]]
+path = ".private-markers-allowlist.toml"
+rule = "*"
+match = "*"
+reason = "the allowlist's own generic match strings"
+
+# The scanner's corpus and its own tests (spec section 8, T1).
+[[allow]]
+path = "tests/fixtures/private_markers/*"
+rule = "*"
+match = "*"
+reason = "the scanner's fixture corpus: generic markers by design"
+
+[[allow]]
+path = "tests/test_private_markers.py"
+rule = "*"
+match = "*"
+reason = "the scanner's tests write generic fixture markers"
+
+[[allow]]
+path = "src/conference_pipeline/_security/private_markers.py"
+rule = "cloud_storage"
+match = "Library/CloudStorage/"
+reason = "the rule's own pattern literal"
+
+# Publishing-gate tests that check a home path is rejected, with generic fixture users.
+[[allow]]
+path = "tests/test_byok_tools.py"
+rule = "home_path"
+match = "/Users/name/"
+reason = "fixture: the BYOK index rejects a private source path"
+
+[[allow]]
+path = "tests/test_generate_public_site.py"
+rule = "home_path"
+match = "/Users/example/"
+reason = "fixture: the site generator rejects a private output dir"
+
+[[allow]]
+path = "tests/test_public_cdn_liveness.py"
+rule = "home_path"
+match = "/Users/example/"
+reason = "fixture: the CDN planner rejects a local media path"
+
+[[allow]]
+path = "tests/test_public_closeout.py"
+rule = "home_path"
+match = "/Users/private"
+reason = "fixture: the closeout scan finds a private path"
+
+[[allow]]
+path = "tests/test_presentation_script_cli.py"
+rule = "home_path"
+match = "file:///Users/demo/"
+reason = "fixture: a PDF link to a local file is rejected"
+
+# Fixture and documentation addresses on domains that are not reserved for examples.
+[[allow]]
+path = "docs/configuration.md"
+rule = "email"
+match = "researcher@university.edu"
+reason = "documentation placeholder in the .env example"
+
+[[allow]]
+path = "tests/test_cvpr_event_media.py"
+rule = "email"
+match = "@cvpr.thecvf.com/virtual/2026"
+reason = "fixture: a URL with userinfo is rejected; not an address"
+
+[[allow]]
+path = "tests/test_exhaustive_topic_extraction.py"
+rule = "email"
+match = "@uni.edu"
+reason = "fixture: a synthetic paper header's author line"
+
+[[allow]]
+path = "tests/test_exhaustive_topic_extraction.py"
+rule = "email"
+match = "@nw.edu"
+reason = "fixture: a synthetic paper header's author line"
+
+[[allow]]
+path = "tests/test_presentation_review.py"
+rule = "email"
+match = "me@x.org"
+reason = "fixture: the Gemini prompt rewrite leaves an address alone"
+
+# The scrub policy names the patterns it scrubs.
+[[allow]]
+path = "docs/operations/public-release-scrub-policy.md"
+rule = "cloud_storage"
+match = "`Library/CloudStorage/…`"
+reason = "the policy's own example of the pattern"

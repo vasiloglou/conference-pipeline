@@ -1,0 +1,1 @@
+{"store_format": "npz-buckets-v2", "chunks": [{"chunk_id": "c-1", "source_id": "w-p-001", "bucket": 0}, {"chunk_id": "c-2", "source_id": "pi-1", "bucket": 0, "lane": "organizer-channel-captions"}]}

@@ -1,0 +1,250 @@
+# Seed vocabulary v1 for the v6.1 content ontology (plan D18 (a), Phase 2 spec 6.5).
+# Identity (work, version, passage) and the contextual-assertion core, adapted from
+# GND 0.4.0's examples/literature/assertions model. Methods, datasets, metrics and results
+# are deliberately absent: the growth strategies find them.
+# The owner accepted every constraint on 2026-11-18 (D8, notes/phase-2-owner-review.md),
+# so each is explicit, confirmed and alethic (review r1 F7 added the mandatory half of
+# the two "exactly one" sentences the owner approved); its rationale is the plain sentence the
+# owner reviewed and its provenance quotes the owner's ruling.
+# Version 4, no operations, no rejected_proposals, not unattended: a v5 root can include it.
+version: 4
+model_id: urn:conference-pipeline:ontology:seed@1
+source: {confidence: standard, kind: text-conversation, mode: one-shot}
+object_types:
+  - {id: work, kind: value, name: WorkKey, primitive: String}
+  - {id: version, kind: value, name: VersionId, primitive: String}
+  - {id: passage, kind: value, name: PassageId, primitive: String}
+  - {id: assertion, kind: value, name: AssertionId, primitive: String}
+  - {id: predicate, kind: value, name: Predicate, primitive: String}
+  - {id: participant, kind: value, name: ParticipantName, primitive: String}
+  - {id: participant_role, kind: value, name: ParticipantRole, primitive: String}
+  - {id: experiment, kind: value, name: ExperimentId, primitive: String}
+  - {id: condition, kind: value, name: ConditionText, primitive: String}
+  - {id: polarity, kind: value, name: Polarity, primitive: String}
+  - {id: attribution, kind: value, name: Attribution, primitive: String}
+fact_types:
+  - id: work_has_version
+    reading: "{WorkKey} has version {VersionId}"
+    roles:
+      - {role_name: work, object_type: work}
+      - {role_name: version, object_type: version}
+    constraints:
+      - id: work_has_version__unique_version
+        type: uniqueness
+        roles: [version]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Each version (a paper PDF, poster, slides or recording) belongs to exactly one work."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+      - id: work_has_version__mandatory_version
+        type: mandatory
+        role: version
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Each version (a paper PDF, poster, slides or recording) belongs to exactly one work."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: version_has_passage
+    reading: "{VersionId} contains passage {PassageId}"
+    roles:
+      - {role_name: version, object_type: version}
+      - {role_name: passage, object_type: passage}
+    constraints:
+      - id: version_has_passage__unique_passage
+        type: uniqueness
+        roles: [passage]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Each passage is in exactly one version."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+      - id: version_has_passage__mandatory_passage
+        type: mandatory
+        role: passage
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Each passage is in exactly one version."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: assertion_in_version
+    reading: "{AssertionId} is stated in {VersionId}"
+    roles:
+      - {role_name: assertion, object_type: assertion}
+      - {role_name: version, object_type: version}
+    constraints:
+      - id: assertion_in_version__unique_assertion
+        type: uniqueness
+        roles: [assertion]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Each assertion is stated in at most one version."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+      - id: assertion_in_version__mandatory_assertion
+        type: mandatory
+        role: assertion
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Every assertion is stated in some version."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: assertion_cites_passage
+    reading: "{AssertionId} rests on {PassageId}"
+    roles:
+      - {role_name: assertion, object_type: assertion}
+      - {role_name: passage, object_type: passage}
+    constraints:
+      - id: assertion_cites_passage__unique_assertion_passage
+        type: uniqueness
+        roles: [assertion, passage]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "An assertion names a given passage at most once."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+      - id: assertion_cites_passage__mandatory_assertion
+        type: mandatory
+        role: assertion
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Every assertion rests on at least one passage."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: assertion_has_predicate
+    reading: "{AssertionId} states {Predicate}"
+    roles:
+      - {role_name: assertion, object_type: assertion}
+      - {role_name: predicate, object_type: predicate}
+    constraints:
+      - id: assertion_has_predicate__unique_assertion
+        type: uniqueness
+        roles: [assertion]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Each assertion states exactly one predicate (with the mandatory constraint)."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+      - id: assertion_has_predicate__mandatory_assertion
+        type: mandatory
+        role: assertion
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Every assertion states a predicate."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: assertion_has_participant_in_role
+    reading: "{AssertionId} has {ParticipantName} as {ParticipantRole}"
+    roles:
+      - {role_name: assertion, object_type: assertion}
+      - {role_name: participant, object_type: participant}
+      - {role_name: role, object_type: participant_role}
+    constraints:
+      - id: assertion_has_participant_in_role__unique_assertion_role
+        type: uniqueness
+        roles: [assertion, role]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "In one assertion, each participant role is filled by at most one participant."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: assertion_under_condition
+    reading: "{AssertionId} holds under {ConditionText}"
+    roles:
+      - {role_name: assertion, object_type: assertion}
+      - {role_name: condition, object_type: condition}
+    constraints:
+      - id: assertion_under_condition__unique_assertion_condition
+        type: uniqueness
+        roles: [assertion, condition]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "An assertion lists a given condition at most once."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: assertion_in_experiment
+    reading: "{AssertionId} is measured in {ExperimentId}"
+    roles:
+      - {role_name: assertion, object_type: assertion}
+      - {role_name: experiment, object_type: experiment}
+    constraints:
+      - id: assertion_in_experiment__unique_assertion
+        type: uniqueness
+        roles: [assertion]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Each assertion is measured in at most one experiment."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: assertion_has_polarity
+    reading: "{AssertionId} is {Polarity}"
+    roles:
+      - {role_name: assertion, object_type: assertion}
+      - {role_name: polarity, object_type: polarity}
+    constraints:
+      - id: assertion_has_polarity__unique_assertion
+        type: uniqueness
+        roles: [assertion]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Each assertion has exactly one polarity (with the mandatory constraint)."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+      - id: assertion_has_polarity__mandatory_assertion
+        type: mandatory
+        role: assertion
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Every assertion has a polarity."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: assertion_attributed_to
+    reading: "{AssertionId} is attributed as {Attribution}"
+    roles:
+      - {role_name: assertion, object_type: assertion}
+      - {role_name: attribution, object_type: attribution}
+    constraints:
+      - id: assertion_attributed_to__unique_assertion
+        type: uniqueness
+        roles: [assertion]
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Each assertion has exactly one attribution (with the mandatory constraint)."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+      - id: assertion_attributed_to__mandatory_assertion
+        type: mandatory
+        role: assertion
+        source: explicit
+        status: confirmed
+        modality: alethic
+        rationale: "Every assertion is attributed as the work's own claim or a cited one."
+        provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+constraints:
+  - id: known_polarities
+    type: value
+    object_type: polarity
+    allowed: [asserted, negated, speculated]
+    source: explicit
+    status: confirmed
+    modality: alethic
+    rationale: "An assertion is asserted, negated or speculated."
+    provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: known_attributions
+    type: value
+    object_type: attribution
+    allowed: [own, cited]
+    source: explicit
+    status: confirmed
+    modality: alethic
+    rationale: "An assertion is the work's own claim or a claim it cites from other work."
+    provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
+  - id: cited_passage_is_a_passage
+    type: subset
+    subset_role_seq: [{fact_type: assertion_cites_passage, role: passage}]
+    superset_role_seq: [{fact_type: version_has_passage, role: passage}]
+    source: explicit
+    status: confirmed
+    modality: alethic
+    rationale: "An assertion rests only on passages that some version contains."
+    provenance: {user_quote: "Accept the seed (Recommended)", reviewed_in: "v6.1 Phase 2 owner review, 2026-11-18 (D8)"}
