@@ -176,6 +176,7 @@ Add one entry per component below this line, in this form (without the indentati
 - generate public site: publishing.release_step_commands, publishing.static_site
 - generate topic video: video.topic_video_builder, video.topic_video_command
 - gpt researcher lanes: research.deep_dive_commands, research.deep_dive_lanes
+- gpu second price: costs.estimator, ontology.producer
 - halt on blocker: conference.iclr2026_runner, workflow.runs
 - human review receipt: presentation.canary_review_packet, presentation.human_review_receipt, video.rough_cut_packet
 - hybrid retrieval: indexing.keyword_index, research.topic_research
@@ -368,6 +369,7 @@ Add one entry per component below this line, in this form (without the indentati
 - storyboard rows: presentation.editorial_storyboard_contract, presentation.storyboard_review
 - stream durations match: video.delivery_checks, video.delivery_checks_cli
 - summarize topics: analysis.full_read_summaries_cli, presentation.executive_topic_digests
+- superseded lane record: audit.talk_coverage, production.paper_admission
 - support label: ontology.gold, production.proof_stage
 - synthesize audio: media.tts_synthesis, podcast.script_tts
 - talk boundaries: extraction.legacy_workshop_talk_finder, indexing.talk_maps, media.workshop_talk_segmentation
@@ -686,6 +688,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_workshop_paper_discovery.py
 - notes: Lives in indexing/ but makes network calls; nothing in the package imports it (scripts/resolve_paper_titles.py, scripts/recover_paper_authors_by_title.py do). An arXiv lookup sends the exact-title phrase first and, on a miss, the title's content words only (arXiv's title index holds no stop words), pausing BACKEND_DELAY_SECONDS between the two requests.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the phrase-then-content-words arXiv lookup the notes describe.
 
 ### acquisition.paper_title_resolution_command
 - does: CLI to resolve paper titles on arXiv, Crossref, OpenAlex or Semantic Scholar to open copies and other venues, resumable [main, items_from_research_dir]
@@ -696,6 +699,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - tests: tests/test_workshop_paper_discovery.py
 - notes: Wraps conference_pipeline.indexing.paper_title_resolver; used by the conference-workshop-paper-discovery skill and scripts/download_workshop_site_papers.py.
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; --research-dir now skips files that are not workshop research objects.
 
 ### acquisition.proceedings_track_command
 - does: CLI entry point that downloads a separate CVF proceedings listing (e.g. Findings) as a main-conference track, skipping titles already in the corpus inventory [main]
@@ -802,6 +806,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - tests: tests/test_slideslive_recovery.py, tests/test_operator_docs_contract.py, tests/test_plan_conference_analysis_skill.py
 - notes: Approved owner ref of required task `acquisition.slideslive_media_recovery`; the planning skills render it as the command for new conferences. Its default `--env-file` is the repository root's .env.
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the default env file now resolves from the script's checkout.
 
 ### acquisition.slideslive_recovery_command
 - does: CLI for focused recovery of SlidesLive slide images from cached item-page probes only [recover_slideslive_slides]
@@ -949,6 +954,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_youtube_transcripts.py, tests/test_youtube_harvest_lanes.py
 - notes: The Gemini model comes from registry task transcription.youtube_url; every call goes through record_provider_call and a budget halt never auto-raises.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; Gemini output tokens now count thinking tokens.
 
 ## analysis
 
@@ -971,6 +977,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - tests: tests/test_analysis_steps_unit.py
 - notes: Superseded by analysis/steps/gap_fill.py, which keeps a byte-identical copy of TOPIC_CORRECTIONS (test enforces); base_dir is conferences/neurips2025 under the repository root.
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; base_dir is now derived from the script's checkout.
 
 ### analysis.exhaustive_summaries
 - does: Stage 07A: summarizes every topic's full-read transcript and paper evidence into per-topic/category packs with an operator-chosen model [run_exhaustive_topic_summaries, resolve_summary_model]
@@ -1171,6 +1178,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: analysis.topic_strategy_cli
 - tests: tests/test_topic_strategy.py
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the default env file is now relative to the package checkout.
 
 ### analysis.topic_strategy_cli
 - does: CLI entry point for conference topic strategy generation (runs conference_pipeline.analysis.topic_strategy main) [main]
@@ -1215,8 +1223,8 @@ Add one entry per component below this line, in this form (without the indentati
 - checked: partial
 
 ### audit.components_index
-- does: Generate, check and search the component catalog and per-module inventory pages from source ASTs [write_or_check, search, show, review]
-- verbs: component index, components catalog, search components, find component by capability, regenerate index, check index stale, unassigned modules, draft component entries, import graph, uses used_by, component facts, review index, show component
+- does: Generate, check and search the component catalog and per-module inventory pages from source ASTs, and check a change against them (changed: an unanswered reread of a component fails --strict) [write_or_check, search, show, review, changed]
+- verbs: component index, components catalog, search components, find component by capability, regenerate index, check index stale, unassigned modules, draft component entries, import graph, uses used_by, component facts, review index, show component, changed against base, reread lead, answered reread, strict reread gate, public names gained or lost
 - status: canonical
 - modules: scripts/components_index.py
 - uses: (none)
@@ -1236,8 +1244,8 @@ Add one entry per component below this line, in this form (without the indentati
 - checked: partial
 
 ### audit.talk_coverage
-- does: Check that every talk transcript on disk (v1.5 receipts, stage transcription inventories, evidence lanes, the deep-dive export) is admitted to the corpus inventory or excluded by name; exit 0/1/2 [measure_talk_coverage]
-- verbs: talk coverage, transcripts on disk, unadmitted transcripts, unaccounted talks, coverage guard, transcript admission check, superseded lane record, milestone close gate, talks missing from inventory
+- does: Check that every talk transcript on disk (v1.5 receipts, stage transcription inventories, evidence lanes, the deep-dive export) is admitted to the corpus inventory or excluded by name; a location it cannot list, a broken link or an empty linked folder is exit 2, never empty; exit 0/1/2 [measure_talk_coverage]
+- verbs: talk coverage, transcripts on disk, unadmitted transcripts, unaccounted talks, coverage guard, transcript admission check, superseded lane record, milestone close gate, talks missing from inventory, unreadable location, drive linked folder
 - status: canonical
 - modules: src/conference_pipeline/indexing/talk_coverage.py, scripts/audit_talk_coverage.py
 - uses: (none)
@@ -1316,6 +1324,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - tests: tests/test_private_markers.py
 - notes: Reviewed exemptions live in .private-markers-allowlist.toml; a staged tree is scanned with no allowlist.
+- reread: 2026-11-26, beside the diff of its modules since 16afb84 (code at 2d8f924); still accurate; error and stale-allowlist lines are now redacted.
 
 ### audit.runtime_contract_coverage
 - does: Registry-level audit that every required owner id is evidenced by a distinct contract artifact and receipt names never collide [audit_runtime_contract_coverage]
@@ -1670,6 +1679,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_iclr2025_v151_recovery.py, tests/test_v15_iclr_live_content_contract.py, tests/test_exhaustive_topic_extraction.py, tests/test_enhanced_indexing_vector_store.py, tests/test_query_planning_gpt_researcher.py, tests/test_synthesis_trend_report.py, tests/test_exhaustive_extraction_recovery_config.py, tests/test_phase_15_traceability_stage.py
 - notes: Despite the ICLR name it owns shared code: run_exhaustive_topic_extraction (used by the CVPR/ICML runners, production/exhaustive_extraction_stage.py and workflow.py) and the receipt helpers sanitize_for_receipt/utc_now/relpath imported by indexing, research, extractions and cli. Run as scripts/produce_iclr2025_live_content.py; --write-gsd-artifacts rewrites .planning phase files.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; only a model-literal-ok comment was added.
 
 ### conference.iclr2025_one_off
 - does: ICLR 2025: Phase 26 local-Qwen/MLX extraction pilot sample and two-topic rerun into a separate receipt-backed output lane [main]
@@ -1703,6 +1713,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_iclr2026_production_runner.py, tests/test_icml2026_workspace_symlink_containment.py, tests/test_stage_script_registry.py, tests/test_stage_owner_registry.py
 - notes: Drives shared modules receipt_lineage, stage_contracts, provider_receipts, stage_script_registry, acquisition (workshop discovery), transcription_ocr, indexing (chunking, embeddings, corpus_vector_store, paper_source_metadata), analysis (narrative, manifest, source_pack_selection, full_read_evidence_selection), iclr2025_live.run_exhaustive_topic_extraction and presentation.manifest/step_lineage; podcast and presentation stages call scripts/generate_focused_podcast.py, scripts/render_podcast_audio.py and scripts/presentations/*. Release and proof (stages 11-12) are fail-closed stubs that only write a STAGE_UNAVAILABLE blocker; file worth splitting (it also has its own HTML link crawler, OpenReview 2026 fetcher, Stage 8 synthesis client and corpus record builder).
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the default env file and its remediation text are now relative to the checkout.
 
 ### conference.icml2026_one_off
 - does: ICML 2026 one-off: reconcile the virtual-workshop listing with already-acquired SlidesLive audio into the talk media inventory [build_reconciled_inventory]
@@ -1736,6 +1747,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_presentation_draft_research_cli.py, tests/test_workflow_cli.py
 - notes: All hardwire conferences/neurips2025 paths and the 20 NeurIPS topic names; extract_topic_content.py refuses --workspace (docs/operations/presentation-contract.md calls it unsupported for reusable runs). Only extract_topic_content.py has a test (its workspace refusal).
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; hardwired paths now resolve from the checkout and openai_deep_research no longer reads ~/.zshrc.
 
 ### conference.neurips2025_pipeline
 - does: NeurIPS 2025: legacy acquisition orchestrator that logs in, discovers presentations, downloads media, transcribes, OCRs slides and fetches cited papers [NeuripsPipeline]
@@ -1918,6 +1930,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_iclr_topic_gptr_param_sweep.py
 - notes: Imports conference_pipeline.iclr2025_live helpers; outputs confined to storage/experiments/<slug>/ and guarded loopback-only.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; only a model-literal-ok comment on the pinned embedding model was added.
 
 ### experiment.review_model_trial
 - does: Trial a candidate model as presentation reviewer: replay recorded decks or plant seeded defects, with receipted spend cap [cmd_replay, cmd_seed_run]
@@ -2567,6 +2580,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_embedding_factory.py, tests/test_mlx_embeddings.py, tests/test_ollama_embeddings.py, tests/test_local_researcher.py
 - notes: Ollama client is loopback-only (uses _security.loopback) and may spawn `ollama serve`.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the MLX default model now comes from the catalog alias bge_m3_mlx.
 
 ### indexing.embedding_selection
 - does: Single resolver for which embedding provider and model to use, refusing paid OpenAI embeddings without explicit opt-in [resolve_embedding_config]
@@ -2578,6 +2592,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_embedding_factory.py, tests/test_build_public_index.py, tests/test_enhanced_indexing_vector_store.py
 - notes: Also estimates cost avoided by local embeddings (estimate_local_embedding_cost_avoided), a costs job living here.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the resolver's MLX default now comes from the catalog alias.
 
 ### indexing.event_talk_splits
 - does: Split multi-talk event recordings into named talks with a model, using the program's scheduled titles, and write base talk maps [split_recording]
@@ -2668,6 +2683,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - notes: Both hardcode conferences/neurips2025/vector_store; query_vector_store reads API keys from the environment only. Two capabilities in two files, kept together as one legacy NeurIPS tool set.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; query_vector_store now reads API keys from the environment, never ~/.zshrc.
 
 ### indexing.legacy_vector_store_setup
 - does: NeurIPS 2025: builds a ChromaDB store from presentations with fixed-size chunks (legacy first version) [setup_vector_store.main]
@@ -2678,6 +2694,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - notes: docs/workflows/pipeline-workflow.md: "Do not present as the current analysis-plan setup command". Replacement: conference_pipeline.indexing.chunking (enhanced-indexing-vector-store stage).
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; setup keys now come from the environment, never ~/.zshrc.
 
 ### indexing.neurips2025_reference_vector_store
 - does: NeurIPS 2025: builds a ChromaDB store of papers, transcript and slide chunks with entity tracking, the pinned reference for canonical chunking [setup_vector_store_enhanced.main]
@@ -2688,6 +2705,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - notes: Its docstring and docs/source-of-truth.md say it is a historical reference, not the production owner; production uses conference_pipeline.indexing.chunking via the enhanced-indexing-vector-store stage.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the ~/.zshrc key reader became an environment read.
 
 ### indexing.paper_author_recovery
 - does: Recover missing paper authors by exact-title lookup on arXiv/Crossref, accepted only when surnames appear on the paper's first page [main, _unresolved_records]
@@ -2710,8 +2728,8 @@ Add one entry per component below this line, in this form (without the indentati
 - checked: partial
 
 ### indexing.paper_identity
-- does: Stable paper identity: canonical OpenReview, arXiv, proceedings and site keys, and a union merge of records into papers where a site-only record may join by title but two stable ids never do [identity_key, merge_identities]
-- verbs: stable paper identity, paper key, merge records into papers, openreview forum id, arxiv id without version, site id, title join, title collision, union find papers, deduplicate papers by id, same paper two lanes
+- does: Stable paper identity: canonical OpenReview, arXiv, proceedings and site keys, a paper key preferring OpenReview, then proceedings, arXiv and site, and a union merge of records into papers where a site-only record joins by title only when all its titles name one paper, and two stable ids never join [identity_key, merge_identities]
+- verbs: stable paper identity, paper key, merge records into papers, openreview forum id, arxiv id without version, site id, title join, title collision, union find papers, deduplicate papers by id, same paper two lanes, paper key preference
 - status: canonical
 - modules: src/conference_pipeline/indexing/paper_identity.py
 - uses: acquisition.proceedings_tracks
@@ -2728,6 +2746,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: indexing.inventory_index_backfill, indexing.talk_source_lanes, production.paper_admission
 - tests: tests/test_paper_admission.py
 - notes: v6.0 Phase 5. The registry shape follows indexing.transcript_evidence_lanes.
+- reread: 2026-11-26, beside the diff of its modules since 52499c4 (code at 2d8f924); still accurate; authors are stripped of email addresses and may come from a lookup receipt.
 
 ### indexing.paper_metadata
 - does: Resolve paper titles and authors per source family with provenance: program join, workshop receipts, PDF-header parse [enrich_paper_records]
@@ -2810,6 +2829,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: cli.conference_pipeline
 - tests: tests/test_talk_admission.py
 - notes: v6.0 Phase 5.1. Readers are named by format, selected in storage/transcription-ocr/talk_sources.json; refusals raise PaperLaneError. CLI: conference-pipeline talks bind <slug> [--dry-run] [--project-root]. production.paper_admission admits the lanes it writes.
+- reread: 2026-11-26, beside the diff of its modules since 04b4d7a (code at 2d8f924); still accurate; lane and recording ids are checked safe and paths read lexically.
 
 ### indexing.transcript_evidence_lanes
 - does: Register digest-bound transcript evidence lanes and admit their transcripts into the corpus inventory, fail-closed [load_admitted_lane_records]
@@ -2820,6 +2840,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: conference.cvpr2026_one_off, indexing.talk_source_lanes, indexing.youtube_harvest_lanes, media.talk_boundary_discovery_cli, production.corpus_index_stage, production.paper_admission
 - tests: tests/test_transcript_evidence_lanes.py, tests/test_youtube_harvest_lanes.py, tests/test_cvpr2026_production_runner.py
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; item_kind joins the carried per-record fields.
 
 ### indexing.youtube_harvest_lanes
 - does: Turn YouTube talk-harvest directories into caption and model-transcript evidence lanes, with typed coverage gaps [plan_harvest_lanes, bind_harvest_lanes]
@@ -2851,6 +2872,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: experiment.review_model_trial, figures.quality_panel, figures.spec_authoring, llm.openai_compatible, narration.engaging_narration, ontology.producer, presentation.blueprint_generation, presentation.claim_fidelity_review, presentation.deck_review, presentation.editorial_blueprint, presentation.executive_claim_fidelity, presentation.executive_topic_digests, … +2 more (graph.md)
 - tests: tests/test_llm_client.py, tests/test_blueprint_generation_provider.py, tests/test_engaging_narration_locators.py
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since 499d04e (code at 2d8f924); still accurate; a normalization error now carries the call's receipt.
 
 ### llm.fastvlm_client
 - does: In-process native MLX FastVLM adapter for image-only local vision calls, loading the model lazily [FastVLMNativeClient]
@@ -2915,8 +2937,8 @@ Add one entry per component below this line, in this form (without the indentati
 - checked: partial
 
 ### llm.model_families
-- does: Decide request shape by model generation: whether an OpenAI model takes reasoning params and whether a Claude model rejects temperature [uses_openai_reasoning_params]
-- verbs: model family, reasoning params, max_completion_tokens, temperature rejected, gpt generation, o-series, claude generation, request shape, anthropic temperature, openai reasoning model
+- does: Decide request shape by model generation: whether an OpenAI model takes reasoning params and whether a Claude model (Opus, Sonnet, Haiku, Fable) rejects temperature [uses_openai_reasoning_params, anthropic_rejects_temperature]
+- verbs: model family, reasoning params, max_completion_tokens, temperature rejected, gpt generation, o-series, claude generation, request shape, anthropic temperature, openai reasoning model, claude fable temperature, haiku 5.5 temperature
 - status: canonical
 - modules: src/conference_pipeline/model_governance/model_families.py
 - uses: (none)
@@ -2936,7 +2958,7 @@ Add one entry per component below this line, in this form (without the indentati
 
 ### llm.openai_compatible
 - does: Self-hosted OpenAI-compatible endpoints for llm_client: a loopback-only local server at $0 and Modal endpoints priced by GPU seconds, with a health probe that learns the served model id before the first call [local_adapter, modal_adapter, probe, served_model, base_url]
-- verbs: local llm endpoint, modal endpoint, vllm openai compatible, self-hosted model call, gpu second pricing, endpoint health probe, served model id, loopback only
+- verbs: local llm endpoint, modal endpoint, vllm openai compatible, self-hosted model call, gpu second pricing, endpoint health probe, served model id, loopback only, endpoint contact mark, failed call dispatched flag
 - status: canonical
 - modules: src/conference_pipeline/model_governance/openai_compatible.py
 - uses: llm.client, llm.model_registry, llm.provider_receipts, security.loopback
@@ -3385,8 +3407,8 @@ Add one entry per component below this line, in this form (without the indentati
 ## ontology
 
 ### ontology.gnd_tool
-- does: Total wrapper for the GND (get-nick-done) CLI and its packaged examples: run with timeout and credential-scrubbed env, version pin, per-command exit-code meanings [run_gnd, run_gnd_example, run_gnd_python, require_gnd, exit_meaning]
-- verbs: run gnd, gnd command, gnd version, require gnd, gnd exit code meaning, gnd example module, gnd literature example, gnd interpreter, orm model check, scrub credentials from subprocess env
+- does: Total wrapper for the GND (get-nick-done) CLI and its packaged examples: run with timeout and an allowlisted subprocess env (no credential of any name passes), version pin, per-command exit-code meanings including a kill by signal [run_gnd, run_gnd_example, run_gnd_python, require_gnd, exit_meaning, scrubbed_env]
+- verbs: run gnd, gnd command, gnd version, require gnd, gnd exit code meaning, gnd example module, gnd literature example, gnd interpreter, orm model check, scrub credentials from subprocess env, subprocess environment allowlist, killed by signal
 - status: canonical
 - modules: src/conference_pipeline/ontology/__init__.py, src/conference_pipeline/ontology/gnd_tool.py
 - uses: (none)
@@ -3394,8 +3416,8 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_ontology_gnd_tool.py
 
 ### ontology.gnd_probe
-- does: Offline capability probe for the pinned GND version: a positive and a negative row per capability the ontology plan uses, on GND's own packaged examples, writing a gnd-capability-probe/1 receipt [run_probe, build_rows, prepare_archive, coverage]
-- verbs: gnd capability probe, probe gnd features, gnd negative control, multipass reading replay, assurance report, rule mining probe, pyrel export probe, gnd adoption check
+- does: Offline capability probe for the pinned GND version: a positive and a negative row per capability the ontology plan uses, on GND's own packaged examples; a negative row passes only on its exit and GND's stated reason text, a row with outputs only when they exist (digested); writes a gnd-capability-probe/1 receipt [run_probe, build_rows, prepare_archive, coverage]
+- verbs: gnd capability probe, probe gnd features, gnd negative control, multipass reading replay, assurance report, rule mining probe, pyrel export probe, gnd adoption check, negative row reason text, probe output digests
 - status: canonical
 - modules: src/conference_pipeline/ontology/gnd_probe.py, scripts/ontology/gnd_capability_probe.py
 - uses: ontology.gnd_tool
@@ -3404,7 +3426,7 @@ Add one entry per component below this line, in this form (without the indentati
 
 ### ontology.work_families
 - does: Work-family roster of a workspace: every indexable artifact in one work family (paper with its posters, slides and recordings; workshop paper; event) or unjoined with a reason, and split groups for works in two tracks and multi-talk recordings [build_roster, roster_problems, classify, artifact_index]
-- verbs: work family roster, group artifacts into works, join poster to paper, companion pdf author join, split group, multi-talk recording links papers, not a work exclusion, unjoined artifacts
+- verbs: work family roster, group artifacts into works, join poster to paper, companion pdf author join, split group, multi-talk recording links papers, not a work exclusion, unjoined artifacts, ambiguous companion, ambiguous talk shares split group, receipt title joins companions
 - status: canonical
 - modules: src/conference_pipeline/ontology/work_families.py
 - uses: indexing.paper_identity, indexing.paper_metadata
@@ -3428,10 +3450,11 @@ Add one entry per component below this line, in this form (without the indentati
 - uses: ontology.gold_mapping
 - used_by: ontology.pilot
 - tests: tests/test_ontology_pilot.py
+- reread: 2026-11-26, beside the diff of its modules since ecd90d5 (code at 2d8f924); still accurate; the predicate is no longer an anchored role.
 
 ### ontology.pilot
 - does: Model pilots: dev and growth sample manifests by salted hash, broad / targeted / review / growth arms calling the reading host's prompts and the growth host one unit at a time, a per-candidate runner that halts at the spend cap with the works not reached and stops a Modal app on every path, a seed run for gnd verify, and the pilot CLI (sample, estimate, run, score, report) [select_sample, growth_sample, load_dev, read_arm, review_arm, run_arm, growth_root, seed_run, verify_claims]
-- verbs: model pilot, pilot sample, compare candidate models, broad pass pilot, reviewer pilot, growth round pilot, stop modal app, budget limited run
+- verbs: model pilot, pilot sample, compare candidate models, broad pass pilot, reviewer pilot, growth round pilot, stop modal app, budget limited run, provider error as unit outcome, unattended seed growth root
 - status: canonical
 - modules: src/conference_pipeline/ontology/pilot.py, scripts/ontology/pilot_run.py
 - uses: costs.estimator, llm.provider_receipts, ontology.assertions, ontology.extraction, ontology.gold_select, ontology.growth, ontology.pilot_score, ontology.producer, ontology.reading, ontology.seed_package
@@ -3465,10 +3488,11 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: ontology.build_inputs, ontology.catalog, ontology.gold_select
 - tests: tests/test_ontology_splits.py
 - notes: Dev and sealed-test pools are capped at half of each stratum's eligible groups; groups cited by analysis products are never eligible.
+- reread: 2026-11-26, beside the diff of its modules since 0b7c0d2 (code at 2d8f924); still accurate; the group table is now checked against the roster's membership.
 
 ### ontology.growth
 - does: Unattended vocabulary growth host, one round per document under GND's unattended-growth procedure: growth prompt and reply shape, R15 refusal of new fact types without Steps 3-7, proposal v3 built in GND's interpreter with quotes located and the document declared, validate --require-documents, evolve preview --policy additive --shape-report, evolve apply, a consolidation proposal every tenth round for review only, growth history and rejected-mapping ledger, dev/sealed works refused [run_round, growth_prompt, reply_problems, split_blocker]
-- verbs: unattended growth round, grow vocabulary from document, evolution proposal, evolve preview apply, shape report, consolidation round, growth history, rejected mappings, leakage refusal
+- verbs: unattended growth round, grow vocabulary from document, evolution proposal, evolve preview apply, shape report, consolidation round, growth history, rejected mappings, leakage refusal, r15 recheck after mapping, derived fact types, document label bound to other bytes
 - status: canonical
 - modules: src/conference_pipeline/ontology/growth.py, src/conference_pipeline/ontology/_growth_gnd.py
 - uses: ontology.gnd_tool, ontology.gold_label, ontology.producer
@@ -3492,11 +3516,12 @@ Add one entry per component below this line, in this form (without the indentati
 - uses: indexing.paper_metadata, ontology.splits
 - used_by: ontology.build_inputs
 - tests: tests/test_ontology_catalog.py
-- notes: GND 0.4.0 limits: one population per fact type, 10 MiB per file, 100,000 reference entries per model, no reference populations in included models.
+- notes: GND 0.4.0 limits: one population per fact type, 10 MiB per file, 32 MiB for a model's whole reference set, 100,000 reference entries per model, no reference populations in included models.
+- reread: 2026-11-26, beside the diff of its modules since 0b7c0d2 (code at 2d8f924); still accurate; notes gained the 32 MiB reference-set limit the shards now respect.
 
 ### ontology.admission
-- does: Admission of extracted assertions through GND's judgment route on the model as it is: GND's own flattening (gnd extract), consumer-pinned receipts from review verdicts, gnd judgments check, host semantic-support and positive-own stages, admitted / supported-not-admitted / rejected dispositions, an admitted population that keeps every row hanging off a kept assertion, admission-record/1, and the composition digest check [admit, flatten, composition_refusal, AssertionShape, byte_span]
-- verbs: admission adapter, judgments check, judgment receipts, consumer pinned policy, positive own findings, supported not admitted, admitted population digest, flatten include root
+- does: Admission of extracted assertions through GND's judgment route on the model as it is: GND's own flattening (gnd extract, skipped for a root with no includes; reference populations kept beside the flat model and bound in each receipt's reference_identity), consumer-pinned receipts from review verdicts, gnd judgments check, host semantic-support and positive-own stages, admitted / supported-not-admitted / rejected dispositions, an admitted population that keeps every row hanging off a kept assertion, admission-record/1, and the composition digest check [admit, flatten, composition_refusal, AssertionShape, byte_span]
+- verbs: admission adapter, judgments check, judgment receipts, consumer pinned policy, positive own findings, supported not admitted, admitted population digest, flatten include root, reference identity in receipts, reference populations admission
 - status: canonical
 - modules: src/conference_pipeline/ontology/admission.py, src/conference_pipeline/ontology/_admission_gnd.py
 - uses: ontology.gnd_tool
@@ -3504,8 +3529,8 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_ontology_admission.py
 
 ### ontology.assurance
-- does: Two-root assurance adapter around GND 0.4.0's packaged staged assurance report: verifies each source's rebind record binds the extraction and checking roots, scores a checking view and an extraction view under committed floors, merges them with GND's own stage logic [score_two_root, load_floors, binding_refusal, checking_corpus_sha256]
-- verbs: assurance report, two-root scoring, extraction root, checking root, rebind verification, crossed roots, assurance floors, planted fault, staged assurance
+- does: Two-root assurance adapter around GND 0.4.0's packaged staged assurance report: verifies each source's rebind record binds the extraction and checking roots, the document and every per-source population, anchors and sidecar digest, scores a checking view and an extraction view under committed floors, merges them with GND's own stage logic [score_two_root, load_floors, binding_refusal, checking_corpus_sha256]
+- verbs: assurance report, two-root scoring, extraction root, checking root, rebind verification, crossed roots, assurance floors, planted fault, staged assurance, rebind digest mismatch
 - status: canonical
 - modules: src/conference_pipeline/ontology/assurance.py, src/conference_pipeline/ontology/_assurance_gnd.py
 - uses: ontology.gnd_tool
@@ -3528,7 +3553,7 @@ Add one entry per component below this line, in this form (without the indentati
 - status: canonical
 - modules: src/conference_pipeline/ontology/gold.py
 - uses: (none)
-- used_by: ontology.gold_adjudicate, ontology.gold_label, ontology.gold_links, ontology.gold_run
+- used_by: ontology.gold_adjudicate, ontology.gold_label, ontology.gold_links, ontology.gold_model_adjudicators, ontology.gold_run
 - tests: tests/test_ontology_gold.py
 
 ### ontology.gold_select
@@ -3546,21 +3571,31 @@ Add one entry per component below this line, in this form (without the indentati
 - status: canonical
 - modules: src/conference_pipeline/ontology/gold_label.py
 - uses: ontology.gold, ontology.producer
-- used_by: ontology.gold_links, ontology.gold_run, ontology.growth, ontology.reading
+- used_by: ontology.gold_links, ontology.gold_model_adjudicators, ontology.gold_run, ontology.growth, ontology.reading
 - tests: tests/test_ontology_gold_label.py
 
 ### ontology.gold_adjudicate
-- does: Owner adjudication of gold labels: queue of every disagreement plus a hashed 10% sample of agreements, recorded rulings, gold files built only when every queued item is ruled, duplicate claims merged or refused when their labels conflict [queue, gold_for_work, ruling_problems, agreement_report]
-- verbs: adjudication queue, owner rulings, label agreement, disagreement review, gold file build
+- does: Owner adjudication of gold labels: queue of every disagreement plus a hashed 10% sample of agreements, the phone sheet's cards and the rulings read back from its rows, recorded rulings, gold files built only when every queued item is ruled, duplicate claims merged or refused when their labels conflict [queue, gold_for_work, ruling_problems, agreement_report, sheet_items, rulings_from_rows]
+- verbs: adjudication queue, owner rulings, label agreement, disagreement review, gold file build, adjudication sheet, phone page cards, rulings from page rows, link edit label
 - status: canonical
-- modules: src/conference_pipeline/ontology/gold_adjudicate.py
+- modules: src/conference_pipeline/ontology/gold_adjudicate.py, src/conference_pipeline/ontology/gold_sheet.py
 - uses: ontology.gold
 - used_by: ontology.gold_run
-- tests: tests/test_ontology_gold_label.py
+- tests: tests/test_ontology_gold_label.py, tests/test_ontology_gold_sheet.py
+
+### ontology.gold_model_adjudicators
+- does: Model stand-ins for the owner's gold adjudication: two blind judges (Fable, Astra) rule every queue card, their agreement is measured and their exact agreements become rulings; Opus and Sol debate the split cards for up to three rounds [judge, agreement, agreed_rulings, debate, consensus]
+- verbs: model adjudicators, blind adjudication, adjudicator agreement, judges agree as rulings, debate split items, two model debate, consensus rounds, verdict confusion table, ruling for a verdict
+- status: canonical
+- modules: src/conference_pipeline/ontology/gold_judge.py, src/conference_pipeline/ontology/gold_debate.py
+- uses: ontology.gold, ontology.gold_label
+- used_by: (none)
+- tests: tests/test_ontology_gold_judge.py, tests/test_ontology_gold_debate.py
+- notes: v6.1 Phase 3 (spec §23-24); governed tasks ontology.gold_adjudicate_fable / _astra and ontology.gold_debate_opus / _sol. No tracked entry point: Phase 3 ran them from scratch runners (005-phase-3.md, refactoring review), so only their tests import them.
 
 ### ontology.gold_links
 - does: Cross-work link gold within one split: candidate name pairs from the labellers' statement participants (case, punctuation and plural folded, generic names skipped, capped per split), both labellers label same/different, owner rules disagreements, identity and synonym/homonym name pairs built [candidates, label_links, link_queue, build_links]
-- verbs: identity pairs, name pairs, same or different, homonym, synonym, cross-paper entity link, link labelling
+- verbs: identity pairs, name pairs, same or different, homonym, synonym, cross-paper entity link, link labelling, generic name filter, conflicting labels, restrict labelled pairs to candidates
 - status: canonical
 - modules: src/conference_pipeline/ontology/gold_links.py
 - uses: ontology.gold, ontology.gold_label
@@ -3575,10 +3610,11 @@ Add one entry per component below this line, in this form (without the indentati
 - uses: ontology.assurance
 - used_by: ontology.assertions
 - tests: tests/test_ontology_gold_mapping.py
+- reread: 2026-11-26, beside the diff of its modules since aae88b9 (code at 2d8f924); still accurate; metadata words are accepted only in metadata-named roles.
 
 ### ontology.contract
-- does: Measurement-contract scorer for any candidate schema: expressibility, supported coverage and precision, unexpressible rate, reuse, constraint richness, answerability, efficiency, each not-scored with a reason when its input does not exist [score, is_free_text]
-- verbs: measurement contract, schema expressibility, fact coverage, unexpressible rate, subsequent reuse, constraint richness, competency answerability
+- does: Measurement-contract scorer for any candidate schema: expressibility (mapped facts must carry every participant, condition, quantity, polarity, attribution and experiment), supported coverage and precision inside the labelled passages, unexpressible rate, reuse, constraint richness, answerability, efficiency, each not-scored with a reason when its input does not exist [score, is_free_text, lost_elements]
+- verbs: measurement contract, schema expressibility, fact coverage, unexpressible rate, subsequent reuse, constraint richness, competency answerability, lost elements of a statement, precision inside labelled passages
 - status: canonical
 - modules: src/conference_pipeline/ontology/contract.py
 - uses: (none)
@@ -3586,8 +3622,8 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_ontology_contract.py
 
 ### ontology.gold_run
-- does: The gold lane CLI: select (committed selection manifest), estimate (labelling cost from measured prompts), label (saved or capped live), queue (owner adjudication), build (gold files and split pairs) [main]
-- verbs: gold lane, select gold works, estimate labelling cost, run labellers, build gold pairs
+- does: The gold lane CLI: select (committed selection manifest), estimate (labelling cost from measured prompts), label (saved or capped live, then each split's cross-work link lane), queue (owner adjudication of labels and link pairs), build (gold files and split pairs with built links, refused when a label's split is not its selection's or a split's link lane is unfinished) [main]
+- verbs: gold lane, select gold works, estimate labelling cost, run labellers, build gold pairs, link lane, build links
 - status: canonical
 - modules: src/conference_pipeline/ontology/gold_run.py, scripts/ontology/gold_run.py
 - uses: costs.estimator, llm.model_registry, ontology.gold, ontology.gold_adjudicate, ontology.gold_label, ontology.gold_links, ontology.gold_select
@@ -3595,8 +3631,8 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_ontology_gold_run.py
 
 ### ontology.producer
-- does: Model-call producers for ontology hosts: a capped live producer over llm_client per role's governed task with responses saved by prompt and options, superseded answers kept and their cost counted on resume, a saved-response replay and a producer that refuses any call [OntologyProducer, SavedProducer, RefusingProducer, outcome_of, parse_json_object]
-- verbs: saved response replay, live producer spend cap, reuse saved model answer, superseded response, replay with zero calls, response outcome refused empty truncated, parse json from model reply
+- does: Model-call producers for ontology hosts: a capped live producer over llm_client per role's governed task with responses saved by prompt, options, task and selection, superseded answers and failed-call charges kept and counted on resume, GPU-billed calls reserved and charged by wall time, a saved-response replay and a producer that refuses any call [OntologyProducer, SavedProducer, RefusingProducer, outcome_of, parse_json_object, gpu_second_price]
+- verbs: saved response replay, live producer spend cap, reuse saved model answer, superseded response, replay with zero calls, response outcome refused empty truncated, parse json from model reply, gpu second price, wall time charge, failed call charge
 - status: canonical
 - modules: src/conference_pipeline/ontology/producer.py
 - uses: costs.estimator, llm.client
@@ -3644,6 +3680,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_analysis_reconciliation_contract.py
 - notes: Model via default_model_for_provider("ranking.fact_importance", "gemini"); output feeds scripts/generate_focused_podcast.py. run_all_rankings.sh is a NeurIPS 2025 batch over 20 topics, run from the repository root, with a --model gemini-2.0-flash literal.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; run_all_rankings.sh now changes to the repository root itself.
 
 ### podcast.focused_script
 - does: Write a focused two-host podcast script that must cover the top-ranked facts, via Anthropic or Gemini under the governed model [generate_focused_script, select_facts]
@@ -4324,6 +4361,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_presentation_script_cli.py, tests/test_phase13_phase14_integration.py
 - notes: Stage-owner registry ids presentation.phase13_rollout, presentation.phase13_bulk_readiness and presentation.phase13_completion (docs/reference/stage-owner-audit.md 375-377); the canary packet/evidence builders (build_phase13_canary_*.py) are in another group and belong with this flow. run_phase13_rollout.py also carries a Phase 15 canary repair gate (lines 134-298); file worth splitting.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the rollout's default env file is now relative to the checkout.
 
 ### presentation.pptx_export_v2
 - does: Convert markdown slides to a PowerPoint deck on the RelationalAI PPTX template with tables, rich text, notes and SVG-to-PNG images [PresentationBuilder]
@@ -4334,6 +4372,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - notes: Nothing in scripts, src, tests or skills calls it; the wired PPTX exporter is scripts/presentations/md_to_pptx.py (v1, another reader's group). Candidate for duplicate-of the v1 entry or deprecated.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the first template location is now under the home Downloads folder.
 
 ### presentation.presenter_script_command
 - does: CLI that writes per-slide presenter and NotebookLM 2-host narration scripts with Gemini, or the deterministic delivery_single_speaker/notebooklm JSON contracts from render_spec.json [main, process_structured_delivery]
@@ -4685,6 +4724,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_topic_build_orchestrator.py, tests/test_advisory_visual_qc.py, tests/test_figure_archetypes.py
 - notes: Origin is the v2.3 ICLR 2026 runbook, but it is conference-general (label and run id come from config.yaml); production.presentation_chain says it mirrors this script's stage order and QC loop, so the two are parallel implementations. State is in <deck>/orchestrator_state.json.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the orchestrator's default env file is now relative to the checkout.
 
 ### presentation.visual_qc
 - does: Judge rendered slide screenshots with a governed vision LLM for overflow, overlap, clipping, crowding and placeholder visuals, reusing prior verdicts [inspect_screenshots_with_llm]
@@ -4735,7 +4775,7 @@ Add one entry per component below this line, in this form (without the indentati
 
 ### production.paper_admission
 - does: Admits a workspace's late paper sets into a Stage-6-format corpus inventory by stable identity, with every existing record kept, appends its transcript-lane talks and their named gaps, and writes the identity report and the corpus statistics (papers, artifacts, text coverage, talks by kind, corpus version) [admit_paper_sets]
-- verbs: admit late papers, fold in papers, merge corpus, paper total union of ids, text coverage before after, papers gained text, corpus statistics, corpus version label, previous corpus, papers admit, recompute statistics, idempotent admission
+- verbs: admit late papers, fold in papers, merge corpus, paper total union of ids, text coverage before after, papers gained text, corpus statistics, corpus version label, previous corpus, papers admit, recompute statistics, idempotent admission, superseded lane record
 - status: canonical
 - modules: src/conference_pipeline/production/paper_admission.py, src/conference_pipeline/production/paper_admission_cli.py
 - uses: indexing.paper_identity, indexing.paper_lanes, indexing.transcript_evidence_lanes, production.corpus_index_stage, publishing.receipt_path_confinement
@@ -4752,6 +4792,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - tests: tests/test_copy_late_paper_sets.py
 - notes: v6.0 Phase 5. Resumable: a file whose copy already matches by size and sha256 is skipped.
+- reread: 2026-11-26, beside the diff of its modules since 52499c4 (code at 2d8f924); still accurate; unsafe plan paths, symlinked destinations and overlapping roots are now refused.
 
 ### production.corpus_index_stage
 - does: Stage 6: builds the corpus inventory from declared record builders, then chunks, embeds and materializes the paper/artifact vector index [run_lane_inventory_stage]
@@ -5020,6 +5061,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: publishing.release_orchestration, publishing.release_step_commands
 - tests: tests/test_byok_tools.py, tests/test_docs_public_byok_safety.py
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; marker checks now use the shared publishing-marker rules.
 
 ### publishing.cdn
 - does: Plans and runs Cloudflare R2 media uploads from bundle .cdn.json sidecars (a live upload needs a named approver and refuses an object over the R2 PUT limit), and checks that public release URLs respond [plan_public_media_upload, check_public_urls]
@@ -5041,6 +5083,7 @@ Add one entry per component below this line, in this form (without the indentati
 - uses: publishing.public_index, security.private_markers
 - used_by: publishing.public_closeout_command
 - tests: tests/test_public_closeout.py
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; its own marker tuple was replaced by the shared publishing-marker rules.
 
 ### publishing.dataset_package
 - does: Packages release dataset metadata (Croissant, datapackage, CITATION) and deposits it to Zenodo or pushes the bundle's data tree to Hugging Face behind live gates, with a generated dataset card, deletions of dropped files and a tag per bundle id (v6.0 Phase 7.1); the upload is verified first: every file against its listing, every listed file present, the generated files scanned, the final tree within the HF limits [package_public_dataset, deposit_zenodo, push_hf_dataset, hf_dataset_card, verified_hf_upload]
@@ -5087,6 +5130,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: publishing.release_orchestration, publishing.release_step_commands
 - tests: tests/test_notebooklm_audio.py
 - notes: Live mode only changes the manifest mode field; no NotebookLM call is made here. Not the podcast production lane.
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; chunk sources are filtered with the shared publishing-marker rules.
 
 ### publishing.public_closeout_command
 - does: CLI entry point that records a redacted public release closeout [conference_pipeline.publishing.public_closeout.main]
@@ -5118,8 +5162,9 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: publishing.byok_tools, publishing.cdn, publishing.closeout, publishing.dataset_package, publishing.embedding_cache, publishing.live_deployment, publishing.notebooklm_audio, publishing.public_repo, publishing.reader_bundle, publishing.release_cli_wrappers, publishing.release_orchestration, publishing.self_host_kit, … +1 more (graph.md)
 - part_of: subsystem.public_release
 - tests: tests/test_build_public_index.py
-- notes: Also owns validate_public_bundle_root, which every other publishing module imports; its marker check uses security.private_markers (v6.0 Phase 3; the PRIVATE_TEXT_MARKERS tuple is gone). It names default embedding models as module constants (lines 28-31), not through the model-governance registry.
+- notes: Also owns validate_public_bundle_root, which every other publishing module imports; its marker check uses security.private_markers (v6.0 Phase 3; the PRIVATE_TEXT_MARKERS tuple is gone). Its default embedding models come from the registry tasks public_search.canonical_embedding and public_search.browser_embedding; only the dimensions are module constants.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since b974243 (code at 2d8f924); still accurate; notes corrected (both embedding models come from registry tasks); the manifest no longer checksums itself or the build receipt.
 
 ### publishing.public_media_upload_cli
 - does: CLI entry point for planning and uploading public media to the CDN [publishing.cdn.upload_main]
@@ -5163,6 +5208,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_code_export.py
 - notes: v6.0 Phase 7 (D2 (a), D7). The author must be public: a GitHub noreply alias passes the generic email rule, but the operator's own literals still apply. Exit 0 clean, 1 gate findings, 2 refusals (output exists, unknown commit or one that is not HEAD or its ancestor, marker identity, manifest missing or an include matching nothing, a receipt inside the export, a commit that would not hold exactly the selection). Tests that read files the export lacks carry the repo_data marker (tests/conftest.py).
 - checked: yes
+- reread: 2026-11-26, beside the diff of its modules since 84a15b7 (code at 2d8f924); still accurate; the gates now also byte-check the files the text scan skipped.
 
 ### publishing.receipt_path_confinement
 - does: Keeps public-release receipt paths inside the conference workflow-runs tree, rejecting symlinks, and writes JSON atomically [confine_workflow_receipt_path, write_json_atomic_secure]
@@ -5196,6 +5242,7 @@ Add one entry per component below this line, in this form (without the indentati
 - part_of: subsystem.public_release
 - tests: tests/test_release_cli.py
 - notes: v6.0 Phase 3. Registered on the CLI by cli.py (app.add_typer(release_app, name="release")). Exit codes 0 done, 1 check finding or isolated digest mismatch, 2 refused. Each command writes its own top-level receipt public-release-<bundle>-<command>-receipt.json. --isolated writes nothing under the workspace and skips the export's immutability guard (it never touches the published bundle root).
+- reread: 2026-11-26, beside the diff of its modules since b974243 (code at 2d8f924); still accurate; R2 sidecar sizes now join the surface limit check.
 
 ### publishing.pdf_regeneration
 - does: Renders each deck's published HTML (after its payload family's redaction rules: relink, inline_assets) to PDF once, from a temporary folder, for the reader-families staging folder; a page that still loads any local resource is refused, early when an HTML parser finds it (sources, srcset, link, SVG image or use, CSS url and @import, an iframe's srcdoc) and always when the renderer, which loads only the page, https, data, blob and about URLs, refused a load, the PDF's render dates are pinned so a regeneration gives the same bytes, and a PDF that still holds a publishing marker is excluded and reported [regenerate_deck_pdfs]
@@ -5216,10 +5263,11 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: publishing.release_cli, publishing.static_site
 - tests: tests/test_release_reader_families.py
 - notes: v6.0 Phase 6 (6a; regenerated_pdfs, presentations and transcripts 6b, rulings D8 a, D22, D23: presentations stages a release presentation manifest listing every deck with published HTML, titled from its frame; transcripts stages each admitted talk transcript, read through Stage 6's read_indexable_source_text and made plain (captions, JSON, annotated recordings), as transcripts/<item_id or video-id>.md with a header and notice, plus transcripts/index.jsonl). stage6_inventory also identifies papers from per-paper download receipts, a record's own source_url, or the download corpus (two papers under one receipt id or one paper id are refused; one paper under two receipts is one row), and maps storage lanes to tracks (CVPR 2026). Sources are declared per workspace in storage/release/reader_sources.json; adapters are named by format (corpus_inventory, openreview_accepted_papers). A refusal (ReaderFamiliesError) writes nothing. CLI: conference-pipeline release families <slug>. presentations may title decks from a Markdown heading (title_markdown); transcript ids from namespaced video ids are made file-safe (6b).
+- reread: 2026-11-26, beside the diff of its modules since f501a83 (code at 2d8f924); still accurate; unit-page links, email-bearing authors dropped and more transcript identity shapes, all within the notes.
 
 ### publishing.bundle_redaction
-- does: Redacts a file's bundle copy by a family's redaction_rules objects (json_field, absolute_path, relink through a link map incl. bare Drive URLs, marker_text, inline_assets: local images become data: URIs, always last); never rewrites a binary, only reports one holding a marker [apply_redaction_rules, project_root_of]
-- verbs: redact bundle copy, scrub policy, private target redaction, relink drive links, absolute paths to relative, redaction rules, binary markers, bundle field rules, inline images, data uri, self-contained html, bare drive url
+- does: Redacts a file's bundle copy by a family's redaction_rules objects (json_field, absolute_path, relink through a link map incl. bare Drive URLs and mapped relative hrefs, marker_text, drop_preamble, figure_links, pdf_links, inline_assets: local images become data: URIs, always last); only pdf_links rewrites a binary (a PDF), another binary is only reported when it holds a marker [apply_redaction_rules, project_root_of]
+- verbs: redact bundle copy, scrub policy, private target redaction, relink drive links, absolute paths to relative, redaction rules, binary markers, bundle field rules, inline images, data uri, self-contained html, bare drive url, pdf link annotations, figure links, drop preamble
 - status: canonical
 - modules: src/conference_pipeline/publishing/bundle_redaction.py
 - uses: security.private_markers
@@ -5249,6 +5297,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_publish_conference_public_release.py, tests/test_public_export_manifest.py, tests/test_export_gate_redistribution.py
 - notes: Stages run in order: validate_manifest, export dry run or write, build_index, generate_site, package_dataset, stage_repo (package before staging since v6.0 Phase 6 D15), preflight_live, check_liveness, check_metadata, then live_github/r2/pages/hf/zenodo, each a subprocess of a scripts/*.py entry point; every live stage needs its own ack flag and target. Config fields index_embedding_provider (mock index) and owner_approval (recorded in the top-level receipt) serve publishing.release_cli. publishing/__init__.py only re-exports the main names of every publishing module.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; child scripts come from this checkout, R2 needs the owner's named approval and a dry run refuses live stages.
 
 ### publishing.release_step_commands
 - does: Thin CLI entry points for release-bundle steps: browser BYOK tools, gated NotebookLM audio manifest, static public site [main]
@@ -5270,6 +5319,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_self_host_tooling.py
 - notes: Its podcastfy config names an Edge TTS voice literal (line ~148).
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the kit's marker check now uses the shared rules.
 
 ### publishing.static_site
 - does: Generates the reader-facing site of one release bundle: topics, a page per topic (slides, videos, podcast, narrative, cited papers), papers, data files, and search whose advertised modes all work; since v6.0 Phase 7.1 the search is a sharded index and int8 vector shards (search_shards), under the Pages file limit [build_public_site]
@@ -5284,7 +5334,7 @@ Add one entry per component below this line, in this form (without the indentati
 
 ### publishing.reader_bundle
 - does: Reads a release bundle's reader content (topics from the presentation manifest, decks, video sidecars, podcasts, narratives, catalog rows, exclusions, statistics), verifying each file against CHECKSUMS.json or, for index/, the index manifest [load_reader_bundle, semantic_block]
-- verbs: read bundle, reader content contract, bundle topics, catalog rows, excluded ids, verify bundle file checksum, presentation manifest topics, video sidecar cdn url, narratives from bundle
+- verbs: read bundle, reader content contract, bundle topics, catalog rows, excluded ids, verify bundle file checksum, presentation manifest topics, video sidecar cdn url, narratives from bundle, unsafe bundle path refusal, m4a podcast, deck pptx, deck text
 - status: canonical
 - modules: src/conference_pipeline/publishing/reader_bundle.py
 - uses: publishing.public_index
@@ -5303,8 +5353,8 @@ Add one entry per component below this line, in this form (without the indentati
 - notes: The render follows presentation.rendered_qc's pattern: a missing Playwright or Chromium is a named skip, never a pass. render_markdown levels headings so none skips a level, and takes reserved page link texts; the link lint reads aria-label first (6b).
 
 ### publishing.embedding_cache
-- does: Vectors for a public index made on another machine: export a bundle's chunk texts once each, embed them with the governed models there, and load them back keyed by text sha256 and model id, refusing a missing text or another model [export_chunk_texts, embed_texts, load_lane]
-- verbs: embedding cache, remote embeddings, embed on another machine, offload embeddings, precomputed vectors, chunk texts export, beast-3 embeddings
+- does: Vectors for a public index made on another machine: export a bundle's chunk texts once each, embed them with the governed models there, and load them back keyed by text sha256 and model id, refusing a missing text, another model or vectors whose sha256 is not the one the cache metadata records [export_chunk_texts, embed_texts, load_lane]
+- verbs: embedding cache, remote embeddings, embed on another machine, offload embeddings, precomputed vectors, chunk texts export, beast-3 embeddings, atomic cache write
 - status: canonical
 - modules: src/conference_pipeline/publishing/embedding_cache.py, scripts/public_embedding_cache.py
 - uses: indexing.embedding_selection, publishing.public_index
@@ -5336,6 +5386,7 @@ Add one entry per component below this line, in this form (without the indentati
 - part_of: subsystem.public_release
 - tests: tests/test_release_publish_paths.py
 - notes: v6.0 Phase 7.1 (spec 6.5, D5).
+- reread: 2026-11-26, beside the diff of its modules since 454c10f (code at 2d8f924); still accurate; a PDF or zip now gets one verdict, the container check's.
 
 ### publishing.release_layout
 - does: Which bundle files each surface receives (the GitHub data repo never site/ or index/; HF never site/, public-repo/, the BM25 pickle or the .npy), and the public URLs a release states, derived from the workspace release: block and stamped into RELEASE.json at build; also the files the HF upload adds itself and the git tag rule bundle ids must meet [hf_upload_paths, github_excluded, stamped_urls, workspace_release_settings, valid_tag]
@@ -5347,6 +5398,7 @@ Add one entry per component below this line, in this form (without the indentati
 - part_of: subsystem.public_release
 - tests: tests/test_release_cli.py, tests/test_hf_release_tree.py
 - notes: v6.0 Phase 7.1. Stamping at build replaces restamping after publish, which changes the tree digest.
+- reread: 2026-11-26, beside the diff of its modules since 96e5eb9 (code at 2d8f924); still accurate; the tag rule now matches the whole string.
 
 ### publishing.search_shards
 - does: A static sharded full-text index (hash-bucketed postings, display fields in blocks) that ranks exactly as site_checks.bm25_rank, and int8 vector shards with a per-row scale, for sites and the hub under the Pages file limit [write_search_shards, read_ranked, write_vector_shards]
@@ -5390,6 +5442,7 @@ Add one entry per component below this line, in this form (without the indentati
 - tests: tests/test_model_governance.py
 - notes: Defaults and prompt are NeurIPS 2025 topic 20 (Small Language Models), under the repository's conferences/neurips2025; model from governed task research.claude_deep_research.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the ~/.zshrc fallback for the Anthropic key is gone.
 
 ### research.dedup
 - does: Collapse near-duplicate retrieved chunks within each source family by word-Jaccard similarity, keeping cross-family evidence [deduplicate_retrieved_chunks]
@@ -5468,6 +5521,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - notes: Reads API keys from the environment only (source the repository .env); hardcodes conferences/neurips2025 paths.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; both setup scripts now take keys from the environment.
 
 ### research.gptr_engine
 - does: Run the GPT-Researcher package on our hybrid index and local model only, with a local retriever plugin, quoted passages, citation handles, report validation [GPTResearcherEngine]
@@ -5510,6 +5564,7 @@ Add one entry per component below this line, in this form (without the indentati
 - used_by: (none)
 - notes: Hardcode conferences/neurips2025 paths; the hybrid script reads API keys from .env and the environment with its own parser. Referenced by publishing/self_host_kit.py and docs/architecture.md.
 - checked: partial
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the hybrid script's ~/.zshrc fallback is now the process environment.
 
 ### research.local_researcher
 - does: Loopback-only local OpenAI-compatible synthesis researcher and local query-expansion client with $0 provider receipts [LocalLLMResearcher]
@@ -5538,7 +5593,8 @@ Add one entry per component below this line, in this form (without the indentati
 - modules: scripts/gemini_deep_research.py
 - uses: llm.model_registry
 - used_by: (none)
-- notes: Input/output paths are conferences/neurips2025 under the repository root and the query text is SLM-specific; it reads GOOGLE_API_KEY/TAVILY_API_KEY from the environment only rule.
+- notes: Input/output paths are conferences/neurips2025 under the repository root and the query text is SLM-specific; it reads GOOGLE_API_KEY/TAVILY_API_KEY from the environment only.
+- reread: 2026-11-26, beside the diff of its modules since c56e924 (code at 2d8f924); still accurate; the Google and Tavily ~/.zshrc key fallbacks are gone (notes wording tidied).
 
 ### research.parameters
 - does: Load GPT-Researcher-style research knobs (breadth, depth, retrieval k, RRF, concurrency, dedup) from config and env with behavioral digests [GPTResearcherParameters]
