@@ -205,7 +205,7 @@ Owner adjudication of the gold labels (v6.1 Phase 3, spec 6.4; plan D7).
 | `agreement_report(labels) -> dict[str, Any]` | function | 131 | Per author role: items, agreed, and the confusion of author vs checker support labels. |
 
 ## conference_pipeline.ontology.gold_debate — `src/conference_pipeline/ontology/gold_debate.py`
-Components: unassigned
+Components: ontology.gold_model_adjudicators
 Two models debate the items the adjudicators split on (v6.1 Phase 3, spec §24).
 
 | Symbol | Kind | Line | Summary |
@@ -216,7 +216,7 @@ Two models debate the items the adjudicators split on (v6.1 Phase 3, spec §24).
 | `consensus(cards, result, judges) -> dict[str, Any]` | function | 103 | When the debaters agreed (round 1, after a reply, never), who moved, and how a consensus sits |
 
 ## conference_pipeline.ontology.gold_judge — `src/conference_pipeline/ontology/gold_judge.py`
-Components: unassigned
+Components: ontology.gold_model_adjudicators
 Two model adjudicators over the adjudication queue (v6.1 Phase 3, spec §23).
 
 | Symbol | Kind | Line | Summary |
@@ -307,7 +307,7 @@ Gold work selection from the Phase 2 pools (v6.1 Phase 3, spec 6.1).
 | `feasibility(selection, questions) -> dict[str, Any]` | function | 173 | Per split, the core questions no pick covers (spec 6.10, before labelling). |
 
 ## conference_pipeline.ontology.gold_sheet — `src/conference_pipeline/ontology/gold_sheet.py`
-Components: unassigned
+Components: ontology.gold_adjudicate
 The owner's adjudication sheet (v6.1 Phase 3, spec 6.4, D5 (a)).
 
 | Symbol | Kind | Line | Summary |
